@@ -1,0 +1,12 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.Register"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		title="Register"
+	
+		/>
+
+</mvc:View>
