@@ -1,0 +1,45 @@
+<mvc:View
+   controllerName="sap.ui.demo.walkthrough.controller.LogReg"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+
+   <FlexBox height="600px" alignItems="Center" justifyContent="Center">
+   <Panel  >
+      <content>
+         <Input
+            value="{/recipientUs/nameUs}"
+            valueLiveUpdate="true"
+            width="80%"/>
+         <Input
+            value="{/recipientPass/namePass}"
+            valueLiveUpdate="true"
+            width="80%"/>
+      </content>
+
+      <content>
+             <Button
+            text="{i18n>LogIn}"
+            press=".onLogIn"
+            class="myCustomButton"
+            width="80%"
+            type="Navigation"/>
+
+            <Button
+            text="{i18n>Register}"
+            press=".onRegister"
+            class="myCustomButton"
+            width="80%"/>
+
+            <Button
+            text="{i18n>ForgotPass}"
+            press=".onForgotPass"
+            class="myCustomButton"
+            width="80%"/>
+      </content>
+
+   </Panel>
+   </FlexBox>
+
+
+
+</mvc:View>
