@@ -55,11 +55,20 @@
           "name": "overview",
           "target": "overview"
         },
-       
 		{
 			"pattern": "main",
 			"name": "main",
 			"target": "main"
+		},
+		{
+			"pattern": "forgotpass",
+			"name": "forgotpass",
+			"target": "forgotpass"
+		},
+		{
+			"pattern": "register",
+			"name": "register",
+			"target": "register"
 		}
         ],
         "targets": {
@@ -70,6 +79,14 @@
         "main": {
           "viewId": "main",
           "viewName": "Main"
+        },
+        "forgotpass": {
+          "viewId": "forgotpass",
+          "viewName": "Forgotpass"
+        },
+        "register": {
+          "viewId": "register",
+          "viewName": "Register"
         }
         }
       }
