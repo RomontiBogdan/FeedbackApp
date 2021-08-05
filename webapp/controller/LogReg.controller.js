@@ -17,15 +17,18 @@ sap.ui.define([
           // show message
           MessageToast.show(sMsg);*/
 
-          var oRouter = this.getOwnerComponent().getRouter(); oRouter.navTo("main"); 
+          var oRouter = this.getOwnerComponent().getRouter();
+          oRouter.navTo("main"); 
 
        },
        onRegister : function () {
-          
+         var oRouter = this.getOwnerComponent().getRouter();
+         oRouter.navTo("register"); 
        },
 
        onForgotPass : function () {
-          
+         var oRouter = this.getOwnerComponent().getRouter();
+         oRouter.navTo("forgotpass"); 
        }
     });
  });

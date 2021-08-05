@@ -6,7 +6,8 @@
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
 		title="ForgotPass"
-	
+		showNavButton="true"
+		navButtonPress=".onNavBack"
 		/>
 
 </mvc:View>
