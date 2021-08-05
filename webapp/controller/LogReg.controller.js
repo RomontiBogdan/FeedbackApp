@@ -21,12 +21,12 @@ sap.ui.define([
           oRouter.navTo("main"); 
 
        },
-       onRegister : function () {
+       onRegister : function (oEvent) {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.navTo("register"); 
        },
 
-       onForgotPass : function () {
+       onForgotPass : function (oEvent) {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.navTo("forgotpass"); 
        }

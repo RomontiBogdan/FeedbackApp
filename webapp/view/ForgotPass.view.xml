@@ -7,7 +7,26 @@
 	<Page
 		title="ForgotPass"
 		showNavButton="true"
-		navButtonPress=".onNavBack"
-		/>
+		navButtonPress=".onNavBack" >
+		
+	 <Panel>
+        <content>
+             <Input
+                 placeholder="Enter your email"
+                 valueLiveUpdate="true"
+                 width="80%"/>
+ 
+            <Button
+           		 text="{i18n>SubmitEmail}"
+           		 class="myCustomButton"
+            	 width="80%"
+            />
+        </content>
+    </Panel>
+
+	</Page>
+
+
+
 
 </mvc:View>
