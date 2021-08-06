@@ -8,13 +8,13 @@
       <content>
          <Input
             id="UsernameField"
-            value="{/recipientUs/nameUs}"
+            value="{loginTextFields>/recipientUs/nameUs}"
 			   placeholder="Username"
             valueLiveUpdate="true"
             width="80%"/>
          <Input
             id="PasswordField"
-            value="{/recipientPass/namePass}"
+            value="{loginTextFields>/recipientPass/namePass}"
             type="Password"
             placeholder="Password"
             valueLiveUpdate="true"
