@@ -7,12 +7,16 @@
    <Panel  >
       <content>
          <Input
-			   placeholder="{/recipientUs/nameUs}"
+            id="UsernameField"
+            value="{/recipientUs/nameUs}"
+			   placeholder="Username"
             valueLiveUpdate="true"
             width="80%"/>
          <Input
+            id="PasswordField"
+            value="{/recipientPass/namePass}"
             type="Password"
-            placeholder="{/recipientPass/namePass}"
+            placeholder="Password"
             valueLiveUpdate="true"
             width="80%"/>
       </content>

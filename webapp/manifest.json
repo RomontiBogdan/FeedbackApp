@@ -8,7 +8,16 @@
 	"description": "{{appDescription}}",
 	"applicationVersion": {
 	  "version": "1.0.0"
-	}
+	},
+	"dataSources":{
+        "mainService":{
+          "uri":"/sap/opu/odata/sap/ZFEEDBACK_T3_SRV/?sap-client=700",
+          "type":"OData",
+          "settings":{
+            "odataVersion" : "2.0"
+          }
+        }
+      }
   },
   "sap.ui": {
 	"technology": "UI5",
@@ -38,7 +47,17 @@
 		  "supportedLocales": [""],
 		  "fallbackLocale": ""
 		}
+	  },
+	  "":{
+		"dataSource": "mainService",
+		"settings": {
+		"defaultBindingMode": "TwoWay",
+		"defaultCountMode": "Inline",
+		"useBatch": false,
+		"defaultUpdateMethod": "PUT"
+		}
 	  }
+
 	},
 	"routing": {
         "config": {
@@ -56,7 +75,7 @@
           "target": "overview"
         },
 		{
-			"pattern": "main",
+			"pattern": "main/{Username},{Password}",
 			"name": "main",
 			"target": "main"
 		},
