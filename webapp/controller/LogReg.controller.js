@@ -17,8 +17,17 @@ sap.ui.define([
           // show message
           MessageToast.show(sMsg);*/
 
-          var oRouter = this.getOwnerComponent().getRouter();
-          oRouter.navTo("main"); 
+          //var oItem = oEvent.getSource();
+			    //var oBindingObject = oItem.getBindingContext().getObject();
+          
+          var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+          oRouter.navTo("main", {
+            Username: this.getView().byId("UsernameField").getValue(),
+            Password: this.getView().byId("PasswordField").getValue()
+
+          }); 
+
+
 
        },
        onRegister : function (oEvent) {
