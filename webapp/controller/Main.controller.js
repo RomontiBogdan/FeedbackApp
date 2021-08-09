@@ -1,8 +1,10 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History"
+	"sap/ui/core/routing/History",
+	"sap/m/MessageBox",
+	"sap/m/MessageToast"
 	
-], function (Controller, History) {
+], function (Controller, History, MessageBox, MessageToast) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
 		_onObjectMatched: function (oEvent) {
@@ -40,6 +42,8 @@ sap.ui.define([
 			oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
 		},
 
+		
+
 		onNavBack: function () {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
@@ -55,6 +59,28 @@ sap.ui.define([
 		onRequestNewPEG: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("requestpeg"); 
+		},
+
+		onMyProfile: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("myprofile"); 
+		},
+
+		onNewFeedback: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("newfeedback"); 
+		  },
+		  
+
+		onLogOut: function () {
+			MessageBox.confirm("Are you sure you want to log out?", {
+				onClose: function(oAction) {
+					if (oAction == "OK") {
+						var oRouter = this.getOwnerComponent().getRouter();
+						oRouter.navTo("overview");
+					}
+				}.bind(this)
+			});
 		  }
 
 	});
