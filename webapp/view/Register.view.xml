@@ -11,24 +11,19 @@
 		
 	  <Panel>
 		 <content>
-             <Input
-                 placeholder="Firstname"
-                 valueLiveUpdate="true"
-                 width="80%"/>
-			  <Input
-                 placeholder="Lastname"
-                 valueLiveUpdate="true"
-                 width="80%"/>
 			   <Input
+			     id="UsernameRegisterField"
                  placeholder="Username"
                  valueLiveUpdate="true"
                  width="80%"/>
 			   <Input
+			   	 id="PasswordRegisterField"
 			     type="Password"
                  placeholder="Password"
                  valueLiveUpdate="true"
                  width="80%"/>
 				<Input
+				 id="EmailRegisterField"
                  placeholder="Company email"
                  valueLiveUpdate="true"
                  width="80%"/>
@@ -37,6 +32,8 @@
             	text="{i18n>SubmitRegister}"
            		class="myCustomButton"
             	width="80%"
+              type="Navigation"
+              press=".onCreateRegister"
            	  />
         </content>
 	   </Panel>

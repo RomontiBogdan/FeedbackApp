@@ -75,7 +75,7 @@
           "target": "overview"
         },
 		{
-			"pattern": "main/{Username},{Password}",
+			"pattern": "main/{Username}",
 			"name": "main",
 			"target": "main"
 		},
@@ -89,6 +89,8 @@
 			"name": "register",
 			"target": "register"
 		}
+
+
         ],
         "targets": {
         "overview": {
