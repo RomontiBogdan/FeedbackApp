@@ -93,6 +93,16 @@
 			"pattern": "requestpeg",
 			"name": "requestpeg",
 			"target": "requestpeg"
+		},
+		{
+			"pattern": "newfeedback",
+			"name": "newfeedback",
+			"target": "newfeedback"
+		},
+		{
+			"pattern": "myprofile",
+			"name": "myprofile",
+			"target": "myprofile"
 		}
         ],
         "targets": {
@@ -115,6 +125,14 @@
 		"requestpeg": {
 			"viewId": "register",
 			"viewName": "RequestPEG"
+		},
+		"newfeedback": {
+			"viewId": "newfeedback",
+			"viewName": "NewFeedback"
+		},
+		"myprofile": {
+			"viewId": "myprofile",
+			"viewName": "MyProfile"
 		  }
 		
         }
