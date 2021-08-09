@@ -1,14 +1,71 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.MyProfile"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+	
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+    
 	<Page
 		title="{i18n>ViewProfile}"
-
         showNavButton="true"
-		navButtonPress=".onNavBack">
+		navButtonPress=".onNavBack"
+		class="sapUiContentPadding">
 		
-	  
+    <Panel>
+		 <content>
+	
+	 <l:VerticalLayout class="sapUiContentPadding" width="100%">
+
+		<Label text="Name" labelFor="inputText" />
+		<Input
+			id="inputText"
+			placeholder="Enter full name"
+			class="sapUiSmallMarginBottom" />
+
+		<Label text="Email" labelFor="inputEmail" />
+		<Input
+			id="inputEmail"
+			type="Email"
+			placeholder="Enter email"
+			class="sapUiSmallMarginBottom" />
+
+		<Label text="Telephone" labelFor="inputTel" />
+		<Input
+			id="inputTel"
+			type="Tel"
+			placeholder="Enter personal number"
+			class="sapUiSmallMarginBottom" />
+
+
+        <Label text="SU" labelFor="inputSU" />
+		<Input
+			id="inputSU"
+			type="SU"
+			placeholder="Enter Service Unit"
+			class="sapUiSmallMarginBottom" />
+
+        <Text text = "Career level"/>
+	    <Select 
+        
+					forceSelection="false"
+					selectedKey="{/SelectedProduct}"
+					items="{
+						path: '/ProductCollection',
+						sorter: { path: 'Name' }
+					}">
+					<core:ListItem key="{ProductId}" text="{Name}" icon="{Icon}"/>
+		</Select>
+	
+
+		
+	</l:VerticalLayout>
+   
+ 
+             
+        </content>
+	   </Panel>
+ 
 
     </Page>
 
