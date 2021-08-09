@@ -88,6 +88,21 @@
 			"pattern": "register",
 			"name": "register",
 			"target": "register"
+		},
+		{
+			"pattern": "requestpeg",
+			"name": "requestpeg",
+			"target": "requestpeg"
+		},
+		{
+			"pattern": "newfeedback",
+			"name": "newfeedback",
+			"target": "newfeedback"
+		},
+		{
+			"pattern": "myprofile",
+			"name": "myprofile",
+			"target": "myprofile"
 		}
 
 
@@ -108,7 +123,20 @@
         "register": {
           "viewId": "register",
           "viewName": "Register"
-        }
+        },
+		"requestpeg": {
+			"viewId": "register",
+			"viewName": "RequestPEG"
+		},
+		"newfeedback": {
+			"viewId": "newfeedback",
+			"viewName": "NewFeedback"
+		},
+		"myprofile": {
+			"viewId": "myprofile",
+			"viewName": "MyProfile"
+		  }
+		
         }
       }
   }
