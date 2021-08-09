@@ -36,6 +36,7 @@
 
 			<Button
             	text="{i18n>ViewProfile}"
+				press=".onMyProfile"
            		class="myCustomButton"
 				press = ".onProfile"
             	width="60%"/>
@@ -43,12 +44,13 @@
 
 			<Button
             	text="{i18n>NewFeedback}"
+				press=".onNewFeedback"
            		class="myCustomButton"
             	width="60%"/>
 
 			<Button
             	text="{i18n>LogOut}"
-				press=".onLogIn"
+				press=".onLogOut"
            		class="myCustomButton"
             	width="60%"/>
 				

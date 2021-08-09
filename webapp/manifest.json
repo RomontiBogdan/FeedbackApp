@@ -75,7 +75,7 @@
           "target": "overview"
         },
 		{
-			"pattern": "main/{Username},{Password}",
+			"pattern": "main/{Username}",
 			"name": "main",
 			"target": "main"
 		},
@@ -95,6 +95,7 @@
 			"target": "requestpeg"
 		},
 		{
+
 			"pattern": "displaypeglist",
 			"name": "displaypeglist",
 			"target": "displaypeglist"
@@ -103,14 +104,18 @@
 			"pattern": "sentreceived",
 			"name": "sentreceived",
 			"target": "sentreceived"
+    },
+    {
+			"pattern": "newfeedback",
+			"name": "newfeedback",
+			"target": "newfeedback"
 		},
 		{
 			"pattern": "myprofile",
 			"name": "myprofile",
 			"target": "myprofile"
 		}
-
-        ],
+    ],
         "targets": {
         "overview": {
           "viewId": "overview",
@@ -142,6 +147,12 @@
 		  },
 
 		  "myprofile": {
+		},
+		"newfeedback": {
+			"viewId": "newfeedback",
+			"viewName": "NewFeedback"
+		},
+		"myprofile": {
 			"viewId": "myprofile",
 			"viewName": "MyProfile"
 		  }
