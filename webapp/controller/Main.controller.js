@@ -55,7 +55,24 @@ sap.ui.define([
 		onRequestNewPEG: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("requestpeg"); 
+		  },
+
+		  onDisplayPEGList: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("displaypeglist"); 
+		  },
+
+		  onListSentReceived: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("sentreceived"); 
+		  },
+
+
+		  onProfile : function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("myprofile"); 
 		  }
+
 
 	});
 });

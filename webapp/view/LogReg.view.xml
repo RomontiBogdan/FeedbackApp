@@ -26,6 +26,7 @@
             text="{i18n>LogIn}"
             press=".onLogIn"
             class="myCustomButton"
+            icon="sap-icon://visits"
             width="80%"
             type="Navigation"/>
 

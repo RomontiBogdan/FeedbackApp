@@ -93,7 +93,23 @@
 			"pattern": "requestpeg",
 			"name": "requestpeg",
 			"target": "requestpeg"
+		},
+		{
+			"pattern": "displaypeglist",
+			"name": "displaypeglist",
+			"target": "displaypeglist"
+		},
+		{
+			"pattern": "sentreceived",
+			"name": "sentreceived",
+			"target": "sentreceived"
+		},
+		{
+			"pattern": "myprofile",
+			"name": "myprofile",
+			"target": "myprofile"
 		}
+
         ],
         "targets": {
         "overview": {
@@ -115,7 +131,22 @@
 		"requestpeg": {
 			"viewId": "register",
 			"viewName": "RequestPEG"
+		  },
+		  "displaypeglist": {
+			"viewId": "displaypeglist",
+			"viewName": "DisplayPEGList"
+		  },
+		  "sentreceived": {
+			"viewId": "sentreceived",
+			"viewName": "SentReceived"
+		  },
+
+		  "myprofile": {
+			"viewId": "myprofile",
+			"viewName": "MyProfile"
 		  }
+
+
 		
         }
       }
