@@ -38,7 +38,24 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
-		}
+		},
+
+		onNavBack: function () {
+			var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = this.getOwnerComponent().getRouter();
+				oRouter.navTo("overview", {}, true);
+			}
+		},
+
+		onRequestNewPEG: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("requestpeg"); 
+		  }
 
 	});
 });
