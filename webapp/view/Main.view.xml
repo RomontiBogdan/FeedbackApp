@@ -24,18 +24,21 @@
 			<Button
             	text="{i18n>DisplayPEGList}"
            		class="myCustomButton"
+				press=".onDisplayPEGList"
             	width="60%"/>
 	   
 
 			<Button
             	text="{i18n>ListSentReceived}"
            		class="myCustomButton"
+				press = ".onListSentReceived"
             	width="60%"/>
 
 			<Button
             	text="{i18n>ViewProfile}"
 				press=".onMyProfile"
            		class="myCustomButton"
+				press = ".onProfile"
             	width="60%"/>
 
 

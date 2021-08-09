@@ -1,15 +1,13 @@
 <mvc:View
-	controllerName="sap.ui.demo.walkthrough.controller.MyProfile"
+	controllerName="sap.ui.demo.walkthrough.controller.DisplayPEGList"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
-		title="{i18n>ViewProfile}"
-
+		title="{i18n>DisplayPEGList}"
         showNavButton="true"
 		navButtonPress=".onNavBack">
 		
 	  
-
     </Page>
 
 </mvc:View>

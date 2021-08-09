@@ -3,7 +3,7 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
-		title="Request new PEG"
+		title="{i18n>RequestPEG}"
         showNavButton="true"
 		navButtonPress=".onNavBack">
 		

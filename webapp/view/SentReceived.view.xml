@@ -1,10 +1,9 @@
 <mvc:View
-	controllerName="sap.ui.demo.walkthrough.controller.MyProfile"
+	controllerName="sap.ui.demo.walkthrough.controller.SentReceived"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
-		title="{i18n>ViewProfile}"
-
+		title="{i18n>ListSentReceived}"
         showNavButton="true"
 		navButtonPress=".onNavBack">
 		
