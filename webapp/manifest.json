@@ -146,8 +146,6 @@
 			"viewName": "SentReceived"
 		  },
 
-		  "myprofile": {
-		},
 		"newfeedback": {
 			"viewId": "newfeedback",
 			"viewName": "NewFeedback"

@@ -36,7 +36,6 @@
 
 			<Button
             	text="{i18n>ViewProfile}"
-				press=".onMyProfile"
            		class="myCustomButton"
 				press = ".onProfile"
             	width="60%"/>
