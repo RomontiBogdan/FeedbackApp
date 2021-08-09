@@ -27,8 +27,7 @@
             press=".onLogIn"
             class="myCustomButton"
             icon="sap-icon://visits"
-            width="80%"
-            type="Navigation"/>
+            width="80%"/>
 
             <Button
             text="{i18n>Register}"
@@ -40,7 +39,8 @@
             text="{i18n>ForgotPass}"
             press=".onForgotPass"
             class="myCustomButton"
-            width="80%"/>
+            width="80%"
+            type="Transparent"/>
       </content>
 
    </Panel>
