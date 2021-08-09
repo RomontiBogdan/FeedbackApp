@@ -39,6 +39,16 @@
 		"sap.m": {}
 	  }
 	},
+		"config": {
+			"sample": {
+				"stretch": true,
+				"files": [
+					"MyProfile.view.xml",
+					"MyProfile.controller.js",
+					"manifest.json"
+				]
+			}
+		},
 	"models": {
 	  "i18n": {
 		"type": "sap.ui.model.resource.ResourceModel",
