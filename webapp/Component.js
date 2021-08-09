@@ -29,8 +29,7 @@ sap.ui.define([
             }
           };
           var oModel = new JSONModel(oData);
-          this.setModel(oModel, "loginTextFields");
-         
+          this.setModel(oModel, "loginTextFields");   
  
           // set i18n model
           var i18nModel = new ResourceModel({

@@ -3,32 +3,37 @@ sap.ui.define([
     "sap/m/MessageToast"
  ], function (Controller, MessageToast) {
     "use strict";
-    return Controller.extend("sap.ui.demo.walkthrough.controller.HelloPanel", {
+    return Controller.extend("sap.ui.demo.walkthrough.controller.LogReg", {
+      onInit: function ()
+      {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.getRoute("overview").attachPatternMatched(this._onObjectMatched, this);
+
+      },
+      
+      _onObjectMatched: function (oEvent) {
+       
+      },
       onLogIn : function (oEvent) {
-          // read msg from i18n model
-          /*var oBundleUsername = this.getView().getModel("i18n").getResourceBundle();
-          var sRecipientUsername = this.getView().getModel().getProperty("/recipientUs/nameUs");
-          var sMsgUsername = oBundle.getText("helloMsg", [sRecipient]);
 
-          var oBundlePassword = this.getView().getModel("i18n").getResourceBundle();
-          var sRecipientPassword = this.getView().getModel().getProperty("/recipientPass/namePass");
-          var sMsgPassword = oBundle.getText("helloMsg", [sRecipient]);
-
-          // show message
-          MessageToast.show(sMsg);*/
-
-          //var oItem = oEvent.getSource();
-			    //var oBindingObject = oItem.getBindingContext().getObject();
-          
           var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-          oRouter.navTo("main", {
-            Username: this.getView().byId("UsernameField").getValue(),
-            Password: this.getView().byId("PasswordField").getValue()
 
-          }); 
+      var oModel = this.getOwnerComponent().getModel();
+			var sUsername = this.getView().byId("UsernameField").getValue();
+			var sPassword = this.getView().byId("PasswordField").getValue();
 
-
-
+			oModel.read("/UsersSet(Username='"+sUsername+"',Password='"+sPassword+"')", {
+                success: function(oRetrievedResult) { 
+                 
+                  oRouter.navTo("main", {
+                    Username: sUsername
+                  }); 
+                  }.bind(this),
+                  error: function(oError) { 
+                    
+					            sap.m.MessageToast.show("Login failed")
+                }
+              });
        },
        onRegister : function (oEvent) {
          var oRouter = this.getOwnerComponent().getRouter();
