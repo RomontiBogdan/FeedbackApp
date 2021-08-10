@@ -69,6 +69,20 @@ sap.ui.define([
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("overview", {}, true);
 			}
+		},
+
+
+		onPressSave: function()
+		{
+			var oModel = this.getView().getModel();
+			oModel.setUseBatch(true);
+			oModel.submitChanges({
+				success: function(oData)
+				{
+					sap.m.MessageToast.show("Update successful");
+				    oModel.setUseBatch(false);
+				}
+			});
 		}
 
 	});
