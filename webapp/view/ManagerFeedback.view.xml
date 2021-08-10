@@ -1,0 +1,33 @@
+<mvc:View
+		controllerName="sap.ui.demo.walkthrough.controller.ManagerPEG"
+		xmlns:core="sap.ui.core"
+	    xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m"
+        xmlns:l="sap.ui.layout">
+    <Page
+		    title="Manager Feedback"
+		    showNavButton="true"
+		    navButtonPress=".onNavBack"
+	>
+
+	 <Panel>
+			<content>
+						<Input
+							id="Grade"
+							placeholder="Give grade to employee"
+							valueLiveUpdate="true"
+							width="60%"
+						/>
+				 		<Button
+           					 text="Export to EXCEL and send"
+            				 press=".onLogIn"
+            				 class="myCustomButton"
+           					 icon="sap-icon://action"
+          					 width="60%"
+						/>
+		
+			</content>
+		</Panel>
+    </Page>
+
+</mvc:View>

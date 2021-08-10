@@ -2,12 +2,64 @@
 	controllerName="sap.ui.demo.walkthrough.controller.DisplayPEGList"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
+
+
 	<Page
-		title="{i18n>DisplayPEGList}"
-        showNavButton="true"
-		navButtonPress=".onNavBack">
+		    title="List of User PEGs"
+		    showNavButton="true"
+		    navButtonPress=".onNavBack"
+	>
+
+							<footer>
+ 							  <Bar>
+   								 <contentRight>
+      								<Button
+           					 			text="New Request"
+            				 			press=".onNewRequest"
+            				 			class="myCustomButton"
+									/>
+    							</contentRight>
+  							  </Bar>
+						    </footer>
+
+		  	<Table id="myPegs"
+			  inset="false"
+			  items = "{displayList>/}" >
 		
-	  
+				<columns>
+
+						<Column width="12em">
+							<Text text="Project " />
+						</Column>
+
+						<Column width="12em">
+							<Text text="Manager" />
+						</Column>
+
+						<Column width="12em">
+							<Text text="Status" />
+						</Column>
+
+				</columns>
+
+				 <items>
+            <ColumnListItem 
+			type = "Navigation"
+			press = ".onPress"
+			>
+                <cells>
+                    <Text
+                        
+                        text="{displayList>Project}"
+						/>
+                    <Text
+                        text="{displayList>Manager}" />
+                    <Text
+                        text="{displayList>Status}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+			</Table>
     </Page>
 
 </mvc:View>

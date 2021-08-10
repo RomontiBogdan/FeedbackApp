@@ -4,10 +4,10 @@ sap.ui.define([
 	
 ], function (Controller, History) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.RequestPEG", {
+	return Controller.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
 		},
 
         onNavBack: function () {
@@ -18,7 +18,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("displaypeglist", {}, true);
+				oRouter.navTo("managerpeg", {}, true);
 			}
 		}
 

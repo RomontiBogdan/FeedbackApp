@@ -5,23 +5,23 @@ sap.ui.define([
 	
 ], function (Controller, History, JSONModel) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.DisplayPEGList", {
+	return Controller.extend("sap.ui.demo.walkthrough.controller.ManagerPEG", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("displaypeglist").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("managerpeg").attachPatternMatched(this._onObjectMatched, this);
 
 			var oViewModel = new JSONModel([{
-                Project  : "Project1",
-                Manager : "Manager1",
-                Status : "completed",
-               
+                Employee  : "Employee1",
+                Project : "Project1"
+                 
             },{
-				Project  : "Project2",
-                Manager : "Manager2",
-                Status : "pending",
+				Employee  : "Employee2",
+                Project : "Project2"
+                
             }]);
 
-			this.getView().setModel(oViewModel, "displayList");
+			this.getView().setModel(oViewModel, "employee");
+
 		},
 
         onNavBack: function () {
@@ -36,18 +36,10 @@ sap.ui.define([
 			}
 		},
 
-		
 		onPress: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("userPEGs");
-		},
-
-		onNewRequest: function (oEvenet) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg");
-		},
-
-
+			oRouter.navTo("managerFeedback");
+		}
 
 	});
 });
