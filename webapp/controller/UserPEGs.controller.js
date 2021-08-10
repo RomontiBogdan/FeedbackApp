@@ -4,10 +4,10 @@ sap.ui.define([
 	
 ], function (Controller, History) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.RequestPEG", {
+	return Controller.extend("sap.ui.demo.walkthrough.controller.UserPEGs", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("userPEGs").attachPatternMatched(this._onObjectMatched, this);
 		},
 
         onNavBack: function () {

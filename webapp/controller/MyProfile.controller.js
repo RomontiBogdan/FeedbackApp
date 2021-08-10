@@ -6,46 +6,58 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
 		onInit: function () {
+
            
             var oData = {
-				"SelectedProduct": "HT-1001",
-				"ProductCollection": [
-					{
-						//"ProductId": "HT-1001",
-						"Name": "Junior Consultant",
-						
-					},
-					{
-						//"ProductId": "HT-1002",
-						"Name": "Consultant",
-						
-					},
-					{
-						//"ProductId": "HT-1003",
-						"Name": "Senior Consultant",
-						
-					},
-					{
-						//"ProductId": "HT-1007",
-						"Name": "Manager",
-						
-					},
-					{
-						//"ProductId": "HT-1010",
-						"Name": "Senior Manager",
-						
-					}
-						
-				]
-			};
+                Levels: [
+                    {
+                        Id: "0",
+                        Name: "Junior Consultant"
+                    },
+                    {
+                        Id: "1",
+                        Name: "Consultant"
+                        
+                    },
+                    {
+                        Id: "2",
+                        Name: "Senior Consultant"
+                        
+                    },
+                    {
+                        Id: "3",
+                        Name: "Manager"
+                        
+                    },
+                    {
+                        Id: "4",
+                        Name: "Senior Manager"
+                    },
+                    {
+                        Id: "5",
+                        Name: "Lead Manager"
+                    }   
+                ]
+            };
 
-			// set explored app's demo model on this sample
+		
 			var oModel = new JSONModel(oData);
-			this.getView().setModel(oModel);
+			this.getView().setModel(oModel,"myProfileModel");
             
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("myprofile").attachPatternMatched(this._onObjectMatched, this);
 		},
+
+		_onObjectMatched: function(oEvent)
+		{
+
+			var sUsername = oEvent.getParameter("arguments").Username;
+			this.getView().bindElement({
+				path: "/UserPassSet('" + sUsername + "')"
+		    });
+		},
+
+
 
         onNavBack: function () {
 			var oHistory = History.getInstance();
@@ -57,6 +69,20 @@ sap.ui.define([
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("overview", {}, true);
 			}
+		},
+
+
+		onPressSave: function()
+		{
+			var oModel = this.getView().getModel();
+			oModel.setUseBatch(true);
+			oModel.submitChanges({
+				success: function(oData)
+				{
+					sap.m.MessageToast.show("Update successful");
+				    oModel.setUseBatch(false);
+				}
+			});
 		}
 
 	});

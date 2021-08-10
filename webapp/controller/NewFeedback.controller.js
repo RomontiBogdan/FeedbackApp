@@ -1,26 +1,26 @@
-sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
-	
-], function (Controller, History) {
-	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
-		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
-		},
+sap.ui.define(
+  ["sap/ui/core/mvc/Controller", "sap/ui/core/routing/History"],
+  function (Controller, History) {
+    "use strict";
+    return Controller.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
+      onInit: function () {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter
+          .getRoute("newfeedback")
+          .attachPatternMatched(this._onObjectMatched, this);
+      },
 
-        onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
+      onNavBack: function () {
+        var oHistory = History.getInstance();
+        var sPreviousHash = oHistory.getPreviousHash();
 
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
-			}
-		}
-
-	});
-});
+        if (sPreviousHash !== undefined) {
+          window.history.go(-1);
+        } else {
+          var oRouter = this.getOwnerComponent().getRouter();
+          oRouter.navTo("overview", {}, true);
+        }
+      },
+    });
+  }
+);

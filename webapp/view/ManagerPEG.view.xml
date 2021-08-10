@@ -1,0 +1,51 @@
+<mvc:View
+		controllerName="sap.ui.demo.walkthrough.controller.ManagerPEG"
+		xmlns:core="sap.ui.core"
+	    xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m"
+        xmlns:l="sap.ui.layout">
+    <Page
+		    title="Manager PEG"
+		    showNavButton="true"
+		    navButtonPress=".onNavBack"
+	>
+    
+    	<Table id="myEmployees"
+			  inset="false"
+			  items = "{employee>/}" >
+		
+				<columns>
+
+						<Column width="12em">
+							<Text text="Employees " />
+						</Column>
+
+						<Column width="12em">
+							<Text text="Project" />
+						</Column>
+				</columns>
+
+				 <items>
+            <ColumnListItem
+			type = "Navigation"
+			press = "onPress"
+
+			>
+                <cells>
+                    <ObjectIdentifier
+                        
+                        text="{employee>Employee}"
+						/>
+                    <Text
+                        text="{employee>Project}" />
+    
+                </cells>
+            </ColumnListItem>
+        </items>
+			</Table>
+
+
+    
+    </Page>
+
+</mvc:View>
