@@ -111,9 +111,9 @@
 			"target": "displaypeglist"
 		},
 		{
-			"pattern": "sentreceived",
-			"name": "sentreceived",
-			"target": "sentreceived"
+			"pattern": "feedbacklist",
+			"name": "feedbacklist",
+			"target": "feedbacklist"
     },
     {
 			"pattern": "newfeedback",
@@ -146,16 +146,15 @@
 		"requestpeg": {
 			"viewId": "register",
 			"viewName": "RequestPEG"
-		  },
+		},
 		  "displaypeglist": {
 			"viewId": "displaypeglist",
 			"viewName": "DisplayPEGList"
-		  },
-		  "sentreceived": {
-			"viewId": "sentreceived",
-			"viewName": "SentReceived"
-		  },
-
+		},
+		  "feedbacklist": {
+			"viewId": "feedbacklist",
+			"viewName": "FeedbackList"
+		},
 		"newfeedback": {
 			"viewId": "newfeedback",
 			"viewName": "NewFeedback"
@@ -163,9 +162,7 @@
 		"myprofile": {
 			"viewId": "myprofile",
 			"viewName": "MyProfile"
-		  }
-
-
+		}
 		
         }
       }

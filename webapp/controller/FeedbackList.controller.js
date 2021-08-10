@@ -4,10 +4,10 @@ sap.ui.define([
 	
 ], function (Controller, History) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.SentReceived", {
+	return Controller.extend("sap.ui.demo.walkthrough.controller.FeedbackList", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("sentreceived").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("feedbacklist").attachPatternMatched(this._onObjectMatched, this);
 		},
 
         onNavBack: function () {

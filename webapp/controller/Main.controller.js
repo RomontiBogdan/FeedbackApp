@@ -30,6 +30,11 @@ sap.ui.define([
 			}
 		},
 
+		onFeedback: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("feedbacklist");
+		},
+
 		onRequestNewPEG: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("requestpeg"); 
