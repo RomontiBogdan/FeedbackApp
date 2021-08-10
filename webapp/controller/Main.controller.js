@@ -35,10 +35,22 @@ sap.ui.define(
         oRouter.navTo("requestpeg");
       },
 
+
+		onFeedback: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("feedbacklist");
+		},
+
+		onRequestNewPEG: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("requestpeg"); 
+		  },
+
       onDisplayPEGList: function (oEvent) {
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter.navTo("displaypeglist");
       },
+
 
       onListSentReceived: function (oEvent) {
         var oRouter = this.getOwnerComponent().getRouter();

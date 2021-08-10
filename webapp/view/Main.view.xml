@@ -13,38 +13,23 @@
 			 <content>
  
             <Button
-            	text="{i18n>RequestPEG}"
-           		class="myCustomButton"
-				press=".onRequestNewPEG"
-            	width="60%"/>
-
-		
-			<Button
-            	text="{i18n>DisplayPEGList}"
-           		class="myCustomButton"
-				press=".onDisplayPEGList"
-            	width="60%"/>
-	   
-
-			<Button
-            	text="{i18n>ListSentReceived}"
-           		class="myCustomButton"
-				press = ".onListSentReceived"
-            	width="60%"/>
-
-			<Button
             	text="{i18n>ViewProfile}"
            		class="myCustomButton"
 				press = ".onProfile"
             	width="60%"/>
-
-
+		
 			<Button
-            	text="{i18n>NewFeedback}"
-				press=".onNewFeedback"
+            	text="PEG"
            		class="myCustomButton"
+				press=".onPEG"
             	width="60%"/>
-
+			
+			<Button
+            	text="Feedback"
+           		class="myCustomButton"
+				press=".onFeedback"
+            	width="60%"/>
+	   
 			<Button
             	text="{i18n>LogOut}"
 				press=".onLogOut"

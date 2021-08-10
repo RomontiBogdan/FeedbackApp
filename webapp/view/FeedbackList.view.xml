@@ -1,0 +1,53 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.FeedbackList"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Page
+		title="{i18n>DisplayPEGList}"
+        showNavButton="true"
+		navButtonPress=".onNavBack">
+		
+		<Table id="idFeedbackTable"
+			inset="false"
+			items="{test>/}"
+			>
+			
+			<columns>
+				<Column
+					width="12em">
+					<Text text="User Name" />
+				</Column>
+				<Column
+					width="12em">
+					<Text text="Project" />
+				</Column>
+				<Column
+					width="12em">
+					<Text text="Feedback Type" />
+				</Column>
+				<Column
+					width="12em">
+					<Text text="Status" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem
+					type="Navigation">
+					<cells>
+						<ObjectIdentifier
+							title="{test>Name}"
+							text="{test>Name}"/>
+						<Text
+							text="{test>Project}" />
+						<Text
+							text="{test>FeedbackType}" />
+						<Text
+							text="{test>Status}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		  
+    </Page>
+</mvc:View>
