@@ -83,16 +83,14 @@
 
 
 	</l:VerticalLayout>
-   
-             
+                
         </content>
 	   </Panel>
-
 
 	   <footer>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button type="Emphasized" text="Save" press="onPress" />
+				<Button type="Emphasized" text="Save" press="onPressSave" />
 				<Button text="Cancel" press="onPress" />
 			</Toolbar>
 		</footer>
