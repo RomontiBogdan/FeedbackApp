@@ -1,100 +1,58 @@
-<mvc:View
-	controllerName="sap.ui.demo.walkthrough.controller.MyProfile"
-	
-	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m"
-    xmlns:l="sap.ui.layout">
-    
-	<Page
-		title="{i18n>ViewProfile}"
-        showNavButton="true"
-		navButtonPress=".onNavBack"
-		class="sapUiContentPadding">
-		
-    <Panel>
-		 <content>
-	
-	 <l:VerticalLayout class="sapUiContentPadding" width="100%">
+<mvc:View controllerName="sap.ui.demo.walkthrough.controller.MyProfile" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
 
-		<Label text="Name" labelFor="inputText" />
-		<Input
-		    value = "{FullName}"
-			id="inputText"
-			placeholder="Enter full name"
-			class="sapUiSmallMarginBottom" />
+    <Page title="{i18n>ViewProfile}" showNavButton="true" navButtonPress=".onNavBack" class="sapUiContentPadding">
+
+        <Panel>
+            <content>
+
+                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+
+                    <Label text="Name" labelFor="inputText"/>
+                    <Input value="{FullName}" id="inputText" placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
 
 
-			<Label text="Username" labelFor="inputUser" />
-			<Input
-			value = "{Username}"
-			id="inputUser"
-			editable = "false"
-			placeholder="Enter usernmame"
-			class="sapUiSmallMarginBottom" />
+                    <Label text="Username" labelFor="inputUser"/>
+                    <Input value="{Username}" id="inputUser" editable="false" placeholder="Enter usernmame" class="sapUiSmallMarginBottom"/>
 
 
-		<Label text="Email" labelFor="inputEmail" />
-		<Input
-		value = "{Email}"
-			id="inputEmail"
-			placeholder="Enter email"
-			class="sapUiSmallMarginBottom" />
+                    <Label text="Email" labelFor="inputEmail"/>
+                    <Input value="{Email}" id="inputEmail" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
 
-		<Label text="Telephone" labelFor="inputTel" />
-		<Input
-		    value = "{PersonalNo}"
-			id="inputTel"
-			placeholder="Enter personal number"
-			class="sapUiSmallMarginBottom" />
+                    <Label text="Telephone" labelFor="inputTel"/>
+                    <Input value="{PersonalNo}" id="inputTel" placeholder="Enter personal number" class="sapUiSmallMarginBottom"/>
 
 
-        <Label text="SU" labelFor="inputSU" />
-		<Input
-		  value = "{Su}"
-			id="inputSU"
-			placeholder="Enter Service Unit"
-			class="sapUiSmallMarginBottom" />
+                    <Label text="SU" labelFor="inputSU"/>
+                    <Input value="{Su}" id="inputSU" placeholder="Enter Service Unit" class="sapUiSmallMarginBottom"/>
 
 
-        <Text text = "Career level"/>
-	    
-		<Select 
-        
-                    forceSelection="false"
-					selectedKey = "{CareerLevel}"
-                    items="{
-                        path: 'myProfileModel>/Levels',
-                        sorter: { path: 'myProfileModel>Levels/Name' }
-                    }">
-                    <core:ListItem key="{myProfileModel>Id}" text="{myProfileModel>Name}"/>
-        </Select>
+                    <Text text="Career level"/>
+
+                    <Select forceSelection="false" selectedKey="{CareerLevel}" items="{
+                                                    path: 'myProfileModel>/Levels',
+                                                    sorter: { path: 'myProfileModel>Levels/Name' }
+                                                }">
+                        <core:ListItem key="{myProfileModel>Id}" text="{myProfileModel>Name}"/>
 
 
-		
-			<Label text="Fiscal year" labelFor="inputFiscalYear" />
-			<Input
-			value = "{FiscalYear}"
-			id="inputFiscalYear"
-			editable = "false"
-			class="sapUiSmallMarginBottom" />
-	
-		
+                    </Select>
 
 
-	</l:VerticalLayout>
-                
-        </content>
-	   </Panel>
+                    <Label text="Fiscal year" labelFor="inputFiscalYear"/>
+                    <Input value="{FiscalYear}" id="inputFiscalYear" editable="false" class="sapUiSmallMarginBottom"/>
 
-	   <footer>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<Button type="Emphasized" text="Save" press="onPressSave" />
-				<Button text="Cancel" press="onPress" />
-			</Toolbar>
-		</footer>
- 
+
+                </l:VerticalLayout>
+
+            </content>
+        </Panel>
+
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="Save" press="onPressSave"/>
+            </Toolbar>
+        </footer>
 
     </Page>
 
