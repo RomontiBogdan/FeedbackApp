@@ -2,8 +2,6 @@
 
 	controllerName="sap.ui.demo.walkthrough.controller.Main"
 	xmlns="sap.m"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc">
 	
 		<Page title="User"

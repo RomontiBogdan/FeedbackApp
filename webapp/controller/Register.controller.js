@@ -42,7 +42,6 @@ sap.ui.define([
 		
 			oModel.create('/UserPassSet', params, {
 				success: function(oCreatedEntry) {
-					console.log("yes")
 					MessageBox.information("Succes", {
 						onClose: function(oAction) {
 							if (oAction == "OK") {

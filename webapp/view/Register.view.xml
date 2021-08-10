@@ -1,43 +1,42 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.Register"
 	xmlns="sap.m"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+>
 	<Page
 		title="Register"
-        showNavButton="true"
-		navButtonPress=".onNavBack">
-		
-	  <Panel>
-		 <content>
-			   <Input
-			     id="UsernameRegisterField"
-                 placeholder="Username"
-                 valueLiveUpdate="true"
-                 width="80%"/>
-			   <Input
-			   	 id="PasswordRegisterField"
-			     type="Password"
-                 placeholder="Password"
-                 valueLiveUpdate="true"
-                 width="80%"/>
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+	>
+		<Panel>
+			<content>
 				<Input
-				 id="EmailRegisterField"
-                 placeholder="Company email"
-                 valueLiveUpdate="true"
-                 width="80%"/>
- 
-              <Button
-            	text="{i18n>SubmitRegister}"
-           		class="myCustomButton"
-            	width="80%"
-              type="Navigation"
-              press=".onCreateRegister"
-           	  />
-        </content>
-	   </Panel>
-
-    </Page>
-
+					id="UsernameRegisterField"
+					placeholder="Username"
+					valueLiveUpdate="true"
+					width="80%"
+				/>
+				<Input
+					id="PasswordRegisterField"
+					type="Password"
+					placeholder="Password"
+					valueLiveUpdate="true"
+					width="80%"
+				/>
+				<Input
+					id="EmailRegisterField"
+					placeholder="Company email"
+					valueLiveUpdate="true"
+					width="80%"
+				/>
+				<Button
+					text="{i18n>SubmitRegister}"
+					class="myCustomButton"
+					width="80%"
+					type="Emphasized"
+					press=".onCreateRegister"
+				/>
+			</content>
+		</Panel>
+	</Page>
 </mvc:View>

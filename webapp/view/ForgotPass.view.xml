@@ -1,30 +1,40 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.ForgotPass"
 	xmlns="sap.m"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
-		title="ForgotPass"
+		title="Forgot Password"
 		showNavButton="true"
-		navButtonPress=".onNavBack" >
-		
-	 <Panel>
-        <content>
-             <Input
-                 placeholder="Enter your email"
-                 valueLiveUpdate="true"
-                 width="80%"/>
- 
-            <Button
-           		 text="{i18n>SubmitEmail}"
-           		 class="myCustomButton"
-            	 width="80%"
-            />
-        </content>
-    </Panel>
-
+		navButtonPress=".onNavBack">
+		<Panel>
+			<content>
+				<Input
+					id="usernameTextFP"
+					placeholder="Enter your username"
+					valueLiveUpdate="true"
+					width="80%"
+				/>
+				<Input
+					id="emailTextFP"
+					placeholder="Enter your email"
+					valueLiveUpdate="true"
+					width="80%"
+				/>
+				<Input
+					id="passwordTextFP"
+					placeholder="Enter your new password"
+					valueLiveUpdate="true"
+					width="80%"
+					type="Password"
+				/>
+				<Button
+					text="{i18n>ChangePassword}"
+					class="myCustomButton"
+					width="80%"
+					type="Emphasized"
+					press="onPressForgotPass"
+				/>
+			</content>
+		</Panel>
 	</Page>
-
-
 </mvc:View>
