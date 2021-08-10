@@ -121,7 +121,7 @@
 			"target": "newfeedback"
 		},
 		{
-			"pattern": "myprofile",
+			"pattern": "myprofile/{Username}",
 			"name": "myprofile",
 			"target": "myprofile"
 		}

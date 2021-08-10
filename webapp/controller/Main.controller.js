@@ -8,6 +8,8 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
 		_onObjectMatched: function (oEvent) {
+
+			this.sUsername = oEvent.getParameter("arguments").Username;
 		
 			
 		},
@@ -48,7 +50,7 @@ sap.ui.define([
 
 		  onProfile : function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("myprofile"); 
+			oRouter.navTo("myprofile",{Username:this.sUsername}); 
 		},
 
 		onNewFeedback: function (oEvent) {

@@ -19,52 +19,83 @@
 
 		<Label text="Name" labelFor="inputText" />
 		<Input
+		    value = "{FullName}"
 			id="inputText"
 			placeholder="Enter full name"
 			class="sapUiSmallMarginBottom" />
 
+
+			<Label text="Username" labelFor="inputUser" />
+			<Input
+			value = "{Username}"
+			id="inputUser"
+			editable = "false"
+			placeholder="Enter usernmame"
+			class="sapUiSmallMarginBottom" />
+
+
 		<Label text="Email" labelFor="inputEmail" />
 		<Input
+		value = "{Email}"
 			id="inputEmail"
-			type="Email"
 			placeholder="Enter email"
 			class="sapUiSmallMarginBottom" />
 
 		<Label text="Telephone" labelFor="inputTel" />
 		<Input
+		    value = "{PersonalNo}"
 			id="inputTel"
-			type="Tel"
 			placeholder="Enter personal number"
 			class="sapUiSmallMarginBottom" />
 
 
         <Label text="SU" labelFor="inputSU" />
 		<Input
+		  value = "{Su}"
 			id="inputSU"
-			type="SU"
 			placeholder="Enter Service Unit"
 			class="sapUiSmallMarginBottom" />
 
+
         <Text text = "Career level"/>
-	    <Select 
+	    
+		<Select 
         
-					forceSelection="false"
-					selectedKey="{/SelectedProduct}"
-					items="{
-						path: '/ProductCollection',
-						sorter: { path: 'Name' }
-					}">
-					<core:ListItem key="{ProductId}" text="{Name}" icon="{Icon}"/>
-		</Select>
-	
+                    forceSelection="false"
+					selectedKey = "{CareerLevel}"
+                    items="{
+                        path: 'myProfileModel>/Levels',
+                        sorter: { path: 'myProfileModel>Levels/Name' }
+                    }">
+                    <core:ListItem key="{myProfileModel>Id}" text="{myProfileModel>Name}"/>
+        </Select>
+
 
 		
+			<Label text="Fiscal year" labelFor="inputFiscalYear" />
+			<Input
+			value = "{FiscalYear}"
+			id="inputFiscalYear"
+			editable = "false"
+			class="sapUiSmallMarginBottom" />
+	
+		
+
+
 	</l:VerticalLayout>
    
- 
              
         </content>
 	   </Panel>
+
+
+	   <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button type="Emphasized" text="Save" press="onPress" />
+				<Button text="Cancel" press="onPress" />
+			</Toolbar>
+		</footer>
  
 
     </Page>
