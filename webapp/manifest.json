@@ -124,6 +124,21 @@
 			"pattern": "myprofile",
 			"name": "myprofile",
 			"target": "myprofile"
+		},
+		{
+			"pattern": "managerpeg",
+			"name": "managerpeg",
+			"target": "managerpeg"
+		},
+		{
+			"pattern": "managerFeedback",
+			"name": "managerFeedback",
+			"target": "managerFeedback"
+		},
+		{
+			"pattern": "userPEGs",
+			"name": "userPEGs",
+			"target": "userPEGs"
 		}
     ],
         "targets": {
@@ -163,11 +178,23 @@
 		"myprofile": {
 			"viewId": "myprofile",
 			"viewName": "MyProfile"
-		  }
+		},
+		"managerpeg": {
+			"viewId": "managerpeg",
+			"viewName": "ManagerPEG"
+		},
+		  "managerFeedback":{
+			"viewId": "managerFeedback",
+			"viewName": "ManagerFeedback"
+		},
+		"userPEGs":{
+			"viewId": "userPEGs",
+			"viewName": "UserPEGs"
 
+		}
 
-		
         }
+
       }
   }
 }
