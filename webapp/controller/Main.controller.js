@@ -1,75 +1,70 @@
-sap.ui.define([
-	"sap/ui/core/mvc/Controller",
-	"sap/ui/core/routing/History",
-	"sap/m/MessageBox",
-	"sap/m/MessageToast"
-	
-], function (Controller, History, MessageBox, MessageToast) {
-	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
-		_onObjectMatched: function (oEvent) {
+sap.ui.define(
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/routing/History",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast",
+  ],
+  function (Controller, History, MessageBox, MessageToast) {
+    "use strict";
+    return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
+      _onObjectMatched: function (oEvent) {
+        this.sUsername = oEvent.getParameter("arguments").Username;
+      },
+      onInit: function () {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter
+          .getRoute("main")
+          .attachPatternMatched(this._onObjectMatched, this);
+      },
 
-			this.sUsername = oEvent.getParameter("arguments").Username;
-		
-			
-		},
-		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
-		},
+      onNavBack: function () {
+        var oHistory = History.getInstance();
+        var sPreviousHash = oHistory.getPreviousHash();
 
-		
+        if (sPreviousHash !== undefined) {
+          window.history.go(-1);
+        } else {
+          var oRouter = this.getOwnerComponent().getRouter();
+          oRouter.navTo("overview", {}, true);
+        }
+      },
 
-		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
+      onRequestNewPEG: function (oEvent) {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("requestpeg");
+      },
 
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
-			}
-		},
+      onDisplayPEGList: function (oEvent) {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("displaypeglist");
+      },
 
-		onRequestNewPEG: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg"); 
-		  },
+      onListSentReceived: function (oEvent) {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("sentreceived");
+      },
 
-		  onDisplayPEGList: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("displaypeglist"); 
-		  },
+      onProfile: function (oEvent) {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("myprofile", { Username: this.sUsername });
+      },
 
-		  onListSentReceived: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("sentreceived"); 
-		  },
+      onNewFeedback: function (oEvent) {
+        var oRouter = this.getOwnerComponent().getRouter();
+        oRouter.navTo("newfeedback");
+      },
 
-
-		  onProfile : function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("myprofile",{Username:this.sUsername}); 
-		},
-
-		onNewFeedback: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("newfeedback"); 
-		  },
-		  
-
-		onLogOut: function () {
-			MessageBox.confirm("Are you sure you want to log out?", {
-				onClose: function(oAction) {
-					if (oAction == "OK") {
-						var oRouter = this.getOwnerComponent().getRouter();
-						oRouter.navTo("overview");
-					}
-				}.bind(this)
-			});
-		  }
-
-
-	});
-});
+      onLogOut: function () {
+        MessageBox.confirm("Are you sure you want to log out?", {
+          onClose: function (oAction) {
+            if (oAction == "OK") {
+              var oRouter = this.getOwnerComponent().getRouter();
+              oRouter.navTo("overview");
+            }
+          }.bind(this),
+        });
+      },
+    });
+  }
+);
