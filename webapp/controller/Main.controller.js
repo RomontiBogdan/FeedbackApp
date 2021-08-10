@@ -67,6 +67,16 @@ sap.ui.define(
         oRouter.navTo("newfeedback");
       },
 
+      onPEG: function (oEvent) {
+
+        var oRouter = this.getOwnerComponent().getRouter();
+       // oRouter.navTo("managerpeg");
+
+        oRouter.navTo("displaypeglist");
+
+      },
+
+
       onLogOut: function () {
         MessageBox.confirm("Are you sure you want to log out?", {
           onClose: function (oAction) {
