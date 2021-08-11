@@ -1,40 +1,55 @@
-<mvc:View controllerName="sap.ui.demo.walkthrough.controller.MyProfile" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout">
+<mvc:View controllerName="sap.ui.demo.walkthrough.controller.MyProfile" 
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form"
+xmlns="sap.m" >
 
     <Page title="{i18n>ViewProfile}" showNavButton="true" navButtonPress=".onNavBack" class="sapUiContentPadding">
 
         <Panel>
-            <content>
-
-                <l:VerticalLayout class="sapUiContentPadding" width="100%">
+        <f:SimpleForm id="form" editable="true"
+          layout="ResponsiveGridLayout"
+            labelSpanXL="3"
+            labelSpanL="3"
+            labelSpanM="3"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="3"
+            emptySpanL="3"
+            emptySpanM="3"
+            emptySpanS="0"
+            columnsXL="1"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false">
+            <f:content>
 
                     <Label text="Name" labelFor="inputText"/>
-                    <Input value="{FullName}" id="inputText" placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
-
+                    <Input value="{FullName}" id="inputText" editable="false"  placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
 
                     <Label text="Username" labelFor="inputUser"/>
                     <Input value="{Username}" id="inputUser" editable="false" placeholder="Enter usernmame" class="sapUiSmallMarginBottom"/>
 
 
                     <Label text="Email" labelFor="inputEmail"/>
-                    <Input value="{Email}" id="inputEmail" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
+                    <Input value="{Email}" id="inputEmail" editable="false" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
 
                     <Label text="Telephone" labelFor="inputTel"/>
-                    <Input value="{PersonalNo}" id="inputTel" placeholder="Enter personal number" class="sapUiSmallMarginBottom"/>
+                    <Input value="{PersonalNo}" id="inputTel" editable="false" placeholder="Enter personal number" class="sapUiSmallMarginBottom"/>
 
 
                     <Label text="SU" labelFor="inputSU"/>
-                    <Input value="{Su}" id="inputSU" placeholder="Enter Service Unit" class="sapUiSmallMarginBottom"/>
+                    <Input value="{Su}" id="inputSU" editable="false" placeholder="Enter Service Unit"  class="sapUiSmallMarginBottom"/>
 
 
-                    <Text text="Career level"/>
+                    <Label text="Career level" labelFor="inputLevel"/>
 
-                    <Select forceSelection="false" selectedKey="{CareerLevel}" items="{
+                    <Select forceSelection="false" id = "inputLevel" editable="false" selectedKey="{CareerLevel}" items="{
                                                     path: 'myProfileModel>/Levels',
                                                     sorter: { path: 'myProfileModel>Levels/Name' }
                                                 }">
                         <core:ListItem key="{myProfileModel>Id}" text="{myProfileModel>Name}"/>
-
-
                     </Select>
 
 
@@ -42,15 +57,24 @@
                     <Input value="{FiscalYear}" id="inputFiscalYear" editable="false" class="sapUiSmallMarginBottom"/>
 
 
-                </l:VerticalLayout>
-
-            </content>
+               
+    </f:content>
+        </f:SimpleForm>
+            
         </Panel>
 
         <footer>
             <Toolbar>
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="Save" press="onPressSave"/>
+                
+                <Button type="Emphasized" text="Save" press="onPressSave"/>  
+                <HBox>
+			        <Switch state="false" customTextOn="  " customTextOff="Edit" change="onEdit">
+				        <layoutData>
+					        <FlexItemData growFactor="1" />
+				        </layoutData>
+			        </Switch>
+		        </HBox>
             </Toolbar>
         </footer>
 

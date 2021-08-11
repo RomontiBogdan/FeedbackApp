@@ -1,14 +1,74 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.NewFeedback"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" >
+
 	<Page
 		title="New Feedback"
         showNavButton="true"
 		navButtonPress=".onNavBack">
 		
-	  
 
+
+		<Panel>
+        <f:SimpleForm id="form" editable="true"
+          layout="ResponsiveGridLayout"
+            labelSpanXL="3"
+            labelSpanL="3"
+            labelSpanM="3"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="3"
+            emptySpanL="3"
+            emptySpanM="3"
+            emptySpanS="0"
+            columnsXL="1"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false">
+
+            <f:content>
+            <Label text="Select user" />
+			<ComboBox 
+				items="{
+					path: '/UsersCollection',
+					sorter: { path: 'Name' }
+				}">
+				<core:Item key="{Id}" text="{Name}" />
+			</ComboBox>
+
+
+			<Label text="Select project" />
+			<ComboBox 
+				items="{
+					path: '/Projects',
+					sorter: { path: 'Name' }
+				}">
+				<core:Item key="{Id}" text="{Name}" />
+			</ComboBox>
+			
+  			<CheckBox text="Anonymous feedback" selected="false" />
+
+
+
+         <Label text="Offer feedback based on the following skill" labelFor="inputSkill"/>
+         <Select forceSelection="false" id = "inputSkill"  selectedKey="{SelectedSkill}" items="{
+                                                    path: '/SkillCollection',
+                                                    sorter: { path: 'Name' }
+                                                }">
+           <core:ListItem key="{Id}" text="{Name}"/>
+         </Select>
+                    
+		
+
+               
+    </f:content>
+        </f:SimpleForm>
+            
+        </Panel>
     </Page>
 
 </mvc:View>
