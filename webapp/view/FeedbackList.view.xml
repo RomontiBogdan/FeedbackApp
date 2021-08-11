@@ -12,6 +12,13 @@
 			inset="false"
 			items="{test>/}"
 			>
+			<headerToolbar>
+				<Toolbar>
+					<Title text="Title"/>
+					<ToolbarSpacer/>
+					<SearchField width="50%" search=".onFilterName"/>
+				</Toolbar>
+			</headerToolbar>
 			
 			<columns>
 				<Column
@@ -43,7 +50,12 @@
 						<Text
 							text="{test>FeedbackType}" />
 						<Text
-							text="{test>Status}" />
+							text="{
+							path: 'test>Status',
+							formatter: '.formatter.FeedbackStatus'
+						}"
+						/>
+						<!-- state="{= ${test>Status} === true ? 'Error' : 'Success' }" -->
 					</cells>
 				</ColumnListItem>
 			</items>

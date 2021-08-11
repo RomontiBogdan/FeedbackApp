@@ -1,11 +1,13 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+	"../model/formatter"
 	
-], function (Controller, History, JSONModel) {
+], function (Controller, History, JSONModel, formatter) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.DisplayPEGList", {
+		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("displaypeglist").attachPatternMatched(this._onObjectMatched, this);
@@ -13,12 +15,12 @@ sap.ui.define([
 			var oViewModel = new JSONModel([{
                 Project  : "Project1",
                 Manager : "Manager1",
-                Status : "completed",
+                Status : true
                
             },{
 				Project  : "Project2",
                 Manager : "Manager2",
-                Status : "pending",
+                Status : false
             }]);
 
 			this.getView().setModel(oViewModel, "displayList");

@@ -1,11 +1,13 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
+	 "../model/formatter"
 	
-], function (Controller, History, JSONModel) {
+], function (Controller, History, JSONModel, formatter) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.FeedbackList", {
+		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("feedbacklist").attachPatternMatched(this._onObjectMatched, this);
@@ -13,12 +15,12 @@ sap.ui.define([
                 Name : "User1",
 				Project : "Project1",
 				FeedbackType : "da",
-				Status : "nuok"
+				Status : true
             },{
                 Name : "User2",
 				Project : "Project2",
 				FeedbackType : "nu",
-				Status : "ok"
+				Status : false
             }]);
             this.getView().setModel(oViewModel, "test");
 		},

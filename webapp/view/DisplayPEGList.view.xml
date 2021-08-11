@@ -55,7 +55,10 @@
                     <Text
                         text="{displayList>Manager}" />
                     <Text
-                        text="{displayList>Status}" />
+                        text="{
+							path: 'displayList>Status',
+							formatter: '.formatter.FeedbackStatus'
+						}" />
                 </cells>
             </ColumnListItem>
         </items>
