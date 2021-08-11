@@ -8,7 +8,7 @@
                 <l:VerticalLayout class="sapUiContentPadding" width="100%">
 
                     <Label text="Name" labelFor="inputText"/>
-                    <Input value="{FullName}" id="inputText" placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
+                    <Input value="{FullName}" id="inputText" editable="false" placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
 
 
                     <Label text="Username" labelFor="inputUser"/>
@@ -16,25 +16,23 @@
 
 
                     <Label text="Email" labelFor="inputEmail"/>
-                    <Input value="{Email}" id="inputEmail" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
+                    <Input value="{Email}" id="inputEmail" editable="false" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
 
                     <Label text="Telephone" labelFor="inputTel"/>
-                    <Input value="{PersonalNo}" id="inputTel" placeholder="Enter personal number" class="sapUiSmallMarginBottom"/>
+                    <Input value="{PersonalNo}" id="inputTel" editable="false" placeholder="Enter personal number" class="sapUiSmallMarginBottom"/>
 
 
                     <Label text="SU" labelFor="inputSU"/>
-                    <Input value="{Su}" id="inputSU" placeholder="Enter Service Unit" class="sapUiSmallMarginBottom"/>
+                    <Input value="{Su}" id="inputSU" editable="false" placeholder="Enter Service Unit" class="sapUiSmallMarginBottom"/>
 
 
                     <Text text="Career level"/>
 
-                    <Select forceSelection="false" selectedKey="{CareerLevel}" items="{
+                    <Select forceSelection="false" id = "inputLevel" editable="false" selectedKey="{CareerLevel}" items="{
                                                     path: 'myProfileModel>/Levels',
                                                     sorter: { path: 'myProfileModel>Levels/Name' }
                                                 }">
                         <core:ListItem key="{myProfileModel>Id}" text="{myProfileModel>Name}"/>
-
-
                     </Select>
 
 
@@ -50,7 +48,15 @@
         <footer>
             <Toolbar>
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="Save" press="onPressSave"/>
+                
+                <Button type="Emphasized" text="Save" press="onPressSave"/>  
+                <HBox>
+			        <Switch state="false" customTextOn="  " customTextOff="Edit" change="onEdit">
+				        <layoutData>
+					        <FlexItemData growFactor="1" />
+				        </layoutData>
+			        </Switch>
+		        </HBox>
             </Toolbar>
         </footer>
 

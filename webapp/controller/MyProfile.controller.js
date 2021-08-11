@@ -83,6 +83,29 @@ sap.ui.define([
 				    oModel.setUseBatch(false);
 				}
 			});
+
+			// this.getView().byId("inputText").setEditable(false);
+			// this.getView().byId("inputUser").setEditable(false);
+			// this.getView().byId("inputEmail").setEditable(false);
+			// this.getView().byId("inputTel").setEditable(false);
+			// this.getView().byId("inputSU").setEditable(false);
+			// this.getView().byId("inputLevel").setEditable(false);
+			// this.getView().byId("inputFiscalYear").setEditable(false);
+
+		},
+
+		onEdit: function()
+		{
+			
+			this.getView().byId("inputText").setEditable(true);
+			this.getView().byId("inputUser").setEditable(true);
+			this.getView().byId("inputEmail").setEditable(true);
+			this.getView().byId("inputTel").setEditable(true);
+			this.getView().byId("inputSU").setEditable(true);
+			this.getView().byId("inputLevel").setEditable(true);
+			this.getView().byId("inputFiscalYear").setEditable(true);
+		
+
 		}
 
 	});
