@@ -139,6 +139,11 @@
 			"pattern": "userPEGs",
 			"name": "userPEGs",
 			"target": "userPEGs"
+		},
+		{
+			"pattern": "feedbackdetails",
+			"name": "feedbackdetails",
+			"target": "feedbackdetails"
 		}
     ],
         "targets": {
@@ -189,6 +194,11 @@
 		"userPEGs":{
 			"viewId": "userPEGs",
 			"viewName": "UserPEGs"
+
+		},
+		"feedbackdetails":{
+			"viewId": "feedbackdetails",
+			"viewName": "FeedbackDetails"
 
 		}
 

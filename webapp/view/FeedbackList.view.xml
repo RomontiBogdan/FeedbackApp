@@ -7,11 +7,30 @@
 		title="{i18n>DisplayPEGList}"
         showNavButton="true"
 		navButtonPress=".onNavBack">
+
+		<footer>
+ 			<Bar>
+   				<contentRight>
+      				<Button
+           				text="New Feedback"
+            			press=".onNewFeedback"
+            			class="myCustomButton"
+					/>
+    			</contentRight>
+  			</Bar>
+		</footer>
 		
-		<Table id="idFeedbackTable"
+		<Table id="feedbackTable"
 			inset="false"
 			items="{test>/}"
 			>
+			<headerToolbar>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Title text="Filter by Name:"/>
+					<SearchField width="30%" search=".onFilterName"/>
+				</Toolbar>
+			</headerToolbar>
 			
 			<columns>
 				<Column
@@ -33,7 +52,8 @@
 			</columns>
 			<items>
 				<ColumnListItem
-					type="Navigation">
+					type="Navigation"
+					press = ".onFeedbackPress">
 					<cells>
 						<ObjectIdentifier
 							title="{test>Name}"
@@ -43,7 +63,12 @@
 						<Text
 							text="{test>FeedbackType}" />
 						<Text
-							text="{test>Status}" />
+							text="{
+							path: 'test>Status',
+							formatter: '.formatter.FeedbackStatus'
+						}"
+						/>
+						<!-- state="{= ${test>Status} === true ? 'Error' : 'Success' }" -->
 					</cells>
 				</ColumnListItem>
 			</items>
