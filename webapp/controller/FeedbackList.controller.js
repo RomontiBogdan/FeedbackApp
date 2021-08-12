@@ -71,23 +71,19 @@ sap.ui.define([
 		onFilterName : function (oEvent) {
 			var aFilter = [];
 			var sQuery = oEvent.getParameter("query");
-			var ovar = this.byId("pendingswitch").getBinding("state");
-			if (sQuery) {
-				
-				aFilter.push(new Filter("Name", FilterOperator.Contains, sQuery));
-				// if(this.getView().getModel('pendingswitch').getProperty("state")==false)this.byId("pendingswitch").getParameter("state")
-				// {
-					// aFilter.push(new Filter({
-					// 	filters: [
-					// 	new Filter("Status", FilterOperator.EQ, false),
-					// 	new Filter("Name", FilterOperator.Contains, sQuery),
-					// 	],
-					// 	and: true,
-					// }));
-				// }
-				// else
-				// 	aFilter.push(new Filter("Name", FilterOperator.Contains, sQuery));
+			
+			if(this.getView().byId("PendingSwitch").getState())
+			{
+				aFilter.push(new Filter({
+					filters: [
+					new Filter("Status", FilterOperator.EQ, false),
+					new Filter("Name", FilterOperator.Contains, sQuery),
+					],
+					and: true,
+				}));
 			}
+			else
+				aFilter.push(new Filter("Name", FilterOperator.Contains, sQuery));
 
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
@@ -96,29 +92,25 @@ sap.ui.define([
 
 		onPendingFilter: function(oEvent)
         {
+			var aFilter = [];
+			var sInput = this.getView().byId("sfInput").getValue()
             if (oEvent.getParameter("state")==true)
             {
-				var aFilter = [];
 				aFilter.push(new Filter({
 					filters: [
-					  new Filter("Status", FilterOperator.EQ, false),
-					  new Filter("Name", FilterOperator.Contains, "user"),
+					new Filter("Status", FilterOperator.EQ, false),
+					new Filter("Name", FilterOperator.Contains, sInput),
 					],
 					and: true,
-				  }));						//("Status", FilterOperator.EQ, false));
-				
-				var oList = this.byId("feedbackTable");
-				var oBinding = oList.getBinding("items");
-				oBinding.filter(aFilter);
+				}));
             }
             else
             {
-				var aFilter = [];
-
-				var oList = this.byId("feedbackTable");
-				var oBinding = oList.getBinding("items");
-				oBinding.filter(aFilter);
+				aFilter.push(new Filter("Name", FilterOperator.Contains, sInput));
 			}
+			var oList = this.byId("feedbackTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
         }
 
 
