@@ -4,9 +4,9 @@ sap.ui.define([], function () {
 		FeedbackStatus: function (statusValue)
 		{
 		    if (statusValue) {
-                return "Completed";
+                return "Yes";
             } else {
-                return "Pending";
+                return "No";
             }
 		},
 	};

@@ -38,7 +38,7 @@ sap.ui.define(
 
 		onFeedback: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("feedbacklist");
+			oRouter.navTo("feedbacklist", {Username: this.sUsername});
 		},
 
 		onRequestNewPEG: function (oEvent) {

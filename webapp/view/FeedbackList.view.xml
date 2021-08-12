@@ -18,75 +18,102 @@
     			</contentRight>
   			</Bar>
 		</footer>
-		
-		<Table id="feedbackTable"
-			inset="false"
-			items="{received>/}"
-			>
-			<headerToolbar>
-				<Toolbar>
-					<ToolbarSpacer/>
-					<Title text="Only Pending:"/>
-					<Switch 
-						id="PendingSwitch" 
-						state="false" 
-						customTextOn="  " 
-						customTextOff=" " 
-						change=".onPendingFilter">
-                        <layoutData>
-                            <FlexItemData growFactor="1" />
-                        </layoutData>
-                    </Switch>
-					<SearchField
-						id="sfInput"
-						width="30%" 
-						search=".onFilterName" 
-						placeholder="Filter by Name"/>
-				</Toolbar>
-			</headerToolbar>
-			
-			<columns>
-				<Column
-					width="12em">
-					<Text text="User Name" />
-				</Column>
-				<Column
-					width="12em">
-					<Text text="Project" />
-				</Column>
-				<Column
-					width="12em">
-					<Text text="Feedback Type" />
-				</Column>
-				<Column
-					width="12em">
-					<Text text="Status" />
-				</Column>
-			</columns>
+
+			<IconTabBar
+			id="idIconTabBar"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding">
 			<items>
-				<ColumnListItem
-					type="Navigation"
-					press = ".onFeedbackPress">
-					<cells>
-						<ObjectIdentifier
-							title="{received>Name}"
-							text="{received>Name}"/>
-						<Text
-							text="{received>Project}" />
-						<Text
-							text="{received>FeedbackType}" />
-						<Text
-							text="{
-							path: 'received>Status',
-							formatter: '.formatter.FeedbackStatus'
-						}"
-							
-						/>
-						<!-- state="{= ${received>Status} === true ? 'Error' : 'Success' }" -->
-					</cells>
-				</ColumnListItem>
+				<IconTabFilter
+					icon="sap-icon://back-to-top"
+					iconColor="Critical"
+					text="Sent"
+					key="Sent" />
+				<IconTabFilter
+					icon="sap-icon://download"
+					iconColor="Positive"
+					text="Received"
+					key="Received" />
 			</items>
-		</Table>
+			<content>
+				<Table id="feedbackTable"
+				inset="false"
+				items="{
+					path : '/Feedback360Set'
+					 }"
+				visibleRowCount="1"
+				>
+				<headerToolbar>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Title text="Only Pending:"/>
+						<Switch 
+							id="PendingSwitch" 
+							state="false" 
+							customTextOn="  " 
+							customTextOff=" " 
+							change=".onPendingFilter">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+						<SearchField
+							id="sfInput"
+							width="30%" 
+							search=".onFilterName" 
+							placeholder="Filter by Name"/>
+					</Toolbar>
+				</headerToolbar>
+				
+				<columns>
+					<Column
+						width="12em">
+						<Text text="From User" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="To User" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="Project" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="Category" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="Anonymous" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem
+						type="Navigation"
+						press = ".onFeedbackPress">
+						<cells>
+							<Text
+								text="{FromUser}" />
+							<Text
+								text="{ToUser}" />
+							<Text
+								text="{ProjectId}" />
+							<Text
+								text="{Categories}" />
+							<Text
+								text="{
+								path: 'Anonymous',
+								formatter: '.formatter.FeedbackStatus'
+							}"
+								
+							/>
+							<!-- state="{= ${received>Status} === true ? 'Error' : 'Success' }" -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</IconTabBar>
 		  
     </Page>
 </mvc:View>

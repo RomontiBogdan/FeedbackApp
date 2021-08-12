@@ -13,69 +13,28 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("feedbacklist").attachPatternMatched(this._onObjectMatched, this);
-			var oViewModel = new JSONModel([{
-                Name : "REUser1",
-				Project : "Project1",
-				FeedbackType : "da",
-				Status : true
-            },
-			{
-                Name : "REUser2",
-				Project : "Project2",
-				FeedbackType : "nu",
-				Status : false
-            },
-			{
-                Name : "REManager3",
-				Project : "Project2",
-				FeedbackType : "ds",
-				Status : true
-            },
-			{
-                Name : "REUser4",
-				Project : "Project4",
-				FeedbackType : "sa",
-				Status : false
-            },
-			{
-                Name : "REManager5",
-				Project : "Project4",
-				FeedbackType : "as",
-				Status : false
-            }]);
+		},
 
-			var oViewModel2 = new JSONModel([{
-                Name : "SEUser1",
-				Project : "Project1",
-				FeedbackType : "da",
-				Status : true
-            },
-			{
-                Name : "SEUser2",
-				Project : "Project2",
-				FeedbackType : "nu",
-				Status : false
-            },
-			{
-                Name : "SEManager3",
-				Project : "Project2",
-				FeedbackType : "ds",
-				Status : true
-            },
-			{
-                Name : "SEUser4",
-				Project : "Project4",
-				FeedbackType : "sa",
-				Status : false
-            },
-			{
-                Name : "SEManager5",
-				Project : "Project4",
-				FeedbackType : "as",
-				Status : false
-            }]);
-            this.getView().setModel(oViewModel, "received");
-			this.getView().setModel(oViewModel2, "sent");
+		_onObjectMatched: function(oEvent)
+		{
+			this.sUsername = oEvent.getParameter("arguments").Username;
+			this.getView().bindElement({
+				path: "/UserPassSet('" + this.sUsername + "')"
+		    });
+
+			this.sFilter = []; 
+			this.sFilter.push(new Filter({
+						filters: [
+						new Filter("ToUser", FilterOperator.EQ, this.sUsername),
+						new Filter("FromUser", FilterOperator.EQ, this.sUsername),
+						],
+						and: true,
+			}));
+			
+			var oList = this.byId("feedbackTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(this.sFilter);
+
 		},
 
         onNavBack: function () {
@@ -143,9 +102,25 @@ sap.ui.define([
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
-        }
+        },
 
+		onFilterSelect: function (oEvent) {
+			var sKey = oEvent.getParameter("key");
+			var aFilter = [];
+			if (sKey === "Sent")
+			{	
+				aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.sUsername))
+			}
+			else if (sKey === "Received")
+			{	
+				aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.sUsername))
+			}
 
+			var oList = this.byId("feedbackTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilter);
+
+		}
 
 	});
 });

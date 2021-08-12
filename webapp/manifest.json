@@ -111,7 +111,7 @@
 			"target": "displaypeglist"
 		},
 		{
-			"pattern": "feedbacklist",
+			"pattern": "feedbacklist/{Username}",
 			"name": "feedbacklist",
 			"target": "feedbacklist"
     },
