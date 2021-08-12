@@ -10,10 +10,30 @@
 		    navButtonPress=".onNavBack"
 	>
     
-    	<Table id="myEmployees"
-			  inset="false"
-			  items = "{employee>/}" >
-		
+    	<Table id="pegTable"
+			inset="false"
+			items = "{employee>/}" >
+			<headerToolbar>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Title text="Only Pending:"/>
+					<Switch 
+						id="PendingSwitch" 
+						state="false" 
+						customTextOn="  " 
+						customTextOff=" " 
+						change=".onPendingFilter">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+					<SearchField
+						id="sfInput"
+						width="30%" 
+						search=".onFilterEmployee" 
+						placeholder="Filter by Name"/>
+				</Toolbar>
+			</headerToolbar>
 				<columns>
 
 						<Column width="12em">
@@ -23,12 +43,17 @@
 						<Column width="12em">
 							<Text text="Project" />
 						</Column>
+
+						<Column
+							width="12em">
+							<Text text="Status" />
+						</Column>
 				</columns>
 
 				 <items>
             <ColumnListItem
 			type = "Navigation"
-			press = "onPress"
+			press = ".onPress"
 
 			>
                 <cells>
@@ -38,6 +63,14 @@
 						/>
                     <Text
                         text="{employee>Project}" />
+
+					<Text
+							text="{
+							path: 'employee>Status',
+							formatter: '.formatter.FeedbackStatus'
+						}"
+							
+						/>
     
                 </cells>
             </ColumnListItem>

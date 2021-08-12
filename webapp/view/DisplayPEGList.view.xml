@@ -28,8 +28,22 @@
 				<headerToolbar>
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Title text="Filter by Project:"/>
-						<SearchField width="30%" search=".onFilterProject"/>
+						<Title text="Only Pending:"/>
+						<Switch 
+							id="PendingSwitch" 
+							state="false" 
+							customTextOn="  " 
+							customTextOff=" " 
+							change=".onPendingFilter">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+						<SearchField
+							id="sfInput"
+							width="30%" 
+							search=".onFilterProject" 
+							placeholder="Filter by Project"/>
 					</Toolbar>
 				</headerToolbar>
 		

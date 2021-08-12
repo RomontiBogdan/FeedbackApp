@@ -70,9 +70,9 @@ sap.ui.define(
       onPEG: function (oEvent) {
 
         var oRouter = this.getOwnerComponent().getRouter();
-       // oRouter.navTo("managerpeg");
+        oRouter.navTo("managerpeg");
 
-        oRouter.navTo("displaypeglist");
+        //oRouter.navTo("displaypeglist");
 
       },
 
