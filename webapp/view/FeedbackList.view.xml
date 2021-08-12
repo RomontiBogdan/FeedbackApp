@@ -27,8 +27,13 @@
 			<headerToolbar>
 				<Toolbar>
 					<ToolbarSpacer/>
-					<Title text="Filter by Name:"/>
-					<SearchField width="30%" search=".onFilterName"/>
+					<Title text="Only Pending:"/>
+					<Switch id="pendingswitch" state="false" customTextOn="  " customTextOff=" " change=".onPendingFilter">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+					<SearchField width="30%" search=".onFilterName" placeholder="Filter by Name"/>
 				</Toolbar>
 			</headerToolbar>
 			
@@ -67,6 +72,7 @@
 							path: 'test>Status',
 							formatter: '.formatter.FeedbackStatus'
 						}"
+							
 						/>
 						<!-- state="{= ${test>Status} === true ? 'Error' : 'Success' }" -->
 					</cells>
