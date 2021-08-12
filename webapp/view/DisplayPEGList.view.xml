@@ -10,17 +10,17 @@
 		    navButtonPress=".onNavBack"
 	>
 
-							<footer>
- 							  <Bar>
-   								 <contentRight>
-      								<Button
-           					 			text="New Request"
-            				 			press=".onNewRequest"
-            				 			class="myCustomButton"
-									/>
-    							</contentRight>
-  							  </Bar>
-						    </footer>
+		<footer>
+ 			<Bar>
+   				<contentRight>
+      				<Button
+           				text="New Request"
+            			press=".onNewRequest"
+            			class="myCustomButton"
+					/>
+    			</contentRight>
+  			</Bar>
+		</footer>
 
 		  	<Table id="pegTable"
 				inset="false"
@@ -52,7 +52,7 @@
 				 <items>
             <ColumnListItem 
 			type = "Navigation"
-			press = ".onPress"
+			press = ".onPEGPress"
 			>
                 <cells>
                     <Text
