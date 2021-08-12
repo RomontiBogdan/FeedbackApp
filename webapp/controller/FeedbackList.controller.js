@@ -14,36 +14,68 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("feedbacklist").attachPatternMatched(this._onObjectMatched, this);
 			var oViewModel = new JSONModel([{
-                Name : "User1",
+                Name : "REUser1",
 				Project : "Project1",
 				FeedbackType : "da",
 				Status : true
             },
 			{
-                Name : "User2",
+                Name : "REUser2",
 				Project : "Project2",
 				FeedbackType : "nu",
 				Status : false
             },
 			{
-                Name : "Manager3",
+                Name : "REManager3",
 				Project : "Project2",
 				FeedbackType : "ds",
 				Status : true
             },
 			{
-                Name : "User4",
+                Name : "REUser4",
 				Project : "Project4",
 				FeedbackType : "sa",
 				Status : false
             },
 			{
-                Name : "Manager5",
+                Name : "REManager5",
 				Project : "Project4",
 				FeedbackType : "as",
 				Status : false
             }]);
-            this.getView().setModel(oViewModel, "test");
+
+			var oViewModel2 = new JSONModel([{
+                Name : "SEUser1",
+				Project : "Project1",
+				FeedbackType : "da",
+				Status : true
+            },
+			{
+                Name : "SEUser2",
+				Project : "Project2",
+				FeedbackType : "nu",
+				Status : false
+            },
+			{
+                Name : "SEManager3",
+				Project : "Project2",
+				FeedbackType : "ds",
+				Status : true
+            },
+			{
+                Name : "SEUser4",
+				Project : "Project4",
+				FeedbackType : "sa",
+				Status : false
+            },
+			{
+                Name : "SEManager5",
+				Project : "Project4",
+				FeedbackType : "as",
+				Status : false
+            }]);
+            this.getView().setModel(oViewModel, "received");
+			this.getView().setModel(oViewModel2, "sent");
 		},
 
         onNavBack: function () {
