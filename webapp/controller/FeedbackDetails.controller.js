@@ -20,6 +20,14 @@ sap.ui.define([
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("overview", {}, true);
 			}
+		},
+
+		_onObjectMatched: function (oEvent) {
+
+		    var sFeedbackID = oEvent.getParameter("arguments").feedbackID;
+			this.getView().bindElement({
+				path: "/Feedback360Set('" + sFeedbackID + "')"
+		    });
 		}
 
 	});

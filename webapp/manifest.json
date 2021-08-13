@@ -141,7 +141,7 @@
 			"target": "userPEGs"
 		},
 		{
-			"pattern": "feedbackdetails",
+			"pattern": "feedbackdetails/{feedbackID}",
 			"name": "feedbackdetails",
 			"target": "feedbackdetails"
 		}
