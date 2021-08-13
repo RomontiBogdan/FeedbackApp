@@ -28,7 +28,7 @@ sap.ui.define([
 						new Filter("ToUser", FilterOperator.EQ, this.sUsername),
 						new Filter("FromUser", FilterOperator.EQ, this.sUsername),
 						],
-						and: false,
+						and: true,
 			}));
 			
 			var oList = this.byId("feedbackTable");
