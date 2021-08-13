@@ -28,7 +28,7 @@ sap.ui.define([
 						new Filter("ToUser", FilterOperator.EQ, this.sUsername),
 						new Filter("FromUser", FilterOperator.EQ, this.sUsername),
 						],
-						and: false,
+						and: true,
 			}));
 			
 			var oList = this.byId("feedbackTable");
@@ -66,10 +66,19 @@ sap.ui.define([
 		onFilterName : function (oEvent) {
 			var aFilter = [];
 			var sQuery = oEvent.getSource().getValue();
-			aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery))
-			var oList = this.byId("feedbackTable");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
+			if(sQuery)
+			{
+				aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
+				var oList = this.byId("feedbackTable");
+				var oBinding = oList.getBinding("items");
+				oBinding.filter(aFilter);
+			}
+			else
+			{
+				var oList = this.byId("feedbackTable");
+				var oBinding = oList.getBinding("items");
+				oBinding.filter(this.sFilter);
+			}
 
 		},
 
