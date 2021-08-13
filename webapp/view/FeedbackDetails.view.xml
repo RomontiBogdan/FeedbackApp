@@ -7,6 +7,7 @@
 		    showNavButton="true"
 		    navButtonPress=".onNavBack"
 	>
+	<Label text="{FeedbackId}"/>
     </Page>
 
 </mvc:View>

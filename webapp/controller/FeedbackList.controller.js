@@ -50,8 +50,12 @@ sap.ui.define([
 		},
 
 		onFeedbackPress: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("feedbackdetails");
+			var oItem = oEvent.getSource();
+			var oBindingObject = oItem.getBindingContext().getObject();
+			var oRouter = this.getOwnerComponent().getRouter(this);
+			oRouter.navTo("feedbackdetails",{
+				feedbackID: oBindingObject.FeedbackId
+			});
 		},
 
 		onNewFeedback: function (oEvent) {
@@ -61,48 +65,45 @@ sap.ui.define([
 
 		onFilterName : function (oEvent) {
 			var aFilter = [];
-			var sQuery = oEvent.getParameter("query");
-			
-			if(this.getView().byId("PendingSwitch").getState())
+			var sQuery = oEvent.getSource().getValue();
+			if(sQuery)
 			{
-				aFilter.push(new Filter({
-					filters: [
-					new Filter("Status", FilterOperator.EQ, false),
-					new Filter("Name", FilterOperator.Contains, sQuery),
-					],
-					and: true,
-				}));
+				aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
+				var oList = this.byId("feedbackTable");
+				var oBinding = oList.getBinding("items");
+				oBinding.filter(aFilter);
 			}
 			else
-				aFilter.push(new Filter("Name", FilterOperator.Contains, sQuery));
+			{
+				var oList = this.byId("feedbackTable");
+				var oBinding = oList.getBinding("items");
+				oBinding.filter(this.sFilter);
+			}
 
-			var oList = this.byId("feedbackTable");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
 		},
 
-		onPendingFilter: function(oEvent)
-        {
-			var aFilter = [];
-			var sInput = this.getView().byId("sfInput").getValue()
-            if (oEvent.getParameter("state")==true)
-            {
-				aFilter.push(new Filter({
-					filters: [
-					new Filter("Status", FilterOperator.EQ, false),
-					new Filter("Name", FilterOperator.Contains, sInput),
-					],
-					and: true,
-				}));
-            }
-            else
-            {
-				aFilter.push(new Filter("Name", FilterOperator.Contains, sInput));
-			}
-			var oList = this.byId("feedbackTable");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
-        },
+		// onPendingFilter: function(oEvent)
+        // {
+		// 	var aFilter = [];
+		// 	var sInput = this.getView().byId("sfInput").getValue()
+        //     if (oEvent.getParameter("state")==true)
+        //     {
+		// 		aFilter.push(new Filter({
+		// 			filters: [
+		// 			new Filter("Status", FilterOperator.EQ, false),
+		// 			new Filter("Name", FilterOperator.Contains, sInput),
+		// 			],
+		// 			and: true,
+		// 		}));
+        //     }
+        //     else
+        //     {
+		// 		aFilter.push(new Filter("Name", FilterOperator.Contains, sInput));
+		// 	}
+		// 	var oList = this.byId("feedbackTable");
+		// 	var oBinding = oList.getBinding("items");
+		// 	oBinding.filter(aFilter);
+        // },
 
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");

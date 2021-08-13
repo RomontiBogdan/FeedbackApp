@@ -46,7 +46,7 @@
 				<headerToolbar>
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Title text="Only Pending:"/>
+						<!-- <Title text="Only Pending:"/>
 						<Switch 
 							id="PendingSwitch" 
 							state="false" 
@@ -56,10 +56,10 @@
 							<layoutData>
 								<FlexItemData growFactor="1" />
 							</layoutData>
-						</Switch>
+						</Switch> -->
 						<SearchField
 							id="sfInput"
-							width="30%" 
+							width="25%" 
 							search=".onFilterName" 
 							placeholder="Filter by Name"/>
 					</Toolbar>
