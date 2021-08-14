@@ -1,13 +1,48 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.FeedbackDetails"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout">
 	<Page
 		    title="Info about Feedback"
 		    showNavButton="true"
-		    navButtonPress=".onNavBack"
-	>
-	<Label text="{FeedbackId}"/>
+		    navButtonPress=".onNavBack">
+		<StandardTile
+			icon="sap-icon://drill-up"
+			title="{FromUser}"
+			info="From"
+			infoState="Success"
+			/>
+		<StandardTile
+			icon="sap-icon://drill-down"
+			title="{ToUser}"
+			info="To"
+			infoState="Warning"
+			/>
+		<StandardTile
+			icon="sap-icon://group"
+			number="{ProjectId}"
+			info="Project ID"
+			/>
+		<StandardTile
+			icon="sap-icon://favorite"
+			number="{Rating}"
+			numberUnit="Stars"
+			info="Review"
+			/>
+		<StandardTile
+			icon="sap-icon://activities"
+			number="{Categories}"
+			info="Category"
+			/>
+		<StandardTile
+			icon="sap-icon://date-time"
+			number="{SentAt}"
+			info="Sent At"
+			/>
+		
+			<TextArea value="{Description}" editable="false" growing="true" growingMaxLines="7" width="100%" height="50%"/>
+	
     </Page>
 
 </mvc:View>

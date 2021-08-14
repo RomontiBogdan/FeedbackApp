@@ -11,3 +11,6 @@ html[dir="ltr"] .myAppDemoWT .myCustomButton.sapMBtn {
     font-weight: bold;
  }
  
+ .myApp .bigLabel {
+   font-size: x-small;
+ }
