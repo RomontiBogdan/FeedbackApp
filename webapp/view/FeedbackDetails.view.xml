@@ -6,30 +6,43 @@
 	<Page
 		    title="Info about Feedback"
 		    showNavButton="true"
-		    navButtonPress=".onNavBack"
-	>
-	<Label text="{FeedbackId}"/>
-	<l:Grid containerQuery="true" class="sapUiSmallMarginTop">
-		<TileContent footer="Current Quarter" unit="EUR" class="sapUiSmallMargin">
-			<NumericContent scale="M" value="1.96"
-				valueColor="Error" indicator="Up" />
-		</TileContent>
-		<TileContent footer="Leave Requests" class="sapUiSmallMargin">
-			<NumericContent value="3"
-				icon="sap-icon://travel-expense" />
-		</TileContent>
-		<TileContent footer="Hours since last Activity" class="sapUiSmallMargin">
-			<NumericContent value="9" icon="sap-icon://locked" />
-		</TileContent>
-		<TileContent footer="New Notifications" class="sapUiSmallMargin">
-			<FeedContent contentText="@@notify Great outcome of the Presentation today. The new functionality and the new design was well received."
-				subheader="about 1 minute ago in Computer Market" value="132" />
-		</TileContent>
-		<TileContent footer="August 21, 2013" class="sapUiSmallMargin">
-			<NewsContent contentText="SAP Unveils Powerful New Player Comparison Tool Exclusively on NFL.com"
-				subheader="SAP News" />
-		</TileContent>
-	</l:Grid>
+		    navButtonPress=".onNavBack">
+		<StandardTile
+			icon="sap-icon://drill-up"
+			title="{FromUser}"
+			info="From"
+			infoState="Success"
+			/>
+		<StandardTile
+			icon="sap-icon://drill-down"
+			title="{ToUser}"
+			info="To"
+			infoState="Warning"
+			/>
+		<StandardTile
+			icon="sap-icon://group"
+			number="{ProjectId}"
+			info="Project ID"
+			/>
+		<StandardTile
+			icon="sap-icon://favorite"
+			number="{Rating}"
+			numberUnit="Stars"
+			info="Review"
+			/>
+		<StandardTile
+			icon="sap-icon://activities"
+			number="{Categories}"
+			info="Category"
+			/>
+		<StandardTile
+			icon="sap-icon://date-time"
+			number="{SentAt}"
+			info="Sent At"
+			/>
+		
+			<TextArea value="{Description}" editable="false" growing="true" growingMaxLines="7" width="100%" height="50%"/>
+	
     </Page>
 
 </mvc:View>
