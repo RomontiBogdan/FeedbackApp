@@ -8,14 +8,17 @@ sap.ui.define(
   function (Controller, History, MessageBox, MessageToast) {
     "use strict";
     return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
+      
       _onObjectMatched: function (oEvent) {
         this.sUsername = oEvent.getParameter("arguments").Username;
+        this.getView().bindElement({
+          path: "/UserPassSet('" + this.sUsername + "')"
+          });
       },
+
       onInit: function () {
         var oRouter = this.getOwnerComponent().getRouter();
-        oRouter
-          .getRoute("main")
-          .attachPatternMatched(this._onObjectMatched, this);
+        oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
       },
 
       onNavBack: function () {
@@ -30,50 +33,24 @@ sap.ui.define(
         }
       },
 
-      onRequestNewPEG: function (oEvent) {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("requestpeg");
-      },
-
 
 		onFeedback: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("feedbacklist", {Username: this.sUsername});
 		},
 
-		onRequestNewPEG: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg"); 
-		  },
-
-      onDisplayPEGList: function (oEvent) {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("displaypeglist");
-      },
-
-
-      onListSentReceived: function (oEvent) {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("sentreceived");
-      },
-
       onProfile: function (oEvent) {
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter.navTo("myprofile", { Username: this.sUsername });
       },
 
-      onNewFeedback: function (oEvent) {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("newfeedback");
-      },
-
       onPEG: function (oEvent) {
-
         var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("managerpeg");
-
-        //oRouter.navTo("displaypeglist");
-
+        var oBindingObject = this.getView().getBindingContext().getObject();
+        if(oBindingObject.CareerLevel == "5")
+          oRouter.navTo("managerpeg", {Username: this.sUsername});
+        else
+          oRouter.navTo("userpeg", {Username: this.sUsername});
       },
 
 

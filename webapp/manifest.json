@@ -105,12 +105,6 @@
 			"target": "requestpeg"
 		},
 		{
-
-			"pattern": "displaypeglist",
-			"name": "displaypeglist",
-			"target": "displaypeglist"
-		},
-		{
 			"pattern": "feedbacklist/{Username}",
 			"name": "feedbacklist",
 			"target": "feedbacklist"
@@ -126,7 +120,7 @@
 			"target": "myprofile"
 		},
 		{
-			"pattern": "managerpeg",
+			"pattern": "managerpeg/{Username}",
 			"name": "managerpeg",
 			"target": "managerpeg"
 		},
@@ -136,9 +130,9 @@
 			"target": "managerFeedback"
 		},
 		{
-			"pattern": "userPEGs",
-			"name": "userPEGs",
-			"target": "userPEGs"
+			"pattern": "userpeg/{Username}",
+			"name": "userpeg",
+			"target": "userpeg"
 		},
 		{
 			"pattern": "feedbackdetails/{feedbackID}",
@@ -167,11 +161,7 @@
 			"viewId": "register",
 			"viewName": "RequestPEG"
 		},
-		  "displaypeglist": {
-			"viewId": "displaypeglist",
-			"viewName": "DisplayPEGList"
-		},
-		  "feedbacklist": {
+		"feedbacklist": {
 			"viewId": "feedbacklist",
 			"viewName": "FeedbackList"
 		},
@@ -191,9 +181,9 @@
 			"viewId": "managerFeedback",
 			"viewName": "ManagerFeedback"
 		},
-		"userPEGs":{
-			"viewId": "userPEGs",
-			"viewName": "UserPEGs"
+		"userpeg":{
+			"viewId": "userpeg",
+			"viewName": "UserPEG"
 
 		},
 		"feedbackdetails":{
