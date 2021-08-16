@@ -32,8 +32,7 @@ sap.ui.define([
 
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.aFilter);
-
+			oBinding.filter(this.sFilter);
 		},
 
 		onNavBack: function () {
@@ -44,7 +43,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("main", {}, true);
+				oRouter.navTo("main", {Username: this.sUsername}, true);
 			}
 		},
 
@@ -112,15 +111,15 @@ sap.ui.define([
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");
 			var aFilter = [];
-			if (sKey === "Sent" || sKey === "allfeedbacks") {
+			if (sKey === "Sent" || sKey === "All") {
 				aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.sUsername))
 			}
-			if (sKey === "Received" || sKey === "allfeedbacks") {
+			if (sKey === "Received" || sKey === "All") {
 				aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.sUsername))
 			}
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.sFilter);
+			oBinding.filter(aFilter);
 		}
 	});
 });

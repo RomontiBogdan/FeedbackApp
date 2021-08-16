@@ -84,6 +84,7 @@
 				<RatingIndicator
 					id="inputRating"
 					class="sapUiSmallMarginBottom"
+          value="1"
 					tooltip="{i18n>RatingTooltip}"
 				/>
 			</f:SimpleForm>

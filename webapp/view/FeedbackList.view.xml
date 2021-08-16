@@ -19,8 +19,7 @@
 				</contentRight>
 			</Bar>
 		</footer>
-
-			<IconTabBar
+		<IconTabBar
 			id="FeedbackTabBar"
 			select=".onFilterSelect"
 			class="sapUiResponsiveContentPadding"
@@ -28,9 +27,11 @@
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
-					iconColor="Information"
+					iconColor="Neutral"
 					text="All Feedbacks"
-					key="allfeedbacks" />
+					key="All"
+				/>
+				<IconTabSeparator/>
 				<IconTabFilter
 					icon="sap-icon://back-to-top"
 					iconColor="Critical"
@@ -51,82 +52,6 @@
 						path : '/Feedback360Set'
 					 }"
 				>
-				<!-- <headerToolbar>
-					<Toolbar>
-						<ToolbarSpacer/>
-						<Title text="Only Pending:"/>
-						<Switch 
-							id="PendingSwitch" 
-							state="false" 
-							customTextOn="  " 
-							customTextOff=" " 
-							change=".onPendingFilter">
-							<layoutData>
-								<FlexItemData growFactor="1" />
-							</layoutData>
-						</Switch>
-						<SearchField
-							id="sfInput"
-							width="25%" 
-							search=".onFilterName" 
-							placeholder="Filter by Name"/>
-					</Toolbar>
-				</headerToolbar> -->
-				
-				<columns>
-					<Column
-						width="12em">
-						<Text text="From User" />
-					</Column>
-					<Column
-						width="12em">
-						<Text text="To User" />
-					</Column>
-					<Column
-						width="12em">
-						<Text text="Project" />
-					</Column>
-					<Column
-						width="12em">
-						<Text text="Category" />
-					</Column>
-					<Column
-						width="12em">
-						<Text text="Anonymous" />
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem
-						type="Navigation"
-						press = ".onFeedbackPress">
-						<cells>
-							<Text
-								text="{
-										parts:[
-											{path:'FromUser'},
-											{path:'Anonymous'}
-											], 
-										formatter:'.formatter.feedbackAnonymous'
-									   }" />
-							<Text
-								text="{ToUser}" />
-							<Text
-								text="{ProjectId}" />
-							<Text
-								text="{
-								path: 'Categories',
-								formatter: '.formatter.feedbackCategory'
-								}"
-							/>
-							<Text
-								text="{
-								path: 'Anonymous',
-								formatter: '.formatter.FeedbackStatus'
-								}"
-								
-							/>
-						</Toolbar>
-					</headerToolbar>
 					<columns>
 						<Column width="12em">
 							<Text text="From User"/>
@@ -141,7 +66,7 @@
 							<Text text="Category"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Anonymous"/>
+							<Text text="Rating"/>
 						</Column>
 					</columns>
 					<items>
@@ -150,13 +75,22 @@
 							press=".onFeedbackPress"
 						>
 							<cells>
-								<Text text="{FromUser}"/>
+								<Text text="{
+									parts:[
+										{path:'FromUser'},
+										{path:'Anonymous'}
+									], 
+									formatter:'.formatter.feedbackAnonymous'
+								}"/>
 								<Text text="{ToUser}"/>
 								<Text text="{ProjectId}"/>
-								<Text text="{Categories}"/>
 								<Text text="{
-									path: 'Anonymous',
-									formatter: '.formatter.FeedbackStatus'
+									path: 'Categories',
+									formatter: '.formatter.feedbackCategory'
+								}"/>
+								<Text text="{
+									path: 'Rating',
+									formatter: '.formatter.feedbackRating'
 								}"/>
 							</cells>
 						</ColumnListItem>

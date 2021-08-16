@@ -49,23 +49,47 @@ sap.ui.define(
         }
       },
 
+      _validateData: function(oParams) {
+        var exceptions = ""
+        if(oParams.ToUser === oParams.FromUser) {
+          exceptions += "You cannot send a feedback to yourself!\n"
+        }
+        if(oParams.ToUser === null) {
+          exceptions += "Please select an user!\n"
+        }
+        if(oParams.Description === "") {
+          exceptions += "Please insert a description!\n"
+        }
+        if(oParams.ProjectId === null) {
+          exceptions += "Please select a project!\n"
+        }
+        if(oParams.Categories === null) {
+          exceptions += "Please select a skill!\n"
+        }
+        if(oParams.Rating === "0") {
+          exceptions += "Rating cannot be 0!\n"
+        }
+        return exceptions
+      },
+
       onSend: function () {
 
         var params = {
           FeedbackId: Math.floor(Math.random() * 1000000000).toString(),
           FromUser: this.sUsername,
-          ToUser: this.byId("inputToUser").getSelectedItem().getText(),
+          ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
           Description: this.byId("inputDescription").getValue(),
-          ProjectId: this.byId("inputToProject").getSelectedItem().getKey(),
+          ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),
           SentAt: "",
           Type: "",
-          Categories: this.byId("inputSkill").getSelectedItem().getKey(),
+          Categories: this.byId("inputSkill").getSelectedItem() === null ? null : this.byId("inputSkill").getSelectedItem().getKey(),
           Rating: this.byId("inputRating").getValue().toString(),
           Anonymous: this.byId("AnonymousCB").getSelected() ? "X" : " "
         }
 
-        if (params.ToUser === params.FromUser) {
-          sap.m.MessageToast.show("You cannot send a feedback to yourself!")
+        var exceptions = this._validateData(params)
+        if (exceptions !== "") {
+          MessageBox.error(exceptions)
         }
         else {
           var oModel = this.getOwnerComponent().getModel();
