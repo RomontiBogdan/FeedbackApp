@@ -9,11 +9,33 @@
 		    showNavButton="true"
 		    navButtonPress=".onNavBack"
 	>
-    
-    	<Table id="pegTable"
+
+	<IconTabBar
+			id="FeedbackTabBar"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding">
+			<items>
+				<IconTabFilter
+					icon="sap-icon://multiselect-all"
+					iconColor="Information"
+					text="All PEGs"
+					key="allpegs" />
+				<IconTabFilter
+					icon="sap-icon://pending"
+					iconColor="Critical"
+					text="Pending"
+					key="Pending" />
+				<IconTabFilter
+					icon="sap-icon://accept"
+					iconColor="Positive"
+					text="Completed"
+					key="Completed" />
+			</items>
+			<content>
+				<Table id="pegTable"
 			inset="false"
 			items = "{employee>/}" >
-			<headerToolbar>
+			<!-- <headerToolbar>
 				<Toolbar>
 					<ToolbarSpacer/>
 					<Title text="Only Pending:"/>
@@ -33,7 +55,7 @@
 						search=".onFilterEmployee" 
 						placeholder="Filter by Name"/>
 				</Toolbar>
-			</headerToolbar>
+			</headerToolbar> -->
 				<columns>
 
 						<Column width="12em">
@@ -67,8 +89,8 @@
 					<Text
 							text="{
 							path: 'employee>Status',
-							formatter: '.formatter.FeedbackStatus'
-						}"
+							formatter: '.formatter.pegStatus'
+							}"
 							
 						/>
     
@@ -76,9 +98,9 @@
             </ColumnListItem>
         </items>
 			</Table>
+		</content>
+	</IconTabBar>
 
-
-    
-    </Page>
+	</Page>
 
 </mvc:View>
