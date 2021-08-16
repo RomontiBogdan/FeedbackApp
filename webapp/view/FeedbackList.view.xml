@@ -91,7 +91,7 @@
 						<Text text="Category" />
 					</Column>
 					<Column
-						width="12em">
+						width="8em">
 						<Text text="Anonymous" />
 					</Column>
 				</columns>
