@@ -1,30 +1,28 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.FeedbackList"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m"
->
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
 	<Page
 		title="Feedback"
-		showNavButton="true"
-		navButtonPress=".onNavBack"
-	>
+        showNavButton="true"
+		navButtonPress=".onNavBack">
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						text="New Feedback"
-						press=".onNewFeedback"
-						class="myCustomButton"
+ 			<Bar>
+   				<contentRight>
+      				<Button
+           				text="New Feedback"
+            			press=".onNewFeedback"
+            			class="myCustomButton"
 					/>
-				</contentRight>
-			</Bar>
+    			</contentRight>
+  			</Bar>
 		</footer>
 
 			<IconTabBar
 			id="FeedbackTabBar"
 			select=".onFilterSelect"
-			class="sapUiResponsiveContentPadding"
-		>
+			class="sapUiResponsiveContentPadding">
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
@@ -35,21 +33,20 @@
 					icon="sap-icon://back-to-top"
 					iconColor="Critical"
 					text="Sent"
-					key="Sent"
-				/>
+					key="Sent" />
 				<IconTabFilter
 					icon="sap-icon://download"
 					iconColor="Positive"
 					text="Received"
-					key="Received"
-				/>
+					key="Received" />
 			</items>
 			<content>
-				<Table
-					id="feedbackTable"
-					items="{
-						path : '/Feedback360Set'
+				<Table id="feedbackTable"
+				inset="false"
+				items="{
+					path : '/Feedback360Set'
 					 }"
+				visibleRowCount="1"
 				>
 				<!-- <headerToolbar>
 					<Toolbar>
@@ -91,7 +88,7 @@
 						<Text text="Category" />
 					</Column>
 					<Column
-						width="8em">
+						width="12em">
 						<Text text="Anonymous" />
 					</Column>
 				</columns>
@@ -125,44 +122,13 @@
 								}"
 								
 							/>
-						</Toolbar>
-					</headerToolbar>
-					<columns>
-						<Column width="12em">
-							<Text text="From User"/>
-						</Column>
-						<Column width="12em">
-							<Text text="To User"/>
-						</Column>
-						<Column width="12em">
-							<Text text="Project"/>
-						</Column>
-						<Column width="12em">
-							<Text text="Category"/>
-						</Column>
-						<Column width="12em">
-							<Text text="Anonymous"/>
-						</Column>
-					</columns>
-					<items>
-						<ColumnListItem
-							type="Navigation"
-							press=".onFeedbackPress"
-						>
-							<cells>
-								<Text text="{FromUser}"/>
-								<Text text="{ToUser}"/>
-								<Text text="{ProjectId}"/>
-								<Text text="{Categories}"/>
-								<Text text="{
-									path: 'Anonymous',
-									formatter: '.formatter.FeedbackStatus'
-								}"/>
-							</cells>
-						</ColumnListItem>
-					</items>
-				</Table>
-			</content>
-		</IconTabBar>
-	</Page>
+							<!-- state="{= ${received>Status} === true ? 'Error' : 'Success' }" -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</IconTabBar>
+		  
+    </Page>
 </mvc:View>
