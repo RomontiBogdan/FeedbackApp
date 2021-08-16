@@ -14,7 +14,7 @@
  			<Bar>
    				<contentRight>
       				<Button
-           				text="New Request"
+           				text="Request new PEG"
             			press=".onNewRequest"
             			class="myCustomButton"
 					/>

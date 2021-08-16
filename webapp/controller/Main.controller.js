@@ -30,10 +30,10 @@ sap.ui.define(
         }
       },
 
-      onRequestNewPEG: function (oEvent) {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("requestpeg");
-      },
+      // onRequestNewPEG: function (oEvent) {
+      //   var oRouter = this.getOwnerComponent().getRouter();
+      //   oRouter.navTo("requestpeg");
+      // },
 
 
 		onFeedback: function (oEvent) {
@@ -41,15 +41,15 @@ sap.ui.define(
 			oRouter.navTo("feedbacklist", {Username: this.sUsername});
 		},
 
-		onRequestNewPEG: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg"); 
-		  },
+		// onRequestNewPEG: function (oEvent) {
+		// 	var oRouter = this.getOwnerComponent().getRouter();
+		// 	oRouter.navTo("requestpeg"); 
+		//   },
 
-      onDisplayPEGList: function (oEvent) {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("displaypeglist");
-      },
+      // onDisplayPEGList: function (oEvent) {
+      //   var oRouter = this.getOwnerComponent().getRouter();
+      // //  oRouter.navTo("displaypeglist", {Username: this.sUsername});
+      // },
 
 
       onListSentReceived: function (oEvent) {
@@ -70,9 +70,10 @@ sap.ui.define(
       onPEG: function (oEvent) {
 
         var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("managerpeg");
 
-        //oRouter.navTo("displaypeglist");
+       //  oRouter.navTo("managerpeg");
+       // oRouter.navTo("displaypeglist");
+        oRouter.navTo("displaypeglist", {Username: this.sUsername});
 
       },
 

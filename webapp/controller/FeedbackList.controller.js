@@ -18,9 +18,9 @@ sap.ui.define([
 		_onObjectMatched: function(oEvent)
 		{
 			this.sUsername = oEvent.getParameter("arguments").Username;
-			this.getView().bindElement({
-				path: "/UserPassSet('" + this.sUsername + "')"
-		    });
+			// this.getView().bindElement({
+			// 	path: "/UserPassSet('" + this.sUsername + "')"
+		    // });
 
 			this.sFilter = []; 
 			this.sFilter.push(new Filter({

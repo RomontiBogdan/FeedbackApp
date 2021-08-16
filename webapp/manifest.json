@@ -100,13 +100,13 @@
 			"target": "register"
 		},
 		{
-			"pattern": "requestpeg",
+			"pattern": "requestpeg/{Username}",
 			"name": "requestpeg",
 			"target": "requestpeg"
 		},
 		{
 
-			"pattern": "displaypeglist",
+			"pattern": "displaypeglist/{Username}",
 			"name": "displaypeglist",
 			"target": "displaypeglist"
 		},
@@ -164,7 +164,7 @@
           "viewName": "Register"
         },
 		"requestpeg": {
-			"viewId": "register",
+			"viewId": "requestpeg",
 			"viewName": "RequestPEG"
 		},
 		  "displaypeglist": {
@@ -201,9 +201,7 @@
 			"viewName": "FeedbackDetails"
 
 		}
-
         }
-
       }
   }
 }

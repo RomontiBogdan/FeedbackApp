@@ -10,6 +10,11 @@ sap.ui.define([
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.DisplayPEGList", {
 		formatter: formatter,
+		_onObjectMatched: function (oEvent) {
+			
+				this.sUsername = oEvent.getParameter("arguments").Username;
+				
+		  },
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("displaypeglist").attachPatternMatched(this._onObjectMatched, this);
@@ -63,8 +68,19 @@ sap.ui.define([
 		},
 
 		onNewRequest: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg");
+
+			
+		    var oRouter = this.getOwnerComponent().getRouter();
+		
+			oRouter.navTo("requestpeg", {Username: this.sUsername});
+
+			// var oItem = oEvent.getSource();
+			// var oBindingObject = oItem.getBindingContext().getObject();
+			// var oRouter = this.getOwnerComponent().getRouter(this);
+			// oRouter.navTo("requestpeg",{
+			// 	Username: oBindingObject.Username
+			//});
+
 		},
 
 		onFilterProject : function (oEvent) {
