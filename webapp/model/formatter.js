@@ -10,6 +10,15 @@ sap.ui.define([], function () {
             }
 		},
 
+		pegStatus: function (statusValue)
+		{
+		    if (statusValue) {
+                return "Completed";
+            } else {
+                return "Pending";
+            }
+		},
+
 		feedbackRating: function (sRating) {
 			switch (sRating) {
 				case "1":

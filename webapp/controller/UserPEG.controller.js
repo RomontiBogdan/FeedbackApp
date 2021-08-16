@@ -8,11 +8,11 @@ sap.ui.define([
 	
 ], function (Controller, History, JSONModel, formatter, Filter, FilterOperator) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.DisplayPEGList", {
+	return Controller.extend("sap.ui.demo.walkthrough.controller.UserPEG", {
 		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("displaypeglist").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("userpeg").attachPatternMatched(this._onObjectMatched, this);
 
 			var oViewModel = new JSONModel([{
                 Project  : "Project1",
@@ -42,6 +42,14 @@ sap.ui.define([
             }]);
 
 			this.getView().setModel(oViewModel, "displayList");
+		},
+
+		_onObjectMatched: function(oEvent)
+		{
+			this.sUsername = oEvent.getParameter("arguments").Username;
+			this.getView().bindElement({
+				path: "/UserPassSet('" + this.sUsername + "')"
+		    });
 		},
 
         onNavBack: function () {

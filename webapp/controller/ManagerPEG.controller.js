@@ -45,6 +45,14 @@ sap.ui.define([
 
 		},
 
+		_onObjectMatched: function(oEvent)
+		{
+			this.sUsername = oEvent.getParameter("arguments").Username;
+			this.getView().bindElement({
+				path: "/UserPassSet('" + this.sUsername + "')"
+		    });
+		},
+
         onNavBack: function () {
 			var oHistory = History.getInstance();
 			var sPreviousHash = oHistory.getPreviousHash();
@@ -105,7 +113,35 @@ sap.ui.define([
 			var oList = this.byId("pegTable");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
-        }
+        },
+
+		onFilterSelect: function (oEvent) {
+			var sKey = oEvent.getParameter("key");
+			this.aFilter = [];
+			if (sKey === "Pending")
+			{	
+				this.aFilter.push(new Filter("Status", FilterOperator.EQ, false))
+			}
+			else if (sKey === "Completed")
+			{	
+				this.aFilter.push(new Filter("Status", FilterOperator.EQ, true))
+			}
+			else if (sKey === "allpegs")
+			{	
+				this.aFilter.push(new Filter({
+					filters: [
+					new Filter("Status", FilterOperator.EQ, true),
+					new Filter("Status", FilterOperator.EQ, false),
+					],
+					and: false,
+				}));
+			}
+
+			var oList = this.byId("pegTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(this.aFilter);
+
+		}
 
 
 	});

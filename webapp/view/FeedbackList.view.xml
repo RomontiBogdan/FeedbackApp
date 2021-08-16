@@ -1,29 +1,27 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.FeedbackList"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m"
->
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
 	<Page
 		title="Feedback"
-		showNavButton="true"
-		navButtonPress=".onNavBack"
-	>
+        showNavButton="true"
+		navButtonPress=".onNavBack">
 		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						text="New Feedback"
-						press=".onNewFeedback"
-						class="myCustomButton"
+ 			<Bar>
+   				<contentRight>
+      				<Button
+           				text="New Feedback"
+            			press=".onNewFeedback"
+            			class="myCustomButton"
 					/>
-				</contentRight>
-			</Bar>
+    			</contentRight>
+  			</Bar>
 		</footer>
 		<IconTabBar
 			id="FeedbackTabBar"
 			select=".onFilterSelect"
-			class="sapUiResponsiveContentPadding"
-		>
+			class="sapUiResponsiveContentPadding">
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
@@ -36,21 +34,20 @@
 					icon="sap-icon://back-to-top"
 					iconColor="Critical"
 					text="Sent"
-					key="Sent"
-				/>
+					key="Sent" />
 				<IconTabFilter
 					icon="sap-icon://download"
 					iconColor="Positive"
 					text="Received"
-					key="Received"
-				/>
+					key="Received" />
 			</items>
 			<content>
-				<Table
-					id="feedbackTable"
-					items="{
-						path : '/Feedback360Set'
+				<Table id="feedbackTable"
+				inset="false"
+				items="{
+					path : '/Feedback360Set'
 					 }"
+				visibleRowCount="1"
 				>
 					<columns>
 						<Column width="12em">
