@@ -9,7 +9,13 @@
 		    navButtonPress=".onNavBack">
 		<StandardTile
 			icon="sap-icon://drill-up"
-			title="{FromUser}"
+			title="{
+						parts:[
+						{path:'FromUser'},
+						{path:'Anonymous'}
+						], 
+						formatter:'.formatter.feedbackAnonymous'
+					}"
 			info="From"
 			infoState="Success"
 			/>

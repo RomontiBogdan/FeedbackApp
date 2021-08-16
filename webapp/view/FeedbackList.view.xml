@@ -98,7 +98,13 @@
 						press = ".onFeedbackPress">
 						<cells>
 							<Text
-								text="{FromUser}" />
+								text="{
+										parts:[
+											{path:'FromUser'},
+											{path:'Anonymous'}
+											], 
+										formatter:'.formatter.feedbackAnonymous'
+									   }" />
 							<Text
 								text="{ToUser}" />
 							<Text
