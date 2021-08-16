@@ -75,7 +75,7 @@ sap.ui.define(
       onSend: function () {
 
         var params = {
-          FeedbackId: Math.floor(Math.random() * 1000000000).toString(),
+          FeedbackId: "0",
           FromUser: this.sUsername,
           ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
           Description: this.byId("inputDescription").getValue(),
