@@ -19,19 +19,18 @@
 				</contentRight>
 			</Bar>
 		</footer>
-		<IconTabBar
-			id="idIconTabBar"
+
+			<IconTabBar
+			id="FeedbackTabBar"
 			select=".onFilterSelect"
 			class="sapUiResponsiveContentPadding"
 		>
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
-					iconColor="Neutral"
-					text="Feedbacks"
-					key="All"
-				/>
-				<IconTabSeparator/>
+					iconColor="Information"
+					text="All Feedbacks"
+					key="allfeedbacks" />
 				<IconTabFilter
 					icon="sap-icon://back-to-top"
 					iconColor="Critical"
@@ -52,10 +51,10 @@
 						path : '/Feedback360Set'
 					 }"
 				>
-					<headerToolbar>
-						<Toolbar>
-							<ToolbarSpacer/>
-							<!-- <Title text="Only Pending:"/>
+				<!-- <headerToolbar>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Title text="Only Pending:"/>
 						<Switch 
 							id="PendingSwitch" 
 							state="false" 
@@ -65,12 +64,66 @@
 							<layoutData>
 								<FlexItemData growFactor="1" />
 							</layoutData>
-						</Switch> -->
-							<SearchField
-								id="sfInput"
-								width="25%"
-								search=".onFilterName"
-								placeholder="Filter by Name"
+						</Switch>
+						<SearchField
+							id="sfInput"
+							width="25%" 
+							search=".onFilterName" 
+							placeholder="Filter by Name"/>
+					</Toolbar>
+				</headerToolbar> -->
+				
+				<columns>
+					<Column
+						width="12em">
+						<Text text="From User" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="To User" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="Project" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="Category" />
+					</Column>
+					<Column
+						width="12em">
+						<Text text="Anonymous" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem
+						type="Navigation"
+						press = ".onFeedbackPress">
+						<cells>
+							<Text
+								text="{
+										parts:[
+											{path:'FromUser'},
+											{path:'Anonymous'}
+											], 
+										formatter:'.formatter.feedbackAnonymous'
+									   }" />
+							<Text
+								text="{ToUser}" />
+							<Text
+								text="{ProjectId}" />
+							<Text
+								text="{
+								path: 'Categories',
+								formatter: '.formatter.feedbackCategory'
+								}"
+							/>
+							<Text
+								text="{
+								path: 'Anonymous',
+								formatter: '.formatter.FeedbackStatus'
+								}"
+								
 							/>
 						</Toolbar>
 					</headerToolbar>

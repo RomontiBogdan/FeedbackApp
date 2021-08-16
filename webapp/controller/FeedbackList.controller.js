@@ -32,7 +32,7 @@ sap.ui.define([
 
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.sFilter);
+			oBinding.filter(this.aFilter);
 
 		},
 
@@ -64,22 +64,27 @@ sap.ui.define([
 			});
 		},
 
-		onFilterName: function (oEvent) {
-			var aFilter = [];
-			var sQuery = oEvent.getSource().getValue();
-			if (sQuery) {
-				aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
-				var oList = this.byId("feedbackTable");
-				var oBinding = oList.getBinding("items");
-				oBinding.filter(aFilter);
-			}
-			else {
-				var oList = this.byId("feedbackTable");
-				var oBinding = oList.getBinding("items");
-				oBinding.filter(this.sFilter);
-			}
+		// onFilterName : function (oEvent) {
+		// 	var aFilter = [];
+		// 	var sQuery = oEvent.getSource().getValue();
+		// 	if(sQuery)
+		// 	{
+		// 		if(this.getView().byId("FeedbackTabBar").getSelectedKey() == "Sent")
+		// 			aFilter.push(new Filter("ToUser", FilterOperator.Contains, sQuery));
+		// 		else if(this.getView().byId("FeedbackTabBar").getSelectedKey() == "Received")
+		// 			aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
+		// 		var oList = this.byId("feedbackTable");
+		// 		var oBinding = oList.getBinding("items");
+		// 		oBinding.filter(aFilter);
+		// 	}
+		// 	else
+		// 	{
+		// 		var oList = this.byId("feedbackTable");
+		// 		var oBinding = oList.getBinding("items");
+		// 		oBinding.filter(this.aFilter);
+		// 	}
 
-		},
+		// },
 
 		// onPendingFilter: function(oEvent)
 		// {
@@ -107,17 +112,15 @@ sap.ui.define([
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");
 			var aFilter = [];
-			if (sKey === "Sent" || sKey === "All") {
+			if (sKey === "Sent" || sKey === "allfeedbacks") {
 				aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.sUsername))
 			}
-			if (sKey === "Received" || sKey === "All") {
+			if (sKey === "Received" || sKey === "allfeedbacks") {
 				aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.sUsername))
 			}
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
-
+			oBinding.filter(this.sFilter);
 		}
-
 	});
 });
