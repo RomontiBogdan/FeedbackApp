@@ -27,12 +27,19 @@
 		<StandardTile
 			icon="sap-icon://favorite"
 			number="{Rating}"
+			title="{
+					path: 'Rating',
+					formatter: '.formatter.feedbackRating'
+					}"
 			numberUnit="Stars"
 			info="Review"
 			/>
 		<StandardTile
 			icon="sap-icon://activities"
-			number="{Categories}"
+			number="{
+						path: 'Categories',
+						formatter: '.formatter.feedbackCategory'
+					}"
 			info="Category"
 			/>
 		<StandardTile

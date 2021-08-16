@@ -104,12 +104,16 @@
 							<Text
 								text="{ProjectId}" />
 							<Text
-								text="{Categories}" />
+								text="{
+								path: 'Categories',
+								formatter: '.formatter.feedbackCategory'
+								}"
+							/>
 							<Text
 								text="{
 								path: 'Anonymous',
 								formatter: '.formatter.FeedbackStatus'
-							}"
+								}"
 								
 							/>
 							<!-- state="{= ${received>Status} === true ? 'Error' : 'Success' }" -->

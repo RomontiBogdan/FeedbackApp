@@ -1,10 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History"
+    "sap/ui/core/routing/History",
+	"../model/formatter"
 	
-], function (Controller, History) {
+], function (Controller, History, formatter) {
 	"use strict";
 	return Controller.extend("sap.ui.demo.walkthrough.controller.FeedbackDetails", {
+		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("feedbackdetails").attachPatternMatched(this._onObjectMatched, this);
