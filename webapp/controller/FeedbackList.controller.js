@@ -22,8 +22,8 @@ sap.ui.define([
 				path: "/UserPassSet('" + this.sUsername + "')"
 		    });
 
-			this.sFilter = []; 
-			this.sFilter.push(new Filter({
+			this.aFilter = []; 
+			this.aFilter.push(new Filter({
 						filters: [
 						new Filter("ToUser", FilterOperator.EQ, this.sUsername),
 						new Filter("FromUser", FilterOperator.EQ, this.sUsername),
@@ -33,7 +33,7 @@ sap.ui.define([
 			
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.sFilter);
+			oBinding.filter(this.aFilter);
 
 		},
 
@@ -63,24 +63,27 @@ sap.ui.define([
 			oRouter.navTo("newfeedback");
 		},
 
-		onFilterName : function (oEvent) {
-			var aFilter = [];
-			var sQuery = oEvent.getSource().getValue();
-			if(sQuery)
-			{
-				aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
-				var oList = this.byId("feedbackTable");
-				var oBinding = oList.getBinding("items");
-				oBinding.filter(aFilter);
-			}
-			else
-			{
-				var oList = this.byId("feedbackTable");
-				var oBinding = oList.getBinding("items");
-				oBinding.filter(this.sFilter);
-			}
+		// onFilterName : function (oEvent) {
+		// 	var aFilter = [];
+		// 	var sQuery = oEvent.getSource().getValue();
+		// 	if(sQuery)
+		// 	{
+		// 		if(this.getView().byId("FeedbackTabBar").getSelectedKey() == "Sent")
+		// 			aFilter.push(new Filter("ToUser", FilterOperator.Contains, sQuery));
+		// 		else if(this.getView().byId("FeedbackTabBar").getSelectedKey() == "Received")
+		// 			aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
+		// 		var oList = this.byId("feedbackTable");
+		// 		var oBinding = oList.getBinding("items");
+		// 		oBinding.filter(aFilter);
+		// 	}
+		// 	else
+		// 	{
+		// 		var oList = this.byId("feedbackTable");
+		// 		var oBinding = oList.getBinding("items");
+		// 		oBinding.filter(this.aFilter);
+		// 	}
 
-		},
+		// },
 
 		// onPendingFilter: function(oEvent)
         // {
@@ -107,19 +110,29 @@ sap.ui.define([
 
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");
-			var aFilter = [];
+			this.aFilter = [];
 			if (sKey === "Sent")
 			{	
-				aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.sUsername))
+				this.aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.sUsername))
 			}
 			else if (sKey === "Received")
 			{	
-				aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.sUsername))
+				this.aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.sUsername))
+			}
+			else if (sKey === "allfeedbacks")
+			{	
+				this.aFilter.push(new Filter({
+					filters: [
+					new Filter("ToUser", FilterOperator.EQ, this.sUsername),
+					new Filter("FromUser", FilterOperator.EQ, this.sUsername),
+					],
+					and: true,
+		}));
 			}
 
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
+			oBinding.filter(this.aFilter);
 
 		}
 
