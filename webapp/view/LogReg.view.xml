@@ -1,51 +1,53 @@
 <mvc:View
-   controllerName="sap.ui.demo.walkthrough.controller.LogReg"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc">
-
-   <FlexBox height="600px" alignItems="Center" justifyContent="Center">
-   <Panel  >
-      <content>
-         <Input
-            id="UsernameField"
-            value="{loginTextFields>/recipientUs/nameUs}"
-			   placeholder="Username"
-            valueLiveUpdate="true"
-            width="80%"/>
-         <Input
-            id="PasswordField"
-            value="{loginTextFields>/recipientPass/namePass}"
-            type="Password"
-            placeholder="Password"
-            valueLiveUpdate="true"
-            width="80%"/>
-      </content>
-
-      <content>
-             <Button
-            text="{i18n>LogIn}"
-            press=".onLogIn"
-            class="myCustomButton"
-            icon="sap-icon://visits"
-            width="80%"/>
-
-            <Button
-            text="{i18n>Register}"
-            press=".onRegister"
-            class="myCustomButton"
-            width="80%"/>
-
-            <Button
-            text="{i18n>ForgotPass}"
-            press=".onForgotPass"
-            class="myCustomButton"
-            width="80%"
-            type="Transparent"/>
-      </content>
-
-   </Panel>
-   </FlexBox>
-
-
-
+	controllerName="sap.ui.demo.walkthrough.controller.LogReg"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+>
+	<FlexBox
+		height="600px"
+		alignItems="Center"
+		justifyContent="Center"
+	>
+		<Panel>
+			<content>
+				<Input
+					id="UsernameField"
+					placeholder="Username"
+					valueLiveUpdate="true"
+               submit="onLogIn"
+					width="80%"
+				/>
+				<Input
+					id="PasswordField"
+					type="Password"
+					placeholder="Password"
+					valueLiveUpdate="true"
+               submit="onLogIn"
+					width="80%"
+				/>
+			</content>
+			<content>
+				<Button
+					text="{i18n>LogIn}"
+					press=".onLogIn"
+					class="myCustomButton"
+					icon="sap-icon://visits"
+					width="80%"
+				/>
+				<Button
+					text="{i18n>Register}"
+					press=".onRegister"
+					class="myCustomButton"
+					width="80%"
+				/>
+				<Button
+					text="{i18n>ForgotPass}"
+					press=".onForgotPass"
+					class="myCustomButton"
+					width="80%"
+					type="Transparent"
+				/>
+			</content>
+		</Panel>
+	</FlexBox>
 </mvc:View>

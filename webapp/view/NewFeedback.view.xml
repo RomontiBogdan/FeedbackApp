@@ -1,87 +1,115 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.NewFeedback"
 	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
-	xmlns="sap.m">
-
+	xmlns="sap.m"
+>
 	<Page
 		title="New Feedback"
-        showNavButton="true"
-		navButtonPress=".onNavBack">
-
-        
-       	<l:VerticalLayout class="sapUiContentPadding" width="100%">
-	
-
-        <f:SimpleForm id="form" editable="true"
-          layout="ResponsiveGridLayout"
-            labelSpanXL="3"
-            labelSpanL="3"
-            labelSpanM="3"
-            labelSpanS="12"
-            adjustLabelSpan="false"
-            emptySpanXL="3"
-            emptySpanL="3"
-            emptySpanM="3"
-            emptySpanS="0"
-            columnsXL="1"
-            columnsL="1"
-            columnsM="1"
-            singleContainerFullSize="false">
-
-        
-         <Label text="Select user" labelFor="inputToUser"/>
-         <Select forceSelection="false" id = "inputToUser"   items="{/UsernamesSet}" change = "onUserChange">
-           <core:ListItem key="{Username}" text="{Username}"/>
-           
-         </Select> 
-
-
-             <Label text="Select projects " labelFor="inputToProject"/>
-         <Select forceSelection="false" id = "inputToProject"   items="{toProjects}" >
-           <core:ListItem key="{ProjectId}" text="{ProjectName}"/>
-           
-         </Select> 
-			
-
-            <!-- Annonymous? -->
-           
-  			<CheckBox text="Anonymous feedback" selected="false" />
-
-
-         
-
-            <Label text="Offer feedback based on the following skill" labelFor="inputSkill"/>
-           <Select forceSelection="false" id = "inputSkill"  selectedKey="{SelectedSkill}" items="{
-                                                    path: 'newFeedbackModel>/SkillCollection'}">
-           <core:ListItem key="{newFeedbackModel>Id}" text="{newFeedbackModel>Name}"/>
-          
-         </Select> 
-
-
-		<RatingIndicator id="inputRating" maxValue="5" class="sapUiSmallMarginBottom" value="0" tooltip="Rating Tooltip" />
-
-     
-        </f:SimpleForm>
-        <Label text="Description" labelFor="inputDescription"/>
-         <TextArea placeholder="Enter Text" id="inputDescription" growing="true" growingMaxLines="7" height = "100px" width="90%"/>
-
-    
-       </l:VerticalLayout>
-
-
-       <footer>
- 			<Bar>
-   				<contentRight>
-      				<Button
-           				text="Send" press=".onSend" class="myCustomButton"
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+	>
+		<l:VerticalLayout
+			class="sapUiContentPadding"
+			width="100%"
+		>
+			<f:SimpleForm
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="3"
+				labelSpanL="3"
+				labelSpanM="3"
+				adjustLabelSpan="false"
+				emptySpanXL="3"
+				emptySpanL="3"
+				emptySpanM="3"
+				columnsXL="1"
+				columnsL="1"
+				singleContainerFullSize="false"
+			>
+				<Label
+					text="Select user"
+					labelFor="inputToUser"
+				/>
+				<Select
+					forceSelection="false"
+					id="inputToUser"
+					items="{/UsernamesSet}"
+					change="onUserChange"
+				>
+					<core:ListItem
+						key="{Username}"
+						text="{Username}"
 					/>
-    			</contentRight>
-  			</Bar>
+				</Select>
+				<Label
+					text="Select projects "
+					labelFor="inputToProject"
+				/>
+				<Select
+					forceSelection="false"
+					id="inputToProject"
+					items="{toProjects}"
+				>
+					<core:ListItem
+						key="{ProjectId}"
+						text="{ProjectName}"
+					/>
+				</Select>
+				<!-- Annonymous? -->
+				<CheckBox
+          id="AnonymousCB"
+					text="Anonymous feedback"
+				/>
+				<Label
+					text="Offer feedback based on the following skill"
+					labelFor="inputSkill"
+				/>
+				<Select
+					forceSelection="false"
+					id="inputSkill"
+					selectedKey="{SelectedSkill}"
+					items="{
+            path: 'newFeedbackModel>/SkillCollection'
+          }"
+				>
+					<core:ListItem
+						key="{newFeedbackModel>Id}"
+						text="{newFeedbackModel>Name}"
+					/>
+				</Select>
+				<RatingIndicator
+					id="inputRating"
+					class="sapUiSmallMarginBottom"
+					tooltip="{i18n>RatingTooltip}"
+				/>
+			</f:SimpleForm>
+			<Label
+				text="Description"
+				labelFor="inputDescription"
+			/>
+			<TextArea
+				placeholder="Enter Text"
+				id="inputDescription"
+				growing="true"
+				growingMaxLines="7"
+				height="100px"
+				width="90%"
+			/>
+		</l:VerticalLayout>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button
+						text="Send"
+						press=".onSend"
+						class="myCustomButton"
+					/>
+				</contentRight>
+			</Bar>
 		</footer>
-       
-    </Page>
-
+	</Page>
 </mvc:View>
