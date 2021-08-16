@@ -35,5 +35,11 @@ sap.ui.define([], function () {
 					return "Other";
 			}
 		},
+
+		feedbackAnonymous: function (sName, bAnonVal) {
+			if(bAnonVal)
+				return "Anonymous";
+			return sName;
+		},
 	};
 });
