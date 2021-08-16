@@ -3,10 +3,9 @@ sap.ui.define(
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
     "sap/ui/model/json/JSONModel",
-    "sap/m/Dialog",
-    "sap/m/Text",
+    "sap/m/MessageBox"
   ],
-  function (Controller, History, JSONModel, Dialog, Text) {
+  function (Controller, History, JSONModel, MessageBox) {
     "use strict";
     return Controller.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
@@ -15,7 +14,7 @@ sap.ui.define(
           SkillCollection: [
             {
               Id: "0",
-              Name: "Tehnical",
+              Name: "Technical",
             },
             {
               Id: "1",
@@ -31,9 +30,12 @@ sap.ui.define(
         var oModel = new JSONModel(oData);
         this.getView().setModel(oModel, "newFeedbackModel");
         var oRouter = this.getOwnerComponent().getRouter();
-        oRouter .getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
+        oRouter.getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      _onObjectMatched: function (oEvent) {
+        this.sUsername = oEvent.getParameter("arguments").Username;
+      },
 
       onNavBack: function () {
         var oHistory = History.getInstance();
@@ -50,44 +52,48 @@ sap.ui.define(
       onSend: function () {
 
         var params = {
-          FeedbackId: "",
-          FromUser: "",
-          ToUser:this.getView().byId("inputToUser").getValue(),
-          Project: this.getView().byId("inputToProject").getValue(),
+          FeedbackId: Math.floor(Math.random() * 1000000000).toString(),
+          FromUser: this.sUsername,
+          ToUser: this.byId("inputToUser").getSelectedItem().getText(),
+          Description: this.byId("inputDescription").getValue(),
+          ProjectId: this.byId("inputToProject").getSelectedItem().getKey(),
           SentAt: "",
           Type: "",
-          Anonymous:"",
-          Categories: this.getView().byId("inputSkill").getValue(),
-          Rating: this.getView().byId("inputRating").getValue(),
-          Description: "",
+          Categories: this.byId("inputSkill").getSelectedItem().getKey(),
+          Rating: this.byId("inputRating").getValue().toString(),
+          Anonymous: this.byId("AnonymousCB").getSelected() ? "X" : " "
         }
 
+        if (params.ToUser === params.FromUser) {
+          sap.m.MessageToast.show("You cannot send a feedback to yourself!")
+        }
+        else {
+          var oModel = this.getOwnerComponent().getModel();
 
-        var oModel = this.getOwnerComponent().getModel();
+          oModel.create('/Feedback360Set', params, {
+            success: function (oCreatedEntry) {
+              MessageBox.information("Succes", {
+                onClose: function (oAction) {
+                  if (oAction === "OK") {
+                    var oRouter = this.getOwnerComponent().getRouter();
+                    oRouter.navTo("FeedbackList", {
+                      Username: this.sUsername
+                    });
+                  }
+                }.bind(this)
+              });
 
-        oModel.create('/UsernamesSet', params, {
-          success: function(oCreatedEntry) {
-            MessageBox.information("Succes", {
-              onClose: function(oAction) {
-                if (oAction == "OK") {
-                  var oRouter = this.getOwnerComponent().getRouter();
-                  oRouter.navTo("overview");
-                }
-              }.bind(this)
-            });
-  
-          }.bind(this),
-          error: function(oError) { sap.m.MessageToast.show("Feedback failed to send") }
+            }.bind(this),
+            error: function (oError) { sap.m.MessageToast.show("Feedback failed to send!") }
           });
+        }
       },
 
-
-      onUserChange : function(oEvent)
-      {
-        var SelectedItem = this.getView().byId("inputToUser").getSelectedItem().getText();
+      onUserChange: function (oEvent) {
+        var SelectedItem = this.byId("inputToUser").getSelectedItem().getText();
         this.getView().bindElement({
-          path: "/UserPassSet('" +  SelectedItem + "')"
-          });
+          path: "/UserPassSet('" + SelectedItem + "')"
+        });
       }
     });
   });

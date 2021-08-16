@@ -116,7 +116,7 @@
 			"target": "feedbacklist"
     },
     {
-			"pattern": "newfeedback",
+			"pattern": "newfeedback/{Username}",
 			"name": "newfeedback",
 			"target": "newfeedback"
 		},
