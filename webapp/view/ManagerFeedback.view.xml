@@ -1,5 +1,5 @@
 <mvc:View
-		controllerName="sap.ui.demo.walkthrough.controller.ManagerPEG"
+		controllerName="sap.ui.demo.walkthrough.controller.ManagerFeedback"
 		xmlns:core="sap.ui.core"
 	    xmlns:mvc="sap.ui.core.mvc"
         xmlns="sap.m"
@@ -12,7 +12,7 @@
 
 	 <Panel>
 			<content>
-						<Label text="BUNA ZIUA {FromUser}"/>
+						
 						<!-- <Input
 							id="Grade"
 							placeholder="Give grade to employee"
@@ -26,8 +26,184 @@
            					 icon="sap-icon://action"
           					 width="60%"
 						/> -->
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Fiscal Year"
+			subheader="{FiscalYear}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://calendar" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Employee name"
+			subheader="{FullName}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://employee" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Personnel Number"
+			subheader="{PersonalNo}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://call" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Current Career Level"
+			subheader="{CareerLevel}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://leads" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Organizational Assignment"
+			subheader="{Su}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://crm-service-manager" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Date of PEG"
+			subheader="{SentAt}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://date-time" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Project ID"
+			subheader="{ProjectId}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://group" />
+			</TileContent>
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Customer name"
+			subheader="{}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://customer" />
+			</TileContent>
+			
+		</GenericTile>
+
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Name of the project"
+			subheader="{}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://idea-wall" />
+			</TileContent>
 		
+		</GenericTile>
+
+
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Name of the Project Manager"
+			subheader="{}" 
+			frameType="OneByOne">
+				<TileContent>
+				<ImageContent src="sap-icon://manager" />
+			</TileContent>
+			
+		</GenericTile>
+
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Name of the Evaluator"
+			subheader="{}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://activity-individual" />
+			</TileContent>
+			
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Number of Project Days Evaluated"
+			subheader="{}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://timesheet" />
+			</TileContent>
+			
+		</GenericTile>
+
 			</content>
+
+
+			</Panel>
+
+<Panel>
+				<content>
+				<Table id="pegTable"
+					inset="false"
+					items="{
+					path : '/PegReqSet'
+					 }" >
+					
+						<columns>
+
+								<Column width="12em">
+									<Text text="Criteria " />
+								</Column>
+
+								<Column width="12em">
+									<Text text="Rating" />
+								</Column>
+
+								<Column
+									width="12em">
+									<Text text="Description of the Rating" />
+								</Column>
+
+
+								<Column
+									width="12em">
+									<Text text="Recommendations/Comments" />
+								</Column>
+						</columns>
+
+						<items>
+					<ColumnListItem
+					type = "Navigation"
+					press = ".onPegPress"	>
+					
+						<cells>
+							<ObjectIdentifier
+								
+								text="Professional and Industry Experience"
+							/>
+							<Text
+								text="{ProjectId}" />
+							<Text
+									text="{
+									path: 'Status',
+									formatter: '.formatter.pegStatus'
+									}"
+									
+								/>
+			
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
 		</Panel>
     </Page>
 
