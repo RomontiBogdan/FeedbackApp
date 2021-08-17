@@ -62,7 +62,7 @@
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Sent At"
 			subheader="{SentAt}" 
-			frameType="OneByOne">
+			frameType="TwoByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://date-time" />
 			</TileContent>

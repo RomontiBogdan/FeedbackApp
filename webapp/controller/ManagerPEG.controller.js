@@ -52,8 +52,8 @@ sap.ui.define([
 				path: "/UserPassSet('" + this.sUsername + "')"
 		    });
 
-			this.sFilter = [];
-			this.sFilter.push(new Filter({
+			this.aFilter = [];
+			this.aFilter.push(new Filter({
 				filters: [
 					new Filter("ToUser", FilterOperator.EQ, this.sUsername),
 					new Filter("FromUser", FilterOperator.EQ, this.sUsername),
@@ -63,7 +63,7 @@ sap.ui.define([
 
 			var oList = this.byId("pegTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.sFilter);
+			oBinding.filter(this.aFilter);
 		},
 
         onNavBack: function () {
@@ -76,6 +76,11 @@ sap.ui.define([
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("main", {Username: this.sUsername}, true);
 			}
+		},
+
+		onPress: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("managerFeedback");
 		},
 
 		onFilterEmployee : function (oEvent) {
@@ -125,29 +130,22 @@ sap.ui.define([
 
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");
-			this.aFilter = [];
+			var auxFilter = this.aFilter[0];
 			if (sKey === "Pending")
 			{	
-				this.aFilter.push(new Filter("Status", FilterOperator.EQ, false))
+				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, " ")
 			}
 			else if (sKey === "Completed")
 			{	
-				this.aFilter.push(new Filter("Status", FilterOperator.EQ, true))
+				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "X")
 			}
-			else if (sKey === "allpegs")
-			{	
-				this.aFilter.push(new Filter({
-					filters: [
-					new Filter("Status", FilterOperator.EQ, true),
-					new Filter("Status", FilterOperator.EQ, false),
-					],
-					and: false,
-				}));
+			else{
+				auxFilter.aFilters.pop(2);
 			}
 
 			var oList = this.byId("pegTable");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.aFilter);
+			oBinding.filter(auxFilter);
 		},
 
 		onPegPress: function (oEvent) {
@@ -155,7 +153,7 @@ sap.ui.define([
 			var oBindingObject = oItem.getBindingContext().getObject();
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("managerFeedback", {
-				pegID: oBindingObject.FeedbackId
+				feedbackID: oBindingObject.FeedbackId
 			});
 		}
 
