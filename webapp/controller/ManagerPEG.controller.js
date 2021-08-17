@@ -78,11 +78,6 @@ sap.ui.define([
 			}
 		},
 
-		onPress: function (oEvent) {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("managerFeedback");
-		},
-
 		onFilterEmployee : function (oEvent) {
 			var aFilter = [];
 			var sQuery = oEvent.getParameter("query");
@@ -153,7 +148,15 @@ sap.ui.define([
 			var oList = this.byId("pegTable");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(this.aFilter);
+		},
 
+		onPegPress: function (oEvent) {
+			var oItem = oEvent.getSource();
+			var oBindingObject = oItem.getBindingContext().getObject();
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("managerFeedback", {
+				pegID: oBindingObject.FeedbackId
+			});
 		}
 
 
