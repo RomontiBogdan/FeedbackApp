@@ -77,7 +77,7 @@
 						<items>
 					<ColumnListItem
 					type = "Navigation"
-					press = ".onPress"
+					press = ".onPegPress"
 
 					>
 						<cells>

@@ -12,19 +12,20 @@
 
 	 <Panel>
 			<content>
-						<Input
+						<Label text="BUNA ZIUA {FromUser}"/>
+						<!-- <Input
 							id="Grade"
 							placeholder="Give grade to employee"
 							valueLiveUpdate="true"
 							width="60%"
 						/>
 				 		<Button
-           					 text="Export to EXCEL and send"
+           					 text="{Export to EXCEL and send}"
             				 press=".onLogIn"
             				 class="myCustomButton"
            					 icon="sap-icon://action"
           					 width="60%"
-						/>
+						/> -->
 		
 			</content>
 		</Panel>
