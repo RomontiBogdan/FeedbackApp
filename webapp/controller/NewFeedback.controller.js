@@ -3,9 +3,14 @@ sap.ui.define(
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+	"sap/ui/model/odata/type/DateTime"
   ],
-  function (Controller, History, JSONModel, MessageBox) {
+  function (Controller,
+	History,
+	JSONModel,
+	MessageBox,
+	DateTime) {
     "use strict";
     return Controller.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
@@ -80,7 +85,7 @@ sap.ui.define(
           ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
           Description: this.byId("inputDescription").getValue(),
           ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),
-          SentAt: "",
+          SentAt: new Date(),
           Type: "",
           Categories: this.byId("inputSkill").getSelectedItem() === null ? null : this.byId("inputSkill").getSelectedItem().getKey(),
           Rating: this.byId("inputRating").getValue().toString(),
