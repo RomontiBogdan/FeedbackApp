@@ -100,7 +100,7 @@
 			"target": "register"
 		},
 		{
-			"pattern": "requestpeg",
+			"pattern": "requestpeg/{Username}",
 			"name": "requestpeg",
 			"target": "requestpeg"
 		},

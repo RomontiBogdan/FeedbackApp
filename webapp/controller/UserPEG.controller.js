@@ -72,7 +72,7 @@ sap.ui.define([
 
 		onNewRequest: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg");
+			oRouter.navTo("requestpeg", {Username: this.sUsername});
 		},
 
 		onFilterProject : function (oEvent) {

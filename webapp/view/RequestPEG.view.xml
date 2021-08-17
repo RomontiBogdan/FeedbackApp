@@ -1,8 +1,11 @@
 <mvc:View
-	controllerName="sap.ui.demo.walkthrough.controller.RequestPEG"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:l="sap.ui.layout">
+controllerName="sap.ui.demo.walkthrough.controller.RequestPEG"
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form"
+xmlns="sap.m" >
+
 	<Page
 		title="{i18n>RequestPEG}"
         showNavButton="true"
@@ -10,22 +13,58 @@
 
 		<l:VerticalLayout class="sapUiContentPadding" width="100%">
 
-				<Label text="Name" labelFor="input-1" />
-				<Input id="input-1"  />
+				<Label text="Name" labelFor="inputText" />
+          		<Input value="{FullName}" id="inputText" editable="false"  placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
 
-				<Label text="Email" labelFor="input-2"/>
-				<Input id="input-2" />
+				<Label text="Email" labelFor="inputEmail"/>
+                <Input value="{Email}" id="inputEmail" editable="false" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
 
-				<Label text="Career level" labelFor="input-3" />
-				<Input id="input-3" />
 
-				<Label text="Project name" labelFor="input-4" required="true" />
-				<Input id="input-4" />
+				<Label text="Service Unit" labelFor="inputSU"/>
+                <Input value="{Su}" id="inputSU" editable="false" placeholder="Enter service unit" class="sapUiSmallMarginBottom"/>
 
-				<Label text="Project manager" labelFor="input-5" required="true" />
-				<Input id="input-5" />
+
+ 				<Label text="Fiscal year" labelFor="inputFiscalYear"/>
+                <Input value="{FiscalYear}" id="inputFiscalYear" editable="false" class="sapUiSmallMarginBottom"/>
+
+				<Label text="Project name" labelFor="input-5" required="true" />
+				<Select
+					forceSelection="false"
+					selectedKey="{/SelectedProduct}"
+					items="{
+						path: '/Projects',
+						sorter: { path: 'Name' }
+					}">
+					 <core:ListItem key="{Id}" text="{Name}"/>
+				</Select>
+
+
+				<Label text="Responsible manager" labelFor="input-6" required="true" />
+				<Select
+					forceSelection="false"
+					selectedKey="{/SelectedProduct}"
+					items="{
+						path: '/Managers',
+						sorter: { path: 'Name' }
+					}">
+					 <core:ListItem key="{Id}" text="{Name}"/>
+				</Select>
+
 
 		</l:VerticalLayout>
+
+
+		<footer>
+ 			<Bar>
+   				<contentRight>
+      				<Button
+           				text="Send request"
+            			press=".onSendRequest"
+            			class="myCustomButton"
+					/>
+    			</contentRight>
+  			</Bar>
+		</footer>
 
     </Page>
 
