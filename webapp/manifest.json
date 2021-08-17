@@ -100,7 +100,7 @@
 			"target": "register"
 		},
 		{
-			"pattern": "requestpeg",
+			"pattern": "requestpeg/{Username}",
 			"name": "requestpeg",
 			"target": "requestpeg"
 		},
@@ -125,7 +125,7 @@
 			"target": "managerpeg"
 		},
 		{
-			"pattern": "managerFeedback",
+			"pattern": "managerFeedback/{pegID}",
 			"name": "managerFeedback",
 			"target": "managerFeedback"
 		},

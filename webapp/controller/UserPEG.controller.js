@@ -60,7 +60,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
+				oRouter.navTo("main", {Username: this.sUsername}, true);
 			}
 		},
 
@@ -72,7 +72,7 @@ sap.ui.define([
 
 		onNewRequest: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg");
+			oRouter.navTo("requestpeg", {Username: this.sUsername});
 		},
 
 		onFilterProject : function (oEvent) {
