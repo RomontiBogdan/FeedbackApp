@@ -47,9 +47,9 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-			var sUsername = oEvent.getParameter("arguments").Username;
+			this.sUsername = oEvent.getParameter("arguments").Username;
 			this.getView().bindElement({
-				path: "/UserPassSet('" + sUsername + "')"
+				path: "/UserPassSet('" + this.sUsername + "')"
 			});
 		},
 
@@ -63,7 +63,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
+				oRouter.navTo("main", {Username: this.sUsername}, true);
 			}
 		},
 

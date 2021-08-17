@@ -51,6 +51,19 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/UserPassSet('" + this.sUsername + "')"
 		    });
+
+			this.sFilter = [];
+			this.sFilter.push(new Filter({
+				filters: [
+					new Filter("ToUser", FilterOperator.EQ, this.sUsername),
+					new Filter("FromUser", FilterOperator.EQ, this.sUsername),
+				],
+				and: true,
+			}));
+
+			var oList = this.byId("pegTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(this.sFilter);
 		},
 
         onNavBack: function () {
@@ -61,7 +74,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
+				oRouter.navTo("main", {Username: this.sUsername}, true);
 			}
 		},
 
