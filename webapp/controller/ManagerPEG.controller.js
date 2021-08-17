@@ -153,7 +153,7 @@ sap.ui.define([
 			var oBindingObject = oItem.getBindingContext().getObject();
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("managerFeedback", {
-				feedbackID: oBindingObject.FeedbackId
+				pegID: oBindingObject.FeedbackId
 			});
 		}
 
