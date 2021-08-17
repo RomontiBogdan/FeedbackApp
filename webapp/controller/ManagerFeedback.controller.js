@@ -8,9 +8,6 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
-
-
-
 		},
 
 		_onObjectMatched: function (oEvent) {
