@@ -1,14 +1,15 @@
+
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"../controller/BaseController",
     "sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
 	
-], function (Controller, History, JSONModel, formatter, Filter, FilterOperator) {
+], function (BaseController, History, JSONModel, formatter, Filter, FilterOperator) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.UserPEG", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.UserPEG", {
 		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
@@ -53,15 +54,10 @@ sap.ui.define([
 		},
 
         onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
+			    this.navBack();
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("main", {Username: this.sUsername}, true);
-			}
+			
 		},
 
 		

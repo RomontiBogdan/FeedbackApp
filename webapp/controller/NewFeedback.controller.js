@@ -1,18 +1,18 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
+    "../controller/BaseController",
     "sap/ui/core/routing/History",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
 	"sap/ui/model/odata/type/DateTime"
   ],
-  function (Controller,
+  function (BaseController,
 	History,
 	JSONModel,
 	MessageBox,
 	DateTime) {
     "use strict";
-    return Controller.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
+    return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
         var oData = {
 
@@ -43,15 +43,7 @@ sap.ui.define(
       },
 
       onNavBack: function () {
-        var oHistory = History.getInstance();
-        var sPreviousHash = oHistory.getPreviousHash();
-
-        if (sPreviousHash !== undefined) {
-          window.history.go(-1);
-        } else {
-          var oRouter = this.getOwnerComponent().getRouter();
-          oRouter.navTo("overview", {}, true);
-        }
+        this.navBack();
       },
 
       _validateData: function(oParams) {

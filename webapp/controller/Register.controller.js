@@ -1,27 +1,18 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"../controller/BaseController",
 	"sap/ui/core/routing/History",
 	"sap/m/MessageBox"
 
-], function (Controller, History, MessageBox) {
+], function (BaseController, History, MessageBox) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.Register", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.Register", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("register").attachPatternMatched(this._onObjectMatched, this);
-
 		},
 
 		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
-			}
+		this.navBack();
 		},
 
 		onCreateRegister: function (oEvent) {

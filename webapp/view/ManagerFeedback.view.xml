@@ -26,8 +26,9 @@
            					 icon="sap-icon://action"
           					 width="60%"
 						/> -->
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+        <HBox>
+		<GenericTile 
+            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Fiscal Year"
 			subheader="{FiscalYear}" 
 			frameType="OneByOne">
@@ -71,11 +72,13 @@
 				<ImageContent src="sap-icon://crm-service-manager" />
 			</TileContent>
 		</GenericTile>
+		 </HBox>
 
+<HBox>
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Date of PEG"
 			subheader="{SentAt}" 
-			frameType="OneByOne">
+			frameType="TwoByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://date-time" />
 			</TileContent>
@@ -84,12 +87,16 @@
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Project ID"
 			subheader="{ProjectId}" 
-			frameType="OneByOne">
+			frameType="TwoByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://group" />
 			</TileContent>
 		</GenericTile>
 
+		</HBox>
+
+
+<HBox>
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Customer name"
 			subheader="{}" 
@@ -143,7 +150,7 @@
 			</TileContent>
 			
 		</GenericTile>
-
+</HBox>
 			</content>
 
 
