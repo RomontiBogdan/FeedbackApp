@@ -7,6 +7,7 @@
 		    title="Info about Feedback"
 		    showNavButton="true"
 		    navButtonPress=".onNavBack">
+			<Button text="excel" press=".onExport"/>
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="FROM"
 			subheader="{	

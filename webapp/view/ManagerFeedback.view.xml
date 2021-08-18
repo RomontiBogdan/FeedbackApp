@@ -12,6 +12,7 @@
 
 	 <Panel>
 			<content>
+			<Button text="excel" press=".onExport"/>
 						
 						<!-- <Input
 							id="Grade"
