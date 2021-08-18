@@ -1,10 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"../controller/BaseController",
 	"sap/ui/core/routing/History",
 	'sap/ui/model/json/JSONModel'
-], function (Controller, History, JSONModel) {
+], function (BaseController, History, JSONModel) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
 		onInit: function () {
 			var oData = {
 				Levels: [
@@ -56,15 +56,10 @@ sap.ui.define([
 
 
 		onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
+			this.navBack();
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("main", {Username: this.sUsername}, true);
-			}
+			
 		},
 
 

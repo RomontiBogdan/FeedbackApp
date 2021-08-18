@@ -1,11 +1,11 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"../controller/BaseController",
     "sap/ui/core/routing/History",
 	"../model/formatter"
 	
-], function (Controller, History, formatter) {
+], function (BaseController, History, formatter) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.FeedbackDetails", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.FeedbackDetails", {
 		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
@@ -13,15 +13,7 @@ sap.ui.define([
 		},
 
         onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("overview", {}, true);
-			}
+			this.navBack();
 		},
 
 		_onObjectMatched: function (oEvent) {

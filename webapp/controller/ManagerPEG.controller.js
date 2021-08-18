@@ -1,5 +1,5 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"../controller/BaseController",
     "sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
 	"../model/formatter",
@@ -7,41 +7,41 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator"
 
 	
-], function (Controller, History, JSONModel, formatter, Filter, FilterOperator) {
+], function (BaseController, History, JSONModel, formatter, Filter, FilterOperator) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.ManagerPEG", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerPEG", {
 		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("managerpeg").attachPatternMatched(this._onObjectMatched, this);
 
-			var oViewModel = new JSONModel([{
-                Employee  : "Employee1",
-                Project : "Project1",
-                Status : true
-            },
-			{
-				Employee  : "Employee2",
-                Project : "Project2",
-				Status : false            
-            },
-			{
-				Employee  : "EmployeeSuper3",
-                Project : "Project3",
-				Status : false            
-            },
-			{
-				Employee  : "EmployeeSuper2",
-                Project : "Project3",
-				Status : true            
-            },
-			{
-				Employee  : "Employee5",
-                Project : "Project4",
-				Status : false            
-            }]);
+			// var oViewModel = new JSONModel([{
+            //     Employee  : "Employee1",
+            //     Project : "Project1",
+            //     Status : true
+            // },
+			// {
+			// 	Employee  : "Employee2",
+            //     Project : "Project2",
+			// 	Status : false            
+            // },
+			// {
+			// 	Employee  : "EmployeeSuper3",
+            //     Project : "Project3",
+			// 	Status : false            
+            // },
+			// {
+			// 	Employee  : "EmployeeSuper2",
+            //     Project : "Project3",
+			// 	Status : true            
+            // },
+			// {
+			// 	Employee  : "Employee5",
+            //     Project : "Project4",
+			// 	Status : false            
+            // }]);
 
-			this.getView().setModel(oViewModel, "employee");
+			// this.getView().setModel(oViewModel, "employee");
 
 		},
 
@@ -67,15 +67,10 @@ sap.ui.define([
 		},
 
         onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
+			this.navBack();
 				var oRouter = this.getOwnerComponent().getRouter();
 				oRouter.navTo("main", {Username: this.sUsername}, true);
-			}
+			
 		},
 
 		onPress: function (oEvent) {
@@ -154,6 +149,7 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("managerFeedback", {
 				pegID: oBindingObject.FeedbackId
+				//username: oBindingObject.Username
 			});
 		}
 

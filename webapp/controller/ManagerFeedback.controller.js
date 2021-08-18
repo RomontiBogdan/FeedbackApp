@@ -1,10 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"../controller/BaseController",
     "sap/ui/core/routing/History"
 	
-], function (Controller, History) {
+], function (BaseController, History) {
 	"use strict";
-	return Controller.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
@@ -16,18 +16,15 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/PegReqSet(" + sPegID + ")"
 		    });
+
+			// var sUsername = oEvent.getParameter("arguments").username;
+			// this.getView().bindElement({
+			// 	path: "/UserPassSet(" + sUsername + ")"
+			// });
 		},
 
         onNavBack: function () {
-			var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("managerpeg", {}, true);
-			}
+			this.navBack();
 		}
 
 	});
