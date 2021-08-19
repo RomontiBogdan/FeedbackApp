@@ -45,6 +45,7 @@ sap.ui.define([
 				{
 					label: 'Descr',
 					property: 'Descr',
+					width: '40',
 					scale: 0
 				},
 				{
@@ -54,50 +55,67 @@ sap.ui.define([
 				}
 				];
 		},
+		
+		fillModel: function(oEvent) {
 
-		onExport: function(oEvent) {
-			var aCols, aProducts, oSettings, oSheet;
-
-			var projectID = oEvent.getSource().getBindingContext().getObject().ProjectId;
+			var fiscal_year = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var personnel_number = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var career_lvl = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var SU = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var peg_Date = oEvent.getSource().getBindingContext().getObject().SentAt;
+			var project_ID = oEvent.getSource().getBindingContext().getObject().ProjectId;
+			var customer_name = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var project_name = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var project_man_name = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var evaluator_name = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var days_eval = oEvent.getSource().getBindingContext().getObject().FromUser;
 
 			var oViewModel = new JSONModel([{
                 Descr  : "Fiscal year",
-                Value : ""
+                Value : fiscal_year
             },
 			{
 				Descr  : "Personnel number",
-                Value : ""     
+                Value : personnel_number 
             },
 			{
 				Descr  : "Current career level",
-                Value : ""      
+                Value : career_lvl      
             },
 			{
 				Descr  : "Organizational assignment (SU)",
-                Value : ""      
+                Value : SU
             },
 			{
 				Descr  : "Date of PEG",
-                Value : ""       
+                Value : peg_Date 
             },
 			{
 				Descr  : "Project ID",
-                Value : projectID
+                Value : project_ID
             },
 			{
 				Descr  : "Customer name",
-                Value : ""      
+                Value : customer_name   
             },
 			{
 				Descr  : "Name of the Project",
-                Value : ""      
+                Value : project_name      
             },
 			{
 				Descr  : "Name of the Project Manager",
-                Value : ""      
+                Value : project_man_name
             },
 			{
 				Descr  : "Name of the Evaluator",
+                Value : evaluator_name  
+            },
+			{
+				Descr  : "Number of project days evaluated",
+                Value : days_eval
+            },
+			{
+				Descr  : "",
                 Value : ""      
             },
 			{
@@ -105,17 +123,21 @@ sap.ui.define([
                 Value : ""      
             }]);
 
-			oViewModel
-
 			this.getView().setModel(oViewModel, "DataForExport");
 
+		},
+
+		onExport: function(oEvent) {
+			var aCols, aProducts, oSettings, oSheet;
+			this.fillModel(oEvent);
 
 			aCols = this.createColumnConfig();
 			aProducts = this.getView().getModel("DataForExport").getProperty('/');
 
 			oSettings = {
 				workbook: { columns: aCols },
-				dataSource: aProducts
+				dataSource: aProducts,
+				fileName: "PEG " + oEvent.getSource().getBindingContext().getObject().FromUser + ".xlsx"
 			};
 
 			oSheet = new Spreadsheet(oSettings);
