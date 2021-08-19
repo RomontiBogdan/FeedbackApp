@@ -27,20 +27,20 @@ xmlns="sap.m" >
  				<Label text="Fiscal year" labelFor="inputFiscalYear"/>
                 <Input value="{FiscalYear}" id="inputFiscalYear" editable="false" class="sapUiSmallMarginBottom"/>
 
-				<Label text="Project name" labelFor="input-5" required="true"/>
+				<Label text="Project name" labelFor="inputProjectName" required="true"/>
 				<Select
 					forceSelection="false"
-					id = "input-5"
+					id = "inputProjectName"
 					change="onProjectChange"
 					items="{/UserProjectsSet}">
 					 <core:ListItem key="{ProjectId}" text="{ProjectName}"/>
 				</Select>
 
 
-				<Label text="Responsible manager" labelFor="input-6" required="true" />
+				<Label text="Responsible manager" labelFor="inputManager" required="true" />
 				<Select
 					forceSelection="false"
-					id = "input-6"
+					id = "inputManager"
 					items="{toManagers}">
 					 <core:ListItem key="{Username}" text="{Username}"/>
 				</Select>

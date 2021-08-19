@@ -19,8 +19,7 @@
 						], 
 						formatter:'.formatter.feedbackAnonymous'
 					}"
-			frameType="OneByOne"
-		>
+			frameType="OneByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://drill-up"/>
 			</TileContent>
