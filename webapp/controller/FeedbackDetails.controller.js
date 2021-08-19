@@ -42,15 +42,25 @@ sap.ui.define([
 
 		createColumnConfig: function() {
 			return [
-				{
-					label: 'Descr',
+				{ 
+					label: ' ',
 					property: 'Descr',
 					width: '40',
 					scale: 0
 				},
 				{
-					label: 'Value',
+					label: ' ',
 					property: 'Value',
+					width: '25'
+				},
+				{
+					label: ' ',
+					property: 'Descr_rating',
+					width: '25'
+				},
+				{
+					label: ' ',
+					property: 'Recommendations',
 					width: '25'
 				}
 				];
@@ -119,12 +129,49 @@ sap.ui.define([
                 Value : ""      
             },
 			{
-				Descr  : "Number of project days evaluated",
-                Value : ""      
+				Descr  : "Criteria",
+                Value : "Rating",
+				Descr_rating : "Description of the rating",
+				Recommendations : "Recommendations / Comments"
+            },
+			{
+                Descr  : "Professional and Industry Experience",
+                Value : ratingPIE,
+				Descr_rating : descrPIE,
+				Recommendations : recomPIE
+            },
+			{
+                Descr  : "Project and Program Management",
+                Value : ratingPPM,
+				Descr_rating : descrPPM,
+				Recommendations : recomPPM
+            },
+			{
+                Descr  : "Strategy Focus",
+                Value : ratingSF,
+				Descr_rating : descrSF,
+				Recommendations : recomSF
+            },
+			{
+                Descr  : "Customer Focus",
+                Value : ratingCF,
+				Descr_rating : descrCF,
+				Recommendations : recomCF
+            },
+			{
+                Descr  : "Employee Focus",
+                Value : ratingEF,
+				Descr_rating : descrEF,
+				Recommendations : recomEF
+            },
+			{
+                Descr  : "Focus on Excellence",
+                Value : ratingFE,
+				Descr_rating : descrFE,
+				Recommendations : recomFE
             }]);
 
 			this.getView().setModel(oViewModel, "DataForExport");
-
 		},
 
 		onExport: function(oEvent) {
