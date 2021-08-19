@@ -42,7 +42,7 @@ sap.ui.define([
 
 		createColumnConfig: function() {
 			return [
-				{ 
+				{
 					label: ' ',
 					property: 'Descr',
 					width: '40',
@@ -79,6 +79,12 @@ sap.ui.define([
 			var project_man_name = oEvent.getSource().getBindingContext().getObject().FromUser;
 			var evaluator_name = oEvent.getSource().getBindingContext().getObject().FromUser;
 			var days_eval = oEvent.getSource().getBindingContext().getObject().FromUser;
+			var ratingPIE, descrPIE, recomPIE;
+			var ratingPPM, descrPPM, recomPPM;
+			var ratingSF, descrSF, recomSF;
+			var ratingCF, descrCF, recomCF;
+			var ratingEF, descrEF, recomEF;
+			var ratingFE, descrFE, recomFE;
 
 			var oViewModel = new JSONModel([{
                 Descr  : "Fiscal year",
@@ -172,6 +178,7 @@ sap.ui.define([
             }]);
 
 			this.getView().setModel(oViewModel, "DataForExport");
+
 		},
 
 		onExport: function(oEvent) {
