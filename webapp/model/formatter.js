@@ -11,13 +11,16 @@ sap.ui.define([], function () {
 		},
 
 		pegStatus: function (statusValue)
-		{
-		    if (statusValue) {
-                return "Completed";
-            } else {
-                return "Pending";
+        {
+            switch (statusValue) {
+                case "0":
+                    return "New";
+                case "1":
+                    return "Pending";
+                case "2":
+                    return "Completed";
             }
-		},
+        },
 
 		feedbackRating: function (sRating) {
 			switch (sRating) {

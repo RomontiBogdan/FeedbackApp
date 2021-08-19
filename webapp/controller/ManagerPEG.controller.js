@@ -88,11 +88,14 @@ sap.ui.define([
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");
 			var auxFilter = this.aFilter[0];
-			if (sKey === "Pending") {
-				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, " ")
+			if (sKey === "New") {
+				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "0")
+			}
+			else if (sKey === "Pending") {
+				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "1")
 			}
 			else if (sKey === "Completed") {
-				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "X")
+				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "2")
 			}
 			else {
 				auxFilter.aFilters.pop(2);
