@@ -36,10 +36,10 @@ sap.ui.define([
 		},
 
 		onNavBack: function () {
-			    this.navBack();
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("main", {Username: this.sUsername}, true);
-			
+			this.navBack();
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("main", { Username: this.sUsername }, true);
+
 		},
 
 		onFeedbackPress: function (oEvent) {
@@ -57,51 +57,6 @@ sap.ui.define([
 				Username: this.sUsername
 			});
 		},
-
-		// onFilterName : function (oEvent) {
-		// 	var aFilter = [];
-		// 	var sQuery = oEvent.getSource().getValue();
-		// 	if(sQuery)
-		// 	{
-		// 		if(this.getView().byId("FeedbackTabBar").getSelectedKey() == "Sent")
-		// 			aFilter.push(new Filter("ToUser", FilterOperator.Contains, sQuery));
-		// 		else if(this.getView().byId("FeedbackTabBar").getSelectedKey() == "Received")
-		// 			aFilter.push(new Filter("FromUser", FilterOperator.Contains, sQuery));
-		// 		var oList = this.byId("feedbackTable");
-		// 		var oBinding = oList.getBinding("items");
-		// 		oBinding.filter(aFilter);
-		// 	}
-		// 	else
-		// 	{
-		// 		var oList = this.byId("feedbackTable");
-		// 		var oBinding = oList.getBinding("items");
-		// 		oBinding.filter(this.aFilter);
-		// 	}
-
-		// },
-
-		// onPendingFilter: function(oEvent)
-		// {
-		// 	var aFilter = [];
-		// 	var sInput = this.getView().byId("sfInput").getValue()
-		//     if (oEvent.getParameter("state")==true)
-		//     {
-		// 		aFilter.push(new Filter({
-		// 			filters: [
-		// 			new Filter("Status", FilterOperator.EQ, false),
-		// 			new Filter("Name", FilterOperator.Contains, sInput),
-		// 			],
-		// 			and: true,
-		// 		}));
-		//     }
-		//     else
-		//     {
-		// 		aFilter.push(new Filter("Name", FilterOperator.Contains, sInput));
-		// 	}
-		// 	var oList = this.byId("feedbackTable");
-		// 	var oBinding = oList.getBinding("items");
-		// 	oBinding.filter(aFilter);
-		// },
 
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");

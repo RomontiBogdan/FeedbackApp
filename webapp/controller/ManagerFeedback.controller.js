@@ -16,11 +16,6 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: "/PegReqSet(" + sPegID + ")"
 		    });
-
-			// var sUsername = oEvent.getParameter("arguments").username;
-			// this.getView().bindElement({
-			// 	path: "/UserPassSet(" + sUsername + ")"
-			// });
 		},
 
         onNavBack: function () {

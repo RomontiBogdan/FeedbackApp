@@ -11,13 +11,13 @@
 	>
 
 	<IconTabBar
-			id="FeedbackTabBar"
+			id="PegTabBarManager"
 			select=".onFilterSelect"
 			class="sapUiResponsiveContentPadding">
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
-					iconColor="Information"
+					iconColor="Neutral"
 					text="All PEGs"
 					key="allpegs" />
 				<IconTabFilter
@@ -32,7 +32,7 @@
 					key="Completed" />
 			</items>
 			<content>
-				<Table id="pegTable"
+				<Table id="PegTableManager"
 					inset="false"
 					items="{
 					path : '/PegReqSet'

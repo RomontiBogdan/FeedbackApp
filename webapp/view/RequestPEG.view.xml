@@ -27,10 +27,11 @@ xmlns="sap.m" >
  				<Label text="Fiscal year" labelFor="inputFiscalYear"/>
                 <Input value="{FiscalYear}" id="inputFiscalYear" editable="false" class="sapUiSmallMarginBottom"/>
 
-				<Label text="Project name" labelFor="input-5" required="true" change="onProjectChange"/>
+				<Label text="Project name" labelFor="input-5" required="true"/>
 				<Select
 					forceSelection="false"
 					id = "input-5"
+					change="onProjectChange"
 					items="{/UserProjectsSet}">
 					 <core:ListItem key="{ProjectId}" text="{ProjectName}"/>
 				</Select>
@@ -41,7 +42,7 @@ xmlns="sap.m" >
 					forceSelection="false"
 					id = "input-6"
 					items="{toManagers}">
-					 <core:ListItem key="{ProjectId}" text="{Username}"/>
+					 <core:ListItem key="{Username}" text="{Username}"/>
 				</Select>
 
 
