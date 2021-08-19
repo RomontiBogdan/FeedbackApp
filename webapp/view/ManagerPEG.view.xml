@@ -88,7 +88,7 @@
 						<cells>
 							<ObjectIdentifier
 								
-								text="{FromUser}"
+								text="{ToUser}"
 								/>
 							<Text
 								text="{ProjectId}" />
