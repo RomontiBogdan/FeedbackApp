@@ -17,9 +17,14 @@
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
-					iconColor="Neutral"
+					iconColor="Tile"
 					text="All PEGs"
 					key="allpegs" />
+				<IconTabFilter
+					icon="sap-icon://add-document"
+					iconColor="Negative"
+					text="New"
+					key="New" />
 				<IconTabFilter
 					icon="sap-icon://pending"
 					iconColor="Critical"
