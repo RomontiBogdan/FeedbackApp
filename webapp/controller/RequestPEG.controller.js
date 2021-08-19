@@ -28,8 +28,8 @@ sap.ui.define([
 
 		onProjectChange: function(oEvent)
 		{
-			var SelectedItem = this.byId("input-5").getSelectedItem().getKey();
-			this.getView().bindElement({
+			var SelectedItem = this.byId("inputProjectName").getSelectedItem().getKey();
+			this.getView().byId("inputManager").bindElement({
 				path: "/UserProjectsSet(Username='',ProjectId='" + SelectedItem + "')"
 			  });
 		}

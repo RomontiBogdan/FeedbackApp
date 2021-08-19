@@ -26,7 +26,8 @@
            					 icon="sap-icon://action"
           					 width="60%"
 						/> -->
-        <HBox>
+
+        <HBox  id = "Container1" headerText = "Details about User"  >
 		<GenericTile 
             class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Fiscal Year"
@@ -36,6 +37,7 @@
 				<ImageContent src="sap-icon://calendar" />
 			</TileContent>
 		</GenericTile>
+
 
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Employee name"
@@ -74,7 +76,20 @@
 		</GenericTile>
 		 </HBox>
 
-<HBox>
+
+
+		<HBox id = "Container2">
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Project ID"
+			subheader="{ProjectId}" 
+			frameType="OneByOne"
+			id = "GenericTileProjectId">
+			<TileContent>
+				<ImageContent src="sap-icon://group" />
+			</TileContent>
+		</GenericTile>
+
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Date of PEG"
 			subheader="{SentAt}" 
@@ -82,64 +97,20 @@
 			<TileContent>
 				<ImageContent src="sap-icon://date-time" />
 			</TileContent>
+
 		</GenericTile>
 
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Project ID"
-			subheader="{ProjectId}" 
-			frameType="TwoByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://group" />
-			</TileContent>
-		</GenericTile>
-
-		</HBox>
-
-
-<HBox>
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Customer name"
-			subheader="{}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://customer" />
-			</TileContent>
-			
-		</GenericTile>
-
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Name of the project"
-			subheader="{}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://idea-wall" />
-			</TileContent>
-		
-		</GenericTile>
-
-
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Name of the Project Manager"
-			subheader="{}" 
-			frameType="OneByOne">
-				<TileContent>
-				<ImageContent src="sap-icon://manager" />
-			</TileContent>
-			
-		</GenericTile>
-
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Name of the Evaluator"
-			subheader="{}" 
+			subheader="{ToUser}" 
 			frameType="OneByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://activity-individual" />
 			</TileContent>
 			
 		</GenericTile>
+
+
 
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Number of Project Days Evaluated"
@@ -150,7 +121,52 @@
 			</TileContent>
 			
 		</GenericTile>
-</HBox>
+
+		</HBox>
+
+
+
+
+		<HBox id = "Container3">
+
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Name of the project"
+			subheader="{ProjectName}" 
+			frameType="TwoByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://idea-wall" />
+			</TileContent>
+		
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Name of the Project Manager"
+			subheader="{ProjectManager}" 
+			frameType="OneByOne">
+				<TileContent>
+				<ImageContent src="sap-icon://manager" />
+			</TileContent>
+			
+		</GenericTile>
+
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+			header="Customer name"
+			subheader="{Customer}" 
+			frameType="OneByOne">
+			<TileContent>
+				<ImageContent src="sap-icon://customer" />
+			</TileContent>
+			
+		</GenericTile>
+
+
+
+
+
+
+
+	</HBox>
 			</content>
 
 
