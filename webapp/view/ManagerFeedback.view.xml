@@ -114,7 +114,7 @@
 
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Number of Project Days Evaluated"
-			subheader="{DaysEval}" 
+			subheader="{DaysEvaluated}" 
 			frameType="OneByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://timesheet" />
@@ -232,9 +232,10 @@
 			<Toolbar>
 				<ToolbarSpacer/>
 				<Button
-					type="Emphasized"
-					text="Export"
+					text="Export to excel"
+					class="myCustomButton"
 					press="onExport"
+					icon="sap-icon://download"
 				/>
 			</Toolbar>
 		</footer>

@@ -13,7 +13,8 @@
 	<IconTabBar
 			id="PegTabBarManager"
 			select=".onFilterSelect"
-			class="sapUiResponsiveContentPadding">
+			class="sapUiResponsiveContentPadding"
+			expandable="false">
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
@@ -106,6 +107,19 @@
 			</Table>
 		</content>
 	</IconTabBar>
+
+	<footer>
+		<Bar>
+			<contentRight>
+				<Button
+					text="New Request"
+					press=".onNewRequest"
+					class="myCustomButton"
+					icon="sap-icon://add"
+				/>
+			</contentRight>
+		</Bar>
+	</footer>
 
 	</Page>
 

@@ -16,6 +16,7 @@
 						text="New Feedback"
 						press=".onNewFeedback"
 						class="myCustomButton"
+						icon="sap-icon://add"
 					/>
 				</contentRight>
 			</Bar>
@@ -24,11 +25,12 @@
 			id="FeedbackTabBar"
 			select=".onFilterSelect"
 			class="sapUiResponsiveContentPadding"
+			expandable="false"
 		>
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
-					iconColor="Neutral"
+					iconColor="Tile"
 					text="All Feedbacks"
 					key="All"
 				/>

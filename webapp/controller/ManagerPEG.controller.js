@@ -97,7 +97,7 @@ sap.ui.define([
 			else if (sKey === "Completed") {
 				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "2")
 			}
-			else {
+			else if(auxFilter.aFilters.length > 2){
 				auxFilter.aFilters.pop(2);
 			}
 
@@ -114,7 +114,12 @@ sap.ui.define([
 				pegID: oBindingObject.FeedbackId
 				//username: oBindingObject.Username
 			});
-		}
+		},
+
+		onNewRequest: function (oEvent) {
+			var oRouter = this.getOwnerComponent().getRouter();
+			oRouter.navTo("requestpeg", { Username: this.sUsername });
+		},
 
 
 	});
