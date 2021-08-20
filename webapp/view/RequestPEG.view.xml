@@ -9,7 +9,8 @@ xmlns="sap.m" >
 	<Page
 		title="{i18n>RequestPEG}"
         showNavButton="true"
-		navButtonPress=".onNavBack">
+		navButtonPress=".onNavBack"
+		enableScrolling="false">
 
 		<l:VerticalLayout class="sapUiContentPadding" width="100%">
 
@@ -56,6 +57,7 @@ xmlns="sap.m" >
            				text="Send request"
             			press=".onSendRequest"
             			class="myCustomButton"
+						icon="sap-icon://paper-plane"
 					/>
     			</contentRight>
   			</Bar>

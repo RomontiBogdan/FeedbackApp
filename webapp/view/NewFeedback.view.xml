@@ -108,6 +108,7 @@
 						text="Send"
 						press=".onSend"
 						class="myCustomButton"
+						icon="sap-icon://paper-plane"
 					/>
 				</contentRight>
 			</Bar>
