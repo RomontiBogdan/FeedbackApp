@@ -1,26 +1,16 @@
 sap.ui.define([], function () {
 	"use strict";
 	return {
-		FeedbackStatus: function (statusValue)
-		{
-		    if (statusValue) {
-                return "Yes";
-            } else {
-                return "No";
-            }
+		pegStatus: function (sStatusValue) {
+			switch (sStatusValue) {
+				case "0":
+					return "New";
+				case "1":
+					return "Pending";
+				case "2":
+					return "Completed";
+			}
 		},
-
-		pegStatus: function (statusValue)
-        {
-            switch (statusValue) {
-                case "0":
-                    return "New";
-                case "1":
-                    return "Pending";
-                case "2":
-                    return "Completed";
-            }
-        },
 
 		feedbackRating: function (sRating) {
 			switch (sRating) {
@@ -49,9 +39,67 @@ sap.ui.define([], function () {
 		},
 
 		feedbackAnonymous: function (sName, bAnonVal) {
-			if(bAnonVal)
+			if (bAnonVal)
 				return "Anonymous";
 			return sName;
 		},
+
+		highlightStatus: function(sStatus) {
+			switch(sStatus) {
+				case "0":
+					return "Error";
+				case "1":
+					return "Warning";
+				case "2":
+					return "Success";
+			}
+		},
+
+		timestamp: function (sTimestamp) {
+			return sTimestamp !== null ? sTimestamp.toLocaleString() : "";
+		},
+
+		daysEvaluated: function (sDays) {
+			switch (sDays) {
+				case "0":
+					return "Less than 3 months";
+				case "1":
+					return "Between 3 - 6 months";
+				case "2":
+					return "More than 6 months";
+			}
+		},
+
+		gradeDescription: function (sGrade) {
+			switch (sGrade.toString()) {
+				case "0":
+					return "Not assessable at this time";
+				case "1":
+					return "Does not meet expectations";
+				case "2":
+					return "Partially meets expectations";
+				case "3":
+					return "Fully meets expectations";
+				case "4":
+					return "Exceeds expectations";
+			}
+		},
+
+		criteriaDescription: function (sCriteria) {
+			switch (sCriteria) {
+				case "1":
+					return "Professional and Industry Experience";
+				case "2":
+					return "Project and Program Management";
+				case "3":
+					return "Strategy Focus";
+				case "4":
+					return "Customer Focus";
+				case "5":
+					return "Employee Focus";
+				case "6":
+					return "Focus on Excellence";
+			}
+		}
 	};
 });

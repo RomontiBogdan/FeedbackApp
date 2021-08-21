@@ -1,44 +1,44 @@
 {
-  "_version": "1.12.0",
-  "sap.app": {
-	"id": "sap.ui.demo.walkthrough",
-	"type": "application",
-	"i18n": "i18n/i18n.properties",
-	"title": "{{appTitle}}",
-	"description": "{{appDescription}}",
-	"applicationVersion": {
-	  "version": "1.0.0"
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "sap.ui.demo.walkthrough",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZFEEDBACK_T3_SRV/?sap-client=700",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
 	},
-	"dataSources":{
-        "mainService":{
-          "uri":"/sap/opu/odata/sap/ZFEEDBACK_T3_SRV/?sap-client=700",
-          "type":"OData",
-          "settings":{
-            "odataVersion" : "2.0"
-          }
-        }
-      }
-  },
-  "sap.ui": {
-	"technology": "UI5",
-	"deviceTypes": {
-		"desktop": true,
-		"tablet": true,
-		"phone": true
-	}
-  },
-  "sap.ui5": {
-	"rootView": {
-		"viewName": "sap.ui.demo.walkthrough.view.App",
-		"type": "XML",
-		"id": "app"
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
 	},
-	"dependencies": {
-	  "minUI5Version": "1.60",
-	  "libs": {
-		"sap.m": {}
-	  }
-	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.ui.demo.walkthrough.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60",
+			"libs": {
+				"sap.m": {}
+			}
+		},
 		"config": {
 			"sample": {
 				"stretch": true,
@@ -49,151 +49,139 @@
 				]
 			}
 		},
-	"models": {
-	  "i18n": {
-		"type": "sap.ui.model.resource.ResourceModel",
-		"settings": {
-		  "bundleName": "sap.ui.demo.walkthrough.i18n.i18n",
-		  "supportedLocales": [""],
-		  "fallbackLocale": ""
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.ui.demo.walkthrough.i18n.i18n",
+					"supportedLocales": [
+						""
+					],
+					"fallbackLocale": ""
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"useBatch": false,
+					"defaultUpdateMethod": "PUT"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "sap.ui.demo.walkthrough.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "overview",
+					"target": "overview"
+				},
+				{
+					"pattern": "main",
+					"name": "main",
+					"target": "main"
+				},
+				{
+					"pattern": "forgotpass",
+					"name": "forgotpass",
+					"target": "forgotpass"
+				},
+				{
+					"pattern": "register",
+					"name": "register",
+					"target": "register"
+				},
+				{
+					"pattern": "requestpeg",
+					"name": "requestpeg",
+					"target": "requestpeg"
+				},
+				{
+					"pattern": "feedbacklist",
+					"name": "feedbacklist",
+					"target": "feedbacklist"
+				},
+				{
+					"pattern": "newfeedback",
+					"name": "newfeedback",
+					"target": "newfeedback"
+				},
+				{
+					"pattern": "myprofile",
+					"name": "myprofile",
+					"target": "myprofile"
+				},
+				{
+					"pattern": "peglist",
+					"name": "peglist",
+					"target": "peglist"
+				},
+				{
+					"pattern": "managerFeedback/{pegID}",
+					"name": "managerFeedback",
+					"target": "managerFeedback"
+				},
+				{
+					"pattern": "feedbackdetails/{feedbackID}",
+					"name": "feedbackdetails",
+					"target": "feedbackdetails"
+				}
+			],
+			"targets": {
+				"overview": {
+					"viewId": "overview",
+					"viewName": "Overview"
+				},
+				"main": {
+					"viewId": "main",
+					"viewName": "Main"
+				},
+				"forgotpass": {
+					"viewId": "forgotpass",
+					"viewName": "Forgotpass"
+				},
+				"register": {
+					"viewId": "register",
+					"viewName": "Register"
+				},
+				"requestpeg": {
+					"viewId": "register",
+					"viewName": "RequestPEG"
+				},
+				"feedbacklist": {
+					"viewId": "feedbacklist",
+					"viewName": "FeedbackList"
+				},
+				"newfeedback": {
+					"viewId": "newfeedback",
+					"viewName": "NewFeedback"
+				},
+				"myprofile": {
+					"viewId": "myprofile",
+					"viewName": "MyProfile"
+				},
+				"peglist": {
+					"viewId": "peglist",
+					"viewName": "PegList"
+				},
+				"managerFeedback": {
+					"viewId": "managerFeedback",
+					"viewName": "ManagerFeedback"
+				},
+				"feedbackdetails": {
+					"viewId": "feedbackdetails",
+					"viewName": "FeedbackDetails"
+				}
+			}
 		}
-	  },
-	  "":{
-		"dataSource": "mainService",
-		"settings": {
-		"defaultBindingMode": "TwoWay",
-		"defaultCountMode": "Inline",
-		"useBatch": false,
-		"defaultUpdateMethod": "PUT"
-		}
-	  }
-
-	},
-	"routing": {
-        "config": {
-        "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "viewPath": "sap.ui.demo.walkthrough.view",
-        "controlId": "app",
-        "controlAggregation": "pages",
-        "async": true
-        },
-        "routes": [
-        {
-          "pattern": "",
-          "name": "overview",
-          "target": "overview"
-        },
-		{
-			"pattern": "main/{Username}",
-			"name": "main",
-			"target": "main"
-		},
-		{
-			"pattern": "forgotpass",
-			"name": "forgotpass",
-			"target": "forgotpass"
-		},
-		{
-			"pattern": "register",
-			"name": "register",
-			"target": "register"
-		},
-		{
-			"pattern": "requestpeg/{Username}",
-			"name": "requestpeg",
-			"target": "requestpeg"
-		},
-		{
-			"pattern": "feedbacklist/{Username}",
-			"name": "feedbacklist",
-			"target": "feedbacklist"
-    },
-    {
-			"pattern": "newfeedback/{Username}",
-			"name": "newfeedback",
-			"target": "newfeedback"
-		},
-		{
-			"pattern": "myprofile/{Username}",
-			"name": "myprofile",
-			"target": "myprofile"
-		},
-		{
-			"pattern": "managerpeg/{Username}",
-			"name": "managerpeg",
-			"target": "managerpeg"
-		},
-		{
-			"pattern": "managerFeedback/{pegID}",
-			"name": "managerFeedback",
-			"target": "managerFeedback"
-		},
-		{
-			"pattern": "userpeg/{Username}",
-			"name": "userpeg",
-			"target": "userpeg"
-		},
-		{
-			"pattern": "feedbackdetails/{feedbackID}",
-			"name": "feedbackdetails",
-			"target": "feedbackdetails"
-		}
-    ],
-        "targets": {
-        "overview": {
-          "viewId": "overview",
-          "viewName": "Overview"
-        },
-        "main": {
-          "viewId": "main",
-          "viewName": "Main"
-        },
-        "forgotpass": {
-          "viewId": "forgotpass",
-          "viewName": "Forgotpass"
-        },
-        "register": {
-          "viewId": "register",
-          "viewName": "Register"
-        },
-		"requestpeg": {
-			"viewId": "register",
-			"viewName": "RequestPEG"
-		},
-		"feedbacklist": {
-			"viewId": "feedbacklist",
-			"viewName": "FeedbackList"
-		},
-		"newfeedback": {
-			"viewId": "newfeedback",
-			"viewName": "NewFeedback"
-		},
-		"myprofile": {
-			"viewId": "myprofile",
-			"viewName": "MyProfile"
-		},
-		"managerpeg": {
-			"viewId": "managerpeg",
-			"viewName": "ManagerPEG"
-		},
-		  "managerFeedback":{
-			"viewId": "managerFeedback",
-			"viewName": "ManagerFeedback"
-		},
-		"userpeg":{
-			"viewId": "userpeg",
-			"viewName": "UserPEG"
-
-		},
-		"feedbackdetails":{
-			"viewId": "feedbackdetails",
-			"viewName": "FeedbackDetails"
-
-		}
-
-        }
-
-      }
-  }
+	}
 }

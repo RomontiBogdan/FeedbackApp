@@ -1,7 +1,6 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.FeedbackList"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
 	xmlns="sap.m"
 >
 	<Page
@@ -30,7 +29,7 @@
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
-					iconColor="Tile"
+					iconColor="Neutral"
 					text="All Feedbacks"
 					key="All"
 				/>
@@ -51,7 +50,6 @@
 			<content>
 				<Table
 					id="feedbackTable"
-					inset="false"
 					items="{
 					path : '/Feedback360Set'
 					 }"

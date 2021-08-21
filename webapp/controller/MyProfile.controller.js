@@ -1,8 +1,7 @@
 sap.ui.define([
 	"../controller/BaseController",
-	"sap/ui/core/routing/History",
 	'sap/ui/model/json/JSONModel'
-], function (BaseController, History, JSONModel) {
+], function (BaseController, JSONModel) {
 	"use strict";
 	return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
 		onInit: function () {
@@ -47,21 +46,15 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-			this.sUsername = oEvent.getParameter("arguments").Username;
+			var sUsername = this.getView().getModel("currentUser").getData();
 			this.getView().bindElement({
-				path: "/UserPassSet('" + this.sUsername + "')"
+				path: "/UserPassSet('" + sUsername + "')"
 			});
 		},
 
-
-
 		onNavBack: function () {
 			this.navBack();
-				var oRouter = this.getOwnerComponent().getRouter();
-				oRouter.navTo("main", {Username: this.sUsername}, true);
-			
 		},
-
 
 		onPressSave: function () {
 			var oModel = this.getView().getModel();
@@ -84,6 +77,5 @@ sap.ui.define([
 		onEdit: function (oEvent) {
 			this._setFieldsState(oEvent.getParameter("state"))
 		}
-
 	});
 });

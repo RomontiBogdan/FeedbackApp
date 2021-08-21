@@ -1,244 +1,241 @@
 <mvc:View
-		controllerName="sap.ui.demo.walkthrough.controller.ManagerFeedback"
-		xmlns:core="sap.ui.core"
-	    xmlns:mvc="sap.ui.core.mvc"
-        xmlns="sap.m"
-        xmlns:l="sap.ui.layout">
-    <Page
-		    title="Manager Feedback"
-		    showNavButton="true"
-		    navButtonPress=".onNavBack"
+	controllerName="sap.ui.demo.walkthrough.controller.ManagerFeedback"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+>
+	<Page
+		title="PEG Details"
+		showNavButton="true"
+		navButtonPress="onNavBack"
 	>
-
-	 <Panel>
+		<Panel>
 			<content>
-						
-						<!-- <Input
-							id="Grade"
-							placeholder="Give grade to employee"
-							valueLiveUpdate="true"
-							width="60%"
-						/>
-				 		<Button
-           					 text="{Export to EXCEL and send}"
-            				 press=".onLogIn"
-            				 class="myCustomButton"
-           					 icon="sap-icon://action"
-          					 width="60%"
-						/> -->
-
-        <HBox  id = "Container1" headerText = "Details about User"  >
-		<GenericTile 
-            class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Fiscal Year"
-			subheader="{FiscalYear}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://calendar" />
-			</TileContent>
-		</GenericTile>
-
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Employee name"
-			subheader="{FullName}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://employee" />
-			</TileContent>
-		</GenericTile>
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Personnel Number"
-			subheader="{PersonalNo}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://call" />
-			</TileContent>
-		</GenericTile>
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Current Career Level"
-			subheader="{CareerLevel}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://leads" />
-			</TileContent>
-		</GenericTile>
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Organizational Assignment"
-			subheader="{Su}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://crm-service-manager" />
-			</TileContent>
-		</GenericTile>
-		 </HBox>
-
-
-
-		<HBox id = "Container2">
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Project ID"
-			subheader="{ProjectId}" 
-			frameType="OneByOne"
-			id = "GenericTileProjectId">
-			<TileContent>
-				<ImageContent src="sap-icon://group" />
-			</TileContent>
-		</GenericTile>
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Date of PEG"
-			subheader="{SentAt}" 
-			frameType="TwoByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://date-time" />
-			</TileContent>
-
-		</GenericTile>
-
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Name of the Evaluator"
-			subheader="{FromUser}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://activity-individual" />
-			</TileContent>
-			
-		</GenericTile>
-
-
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Number of Project Days Evaluated"
-			subheader="{DaysEvaluated}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://timesheet" />
-			</TileContent>
-			
-		</GenericTile>
-
-		</HBox>
-
-
-
-
-		<HBox id = "Container3">
-
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Name of the project"
-			subheader="{ProjectName}" 
-			frameType="TwoByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://idea-wall" />
-			</TileContent>
-		
-		</GenericTile>
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Name of the Project Manager"
-			subheader="{ProjectManager}" 
-			frameType="OneByOne">
-				<TileContent>
-				<ImageContent src="sap-icon://manager" />
-			</TileContent>
-			
-		</GenericTile>
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
-			header="Customer name"
-			subheader="{Customer}" 
-			frameType="OneByOne">
-			<TileContent>
-				<ImageContent src="sap-icon://customer" />
-			</TileContent>
-			
-		</GenericTile>
-
-
-
-
-
-
-
-	</HBox>
+				<VBox
+					alignItems="Center"
+					width="100%"
+				>
+					<Label
+						text="Details about Employee"
+						labelFor="userContainer"
+					/>
+					<HBox id="userContainer">
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Employee name"
+							subheader="{FullName}"
+							frameType="TwoByOne"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://employee"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Personnel Number"
+							subheader="{PersonalNo}"
+							frameType="Auto"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://call"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Fiscal Year"
+							subheader="{FiscalYear}"
+							frameType="Auto"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://calendar"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Current Career Level"
+							subheader="{CareerLevel}"
+							frameType="Auto"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://leads"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Organizational Assignment"
+							subheader="{Su}"
+							frameType="Auto"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://crm-service-manager"/>
+							</TileContent>
+						</GenericTile>
+					</HBox>
+					<Label
+						class="sapUiTinyMarginTop"
+						text="Details about Feedback"
+						labelFor="pegContainer"
+					/>
+					<HBox id="pegContainer">
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Project ID"
+							subheader="{ProjectId}"
+							frameType="Auto"
+							id="GenericTileProjectId"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://group"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Date of PEG"
+							subheader="{
+								path: 'SentAt',
+								formatter: '.formatter.timestamp'
+							}"
+							frameType="TwoByOne"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://date-time"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Name of the Evaluator"
+							subheader="{FromUser}"
+							frameType="Auto"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://activity-individual"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Number of Project Days Evaluated"
+							subheader="{
+								path: 'DaysEvaluated',
+								formatter: '.formatter.daysEvaluated'
+							}"
+							frameType="TwoByOne"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://timesheet"/>
+							</TileContent>
+						</GenericTile>
+					</HBox>
+					<Label
+						class="sapUiTinyMarginTop"
+						text="Details about Project"
+						labelFor="projectContainer"
+					/>
+					<HBox id="projectContainer">
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Name of the project"
+							subheader="{ProjectName}"
+							frameType="TwoByOne"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://idea-wall"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Name of the Project Manager"
+							subheader="{ProjectManager}"
+							frameType="Auto"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://manager"/>
+							</TileContent>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Customer name"
+							subheader="{Customer}"
+							frameType="TwoByOne"
+						>
+							<TileContent>
+								<ImageContent src="sap-icon://customer"/>
+							</TileContent>
+						</GenericTile>
+					</HBox>
+				</VBox>
 			</content>
-
-
-			</Panel>
-
-<Panel>
-				<content>
-				<Table id="pegTable"
-					inset="false"
-					items="{
-					path : '/PegReqSet'
-					 }" >
-					
-						<columns>
-
-								<Column width="12em">
-									<Text text="Criteria " />
-								</Column>
-
-								<Column width="12em">
-									<Text text="Rating" />
-								</Column>
-
-								<Column
-									width="12em">
-									<Text text="Description of the Rating" />
-								</Column>
-
-
-								<Column
-									width="12em">
-									<Text text="Recommendations/Comments" />
-								</Column>
-						</columns>
-
-						<items>
-					<ColumnListItem
-					type = "Navigation"
-					press = ".onPegPress"	>
-					
-						<cells>
-							<ObjectIdentifier
-								
-								text="Professional and Industry Experience"
-							/>
-							<Text
-								text="{ProjectId}" />
-							<Text
-									text="{
-									path: 'Status',
-									formatter: '.formatter.pegStatus'
-									}"
-									
+		</Panel>
+		<Panel>
+			<content>
+				<Table
+					id="pegTable"
+					items="{toCriterias}"
+				>
+					<columns>
+						<Column width="12em">
+							<Text text="Criteria"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Rating"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Description of the Rating"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Recommendations/Comments"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem
+							type="Active"
+							vAlign="Middle"
+						>
+							<cells>
+								<ObjectIdentifier text="{
+									path: 'Criteria',
+									formatter: '.formatter.criteriaDescription'
+								}"/>
+								<RatingIndicator
+									id="gradeIndicator"
+									value="{Grade}"
+									maxValue="4"
 								/>
-			
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</content>
+								<Text text="{
+									path: 'Grade',
+									formatter: '.formatter.gradeDescription'
+									}"/>
+								<Input
+									id="recommendationInput"
+									value="{Recommendation}"
+								/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
 		</Panel>
 		<footer>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<Button
-					text="Export to excel"
-					class="myCustomButton"
-					press="onExport"
-					icon="sap-icon://download"
-				/>
-			</Toolbar>
+			<Bar>
+				<contentLeft>
+					<Button
+						id="submitChangesButton"
+						text="Submit"
+						press="onSubmitChanges"
+						class="myCustomButton"
+						icon="sap-icon://accept"
+					/>
+					<CheckBox 
+						id="completedCheckBox"
+						text="is Completed?"/>
+				</contentLeft>
+				<contentRight>
+					<Button
+						text="Export to excel"
+						class="myCustomButton"
+						press="onExport"
+						icon="sap-icon://download"
+					/>
+				</contentRight>
+			</Bar>
 		</footer>
-    </Page>
-
+	</Page>
 </mvc:View>

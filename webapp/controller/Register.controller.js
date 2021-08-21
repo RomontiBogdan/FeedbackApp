@@ -1,18 +1,15 @@
 sap.ui.define([
-	"../controller/BaseController",
-	"sap/ui/core/routing/History",
+	"./BaseController",
 	"sap/m/MessageBox"
-
-], function (BaseController, History, MessageBox) {
+], function (BaseController, MessageBox) {
 	"use strict";
 	return BaseController.extend("sap.ui.demo.walkthrough.controller.Register", {
 		onInit: function () {
-			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("register").attachPatternMatched(this._onObjectMatched, this);
+
 		},
 
 		onNavBack: function () {
-		this.navBack();
+			this.navBack();
 		},
 
 		onCreateRegister: function (oEvent) {

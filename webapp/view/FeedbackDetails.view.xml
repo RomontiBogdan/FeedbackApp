@@ -2,7 +2,6 @@
 	controllerName="sap.ui.demo.walkthrough.controller.FeedbackDetails"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:l="sap.ui.layout"
 >
 	<Page
 		title="Info about Feedback"
@@ -13,13 +12,14 @@
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="FROM"
 			subheader="{	
-						parts:[
-						{path:'FromUser'},
-						{path:'Anonymous'}
-						], 
-						formatter:'.formatter.feedbackAnonymous'
-					}"
-			frameType="OneByOne">
+				parts: [
+					{path:'FromUser'},
+					{path:'Anonymous'}
+				], 
+				formatter: '.formatter.feedbackAnonymous'
+			}"
+			frameType="Auto"
+		>
 			<TileContent>
 				<ImageContent src="sap-icon://drill-up"/>
 			</TileContent>
@@ -28,7 +28,7 @@
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="TO"
 			subheader="{ToUser}"
-			frameType="OneByOne"
+			frameType="Auto"
 		>
 			<TileContent>
 				<ImageContent src="sap-icon://drill-down"/>
@@ -38,7 +38,7 @@
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="Project ID"
 			subheader="{ProjectId}"
-			frameType="OneByOne"
+			frameType="Auto"
 		>
 			<TileContent>
 				<ImageContent src="sap-icon://group"/>
@@ -48,10 +48,10 @@
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="Review"
 			subheader="{
-					path: 'Rating',
-					formatter: '.formatter.feedbackRating'
-					}"
-			frameType="OneByOne"
+				path: 'Rating',
+				formatter: '.formatter.feedbackRating'
+			}"
+			frameType="Auto"
 		>
 			<TileContent>
 				<NumericContent
@@ -65,10 +65,10 @@
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="Category"
 			subheader="{
-						path: 'Categories',
-						formatter: '.formatter.feedbackCategory'
-						}"
-			frameType="OneByOne"
+				path: 'Categories',
+				formatter: '.formatter.feedbackCategory'
+			}"
+			frameType="Auto"
 		>
 			<TileContent>
 				<ImageContent src="sap-icon://activities"/>
@@ -77,7 +77,10 @@
 		<GenericTile
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="Sent At"
-			subheader="{SentAt}"
+			subheader="{
+				path: 'SentAt',
+				formatter: '.formatter.timestamp'
+			}"
 			frameType="TwoByOne"
 		>
 			<TileContent>

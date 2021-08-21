@@ -1,38 +1,35 @@
 sap.ui.define([
-	"../controller/BaseController",
-	"sap/ui/model/json/JSONModel",
+	"./BaseController",
 	"../model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-
-
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+], function (BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
-	return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerPEG", {
+	return BaseController.extend("sap.ui.demo.walkthrough.controller.PEGList", {
 		formatter: formatter,
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("managerpeg").attachPatternMatched(this._onObjectMatched, this);
+			oRouter.getRoute("peglist").attachPatternMatched(this._onObjectMatched, this);
 		},
 
 		_onObjectMatched: function (oEvent) {
-			this.sUsername = oEvent.getParameter("arguments").Username;
+			var sUsername = this.getView().getModel("currentUser").getData();
 			this.getView().bindElement({
-				path: "/UserPassSet('" + this.sUsername + "')"
+				path: "/UserPassSet('" + sUsername + "')"
 			});
 
-			this.aFilter = [];
-			this.aFilter.push(new Filter({
+			this._aFilter = [];
+			this._aFilter.push(new Filter({
 				filters: [
-					new Filter("ToUser", FilterOperator.EQ, this.sUsername),
-					new Filter("FromUser", FilterOperator.EQ, this.sUsername),
+					new Filter("ToUser", FilterOperator.EQ, sUsername),
+					new Filter("FromUser", FilterOperator.EQ, sUsername),
 				],
 				and: true,
 			}));
 
 			var oList = this.byId("PegTableManager");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(this.aFilter);
+			oBinding.filter(this._aFilter);
 		},
 
 		onNavBack: function () {
@@ -87,7 +84,7 @@ sap.ui.define([
 
 		onFilterSelect: function (oEvent) {
 			var sKey = oEvent.getParameter("key");
-			var auxFilter = this.aFilter[0];
+			var auxFilter = this._aFilter[0];
 			if (sKey === "New") {
 				auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "0")
 			}
@@ -112,15 +109,13 @@ sap.ui.define([
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.navTo("managerFeedback", {
 				pegID: oBindingObject.FeedbackId
-				//username: oBindingObject.Username
 			});
 		},
 
 		onNewRequest: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("requestpeg", { Username: this.sUsername });
+			this.getView().getModel().read("/")
+			oRouter.navTo("requestpeg");
 		},
-
-
 	});
 });

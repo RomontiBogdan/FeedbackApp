@@ -25,6 +25,9 @@ sap.ui.define([
          });
          this.setModel(i18nModel, "i18n");
 
+         var currentUserModel = new JSONModel();
+         this.setModel(currentUserModel, "currentUser");
+
          this.getRouter().initialize();
       }
    });

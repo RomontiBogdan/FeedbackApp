@@ -1,17 +1,13 @@
 sap.ui.define([
-  "sap/ui/core/mvc/Controller",
-  "sap/m/MessageToast"
-], function (Controller, MessageToast) {
+  "./BaseController",
+  "sap/ui/model/json/JSONModel"
+], function (BaseController, JSONModel) {
   "use strict";
-  return Controller.extend("sap.ui.demo.walkthrough.controller.LogReg", {
+  return BaseController.extend("sap.ui.demo.walkthrough.controller.LogReg", {
     onInit: function () {
-      var oRouter = this.getOwnerComponent().getRouter();
-      oRouter.getRoute("overview").attachPatternMatched(this._onObjectMatched, this);
-    },
-
-    _onObjectMatched: function (oEvent) {
 
     },
+
     onLogIn: function (oEvent) {
       var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       var oModel = this.getOwnerComponent().getModel();
@@ -22,6 +18,9 @@ sap.ui.define([
         success: function (oRetrievedResult) {
           sUsername.setValueState("Success");
           sPassword.setValueState("Success");
+
+          this.getView().getModel("currentUser").setData(sUsername.getValue());
+          
           oRouter.navTo("main", {
             Username: sUsername.getValue()
           });
@@ -31,7 +30,7 @@ sap.ui.define([
           sUsername.setValueState("Error");
           sPassword.setValueState("Error");
           sap.m.MessageToast.show(JSON.parse(oError.responseText).error.message.value)
-        }.bind(this)
+        }
       });
     },
     onRegister: function (oEvent) {

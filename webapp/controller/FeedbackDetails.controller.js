@@ -1,9 +1,8 @@
 sap.ui.define([
 	"../controller/BaseController",
-    "sap/ui/core/routing/History",
 	"../model/formatter"
 	
-], function (BaseController, History, formatter) {
+], function (BaseController, formatter) {
 	"use strict";
 	return BaseController.extend("sap.ui.demo.walkthrough.controller.FeedbackDetails", {
 		formatter: formatter,
@@ -17,7 +16,6 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-
 		    var sFeedbackID = oEvent.getParameter("arguments").feedbackID;
 			this.getView().bindElement({
 				path: "/Feedback360Set(" + sFeedbackID + ")"

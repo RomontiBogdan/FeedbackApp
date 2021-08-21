@@ -1,38 +1,30 @@
 sap.ui.define([
-	"../controller/BaseController",
-    "sap/ui/core/routing/History",
-	'sap/ui/model/json/JSONModel'	
-], function (BaseController, History, JSONModel) {
+	"../controller/BaseController"
+], function (BaseController) {
 	"use strict";
 	return BaseController.extend("sap.ui.demo.walkthrough.controller.RequestPEG", {
-		onInit: function () 
-		{
+		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
-	
 		},
 
-        onNavBack: function () {
+		onNavBack: function () {
 			this.navBack();
 		},
 
-		_onObjectMatched: function(oEvent)
-		{
-
-			var sUsername = oEvent.getParameter("arguments").Username;
+		_onObjectMatched: function (oEvent) {
+			var sUsername = this.getView().getModel("currentUser").getData();
 			this.getView().bindElement({
 				path: "/UserPassSet('" + sUsername + "')"
-		    });
+			});
 		},
 
 
-		onProjectChange: function(oEvent)
-		{
+		onProjectChange: function (oEvent) {
 			var SelectedItem = this.byId("inputProjectName").getSelectedItem().getKey();
 			this.getView().byId("inputManager").bindElement({
 				path: "/UserProjectsSet(Username='',ProjectId='" + SelectedItem + "')"
-			  });
+			});
 		}
-
 	});
 });

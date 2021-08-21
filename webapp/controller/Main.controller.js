@@ -1,44 +1,29 @@
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/routing/History",
-    "sap/m/MessageBox",
-    "sap/m/MessageToast",
+    "sap/m/MessageBox"
   ],
-  function (Controller, History, MessageBox, MessageToast) {
+  function (Controller, MessageBox) {
     "use strict";
     return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
-      
-      _onObjectMatched: function (oEvent) {
-        this.sUsername = oEvent.getParameter("arguments").Username;
-        this.getView().bindElement({
-          path: "/UserPassSet('" + this.sUsername + "')"
-          });
-      },
 
       onInit: function () {
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
-      },
 
+      },
 
 		onFeedback: function (oEvent) {
 			var oRouter = this.getOwnerComponent().getRouter();
-			oRouter.navTo("feedbacklist", {Username: this.sUsername});
+			oRouter.navTo("feedbacklist");
 		},
 
       onProfile: function (oEvent) {
         var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.navTo("myprofile", { Username: this.sUsername });
+        oRouter.navTo("myprofile");
       },
 
       onPEG: function (oEvent) {
         var oRouter = this.getOwnerComponent().getRouter();
-        var oBindingObject = this.getView().getBindingContext().getObject();
-        if(oBindingObject.CareerLevel == "5")
-          oRouter.navTo("managerpeg", {Username: this.sUsername});
-        else
-          oRouter.navTo("userpeg", {Username: this.sUsername});
+        oRouter.navTo("peglist");
       },
 
 

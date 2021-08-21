@@ -1,0 +1,100 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.PEGList"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+>
+	<Page
+		title="List of PEGs"
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+	>
+		<IconTabBar
+			id="PegTabBarManager"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding"
+			expandable="false"
+		>
+			<items>
+				<IconTabFilter
+					icon="sap-icon://multiselect-all"
+					iconColor="Neutral"
+					text="All PEGs"
+					key="allpegs"
+				/>
+				<IconTabFilter
+					icon="sap-icon://add-document"
+					iconColor="Negative"
+					text="New"
+					key="New"
+				/>
+				<IconTabFilter
+					icon="sap-icon://pending"
+					iconColor="Critical"
+					text="Pending"
+					key="Pending"
+				/>
+				<IconTabFilter
+					icon="sap-icon://accept"
+					iconColor="Positive"
+					text="Completed"
+					key="Completed"
+				/>
+			</items>
+			<content>
+				<Table
+					id="PegTableManager"
+					items="{
+						path: '/PegReqSet'
+					}"
+				>
+					<columns>
+						<Column width="12em">
+							<Text text="Evaluator"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Employee"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Project"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Status"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem
+							type="Navigation"
+							press=".onPegPress"
+							highlight="{
+								path: 'Status',
+								formatter: '.formatter.highlightStatus'
+							}"
+						>
+							<cells>
+								<ObjectIdentifier text="{FromUser}"/>
+								<ObjectIdentifier text="{ToUser}"/>
+								<Text text="{ProjectId}"/>
+								<Text text="{
+									path: 'Status',
+									formatter: '.formatter.pegStatus'
+									}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button
+						text="New Request"
+						press=".onNewRequest"
+						class="myCustomButton"
+						icon="sap-icon://add"
+					/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

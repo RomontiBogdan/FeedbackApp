@@ -4,13 +4,13 @@ sap.ui.define(
     "sap/ui/core/routing/History",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
-	"sap/ui/model/odata/type/DateTime"
+    "sap/ui/model/odata/type/DateTime"
   ],
   function (BaseController,
-	History,
-	JSONModel,
-	MessageBox,
-	DateTime) {
+    History,
+    JSONModel,
+    MessageBox,
+    DateTime) {
     "use strict";
     return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
@@ -34,36 +34,37 @@ sap.ui.define(
 
         var oModel = new JSONModel(oData);
         this.getView().setModel(oModel, "newFeedbackModel");
+
         var oRouter = this.getOwnerComponent().getRouter();
         oRouter.getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
       },
 
       _onObjectMatched: function (oEvent) {
-        this.sUsername = oEvent.getParameter("arguments").Username;
+        this._sUsername = this.getView().getModel("currentUser").getData();
       },
 
       onNavBack: function () {
         this.navBack();
       },
 
-      _validateData: function(oParams) {
+      _validateData: function (oParams) {
         var exceptions = ""
-        if(oParams.ToUser === oParams.FromUser) {
+        if (oParams.ToUser === oParams.FromUser) {
           exceptions += "You cannot send a feedback to yourself!\n"
         }
-        if(oParams.ToUser === null) {
+        if (oParams.ToUser === null) {
           exceptions += "Please select an user!\n"
         }
-        if(oParams.Description === "") {
+        if (oParams.Description === "") {
           exceptions += "Please insert a description!\n"
         }
-        if(oParams.ProjectId === null) {
+        if (oParams.ProjectId === null) {
           exceptions += "Please select a project!\n"
         }
-        if(oParams.Categories === null) {
+        if (oParams.Categories === null) {
           exceptions += "Please select a skill!\n"
         }
-        if(oParams.Rating === "0") {
+        if (oParams.Rating === "0") {
           exceptions += "Rating cannot be 0!\n"
         }
         return exceptions
@@ -73,7 +74,7 @@ sap.ui.define(
 
         var params = {
           FeedbackId: "0",
-          FromUser: this.sUsername,
+          FromUser: this._sUsername,
           ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
           Description: this.byId("inputDescription").getValue(),
           ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),
@@ -97,9 +98,7 @@ sap.ui.define(
                 onClose: function (oAction) {
                   if (oAction === "OK") {
                     var oRouter = this.getOwnerComponent().getRouter();
-                    oRouter.navTo("FeedbackList", {
-                      Username: this.sUsername
-                    });
+                    oRouter.navTo("FeedbackList");
                   }
                 }.bind(this)
               });
