@@ -5,10 +5,9 @@
         xmlns="sap.m"
         xmlns:l="sap.ui.layout">
     <Page
-		    title="Manager PEG"
+		    title="i18n>ManagerPEG"
 		    showNavButton="true"
-		    navButtonPress=".onNavBack"
-	>
+		    navButtonPress=".onNavBack">
 
 	<IconTabBar
 			id="PegTabBarManager"

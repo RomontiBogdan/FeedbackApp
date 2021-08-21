@@ -5,7 +5,7 @@
         xmlns="sap.m"
         xmlns:l="sap.ui.layout">
     <Page
-		    title="Manager Feedback"
+		    title="{i18n>ManagerFeedback}"
 		    showNavButton="true"
 		    navButtonPress=".onNavBack">
 
