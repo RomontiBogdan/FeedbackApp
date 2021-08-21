@@ -7,11 +7,10 @@
     <Page
 		    title="Manager Feedback"
 		    showNavButton="true"
-		    navButtonPress=".onNavBack"
-	>
+		    navButtonPress=".onNavBack">
 
-	 <Panel>
-			<content>
+	 <Panel headerText = "User details">
+		
 						
 						<!-- <Input
 							id="Grade"
@@ -27,7 +26,8 @@
           					 width="60%"
 						/> -->
 
-        <HBox  id = "Container1" headerText = "Details about User"  >
+        <HBox  id = "Container1"  >
+		
 		<GenericTile 
             class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Fiscal Year"
@@ -75,12 +75,11 @@
 			</TileContent>
 		</GenericTile>
 		 </HBox>
+</Panel>
 
-
-
+<Panel headerText = "PEG details">
 		<HBox id = "Container2">
-
-		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+	<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Project ID"
 			subheader="{ProjectId}" 
 			frameType="OneByOne"
@@ -123,10 +122,11 @@
 		</GenericTile>
 
 		</HBox>
+		</Panel>
 
 
 
-
+		<Panel headerText = "Project details">
 		<HBox id = "Container3">
 
 
@@ -153,7 +153,7 @@
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Customer name"
 			subheader="{Customer}" 
-			frameType="OneByOne">
+			frameType="TwoByOne">
 			<TileContent>
 				<ImageContent src="sap-icon://customer" />
 			</TileContent>
@@ -162,13 +162,7 @@
 
 
 
-
-
-
-
 	</HBox>
-			</content>
-
 
 			</Panel>
 

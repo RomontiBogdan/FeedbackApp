@@ -125,7 +125,7 @@
 			"target": "managerpeg"
 		},
 		{
-			"pattern": "managerFeedback/{pegID}",
+			"pattern": "managerFeedback/{Username}/{pegID}",
 			"name": "managerFeedback",
 			"target": "managerFeedback"
 		},
