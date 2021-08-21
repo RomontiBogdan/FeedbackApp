@@ -3,10 +3,10 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
-		title="Forgot Password"
+		title="{i18n>ForgotPassword}"
 		showNavButton="true"
 		navButtonPress=".onNavBack">
-		<Panel>
+		<Panel class="sapUiResponsiveMargin">
 			<content>
 				<Input
 					id="usernameTextFP"
