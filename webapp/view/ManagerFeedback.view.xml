@@ -3,7 +3,11 @@
 		xmlns:core="sap.ui.core"
 	    xmlns:mvc="sap.ui.core.mvc"
         xmlns="sap.m"
+		xmlns:f="sap.ui.layout.form"
         xmlns:l="sap.ui.layout">
+
+
+			
     <Page
 		    title="Manager Feedback"
 		    showNavButton="true"
@@ -111,7 +115,6 @@
 		</GenericTile>
 
 
-
 		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
 			header="Number of Project Days Evaluated"
 			subheader="{DaysEvaluated}" 
@@ -123,9 +126,6 @@
 		</GenericTile>
 
 		</HBox>
-
-
-
 
 		<HBox id = "Container3">
 
@@ -160,74 +160,42 @@
 			
 		</GenericTile>
 
-
-
-
-
-
-
 	</HBox>
 			</content>
-
-
 			</Panel>
 
-<Panel>
-				<content>
-				<Table id="pegTable"
-					inset="false"
-					items="{
-					path : '/PegReqSet'
-					 }" >
-					
-						<columns>
 
-								<Column width="12em">
-									<Text text="Criteria " />
-								</Column>
+		<Table id="idcoredata" inset="false" items="{/coredata}">
+	<headerToolbar>
+	</headerToolbar>
+	<columns>
+		<Column width="12em" hAlign="Center">
+			<Text text="Criteria"/>
+		</Column>
+		<Column width="12em" hAlign="Center">
+			<Text text="Rating"/>
+		</Column>
+		<Column width="12em" hAlign="Center">
+			<Text text="Description of the rating"/>
+		</Column>
+		<Column width="12em" hAlign="Center">
+			<Text text="Recommendations / Comments"/>
+		</Column>
+		
+	</columns>
+	<items>
+		<ColumnListItem>
+			<cells>
+				<Input enabled="true" text="Professional and Industry Experience"/>
+				<Input enabled="false" text="{Weight}"/>
 
-								<Column width="12em">
-									<Text text="Rating" />
-								</Column>
-
-								<Column
-									width="12em">
-									<Text text="Description of the Rating" />
-								</Column>
 
 
-								<Column
-									width="12em">
-									<Text text="Recommendations/Comments" />
-								</Column>
-						</columns>
+			</cells>
+		</ColumnListItem>
+	</items>
+</Table>
 
-						<items>
-					<ColumnListItem
-					type = "Navigation"
-					press = ".onPegPress"	>
-					
-						<cells>
-							<ObjectIdentifier
-								
-								text="Professional and Industry Experience"
-							/>
-							<Text
-								text="{ProjectId}" />
-							<Text
-									text="{
-									path: 'Status',
-									formatter: '.formatter.pegStatus'
-									}"
-									
-								/>
-			
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</content>
-		</Panel>
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>

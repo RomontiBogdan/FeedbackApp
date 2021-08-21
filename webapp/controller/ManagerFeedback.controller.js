@@ -11,16 +11,39 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
+
+			var oData = {
+
+				CriteriaCollection: [
+				  {
+					Name: "Professional and Industry Experience",
+				  },
+				  {
+					Name: "Project and Program Management",
+				  },
+				  {
+					Name: "Strategy Focus",
+				  },
+				  {
+					Name: "Customer Focus",
+				  },
+				  {
+					Name: "Employee Focus",
+				  },
+				  {
+					Name: "Focus on Excellence",
+				  },
+				],
+			  };
+	  
+			  var oModel = new JSONModel(oData);
+			  this.getView().setModel(oModel, "managerFeedbackModel");
+			
 		},
 
 		_onObjectMatched: function (oEvent) {
 
-		    // var sPegID = oEvent.getParameter("arguments").pegID;
-			// this.getView().bindElement({
-			// 	path: "/PegReqSet(" + sPegID + ")"
-		    // });
-
-			var sProjectId  = this.byId("GenericTileProjectId").getSubheader();
+			this.sUsername = oEvent.getParameter("arguments").Username;
 			var sFeedbackId = oEvent.getParameter("arguments").pegID;
 
 			var oDetailPEG = this.getView().byId("Container2");
@@ -33,9 +56,8 @@ sap.ui.define([
 
 					var oUserDetail = this.getView().byId("Container1");
 
-					oUserDetail.bindElement({ path:  "/UserPassSet('TEST')" });
-	  
-				  
+					oUserDetail.bindElement({ path:  "/UserPassSet('"+ this.sUsername +"')" });
+
 					var oProjectDetail = this.getView().byId("Container3");
 					var sProjectId  = oData.getParameter("data").ProjectId;
 					oProjectDetail.bindElement({ path: "/ProjectDetailsSet('"+ sProjectId +"')" });
