@@ -186,9 +186,7 @@
 	<items>
 		<ColumnListItem>
 			<cells>
-				<Input enabled="true" text="Professional and Industry Experience"/>
-				<Input enabled="false" text="{Weight}"/>
-
+				
 
 
 			</cells>
