@@ -202,19 +202,7 @@
 					press = ".onPegPress"	>
 					
 						<cells>
-							<ObjectIdentifier
-								
-								text="Professional and Industry Experience"
-							/>
-							<Text
-								text="{ProjectId}" />
-							<Text
-									text="{
-									path: 'Status',
-									formatter: '.formatter.pegStatus'
-									}"
-									
-								/>
+							
 			
 						</cells>
 					</ColumnListItem>
