@@ -15,6 +15,7 @@
 						text="New Request"
 						press=".onNewRequest"
 						class="myCustomButton"
+						icon = "sap-icon://write-new"
 					/>
 				</contentRight>
 			</Bar>

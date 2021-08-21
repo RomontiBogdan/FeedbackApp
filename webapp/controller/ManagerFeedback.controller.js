@@ -15,11 +15,6 @@ sap.ui.define([
 
 		_onObjectMatched: function (oEvent) {
 
-		    // var sPegID = oEvent.getParameter("arguments").pegID;
-			// this.getView().bindElement({
-			// 	path: "/PegReqSet(" + sPegID + ")"
-		    // });
-
 			var sProjectId  = this.byId("GenericTileProjectId").getSubheader();
 			var sFeedbackId = oEvent.getParameter("arguments").pegID;
 
