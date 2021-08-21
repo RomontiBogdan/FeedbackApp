@@ -125,9 +125,10 @@
 				/>
 				<HBox>
 					<Switch
-						customTextOn="  "
+						customTextOn="✓"
 						customTextOff="Edit"
 						change="onEdit"
+					
 					>
 						<layoutData>
 							<FlexItemData growFactor="1"/>

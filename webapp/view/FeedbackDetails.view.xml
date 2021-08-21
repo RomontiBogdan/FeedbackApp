@@ -6,8 +6,10 @@
 	<Page
 		title="Info about Feedback"
 		showNavButton="true"
-		navButtonPress=".onNavBack"
-	>
+		navButtonPress=".onNavBack">
+
+
+		<Panel>
 		<GenericTile
 			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 			header="FROM"
@@ -93,7 +95,8 @@
 			growing="true"
 			growingMaxLines="7"
 			width="100%"
-			height="50%"
-		/>
+			height="50%"/>
+
+		</Panel>
 	</Page>
 </mvc:View>
