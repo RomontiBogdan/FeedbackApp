@@ -1,20 +1,20 @@
 html[dir="ltr"] .myAppDemoWT .myCustomButton.sapMBtn {
     margin-right: 0.125rem
- }
- 
- html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
+}
+
+html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
     margin-left: 0.125rem
- }
- 
- .myAppDemoWT .myCustomText {
+}
+
+.myAppDemoWT .myCustomText {
     display: inline-block;
     font-weight: bold;
- }
- 
- .myApp .bigLabel {
-   font-size: x-small;
- }
+}
 
- .bigLabel {
-   font-size: 36px !important;
- }
+.myApp .bigLabel {
+    font-size: x-small;
+}
+
+.bigLabel {
+    font-size: 36px !important;
+}

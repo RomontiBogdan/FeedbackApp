@@ -14,7 +14,7 @@
 					id="UsernameField"
 					placeholder="Username"
 					valueLiveUpdate="true"
-               submit="onLogIn"
+					submit="onLogIn"
 					width="80%"
 				/>
 				<Input
@@ -22,7 +22,7 @@
 					type="Password"
 					placeholder="Password"
 					valueLiveUpdate="true"
-               submit="onLogIn"
+					submit="onLogIn"
 					width="80%"
 				/>
 			</content>

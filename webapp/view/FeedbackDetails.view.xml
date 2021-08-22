@@ -6,97 +6,96 @@
 	<Page
 		title="Info about Feedback"
 		showNavButton="true"
-		navButtonPress=".onNavBack">
-
-
+		navButtonPress=".onNavBack"
+	>
 		<Panel>
-		<GenericTile
-			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-			header="FROM"
-			subheader="{	
-				parts: [
-					{path:'FromUser'},
-					{path:'Anonymous'}
-				], 
-				formatter: '.formatter.feedbackAnonymous'
-			}"
-			frameType="Auto"
-		>
-			<TileContent>
-				<ImageContent src="sap-icon://drill-up"/>
-			</TileContent>
-		</GenericTile>
-		<GenericTile
-			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-			header="TO"
-			subheader="{ToUser}"
-			frameType="Auto"
-		>
-			<TileContent>
-				<ImageContent src="sap-icon://drill-down"/>
-			</TileContent>
-		</GenericTile>
-		<GenericTile
-			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-			header="Project ID"
-			subheader="{ProjectId}"
-			frameType="Auto"
-		>
-			<TileContent>
-				<ImageContent src="sap-icon://group"/>
-			</TileContent>
-		</GenericTile>
-		<GenericTile
-			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-			header="Review"
-			subheader="{
-				path: 'Rating',
-				formatter: '.formatter.feedbackRating'
-			}"
-			frameType="Auto"
-		>
-			<TileContent>
-				<NumericContent
-					value="{Rating}"
-					withMargin="false"
-					icon="sap-icon://favorite"
-				/>
-			</TileContent>
-		</GenericTile>
-		<GenericTile
-			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-			header="Category"
-			subheader="{
-				path: 'Categories',
-				formatter: '.formatter.feedbackCategory'
-			}"
-			frameType="Auto"
-		>
-			<TileContent>
-				<ImageContent src="sap-icon://activities"/>
-			</TileContent>
-		</GenericTile>
-		<GenericTile
-			class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-			header="Sent At"
-			subheader="{
-				path: 'SentAt',
-				formatter: '.formatter.timestamp'
-			}"
-			frameType="TwoByOne"
-		>
-			<TileContent>
-				<ImageContent src="sap-icon://date-time"/>
-			</TileContent>
-		</GenericTile>
-		<TextArea
-			value="{Description}"
-			editable="false"
-			growing="true"
-			growingMaxLines="7"
-			width="100%"
-			height="50%"/>
-
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="FROM"
+				subheader="{	
+               parts: [
+                  {path:'FromUser'},
+                  {path:'Anonymous'}
+               ], 
+               formatter: '.formatter.feedbackAnonymous'
+            }"
+				frameType="Auto"
+			>
+				<TileContent>
+					<ImageContent src="sap-icon://drill-up"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="TO"
+				subheader="{ToUser}"
+				frameType="Auto"
+			>
+				<TileContent>
+					<ImageContent src="sap-icon://drill-down"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="Project ID"
+				subheader="{ProjectId}"
+				frameType="Auto"
+			>
+				<TileContent>
+					<ImageContent src="sap-icon://group"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="Review"
+				subheader="{
+               path: 'Rating',
+               formatter: '.formatter.feedbackRating'
+            }"
+				frameType="Auto"
+			>
+				<TileContent>
+					<NumericContent
+						value="{Rating}"
+						withMargin="false"
+						icon="sap-icon://favorite"
+					/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="Category"
+				subheader="{
+               path: 'Categories',
+               formatter: '.formatter.feedbackCategory'
+            }"
+				frameType="Auto"
+			>
+				<TileContent>
+					<ImageContent src="sap-icon://activities"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+				header="Sent At"
+				subheader="{
+               path: 'SentAt',
+               formatter: '.formatter.timestamp'
+            }"
+				frameType="TwoByOne"
+			>
+				<TileContent>
+					<ImageContent src="sap-icon://date-time"/>
+				</TileContent>
+			</GenericTile>
+			<TextArea
+				value="{Description}"
+				editable="false"
+				growing="true"
+				growingMaxLines="7"
+				width="100%"
+				height="50%"
+			/>
 		</Panel>
 	</Page>
 </mvc:View>

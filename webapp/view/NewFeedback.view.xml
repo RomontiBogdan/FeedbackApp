@@ -61,7 +61,7 @@
 				</Select>
 				<!-- Annonymous? -->
 				<CheckBox
-          id="AnonymousCB"
+					id="AnonymousCB"
 					text="Anonymous feedback"
 				/>
 				<Label
@@ -73,8 +73,8 @@
 					id="inputSkill"
 					selectedKey="{SelectedSkill}"
 					items="{
-            path: 'newFeedbackModel>/SkillCollection'
-          }"
+                  path: 'newFeedbackModel>/SkillCollection'
+               }"
 				>
 					<core:ListItem
 						key="{newFeedbackModel>Id}"
@@ -84,7 +84,7 @@
 				<RatingIndicator
 					id="inputRating"
 					class="sapUiSmallMarginBottom"
-          value="1"
+					value="1"
 					tooltip="{i18n>RatingTooltip}"
 				/>
 			</f:SimpleForm>
