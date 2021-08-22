@@ -14,16 +14,15 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-			this._sUsername = this.getView().getModel("currentUser").getData();
 			this.getView().bindElement({
-				path: "/UserPassSet('" + this._sUsername + "')"
+				path: "/UserPassSet('" + this.getCurrentUser() + "')"
 			});
 
 			this._sFilter = [];
 			this._sFilter.push(new Filter({
 				filters: [
-					new Filter("ToUser", FilterOperator.EQ, this._sUsername),
-					new Filter("FromUser", FilterOperator.EQ, this._sUsername),
+					new Filter("ToUser", FilterOperator.EQ, this.getCurrentUser()),
+					new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser()),
 				],
 				and: true,
 			}));
@@ -55,10 +54,10 @@ sap.ui.define([
 			var sKey = oEvent.getParameter("key");
 			var aFilter = [];
 			if (sKey === "Sent" || sKey === "All") {
-				aFilter.push(new Filter("FromUser", FilterOperator.EQ, this._sUsername))
+				aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser()))
 			}
 			if (sKey === "Received" || sKey === "All") {
-				aFilter.push(new Filter("ToUser", FilterOperator.EQ, this._sUsername))
+				aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.getCurrentUser()))
 			}
 			var oList = this.byId("feedbackTable");
 			var oBinding = oList.getBinding("items");

@@ -4,7 +4,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="Feedback"
+		title="Feedbacks"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -51,8 +51,8 @@
 				<Table
 					id="feedbackTable"
 					items="{
-					path : '/Feedback360Set'
-					 }"
+						path : '/Feedback360Set'
+					}"
 				>
 					<columns>
 						<Column width="12em">
@@ -69,6 +69,9 @@
 						</Column>
 						<Column width="12em">
 							<Text text="Rating"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Sent Date"/>
 						</Column>
 					</columns>
 					<items>
@@ -93,6 +96,10 @@
 								<Text text="{
 									path: 'Rating',
 									formatter: '.formatter.feedbackRating'
+								}"/>
+								<Text text="{
+									path: 'SentAt',
+									formatter: '.formatter.timestamp'
 								}"/>
 							</cells>
 						</ColumnListItem>

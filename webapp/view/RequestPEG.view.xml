@@ -1,68 +1,109 @@
 <mvc:View
-controllerName="sap.ui.demo.walkthrough.controller.RequestPEG"
-xmlns:core="sap.ui.core"
-xmlns:mvc="sap.ui.core.mvc" 
-xmlns:l="sap.ui.layout"
-xmlns:f="sap.ui.layout.form"
-xmlns="sap.m" >
-
+	controllerName="sap.ui.demo.walkthrough.controller.RequestPEG"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+>
 	<Page
+		class="sapUiContentPadding"
 		title="{i18n>RequestPEG}"
-        showNavButton="true"
+		showNavButton="true"
 		navButtonPress=".onNavBack"
-		enableScrolling="false">
-
-		<l:VerticalLayout class="sapUiContentPadding" width="100%">
-
-				<Label text="Name" labelFor="inputText" />
-          		<Input value="{FullName}" id="inputText" editable="false"  placeholder="Enter full name" class="sapUiSmallMarginBottom"/>
-
-				<Label text="Email" labelFor="inputEmail"/>
-                <Input value="{Email}" id="inputEmail" editable="false" placeholder="Enter email" class="sapUiSmallMarginBottom"/>
-
-
-				<Label text="Service Unit" labelFor="inputSU"/>
-                <Input value="{Su}" id="inputSU" editable="false" placeholder="Enter service unit" class="sapUiSmallMarginBottom"/>
-
-
- 				<Label text="Fiscal year" labelFor="inputFiscalYear"/>
-                <Input value="{FiscalYear}" id="inputFiscalYear" editable="false" class="sapUiSmallMarginBottom"/>
-
-				<Label text="Project name" labelFor="inputProjectName" required="true"/>
-				<Select
-					forceSelection="false"
-					id = "inputProjectName"
-					change="onProjectChange"
-					items="{/UserProjectsSet}">
-					 <core:ListItem key="{ProjectId}" text="{ProjectName}"/>
-				</Select>
-
-
-				<Label text="Responsible manager" labelFor="inputManager" required="true" />
-				<Select
-					forceSelection="false"
-					id = "inputManager"
-					items="{toManagers}">
-					 <core:ListItem key="{Username}" text="{Username}"/>
-				</Select>
-
-
-		</l:VerticalLayout>
-
-
+		enableScrolling="false"
+	>
+		<content>
+			<VBox width="100%">
+				<VBox id="mainInfoContainer">
+					<Label
+						text="Name"
+						labelFor="inputText"
+					/>
+					<Input
+						value="{FullName}"
+						id="inputText"
+						editable="false"
+						placeholder="Enter full name"
+						class="sapUiSmallMarginBottom"
+					/>
+					<Label
+						text="Email"
+						labelFor="inputEmail"
+					/>
+					<Input
+						value="{Email}"
+						id="inputEmail"
+						editable="false"
+						placeholder="Enter email"
+						class="sapUiSmallMarginBottom"
+					/>
+					<Label
+						text="Service Unit"
+						labelFor="inputSU"
+					/>
+					<Input
+						value="{Su}"
+						id="inputSU"
+						editable="false"
+						placeholder="Enter service unit"
+						class="sapUiSmallMarginBottom"
+					/>
+					<Label
+						text="Fiscal year"
+						labelFor="inputFiscalYear"
+					/>
+					<Input
+						value="{FiscalYear}"
+						id="inputFiscalYear"
+						editable="false"
+						class="sapUiSmallMarginBottom"
+					/>
+					<Label
+						text="Project name"
+						labelFor="selectProjectName"
+						required="true"
+					/>
+					<Select
+						forceSelection="false"
+						id="selectProjectName"
+						change="onProjectChange"
+						items="{toProjects}"
+					>
+						<core:ListItem
+							key="{ProjectId}"
+							text="{ProjectName}"
+						/>
+					</Select>
+				</VBox>
+				<VBox id="selectManagerInfoContainer">
+					<Label
+						text="Responsible manager"
+						labelFor="selectManager"
+						required="true"
+					/>
+					<Select
+						forceSelection="false"
+						id="selectManager"
+						items="{toManagers}"
+					>
+						<core:ListItem
+							key="{Username}"
+							text="{Username}"
+						/>
+					</Select>
+				</VBox>
+			</VBox>
+		</content>
 		<footer>
- 			<Bar>
-   				<contentRight>
-      				<Button
-           				text="Send request"
-            			press=".onSendRequest"
-            			class="myCustomButton"
+			<Bar>
+				<contentRight>
+					<Button
+						text="Send request"
+						press="onSendRequest"
+						class="myCustomButton"
 						icon="sap-icon://paper-plane"
 					/>
-    			</contentRight>
-  			</Bar>
+				</contentRight>
+			</Bar>
 		</footer>
-
-    </Page>
-
+	</Page>
 </mvc:View>

@@ -13,16 +13,15 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-			var sUsername = this.getView().getModel("currentUser").getData();
 			this.getView().bindElement({
-				path: "/UserPassSet('" + sUsername + "')"
+				path: "/UserPassSet('" + this.getCurrentUser() + "')"
 			});
 
 			this._aFilter = [];
 			this._aFilter.push(new Filter({
 				filters: [
-					new Filter("ToUser", FilterOperator.EQ, sUsername),
-					new Filter("FromUser", FilterOperator.EQ, sUsername),
+					new Filter("ToUser", FilterOperator.EQ, this.getCurrentUser()),
+					new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser()),
 				],
 				and: true,
 			}));

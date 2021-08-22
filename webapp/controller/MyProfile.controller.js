@@ -14,17 +14,14 @@ sap.ui.define([
 					{
 						Id: "1",
 						Name: "Consultant"
-
 					},
 					{
 						Id: "2",
 						Name: "Senior Consultant"
-
 					},
 					{
 						Id: "3",
 						Name: "Manager"
-
 					},
 					{
 						Id: "4",
@@ -46,7 +43,7 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-			var sUsername = this.getView().getModel("currentUser").getData();
+			var sUsername = this.getCurrentUser();
 			this.getView().bindElement({
 				path: "/UserPassSet('" + sUsername + "')"
 			});
@@ -67,11 +64,11 @@ sap.ui.define([
 			});
 		},
 
-		_setFieldsState: function(state) {
-			this.getView().byId("inputName").setEditable(state);
-			this.getView().byId("inputEmail").setEditable(state);
-			this.getView().byId("inputTel").setEditable(state);
-			this.getView().byId("inputSU").setEditable(state);
+		_setFieldsState: function (bState) {
+			this.getView().byId("inputName").setEditable(bState);
+			this.getView().byId("inputEmail").setEditable(bState);
+			this.getView().byId("inputTel").setEditable(bState);
+			this.getView().byId("inputSU").setEditable(bState);
 		},
 
 		onEdit: function (oEvent) {

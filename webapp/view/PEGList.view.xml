@@ -60,6 +60,9 @@
 						<Column width="12em">
 							<Text text="Status"/>
 						</Column>
+						<Column width="12em">
+							<Text text="Request Date"/>
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem
@@ -78,6 +81,10 @@
 									path: 'Status',
 									formatter: '.formatter.pegStatus'
 									}"/>
+								<Text text="{
+									path: 'SentAt',
+									formatter: '.formatter.timestamp'
+								}"/>
 							</cells>
 						</ColumnListItem>
 					</items>

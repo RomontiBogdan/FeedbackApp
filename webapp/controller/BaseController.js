@@ -19,6 +19,10 @@ sap.ui.define([
         getRouter: function () {
            // return sap.ui.core.UIComponent.getRouterFor(this);
            var oRouter = this.getOwnerComponent().getRouter();
+        },
+
+        getCurrentUser: function() {
+            return this.getView().getModel("currentUser").getData();
         }
     
     });

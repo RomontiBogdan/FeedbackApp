@@ -25,7 +25,7 @@ sap.ui.define([
 						var oUserDetail = this.getView().byId("userContainer");
 						var sUsername = oData.getParameter("data").ToUser;
 						oUserDetail.bindElement({ path: "/UserPassSet('" + sUsername + "')" });
-						
+
 						var oProjectDetail = this.getView().byId("projectContainer");
 						var sProjectId = oData.getParameter("data").ProjectId;
 						oProjectDetail.bindElement({ path: "/ProjectDetailsSet('" + sProjectId + "')" });
@@ -33,19 +33,44 @@ sap.ui.define([
 						var oCriteriaTable = this.getView().byId("pegTable");
 						oCriteriaTable.bindElement({ path: "/PegReqSet(" + sFeedbackId + ")" })
 
-						this._checkEvaluator(oData.getParameter("data").FromUser);
+						this._checkEvaluator(oData.getParameter("data").FromUser, sFeedbackId);
 					}.bind(this)
 				}
 			});
 		},
 
-		_checkEvaluator: function(sEvaluator) {
-			if(sEvaluator !== this.getView().getModel("currentUser").getData()) {
+		_checkEvaluator: function (sEvaluator, sFeedbackId) {
+			if (sEvaluator !== this.getCurrentUser()) {
 				this.byId("gradeIndicator").setEnabled(false);
 				this.byId("recommendationInput").setEnabled(false);
 				this.byId("submitChangesButton").setVisible(false);
 				this.byId("completedCheckBox").setVisible(false);
+			} else {
+				this._currentPegStatus(sFeedbackId).then(function (bReturnedValue) {
+					if (bReturnedValue) {
+						var oModel = this.getView().byId("pegContainer").getModel();
+						oModel.update("/PegReqSet(" + sFeedbackId + ")", { Status: "1" }, {
+							merge: true,
+							success: function () {
+								sap.m.MessageToast.show("This PEG is now on Pending!");
+							}
+						});
+					}
+				}.bind(this))
 			}
+		},
+
+		// check if current peg status is new or not
+		// returns: true if new ("0"); otherwhise false
+		_currentPegStatus: function (sFeedbackId) {
+			var oModel = this.getOwnerComponent().getModel();
+			return new Promise(function (resolve, reject) {
+				oModel.read("/PegReqSet(" + sFeedbackId + ")", {
+					success: function (oData) {
+						resolve(oData.Status === "0")
+					}
+				})
+			})
 		},
 		_createColumnConfig: function () {
 			return [
@@ -214,7 +239,7 @@ sap.ui.define([
 			this.navBack();
 		},
 
-		onSubmitChanges: function(oEvent) {
+		onSubmitChanges: function (oEvent) {
 
 		}
 

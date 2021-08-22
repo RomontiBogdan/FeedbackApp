@@ -1,16 +1,12 @@
 sap.ui.define(
   [
     "../controller/BaseController",
-    "sap/ui/core/routing/History",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageBox",
-    "sap/ui/model/odata/type/DateTime"
+    "sap/m/MessageBox"
   ],
   function (BaseController,
-    History,
     JSONModel,
-    MessageBox,
-    DateTime) {
+    MessageBox) {
     "use strict";
     return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
@@ -34,13 +30,6 @@ sap.ui.define(
 
         var oModel = new JSONModel(oData);
         this.getView().setModel(oModel, "newFeedbackModel");
-
-        var oRouter = this.getOwnerComponent().getRouter();
-        oRouter.getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
-      },
-
-      _onObjectMatched: function (oEvent) {
-        this._sUsername = this.getView().getModel("currentUser").getData();
       },
 
       onNavBack: function () {
@@ -74,12 +63,12 @@ sap.ui.define(
 
         var params = {
           FeedbackId: "0",
-          FromUser: this._sUsername,
+          FromUser: this.getCurrentUser(),
           ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
           Description: this.byId("inputDescription").getValue(),
           ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),
           SentAt: new Date(),
-          Type: "",
+          Type: "X",
           Categories: this.byId("inputSkill").getSelectedItem() === null ? null : this.byId("inputSkill").getSelectedItem().getKey(),
           Rating: this.byId("inputRating").getValue().toString(),
           Anonymous: this.byId("AnonymousCB").getSelected() ? "X" : " "
@@ -94,7 +83,7 @@ sap.ui.define(
 
           oModel.create('/Feedback360Set', params, {
             success: function (oCreatedEntry) {
-              MessageBox.information("Succes", {
+              MessageBox.success("Feedback has been successfully sent!", {
                 onClose: function (oAction) {
                   if (oAction === "OK") {
                     var oRouter = this.getOwnerComponent().getRouter();
