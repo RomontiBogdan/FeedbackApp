@@ -230,6 +230,7 @@
 				</contentLeft>
 				<contentRight>
 					<Button
+						id="exportButton"
 						text="Export to excel"
 						class="myCustomButton"
 						press="onExport"
