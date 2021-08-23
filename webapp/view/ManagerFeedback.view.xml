@@ -52,7 +52,10 @@
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Current Career Level"
-							subheader="{CareerLevel}"
+							subheader="{
+								path: 'CareerLevel',
+								formatter: '.formatter.careerLevel'
+							}"
 							frameType="Auto"
 						>
 							<TileContent>

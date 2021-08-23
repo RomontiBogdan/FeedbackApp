@@ -107,12 +107,12 @@ sap.ui.define([
 
         var fiscal_year = this.getView().byId("userContainer").getBindingContext().getObject().FiscalYear;
         var personnel_number = this.getView().byId("userContainer").getBindingContext().getObject().PersonalNo;
-        var career_lvl = this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel;
+        var career_lvl = formatter.careerLevel(this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel);
         var SU = this.getView().byId("userContainer").getBindingContext().getObject().Su;
-        var peg_Date = this.getView().byId("pegContainer").getBindingContext().getObject().SentAt;
+        var peg_Date = formatter.timestamp(this.getView().byId("pegContainer").getBindingContext().getObject().SentAt);
         var project_ID = this.getView().byId("pegContainer").getBindingContext().getObject().ProjectId;
         var evaluator_name = this.getView().byId("pegContainer").getBindingContext().getObject().FromUser;
-        var days_eval = this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated;
+        var days_eval = formatter.daysEvaluated(this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated);
         var customer_name = this.getView().byId("projectContainer").getBindingContext().getObject().Customer;
         var project_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName;
         var project_man_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectManager;
