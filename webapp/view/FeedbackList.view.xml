@@ -8,24 +8,14 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
-		<footer>
-			<Bar>
-				<contentRight>
-					<Button
-						text="New Feedback"
-						press=".onNewFeedback"
-						class="myCustomButton"
-						icon="sap-icon://add"
-					/>
-				</contentRight>
-			</Bar>
-		</footer>
+		
+		
 		<IconTabBar
 			id="FeedbackTabBar"
 			select=".onFilterSelect"
 			class="sapUiResponsiveContentPadding"
-			expandable="false"
-		>
+			expandable="false">
+
 			<items>
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
@@ -46,8 +36,11 @@
 					text="Received"
 					key="Received"
 				/>
+				
+				
 			</items>
 			<content>
+			
 				<Table
 					id="feedbackTable"
 					items="{
@@ -105,7 +98,36 @@
 						</ColumnListItem>
 					</items>
 				</Table>
+				
 			</content>
 		</IconTabBar>
+		
+		
+
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button
+						text="New Feedback"
+						press=".onNewFeedback"
+						class="myCustomButton"
+						icon="sap-icon://add"
+						
+					/>
+
+					<Button
+						text="My team"
+						press=".onMyTeam"
+						class="myCustomButton"
+						icon="sap-icon://group"
+						align = "Left"
+						
+					/>
+
+								
+				</contentRight>
+			</Bar>
+		</footer>
+		
 	</Page>
 </mvc:View>
