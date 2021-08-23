@@ -33,6 +33,12 @@ sap.ui.define([
                   oCriteriaTable.bindElement({ path: "/PegReqSet(" + sFeedbackId + ")" })
 
                   this._checkEvaluator(oData.getParameter("data").FromUser, sFeedbackId);
+
+				 if(oData.getParameter("data").Status !== "2")
+		 			this.getView().byId("exportButton").setVisible(false);
+				 else
+				 	this.getView().byId("exportButton").setVisible(true);
+				
                }.bind(this)
             }
          });
@@ -99,23 +105,50 @@ sap.ui.define([
 
       _fillModel: function () {
 
-         var fiscal_year = this.getView().byId("userContainer").getBindingContext().getObject().FiscalYear;
-         var personnel_number = this.getView().byId("userContainer").getBindingContext().getObject().PersonalNo;
-         var career_lvl = this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel;
-         var SU = this.getView().byId("userContainer").getBindingContext().getObject().Su;
-         var peg_Date = this.getView().byId("pegContainer").getBindingContext().getObject().SentAt;
-         var project_ID = this.getView().byId("pegContainer").getBindingContext().getObject().ProjectId;
-         var evaluator_name = this.getView().byId("pegContainer").getBindingContext().getObject().FromUser;
-         var days_eval = this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated;
-         var customer_name = this.getView().byId("projectContainer").getBindingContext().getObject().Customer;
-         var project_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName;
-         var project_man_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectManager;
-         var ratingPIE, descrPIE, recomPIE;
-         var ratingPPM, descrPPM, recomPPM;
-         var ratingSF, descrSF, recomSF;
-         var ratingCF, descrCF, recomCF;
-         var ratingEF, descrEF, recomEF;
-         var ratingFE, descrFE, recomFE;
+        var fiscal_year = this.getView().byId("userContainer").getBindingContext().getObject().FiscalYear;
+        var personnel_number = this.getView().byId("userContainer").getBindingContext().getObject().PersonalNo;
+        var career_lvl = this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel;
+        var SU = this.getView().byId("userContainer").getBindingContext().getObject().Su;
+        var peg_Date = this.getView().byId("pegContainer").getBindingContext().getObject().SentAt;
+        var project_ID = this.getView().byId("pegContainer").getBindingContext().getObject().ProjectId;
+        var evaluator_name = this.getView().byId("pegContainer").getBindingContext().getObject().FromUser;
+        var days_eval = this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated;
+        var customer_name = this.getView().byId("projectContainer").getBindingContext().getObject().Customer;
+        var project_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName;
+        var project_man_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectManager;
+
+
+		var iRowIndex = 0;  //For First row in the table
+		var oTable = this.getView().byId("pegTable"),
+			oModel = oTable.getModel(),
+			aItems = oTable.getItems();
+
+		if(iRowIndex < aItems.length){
+		oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext());
+		}
+         var ratingPIE = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
+		 var descrPIE = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
+		 var recomPIE = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
+		 iRowIndex++;
+		 var ratingPPM = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
+		 var descrPPM = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
+		 var recomPPM = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
+		 iRowIndex++;
+		 var ratingSF = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
+		 var descrSF = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
+		 var recomSF = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
+		 iRowIndex++;
+		 var ratingCF = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
+		 var descrCF = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
+		 var recomCF = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
+		 iRowIndex++;
+		 var ratingEF = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
+		 var descrEF = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
+		 var recomEF = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
+		 iRowIndex++;
+		 var ratingFE = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
+		 var descrFE = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
+		 var recomFE = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
 
          var oViewModel = new JSONModel([{
             Descr: "Fiscal year",
