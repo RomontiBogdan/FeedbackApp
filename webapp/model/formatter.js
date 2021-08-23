@@ -100,6 +100,23 @@ sap.ui.define([], function () {
             case "6":
                return "Focus on Excellence";
          }
-      }
+      },
+
+	  careerLevel: function(sLevel){
+		switch (sLevel) {
+			case "0":
+				return "Junior Consultant";
+            case "1":
+               return "Consultant";
+            case "2":
+               return "Senior Consultant";
+            case "3":
+               return "Manager";
+            case "4":
+               return "Senior Manager";
+            case "5":
+               return "Lead Manager";
+         }
+	  }
    };
 });

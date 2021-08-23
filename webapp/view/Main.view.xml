@@ -3,8 +3,40 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<Page title="User">
+	<Page title="Main Menu">
+		<headerContent>
+			<Button 
+			text="My Profile"
+			icon="sap-icon://account"
+			press=".onProfile"/>
+			<Button 
+			tooltip="Log Out"
+			type="Emphasized"
+			icon="sap-icon://visits"
+			press=".onLogOut"/>
+		</headerContent>
 		<FlexBox
+				fitContainer="true"
+				alignItems="Center"
+				justifyContent="Center">
+				<GenericTile
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					header="PEG"
+					mode="HeaderMode"
+					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
+					frameType="TwoByOne"
+					press=".onPEG"
+				/>
+				<GenericTile
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					header="Feedback"
+					mode="HeaderMode"
+					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
+					frameType="TwoByOne"
+					press=".onFeedback"
+				/>
+		</FlexBox>
+		<!-- <FlexBox
 			alignItems="Center"
 			justifyContent="Center"
 		>
@@ -36,6 +68,6 @@
 					/>
 				</content>
 			</Panel>
-		</FlexBox>
+		</FlexBox> -->
 	</Page>
 </mvc:View>
