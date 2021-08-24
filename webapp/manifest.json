@@ -147,6 +147,11 @@
                "pattern": "myteam",
                "name": "myteam",
                "target": "myteam"
+            },
+            {
+               "pattern": "newteamfeedback",
+               "name": "newteamfeedback",
+               "target": "newteamfeedback"
             }
          ],
          "targets": {
@@ -197,6 +202,10 @@
             "myteam": {
                "viewId": "myteam",
                "viewName": "MyTeamFeedback"
+            },
+            "newteamfeedback": {
+               "viewId": "newteamfeedback",
+               "viewName": "NewTeamFeedback"
             }
          }
       }
