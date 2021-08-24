@@ -35,10 +35,10 @@ sap.ui.define([
          this.navBack();
       },
 
-      onPress: function (oEvent) {
-         var oRouter = this.getOwnerComponent().getRouter();
-         oRouter.navTo("managerFeedback");
-      },
+      // onPress: function (oEvent) {
+      //    var oRouter = this.getOwnerComponent().getRouter();
+      //    oRouter.navTo("managerFeedback");
+      // },
 
       onFilterEmployee: function (oEvent) {
          var aFilter = [];
@@ -101,6 +101,9 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
       },
+
+
+
 
       onPegPress: function (oEvent) {
          var oItem = oEvent.getSource();

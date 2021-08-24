@@ -8,6 +8,101 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
-		
+
+
+		<IconTabBar
+			id="PegTabBarManager"
+			select=".onFilterSelect"
+			class="sapUiResponsiveContentPadding"
+			expandable="false"
+		>
+			<items>
+				<IconTabFilter
+					icon="sap-icon://multiselect-all"
+					iconColor="Neutral"
+					text="All Feedbacks"
+					key="All"
+				/>
+				<IconTabSeparator/>
+				<IconTabFilter
+					icon="sap-icon://back-to-top"
+					iconColor="Critical"
+					text="Sent"
+					key="Sent"
+				/>
+				<IconTabFilter
+					icon="sap-icon://download"
+					iconColor="Positive"
+					text="Received"
+					key="Received"
+				/>
+				
+				
+			</items>
+			<content>
+				<Table
+					id="MyTeamTable"
+					items="{
+						path: '/PegReqSet'
+					}"
+				>
+					<columns>
+						
+						<Column width="12em">
+							<Text text="From Manager"/>
+						</Column>
+						<Column width="12em">
+							<Text text="To Employee"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Project"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Rating"/>
+						</Column>
+						<Column width="12em">
+							<Text text="Sent Date"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem
+							type="Navigation"
+							press=".onPegPress"
+							highlight="{
+								path: 'Status',
+								formatter: '.formatter.highlightStatus'
+							}"
+						>
+							<cells>
+								<ObjectIdentifier text="{FromUser}"/>
+								<ObjectIdentifier text="{ToUser}"/>
+								<Text text="{ProjectId}"/>
+
+								<Text text="{
+									path: 'Status',
+									formatter: '.formatter.pegStatus'
+								}"/>
+								<Text text="{
+									path: 'SentAt',
+									formatter: '.formatter.timestamp'
+								}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</IconTabBar>
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button
+						text="New Feedback"
+						press=".onNewFeedback"
+						class="myCustomButton"
+						icon="sap-icon://add"
+					/>			
+				</contentRight>
+			</Bar>
+		</footer>
 	</Page>
 </mvc:View>
