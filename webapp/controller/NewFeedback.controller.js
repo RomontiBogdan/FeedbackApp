@@ -68,7 +68,7 @@ sap.ui.define(
                Description: this.byId("inputDescription").getValue(),
                ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),
                SentAt: new Date(),
-               Type: "X",
+               Type: "1",
                Categories: this.byId("inputSkill").getSelectedItem() === null ? null : this.byId("inputSkill").getSelectedItem().getKey(),
                Rating: this.byId("inputRating").getValue().toString(),
                Anonymous: this.byId("AnonymousCB").getSelected() ? "X" : " "

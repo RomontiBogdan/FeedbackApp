@@ -48,7 +48,7 @@ sap.ui.define([
             Description: "",
             ProjectId: this.byId("selectProjectName").getSelectedItem() === null ? null : this.byId("selectProjectName").getSelectedItem().getKey(),
             SentAt: new Date(),
-            Type: "",
+            Type: "0",
             Status: "0"
          }
          var exceptions = this._validateData(params);

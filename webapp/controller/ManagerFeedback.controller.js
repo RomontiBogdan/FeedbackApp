@@ -77,6 +77,7 @@ sap.ui.define([
             })
          })
       },
+      
       _createColumnConfig: function () {
          return [
             {
