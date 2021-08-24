@@ -1,0 +1,93 @@
+<mvc:View
+	controllerName="sap.ui.demo.walkthrough.controller.ReviewTeamMember"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+>
+	<Page
+		title="Complete Feedback"
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+	>
+		<Panel height="220px">
+			<content>
+				<VBox
+					alignItems="Center"
+					width="100%"
+				>
+					<HBox>
+                        <VBox
+					    alignItems="Left"
+					    width="100%"
+				        >
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Manager who demanded feedback"
+							frameType="TwoByHalf"
+                            headerImage="sap-icon://manager"
+						>
+						</GenericTile>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Employee reviewed"
+                            subheader="{ToUser}"
+							frameType="TwoByHalf"
+                            headerImage="sap-icon://employee"
+						>
+						</GenericTile>
+                        </VBox>
+                        <VBox
+					    alignItems="Center"
+					    width="100%"
+				        >
+						<GenericTile
+							class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Project ID"
+							subheader="{
+                        				path: 'ProjectId',
+                       					formatter: '.formatter.projectID_optional'
+                    				}"
+							frameType="TwoByHalf"
+                            headerImage="sap-icon://group"
+						>
+						</GenericTile>
+                        <Label text="Give a grade"/>
+                        <RatingIndicator id="RatingTeamMember" maxValue="4" value="0" iconSize="32px" tooltip="Rating Tooltip" />
+                        </VBox>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Sent At"
+							subheader="{
+										path: 'SentAt',
+										formatter: '.formatter.timestamp'
+									}"
+							frameType="TwoByOne"
+                            headerImage="sap-icon://date-time"
+						>
+						</GenericTile>
+					</HBox>
+				</VBox>
+			</content>
+		</Panel>
+        <TextArea
+                class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
+				placeholder="Enter feedback description"
+				editable="true"
+				growing="true"
+				growingMaxLines="7"
+				width="95%"
+				height="60%"
+		/>
+        <footer>
+			<Bar>
+				<contentRight>
+					<Button
+						text="Send Feedback"
+						press=".onSendFeedback"
+						class="myCustomButton"
+						icon="sap-icon://paper-plane"
+					/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

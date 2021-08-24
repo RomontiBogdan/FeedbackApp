@@ -152,6 +152,11 @@
                "pattern": "newteamfeedback",
                "name": "newteamfeedback",
                "target": "newteamfeedback"
+            },
+            {
+               "pattern": "reviewteammember/{feedbackID}",
+               "name": "reviewteammember",
+               "target": "reviewteammember"
             }
          ],
          "targets": {
@@ -206,6 +211,10 @@
             "newteamfeedback": {
                "viewId": "newteamfeedback",
                "viewName": "NewTeamFeedback"
+            },
+            "reviewteammember": {
+               "viewId": "reviewteammember",
+               "viewName": "ReviewTeamMember"
             }
          }
       }
