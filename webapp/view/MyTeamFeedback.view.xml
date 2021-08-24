@@ -9,7 +9,6 @@
 		navButtonPress=".onNavBack"
 	>
 
-
 		<IconTabBar
 			id="PegTabBarManager"
 			select=".onFilterSelect"
@@ -21,29 +20,32 @@
 					icon="sap-icon://multiselect-all"
 					iconColor="Neutral"
 					text="All Feedbacks"
-					key="All"
+					key="allpegs"
 				/>
-				<IconTabSeparator/>
 				<IconTabFilter
-					icon="sap-icon://back-to-top"
+					icon="sap-icon://add-document"
+					iconColor="Negative"
+					text="New"
+					key="New"
+				/>
+				<IconTabFilter
+					icon="sap-icon://pending"
 					iconColor="Critical"
-					text="Sent"
-					key="Sent"
+					text="Pending"
+					key="Pending"
 				/>
 				<IconTabFilter
-					icon="sap-icon://download"
+					icon="sap-icon://accept"
 					iconColor="Positive"
-					text="Received"
-					key="Received"
+					text="Completed"
+					key="Completed"
 				/>
-				
-				
 			</items>
 			<content>
 				<Table
 					id="MyTeamTable"
 					items="{
-						path: '/PegReqSet'
+						path: '/FeedbackTeamSet'
 					}"
 				>
 					<columns>
@@ -58,6 +60,9 @@
 							<Text text="Project"/>
 						</Column>
 						<Column width="12em">
+							<Text text="Status"/>
+						</Column>
+						<Column width="12em">
 							<Text text="Rating"/>
 						</Column>
 						<Column width="12em">
@@ -67,25 +72,31 @@
 					<items>
 						<ColumnListItem
 							type="Navigation"
-							press=".onPegPress"
 							highlight="{
 								path: 'Status',
 								formatter: '.formatter.highlightStatus'
-							}"
-						>
-							<cells>
-								<ObjectIdentifier text="{FromUser}"/>
-								<ObjectIdentifier text="{ToUser}"/>
-								<Text text="{ProjectId}"/>
+							}">
+						
 
+							<cells>
+								<Text text="{FromUser}"/>
+								<Text text="{ToUser}"/>
+								<Text text="{ProjectId}"/>
 								<Text text="{
 									path: 'Status',
 									formatter: '.formatter.pegStatus'
 								}"/>
+
+								<Text text="{
+									path: 'Rating',
+									formatter: '.formatter.feedbackRating'
+								}"/>
+
 								<Text text="{
 									path: 'SentAt',
 									formatter: '.formatter.timestamp'
 								}"/>
+
 							</cells>
 						</ColumnListItem>
 					</items>
