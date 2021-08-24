@@ -30,7 +30,7 @@ sap.ui.define([
          var oList = this.byId("feedbackTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._sFilter);
-      },
+       },
 
       onNavBack: function () {
          this.navBack();

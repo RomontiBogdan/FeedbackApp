@@ -40,6 +40,7 @@ sap.ui.define([
       //    oRouter.navTo("managerFeedback");
       // },
 
+
       onFilterEmployee: function (oEvent) {
          var aFilter = [];
          var sQuery = oEvent.getParameter("query");
@@ -101,8 +102,6 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
       },
-
-
 
 
       onPegPress: function (oEvent) {
