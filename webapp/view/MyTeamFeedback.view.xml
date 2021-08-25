@@ -72,6 +72,7 @@
 					<items>
 						<ColumnListItem
 							type="Navigation"
+							press = "onPressTeamFeedback"
 							highlight="{
 								path: 'Status',
 								formatter: '.formatter.highlightStatus'
