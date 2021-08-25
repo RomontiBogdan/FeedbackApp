@@ -1,5 +1,5 @@
 sap.ui.define([
-   "./BaseController",
+   "../controller/BaseController",
    "../model/formatter",
    "sap/ui/model/Filter",
    "sap/ui/model/FilterOperator"
@@ -10,6 +10,10 @@ sap.ui.define([
       onInit: function () {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.getRoute("myteam").attachPatternMatched(this._onObjectMatched, this);
+         if(this.getUserCareerLevel() !== "5")
+            this.getView().byId("buttonbar").setVisible(false);
+         else
+         this.getView().byId("buttonbar").setVisible(true);
       },
 
       _onObjectMatched: function (oEvent) {
@@ -18,10 +22,14 @@ sap.ui.define([
          });
 
          this._aFilter = [];
+         var sCriteria;
+         if(this.getView().byId("myteambutton").getType() == "Emphasized")
+            sCriteria = "Manager";
+         else
+            sCriteria = "FromUser";
          this._aFilter.push(new Filter({
             filters: [
-               new Filter("Manager", FilterOperator.EQ, this.getCurrentUser()),
-               
+               new Filter(sCriteria, FilterOperator.EQ, this.getCurrentUser()),
             ],
             and: true,
          }));
@@ -71,9 +79,31 @@ sap.ui.define([
      {
       var oRouter = this.getOwnerComponent().getRouter();
       oRouter.navTo("newteamfeedback"); 
-     }
+     },
 
+     onMyTeam: function(oEvent)
+      {
+         this.getView().byId("myteambutton").setType("Emphasized");
+         this.getView().byId("otherteamsbutton").setType("Default");
+         var auxFilter = this._aFilter[0];
+         auxFilter.aFilters[0] = new Filter("Manager", FilterOperator.EQ, this.getCurrentUser());
 
+         var oList = this.byId("MyTeamTable");
+         var oBinding = oList.getBinding("items");
+         oBinding.filter(auxFilter);
+      },
+
+     onOtherTeams: function(oEvent)
+      {
+         this.getView().byId("otherteamsbutton").setType("Emphasized");
+         this.getView().byId("myteambutton").setType("Default");
+         var auxFilter = this._aFilter[0];
+         auxFilter.aFilters[0] = new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser());
+
+         var oList = this.byId("MyTeamTable");
+         var oBinding = oList.getBinding("items");
+         oBinding.filter(auxFilter);
+      }
      
    });
 });
