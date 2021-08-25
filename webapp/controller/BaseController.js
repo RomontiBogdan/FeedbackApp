@@ -18,12 +18,15 @@ sap.ui.define([
 
       getRouter: function () {
          // return sap.ui.core.UIComponent.getRouterFor(this);
-         var oRouter = this.getOwnerComponent().getRouter();
+         return this.getOwnerComponent().getRouter();
       },
 
       getCurrentUser: function () {
          return this.getView().getModel("currentUser").getData();
-      }
+      },
 
+      errorText: function () {
+         return JSON.parse(oError.responseText).error.message.value
+      }
    });
 });

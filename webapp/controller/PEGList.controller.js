@@ -102,9 +102,6 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
-
-
-
       onPegPress: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
@@ -116,7 +113,6 @@ sap.ui.define([
 
       onNewRequest: function (oEvent) {
          var oRouter = this.getOwnerComponent().getRouter();
-         this.getView().getModel().read("/")
          oRouter.navTo("requestpeg");
       },
    });

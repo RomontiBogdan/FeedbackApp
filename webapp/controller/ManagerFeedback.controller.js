@@ -9,16 +9,36 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
       formatter: formatter,
       onInit: function () {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oData = {
+            EvaluatedDays: [
+               {
+                  Id: "0",
+                  Name: "Less than 90 days",
+               },
+               {
+                  Id: "1",
+                  Name: "Between 90 and 180 days",
+               },
+               {
+                  Id: "2",
+                  Name: "More than 180 days",
+               },
+            ],
+         };
+
+         var oModel = new JSONModel(oData);
+         this.getView().setModel(oModel, "DaysEvaluatedModel");
+
+         var oRouter = this.getRouter();
          oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
       },
 
       _onObjectMatched: function (oEvent) {
-         var sFeedbackId = oEvent.getParameter("arguments").pegID;
+         this.sFeedbackId = oEvent.getParameter("arguments").pegID;
          var oDetailPEG = this.getView().byId("pegContainer");
 
          oDetailPEG.bindElement({
-            path: "/PegReqSet(" + sFeedbackId + ")",
+            path: "/PegReqSet(" + this.sFeedbackId + ")",
             events: {
                dataReceived: function (oData) {
                   var oUserDetail = this.getView().byId("userContainer");
@@ -30,34 +50,34 @@ sap.ui.define([
                   oProjectDetail.bindElement({ path: "/ProjectDetailsSet('" + sProjectId + "')" });
 
                   var oCriteriaTable = this.getView().byId("pegTable");
-                  oCriteriaTable.bindElement({ path: "/PegReqSet(" + sFeedbackId + ")" })
+                  oCriteriaTable.bindElement({ path: "/PegReqSet(" + this.sFeedbackId + ")" })
 
-                  this._checkEvaluator(oData.getParameter("data").FromUser, sFeedbackId);
+                  var oFieldsForUpdate = this.getView().byId("toUpdateFields");
+                  oFieldsForUpdate.bindElement({ path: "/PegReqSet(" + this.sFeedbackId + ")" })
 
-				 if(oData.getParameter("data").Status !== "2")
-		 			this.getView().byId("exportButton").setVisible(false);
-				 else
-				 	this.getView().byId("exportButton").setVisible(true);
-				
+                  this._checkEvaluator(oData.getParameter("data").FromUser);
+
+                  this.getView().byId("exportButton").setVisible(oData.getParameter("data").Status === "2");
                }.bind(this)
             }
          });
       },
 
-      _checkEvaluator: function (sEvaluator, sFeedbackId) {
+      _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== this.getCurrentUser()) {
             this.byId("gradeIndicator").setEnabled(false);
             this.byId("recommendationInput").setEnabled(false);
             this.byId("submitChangesButton").setVisible(false);
             this.byId("completedCheckBox").setVisible(false);
+            this.byId("daysEvaluatedSelect").setVisible(false);
          } else {
-            this._currentPegStatus(sFeedbackId).then(function (bReturnedValue) {
+            this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
-                  oModel.update("/PegReqSet(" + sFeedbackId + ")", { Status: "1" }, {
+                  oModel.update("/PegReqSet(" + this.sFeedbackId + ")", { Status: "1" }, {
                      merge: true,
                      success: function () {
-                        sap.m.MessageToast.show("This PEG is now on Pending!");
+                        MessageToast.show("This PEG is now on Pending!");
                      }
                   });
                }
@@ -67,17 +87,17 @@ sap.ui.define([
 
       // check if current peg status is new or not
       // returns: true if new ("0"); otherwhise false
-      _currentPegStatus: function (sFeedbackId) {
+      _currentPegStatus: function () {
          var oModel = this.getOwnerComponent().getModel();
-         return new Promise(function (resolve, reject) {
-            oModel.read("/PegReqSet(" + sFeedbackId + ")", {
+         return new Promise((resolve, reject) => {
+            oModel.read("/PegReqSet(" + this.sFeedbackId + ")", {
                success: function (oData) {
                   resolve(oData.Status === "0")
                }
             })
          })
       },
-      
+
       _createColumnConfig: function () {
          return [
             {
@@ -106,50 +126,50 @@ sap.ui.define([
 
       _fillModel: function () {
 
-        var fiscal_year = this.getView().byId("userContainer").getBindingContext().getObject().FiscalYear;
-        var personnel_number = this.getView().byId("userContainer").getBindingContext().getObject().PersonalNo;
-        var career_lvl = formatter.careerLevel(this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel);
-        var SU = this.getView().byId("userContainer").getBindingContext().getObject().Su;
-        var peg_Date = formatter.timestamp(this.getView().byId("pegContainer").getBindingContext().getObject().SentAt);
-        var project_ID = this.getView().byId("pegContainer").getBindingContext().getObject().ProjectId;
-        var evaluator_name = this.getView().byId("pegContainer").getBindingContext().getObject().FromUser;
-        var days_eval = formatter.daysEvaluated(this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated);
-        var customer_name = this.getView().byId("projectContainer").getBindingContext().getObject().Customer;
-        var project_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName;
-        var project_man_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectManager;
+         var fiscal_year = this.getView().byId("userContainer").getBindingContext().getObject().FiscalYear;
+         var personnel_number = this.getView().byId("userContainer").getBindingContext().getObject().PersonalNo;
+         var career_lvl = formatter.careerLevel(this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel);
+         var SU = this.getView().byId("userContainer").getBindingContext().getObject().Su;
+         var peg_Date = formatter.timestamp(this.getView().byId("pegContainer").getBindingContext().getObject().SentAt);
+         var project_ID = this.getView().byId("pegContainer").getBindingContext().getObject().ProjectId;
+         var evaluator_name = this.getView().byId("pegContainer").getBindingContext().getObject().FromUser;
+         var days_eval = formatter.daysEvaluated(this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated);
+         var customer_name = this.getView().byId("projectContainer").getBindingContext().getObject().Customer;
+         var project_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName;
+         var project_man_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectManager;
 
 
-		var iRowIndex = 0;  //For First row in the table
-		var oTable = this.getView().byId("pegTable"),
-			oModel = oTable.getModel(),
-			aItems = oTable.getItems();
+         var iRowIndex = 0;  // For First row in the table
+         var oTable = this.getView().byId("pegTable"),
+            oModel = oTable.getModel(),
+            aItems = oTable.getItems();
 
-		if(iRowIndex < aItems.length){
-		oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext());
-		}
-         var ratingPIE = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
-		 var descrPIE = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
-		 var recomPIE = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
-		 iRowIndex++;
-		 var ratingPPM = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
-		 var descrPPM = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
-		 var recomPPM = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
-		 iRowIndex++;
-		 var ratingSF = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
-		 var descrSF = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
-		 var recomSF = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
-		 iRowIndex++;
-		 var ratingCF = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
-		 var descrCF = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
-		 var recomCF = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
-		 iRowIndex++;
-		 var ratingEF = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
-		 var descrEF = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
-		 var recomEF = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
-		 iRowIndex++;
-		 var ratingFE = oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()) + " Stars";
-		 var descrFE = formatter.gradeDescription(oModel.getProperty("Grade",aItems[iRowIndex].getBindingContext()));
-		 var recomFE = oModel.getProperty("Recommendation",aItems[iRowIndex].getBindingContext());
+         if (iRowIndex < aItems.length) {
+            oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext());
+         }
+         var ratingPIE = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
+         var descrPIE = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
+         var recomPIE = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
+         iRowIndex++;
+         var ratingPPM = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
+         var descrPPM = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
+         var recomPPM = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
+         iRowIndex++;
+         var ratingSF = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
+         var descrSF = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
+         var recomSF = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
+         iRowIndex++;
+         var ratingCF = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
+         var descrCF = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
+         var recomCF = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
+         iRowIndex++;
+         var ratingEF = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
+         var descrEF = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
+         var recomEF = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
+         iRowIndex++;
+         var ratingFE = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
+         var descrFE = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
+         var recomFE = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
 
          var oViewModel = new JSONModel([{
             Descr: "Fiscal year",
@@ -267,14 +287,60 @@ sap.ui.define([
             .finally(oSheet.destroy);
       },
 
-
       onNavBack: function () {
+         var oModel = this.getView().byId("pegTable").getModel();
+         oModel.resetChanges();
          this.navBack();
       },
 
+      // update status and evaluated days
+      // if success: update criterias
       onSubmitChanges: function (oEvent) {
+         var oPegModel = this.byId("toUpdateFields").getModel();
+         oPegModel.update("/PegReqSet(" + this.sFeedbackId + ")", {
+            Status: this.byId("completedCheckBox").getSelected() ? "2" : "1",
+            DaysEvaluated: this.byId("daysEvaluatedSelect").getSelectedItem().getKey()
+         }, {
+            merge: true,
+            success: function () {
+               this._updateCriterias();
+            }.bind(this),
+            error: function (oError) {
+               this.errorText()
+            }
+         });
 
+         // toggle export button visibility
+         this.byId("exportButton").setVisible(this.byId("completedCheckBox").getSelected())
+      },
+
+      // update criterias
+      _updateCriterias: function () {
+         var oCriteriasModel = this.getView().byId("pegTable").getModel();
+         oCriteriasModel.setUseBatch(true);
+         Object.keys(oCriteriasModel.getPendingChanges()).forEach(sPath => {
+            // below method usage: setProperty(path, newValue)
+            // effect: to string property conversion
+            oCriteriasModel.setProperty("/" + sPath + "/Grade",
+               oCriteriasModel.getProperty("/" + sPath + "/Grade") + '')
+         })
+         this._criteriaBatchUpdate(oCriteriasModel)
+            .then(sResponse => MessageToast.show(sResponse))
+            .catch(sError => MessageToast.show(sError))
+            .finally(oCriteriasModel.setUseBatch(false))
+      },
+
+      _criteriaBatchUpdate: function (oModel) {
+         return new Promise((resolve, reject) => {
+            oModel.submitChanges();
+            oModel.attachRequestCompleted(function (oEvent) {
+               if (oEvent.getParameters("success")) {
+                  resolve("The information was updated successfully!");
+               } else {
+                  reject("Update failed!")
+               }
+            });
+         })
       }
-
    });
 });
