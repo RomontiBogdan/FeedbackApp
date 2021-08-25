@@ -57,15 +57,21 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
-      // onPressTeamFeedback: function(oEvent)
-      // {
-      //    var oItem = oEvent.getSource();
-      //    var oBindingObject = oItem.getBindingContext().getObject();
-      //    var oRouter = this.getOwnerComponent().getRouter();
-      //    oRouter.navTo("feedbackdetails", {
-      //       feedbackID: oBindingObject.FeedbackId
-      //    });
-      // }
+      onPressTeamFeedback: function(oEvent)
+      {
+         var oItem = oEvent.getSource();
+         var oBindingObject = oItem.getBindingContext().getObject();
+         var oRouter = this.getOwnerComponent().getRouter();
+         oRouter.navTo("reviewteammember", {
+            feedbackID: oBindingObject.FeedbackId
+         });
+      },
+
+      onNewFeedback :function()
+     {
+      var oRouter = this.getOwnerComponent().getRouter();
+      oRouter.navTo("newteamfeedback"); 
+     }
 
 
      
