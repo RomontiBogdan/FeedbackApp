@@ -105,7 +105,22 @@
 			</content>
 		</IconTabBar>
 		<footer>
-			<Bar>
+			<Bar id="buttonbar">
+				<contentLeft>
+					<Button
+						id="myteambutton"
+						text="My team"
+						press=".onMyTeam"
+						type="Emphasized"
+						icon="sap-icon://group"
+					/>
+                    <Button
+						id="otherteamsbutton"
+						text="Other teams"
+						press=".onOtherTeams"
+						icon="sap-icon://group"
+					/>
+				</contentLeft>
 				<contentRight>
 					<Button
 						text="New Feedback"

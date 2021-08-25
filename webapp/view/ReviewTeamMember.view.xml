@@ -83,7 +83,6 @@
 					<Button
 						text="Send Feedback"
 						press=".onSendFeedback"
-						class="myCustomButton"
 						icon="sap-icon://paper-plane"
 					/>
 				</contentRight>

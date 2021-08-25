@@ -23,6 +23,10 @@ sap.ui.define([
 
       getCurrentUser: function () {
          return this.getOwnerComponent().getModel("currentUser").getData();
+      },
+
+      getUserCareerLevel: function () {
+         return this.getOwnerComponent().getModel("userCareerLevel").getData();
       }
 
    });
