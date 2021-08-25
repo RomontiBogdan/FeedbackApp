@@ -29,11 +29,19 @@
 				/>
 				<GenericTile
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-					header="Feedback"
+					header="Feedback 360"
 					mode="HeaderMode"
 					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
 					press=".onFeedback"
+				/>
+				<GenericTile
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					header="Team Feedback"
+					mode="HeaderMode"
+					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
+					frameType="TwoByOne"
+					press=".onTeamFeedback"
 				/>
 		</FlexBox>
 		<!-- <FlexBox

@@ -40,46 +40,47 @@ sap.ui.define([
       //    oRouter.navTo("managerFeedback");
       // },
 
-      onFilterEmployee: function (oEvent) {
-         var aFilter = [];
-         var sQuery = oEvent.getParameter("query");
 
-         if (this.getView().byId("PendingSwitch").getState()) {
-            aFilter.push(new Filter({
-               filters: [
-                  new Filter("Status", FilterOperator.EQ, false),
-                  new Filter("Employee", FilterOperator.Contains, sQuery),
-               ],
-               and: true,
-            }));
-         }
-         else
-            aFilter.push(new Filter("Employee", FilterOperator.Contains, sQuery));
+      // onFilterEmployee: function (oEvent) {
+      //    var aFilter = [];
+      //    var sQuery = oEvent.getParameter("query");
 
-         var oList = this.byId("PegTableManager");
-         var oBinding = oList.getBinding("items");
-         oBinding.filter(aFilter);
-      },
+      //    if (this.getView().byId("PendingSwitch").getState()) {
+      //       aFilter.push(new Filter({
+      //          filters: [
+      //             new Filter("Status", FilterOperator.EQ, false),
+      //             new Filter("Employee", FilterOperator.Contains, sQuery),
+      //          ],
+      //          and: true,
+      //       }));
+      //    }
+      //    else
+      //       aFilter.push(new Filter("Employee", FilterOperator.Contains, sQuery));
 
-      onPendingFilter: function (oEvent) {
-         var aFilter = [];
-         var sInput = this.getView().byId("sfInput").getValue()
-         if (oEvent.getParameter("state") == true) {
-            aFilter.push(new Filter({
-               filters: [
-                  new Filter("Status", FilterOperator.EQ, false),
-                  new Filter("Employee", FilterOperator.Contains, sInput),
-               ],
-               and: true,
-            }));
-         }
-         else {
-            aFilter.push(new Filter("Employee", FilterOperator.Contains, sInput));
-         }
-         var oList = this.byId("PegTableManager");
-         var oBinding = oList.getBinding("items");
-         oBinding.filter(aFilter);
-      },
+      //    var oList = this.byId("PegTableManager");
+      //    var oBinding = oList.getBinding("items");
+      //    oBinding.filter(aFilter);
+      // },
+
+      // onPendingFilter: function (oEvent) {
+      //    var aFilter = [];
+      //    var sInput = this.getView().byId("sfInput").getValue()
+      //    if (oEvent.getParameter("state") == true) {
+      //       aFilter.push(new Filter({
+      //          filters: [
+      //             new Filter("Status", FilterOperator.EQ, false),
+      //             new Filter("Employee", FilterOperator.Contains, sInput),
+      //          ],
+      //          and: true,
+      //       }));
+      //    }
+      //    else {
+      //       aFilter.push(new Filter("Employee", FilterOperator.Contains, sInput));
+      //    }
+      //    var oList = this.byId("PegTableManager");
+      //    var oBinding = oList.getBinding("items");
+      //    oBinding.filter(aFilter);
+      // },
 
       onFilterSelect: function (oEvent) {
          var sKey = oEvent.getParameter("key");

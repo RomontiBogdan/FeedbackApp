@@ -120,6 +120,15 @@ sap.ui.define([], function () {
       },
       checkBoxStatus: function (sStatus) {
          return sStatus === "2"
-      }
+	  },
+
+	  projectID_optional: function(sId){
+		  if(sId)
+		  {
+			return sId;
+		  }
+		  else
+		  	return "Project not specified"
+	  }
    };
 });

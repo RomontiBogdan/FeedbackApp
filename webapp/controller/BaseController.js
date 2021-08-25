@@ -22,7 +22,11 @@ sap.ui.define([
       },
 
       getCurrentUser: function () {
-         return this.getView().getModel("currentUser").getData();
+         return this.getOwnerComponent().getModel("currentUser").getData();
+      },
+
+      getUserCareerLevel: function () {
+         return this.getOwnerComponent().getModel("userCareerLevel").getData();
       },
 
       errorText: function () {

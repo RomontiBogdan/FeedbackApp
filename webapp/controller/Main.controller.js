@@ -1,14 +1,20 @@
 sap.ui.define(
    [
-      "sap/ui/core/mvc/Controller",
+      "../controller/BaseController",
       "sap/m/MessageBox"
    ],
-   function (Controller, MessageBox) {
+   function (BaseController, MessageBox) {
       "use strict";
-      return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
+      return BaseController.extend("sap.ui.demo.walkthrough.controller.Main", {
 
          onInit: function () {
-
+            this.getView().bindElement({
+               path: "/UserPassSet('" + this.getCurrentUser() + "')",
+               events: {
+                  dataReceived: function (oData) {
+                     this.getOwnerComponent().getModel("userCareerLevel").setData(oData.getParameter("data").CareerLevel);               
+                  }.bind(this)
+            }});
          },
 
          onFeedback: function (oEvent) {
@@ -24,6 +30,11 @@ sap.ui.define(
          onPEG: function (oEvent) {
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("peglist");
+         },
+
+         onTeamFeedback: function (oEvent) {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("myteam");
          },
 
 

@@ -13,13 +13,13 @@ sap.ui.define([
          this.navBack();
       },
 
-      _onObjectMatched: function (oEvent) {
+      _onObjectMatched: function () {
          this.getView().byId("mainInfoContainer").bindElement({
             path: "/UserPassSet('" + this.getCurrentUser() + "')"
          });
       },
 
-      onProjectChange: function (oEvent) {
+      onProjectChange: function () {
          var SelectedItem = this.byId("selectProjectName").getSelectedItem().getKey();
          this.getView().byId("selectManagerInfoContainer").bindElement({
             path: "/UserProjectsSet(Username='',ProjectId='" + SelectedItem + "')"
@@ -40,7 +40,7 @@ sap.ui.define([
          return exceptions
       },
 
-      onSendRequest: function (oEvent) {
+      onSendRequest: function () {
          var params = {
             FeedbackId: "0",
             FromUser: this.byId("selectManager").getSelectedItem() === null ? null : this.byId("selectManager").getSelectedItem().getText(),
@@ -59,7 +59,7 @@ sap.ui.define([
             var oModel = this.getOwnerComponent().getModel();
 
             oModel.create('/PegReqSet', params, {
-               success: function (oCreatedEntry) {
+               success: function () {
                   MessageBox.success("PEG has been successfully requested!", {
                      onClose: function (oAction) {
                         if (oAction === "OK") {
