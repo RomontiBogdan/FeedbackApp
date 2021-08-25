@@ -8,7 +8,7 @@ sap.ui.define(
       return Controller.extend("sap.ui.demo.walkthrough.controller.Main", {
 
          onInit: function () {
-
+            
          },
 
          onFeedback: function (oEvent) {
@@ -24,6 +24,11 @@ sap.ui.define(
          onPEG: function (oEvent) {
             var oRouter = this.getOwnerComponent().getRouter();
             oRouter.navTo("peglist");
+         },
+
+         onTeamFeedback: function (oEvent) {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("myteam");
          },
 
 
