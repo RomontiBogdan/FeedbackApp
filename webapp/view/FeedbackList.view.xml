@@ -104,13 +104,7 @@
 						class="myCustomButton"
 						icon="sap-icon://add"
 					/>
-					<Button
-						text="My team"
-						press=".onMyTeam"
-						class="myCustomButton"
-						icon="sap-icon://group"
-						align="Left"
-					/>
+				
 				</contentRight>
 			</Bar>
 		</footer>
