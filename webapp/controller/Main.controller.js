@@ -32,6 +32,11 @@ sap.ui.define(
             oRouter.navTo("peglist");
          },
 
+         onTeamFeedback: function (oEvent) {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.navTo("myteam");
+         },
+
 
          onLogOut: function () {
             MessageBox.confirm("Are you sure you want to log out?", {

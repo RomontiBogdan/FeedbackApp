@@ -62,12 +62,8 @@ sap.ui.define([
          var oList = this.byId("feedbackTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
-      },
+      }
 
-	  onMyTeam: function()
-	  {
-		var oRouter = this.getOwnerComponent().getRouter();
-		oRouter.navTo("myteam");
-	  }
+	  
    });
 });
