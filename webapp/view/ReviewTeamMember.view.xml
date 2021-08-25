@@ -8,7 +8,7 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
-		<Panel height="220px">
+		<Panel height="230px">
 			<content>
 				<VBox
 					alignItems="Center"
