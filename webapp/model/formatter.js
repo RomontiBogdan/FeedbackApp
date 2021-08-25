@@ -117,6 +117,15 @@ sap.ui.define([], function () {
             case "5":
                return "Lead Manager";
          }
+	  },
+
+	  projectID_optional: function(sId){
+		  if(sId)
+		  {
+			return sId;
+		  }
+		  else
+		  	return "Project not specified"
 	  }
    };
 });
