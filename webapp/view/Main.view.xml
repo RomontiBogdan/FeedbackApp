@@ -3,10 +3,10 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<Page title="Main Menu">
+	<Page title="{i18n>MainPageTitle}">
 		<headerContent>
 			<Button 
-			text="My Profile"
+			text="{i18n>ProfileBtn}"
 			icon="sap-icon://account"
 			press=".onProfile"/>
 			<Button 
@@ -21,7 +21,7 @@
 				justifyContent="Center">
 				<GenericTile
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-					header="PEG"
+					header="{i18n>PEG}"
 					mode="HeaderMode"
 					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
@@ -29,7 +29,7 @@
 				/>
 				<GenericTile
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-					header="Feedback 360"
+					header="{i18n>Feedback}"
 					mode="HeaderMode"
 					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
@@ -37,7 +37,7 @@
 				/>
 				<GenericTile
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-					header="Team Feedback"
+					header="{i18n>TeamFeedback}"
 					mode="HeaderMode"
 					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
