@@ -106,19 +106,50 @@ sap.ui.define([
       },
 
       onUserFilter: function (oEvent) {
-			// add filter for search
-			var aFilters = [];
-			var sQuery = oEvent.getSource().getValue();
-			if (sQuery && sQuery.length > 0) {
-				var filter = new Filter("ToUser", FilterOperator.Contains, sQuery);
-				aFilters.push(filter);
-			}
+			
+		// 	var aFilter = [];
+      //    var sKey = oEvent.getParameter("key");
 
-			// update list binding
-			var oList = this.byId("yTeamTable");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilters, "Application");
-		},
+      //    //var auxFilter = this._aFilter[0];
+      //    //this._aFilter = [];
+
+			
+      // //   this._aFilter = [];
+      // //    if (sKey && sKey.length > 0) 
+      // //    { this._aFilter.push(new Filter({
+      // //       filters: [
+      // //          new Filter("ToUser", FilterOperator.Contains, sKey),              
+      // //       ],
+      // //       and: true,
+      // //    }));
+      // // }
+        
+		// 	if (sKey && sKey.length > 0) 
+      //    {
+      //      aFilter.push(new Filter("ToUser", FilterOperator.Contains, sKey));
+      //     // auxFilter.aFilters[1] = new Filter("ToUser", FilterOperator.Contains, sKey);
+      // 	}
+
+		// 	var oList = this.getView().byId("MyTeamTable");
+		// 	var oBinding = oList.getBinding("items");
+		// 	oBinding.filter(aFilter);
+
+      var auxFilter = this._aFilter[0];
+      var sKey = oEvent.getParameter("query");
+
+         //var lengthOfFilters = auxFilter.aFilters.length;
+         //auxFilter.aFilters[lengthOfFilters ] = new Filter("ToUser", FilterOperator.EQ, sKey);
+
+         
+            auxFilter.aFilters[2] = new Filter("ToUser", FilterOperator.EQ, sKey);
+         
+
+         
+ 
+         var oList = this.byId("MyTeamTable");
+         var oBinding = oList.getBinding("items");
+         oBinding.filter(auxFilter);
+		}
      
    });
 });

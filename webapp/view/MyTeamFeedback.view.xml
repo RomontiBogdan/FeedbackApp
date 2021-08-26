@@ -52,7 +52,7 @@
 				<Toolbar>
 					<ToolbarSpacer/>
 					<Title text = "Search by user:"/>
-					<SearchField id = "searchInput" width  = "30%" search = ".onUserFilter" placeholder = "Filter by User"/>
+					<SearchField id = "searchField" width  = "30%" search = ".onUserFilter" placeholder = "Filter by User"/>
 				</Toolbar>
 				</headerToolbar>
 
