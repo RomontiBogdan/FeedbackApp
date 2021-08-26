@@ -69,6 +69,7 @@
 			</content>
 		</Panel>
         <TextArea
+				id="ReviewTextArea"
                 class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
 				placeholder="Enter feedback description"
 				editable="true"

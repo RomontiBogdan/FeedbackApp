@@ -17,11 +17,35 @@ sap.ui.define([
        },
 
        _onObjectMatched: function (oEvent) {
+        var sFromUser
         var sFeedbackID = oEvent.getParameter("arguments").feedbackID;
         this.getView().bindElement({
-           path: "/Feedback360Set(" + sFeedbackID + ")"
-        });
-     }
+           path: "/Feedback360Set(" + sFeedbackID + ")",
+           events: {
+              dataReceived: function (oData) {
+                  sFromUser= oData.getParameter("data").FromUser; 
+                  this._restrictEditable(sFromUser);          
+              }.bind(this),
+              change: function(oData) { 
+                  sFromUser = this.getView().getModel().getProperty(oData.getSource().getBoundContext().sPath + "/FromUser");
+                  this._restrictEditable(sFromUser);
+              }.bind(this)
+        }});
+
+     },
+
+     _restrictEditable: function(sFromUser){
+         if(sFromUser == this.getCurrentUser())
+         {
+         this.getView().byId("ReviewTextArea").setEditable(true);
+         this.getView().byId("RatingTeamMember").setEditable(true);
+         }
+         else
+         {
+            this.getView().byId("ReviewTextArea").setEditable(false);
+            this.getView().byId("RatingTeamMember").setEditable(false);
+         }
+      }
  
     });
  });
