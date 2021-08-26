@@ -103,7 +103,22 @@ sap.ui.define([
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
-      }
+      },
+
+      onUserFilter: function (oEvent) {
+			// add filter for search
+			var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+			if (sQuery && sQuery.length > 0) {
+				var filter = new Filter("ToUser", FilterOperator.Contains, sQuery);
+				aFilters.push(filter);
+			}
+
+			// update list binding
+			var oList = this.byId("yTeamTable");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilters, "Application");
+		},
      
    });
 });
