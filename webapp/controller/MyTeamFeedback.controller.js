@@ -10,10 +10,6 @@ sap.ui.define([
       onInit: function () {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.getRoute("myteam").attachPatternMatched(this._onObjectMatched, this);
-         if(this.getUserCareerLevel() !== "5")
-            this.getView().byId("buttonbar").setVisible(false);
-         else
-         this.getView().byId("buttonbar").setVisible(true);
       },
 
       _onObjectMatched: function (oEvent) {
@@ -37,6 +33,11 @@ sap.ui.define([
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
+
+         if(this.getUserCareerLevel() !== "5")
+            this.getView().byId("buttonbar").setVisible(false);
+         else
+         this.getView().byId("buttonbar").setVisible(true);
       },
 
       onNavBack: function () {

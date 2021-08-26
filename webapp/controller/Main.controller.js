@@ -8,6 +8,11 @@ sap.ui.define(
       return BaseController.extend("sap.ui.demo.walkthrough.controller.Main", {
 
          onInit: function () {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
+         },
+
+         _onObjectMatched: function(){
             this.getView().bindElement({
                path: "/UserPassSet('" + this.getCurrentUser() + "')",
                events: {
