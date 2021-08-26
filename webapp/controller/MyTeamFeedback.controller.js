@@ -10,10 +10,10 @@ sap.ui.define([
       onInit: function () {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.getRoute("myteam").attachPatternMatched(this._onObjectMatched, this);
-         if(this.getUserCareerLevel() !== "5")
+         if (this.getUserCareerLevel() !== "5")
             this.getView().byId("buttonbar").setVisible(false);
          else
-         this.getView().byId("buttonbar").setVisible(true);
+            this.getView().byId("buttonbar").setVisible(true);
       },
 
       _onObjectMatched: function (oEvent) {
@@ -23,7 +23,7 @@ sap.ui.define([
 
          this._aFilter = [];
          var sCriteria;
-         if(this.getView().byId("myteambutton").getType() == "Emphasized")
+         if (this.getView().byId("myteambutton").getType() == "Emphasized")
             sCriteria = "Manager";
          else
             sCriteria = "FromUser";
@@ -65,8 +65,7 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
-      onPressTeamFeedback: function(oEvent)
-      {
+      onPressTeamFeedback: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
          var oRouter = this.getOwnerComponent().getRouter();
@@ -75,14 +74,12 @@ sap.ui.define([
          });
       },
 
-      onNewFeedback :function()
-     {
-      var oRouter = this.getOwnerComponent().getRouter();
-      oRouter.navTo("newteamfeedback"); 
-     },
+      onNewFeedback: function () {
+         var oRouter = this.getOwnerComponent().getRouter();
+         oRouter.navTo("newteamfeedback");
+      },
 
-     onMyTeam: function(oEvent)
-      {
+      onMyTeam: function (oEvent) {
          this.getView().byId("myteambutton").setType("Emphasized");
          this.getView().byId("otherteamsbutton").setType("Default");
          var auxFilter = this._aFilter[0];
@@ -93,8 +90,7 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
-     onOtherTeams: function(oEvent)
-      {
+      onOtherTeams: function (oEvent) {
          this.getView().byId("otherteamsbutton").setType("Emphasized");
          this.getView().byId("myteambutton").setType("Default");
          var auxFilter = this._aFilter[0];
@@ -106,50 +102,19 @@ sap.ui.define([
       },
 
       onUserFilter: function (oEvent) {
-			
-		// 	var aFilter = [];
-      //    var sKey = oEvent.getParameter("key");
+         var auxFilter = this._aFilter[0];
+         var sKey = oEvent.getParameter("newValue");
+         Object.entries(auxFilter.aFilters).forEach(oPath => {
+            if(oPath[1].sPath === "ToUser") {
+               auxFilter.aFilters.pop(oPath[0])
+            }
+         })
+         auxFilter.aFilters.push(new Filter("ToUser", FilterOperator.EQ, sKey.toUpperCase()));
 
-      //    //var auxFilter = this._aFilter[0];
-      //    //this._aFilter = [];
-
-			
-      // //   this._aFilter = [];
-      // //    if (sKey && sKey.length > 0) 
-      // //    { this._aFilter.push(new Filter({
-      // //       filters: [
-      // //          new Filter("ToUser", FilterOperator.Contains, sKey),              
-      // //       ],
-      // //       and: true,
-      // //    }));
-      // // }
-        
-		// 	if (sKey && sKey.length > 0) 
-      //    {
-      //      aFilter.push(new Filter("ToUser", FilterOperator.Contains, sKey));
-      //     // auxFilter.aFilters[1] = new Filter("ToUser", FilterOperator.Contains, sKey);
-      // 	}
-
-		// 	var oList = this.getView().byId("MyTeamTable");
-		// 	var oBinding = oList.getBinding("items");
-		// 	oBinding.filter(aFilter);
-
-      var auxFilter = this._aFilter[0];
-      var sKey = oEvent.getParameter("query");
-
-         //var lengthOfFilters = auxFilter.aFilters.length;
-         //auxFilter.aFilters[lengthOfFilters ] = new Filter("ToUser", FilterOperator.EQ, sKey);
-
-         
-            auxFilter.aFilters[2] = new Filter("ToUser", FilterOperator.EQ, sKey);
-         
-
-         
- 
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
-		}
-     
+      }
+
    });
 });
