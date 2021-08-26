@@ -19,8 +19,11 @@ sap.ui.define([
 
          this._aFilter = [];
          var sCriteria;
-         if(this.getView().byId("myteambutton").getType() == "Emphasized")
-            sCriteria = "Manager";
+         if(this.getUserCareerLevel() == "5")
+            if(this.getView().byId("myteambutton").getType() == "Emphasized")
+               sCriteria = "Manager";
+            else
+               sCriteria = "FromUser";
          else
             sCriteria = "FromUser";
          this._aFilter.push(new Filter({

@@ -18,6 +18,10 @@ sap.ui.define(
                events: {
                   dataReceived: function (oData) {
                      this.getOwnerComponent().getModel("userCareerLevel").setData(oData.getParameter("data").CareerLevel);               
+                  }.bind(this),
+                  change: function(oData) { 
+                     var sCareerLvl = this.getView().getModel().getProperty(oData.getSource().getPath() + "/CareerLevel");
+                     this.getOwnerComponent().getModel("userCareerLevel").setData(sCareerLvl);
                   }.bind(this)
             }});
          },

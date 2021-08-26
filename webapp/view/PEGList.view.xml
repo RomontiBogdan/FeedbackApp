@@ -92,7 +92,7 @@
 			</content>
 		</IconTabBar>
 		<footer>
-			<Bar>
+			<Bar id="newrequestbar">
 				<contentRight>
 					<Button
 						text="New Request"
