@@ -232,10 +232,8 @@
                      class="sapUiMediumMarginEnd"
 							id="completedCheckBox"
 							text="is Completed?"
-							selected="{
-                        path: 'Status',
-                        formatter: '.formatter.checkBoxStatus'
-                     }"
+							selected="{= ${Status} === '2' ? true : false}"
+                     select="onToggleStatus"
 						/>
 						<Select
 							forceSelection="false"

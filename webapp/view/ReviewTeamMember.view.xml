@@ -16,7 +16,6 @@
 				>
 					<HBox>
 						<VBox
-							alignItems="Left"
 							width="100%"
 						>
 							<GenericTile
@@ -40,10 +39,7 @@
 							<GenericTile
 								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 								header="Project ID"
-								subheader="{
-                        				path: 'ProjectId',
-                       					formatter: '.formatter.projectID_optional'
-                    				}"
+								subheader="{= ${ProjectId} !== '0000' ? ${ProjectId} : 'Project not specified'}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
 							/>
@@ -51,7 +47,6 @@
 							<RatingIndicator
 								id="RatingTeamMember"
 								maxValue="4"
-								value="0"
 								iconSize="32px"
 								tooltip="Rating Tooltip"
 							/>
@@ -60,9 +55,9 @@
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Sent At"
 							subheader="{
-										path: 'SentAt',
-										formatter: '.formatter.timestamp'
-									}"
+                        path: 'SentAt',
+                        formatter: '.formatter.timestamp'
+                     }"
 							frameType="TwoByOne"
 							headerImage="sap-icon://date-time"
 						/>
@@ -73,7 +68,6 @@
 		<TextArea
 			class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
 			placeholder="Enter feedback description"
-			editable="true"
 			growing="true"
 			growingMaxLines="7"
 			width="95%"

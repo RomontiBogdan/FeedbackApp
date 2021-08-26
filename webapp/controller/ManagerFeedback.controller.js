@@ -65,11 +65,11 @@ sap.ui.define([
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== this.getCurrentUser()) {
-            this.byId("gradeIndicator").setEnabled(false);
-            this.byId("recommendationInput").setEnabled(false);
-            this.byId("submitChangesButton").setVisible(false);
-            this.byId("completedCheckBox").setVisible(false);
-            this.byId("daysEvaluatedSelect").setVisible(false);
+            // this.byId("gradeIndicator").setEnabled(false);
+            // this.byId("recommendationInput").setEnabled(false);
+            // this.byId("submitChangesButton").setVisible(false);
+            // this.byId("completedCheckBox").setVisible(false);
+            // this.byId("daysEvaluatedSelect").setVisible(false);
          } else {
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
@@ -293,41 +293,38 @@ sap.ui.define([
          this.navBack();
       },
 
-      // update status and evaluated days
-      // if success: update criterias
-      onSubmitChanges: function (oEvent) {
-         var oPegModel = this.byId("toUpdateFields").getModel();
-         oPegModel.update("/PegReqSet(" + this.sFeedbackId + ")", {
-            Status: this.byId("completedCheckBox").getSelected() ? "2" : "1",
-            DaysEvaluated: this.byId("daysEvaluatedSelect").getSelectedItem().getKey()
-         }, {
-            merge: true,
-            success: function () {
-               this._updateCriterias();
-            }.bind(this),
-            error: function (oError) {
-               this.errorText()
-            }
-         });
-
-         // toggle export button visibility
-         this.byId("exportButton").setVisible(this.byId("completedCheckBox").getSelected())
+      onToggleStatus: function (oEvent) {
+         var oModel = this.byId("pegTable").getModel()
+         oModel.setProperty("/PegReqSet(" + this.sFeedbackId + "l)/Status",
+            oEvent.getParameters().selected ? "2" : "1")
       },
 
-      // update criterias
-      _updateCriterias: function () {
+      onSubmitChanges: function (oEvent) {
          var oCriteriasModel = this.getView().byId("pegTable").getModel();
+         if (!oCriteriasModel.hasPendingChanges()) {
+            return;
+         }
          oCriteriasModel.setUseBatch(true);
          Object.keys(oCriteriasModel.getPendingChanges()).forEach(sPath => {
             // below method usage: setProperty(path, newValue)
             // effect: to string property conversion
-            oCriteriasModel.setProperty("/" + sPath + "/Grade",
-               oCriteriasModel.getProperty("/" + sPath + "/Grade") + '')
+            if (oCriteriasModel.getProperty("/" + sPath + "/Grade") !== undefined) {
+               oCriteriasModel.setProperty("/" + sPath + "/Grade",
+                  oCriteriasModel.getProperty("/" + sPath + "/Grade") + '')
+            }
+            // effect: toggle status pending / completed depeding on checkbox
+            if (oCriteriasModel.getProperty("/" + sPath + "/Status") !== undefined) {
+               oCriteriasModel.setProperty("/" + sPath + "/Status",
+                  this.byId("completedCheckBox").getSelected() ? "2" : "1")
+            }
          })
          this._criteriaBatchUpdate(oCriteriasModel)
             .then(sResponse => MessageToast.show(sResponse))
             .catch(sError => MessageToast.show(sError))
             .finally(oCriteriasModel.setUseBatch(false))
+
+         // toggle export button visibility
+         this.byId("exportButton").setVisible(this.byId("completedCheckBox").getSelected())
       },
 
       _criteriaBatchUpdate: function (oModel) {

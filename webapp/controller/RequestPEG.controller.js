@@ -1,5 +1,5 @@
 sap.ui.define([
-   "../controller/BaseController",
+   "./BaseController",
    "sap/m/MessageBox"
 ], function (BaseController, MessageBox) {
    "use strict";
