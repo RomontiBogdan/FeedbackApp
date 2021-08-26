@@ -4,7 +4,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="List of PEGs"
+		title="{i18n>PEGPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -18,25 +18,25 @@
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
 					iconColor="Neutral"
-					text="All PEGs"
+					text="{i18n>IconTabFilterAllPEGs}"
 					key="allpegs"
 				/>
 				<IconTabFilter
 					icon="sap-icon://add-document"
 					iconColor="Negative"
-					text="New"
+					text="{i18n>IconTabFilterNewPEGs}"
 					key="New"
 				/>
 				<IconTabFilter
 					icon="sap-icon://pending"
 					iconColor="Critical"
-					text="Pending"
+					text="{i18n>IconTabFilterPendingPEGs}"
 					key="Pending"
 				/>
 				<IconTabFilter
 					icon="sap-icon://accept"
 					iconColor="Positive"
-					text="Completed"
+					text="{i18n>IconTabFilterCompletedPEGs}"
 					key="Completed"
 				/>
 			</items>
@@ -92,7 +92,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="New Request"
+						text="{i18n>PEGRequestBtn}"
 						press=".onNewRequest"
 						class="myCustomButton"
 						icon="sap-icon://add"
