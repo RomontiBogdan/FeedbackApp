@@ -38,12 +38,6 @@ sap.ui.define([], function () {
          }
       },
 
-      feedbackAnonymous: function (sName, bAnonVal) {
-         if (bAnonVal)
-            return "Anonymous";
-         return sName;
-      },
-
       highlightStatus: function (sStatus) {
          switch (sStatus) {
             case "0":
@@ -117,14 +111,6 @@ sap.ui.define([], function () {
             case "5":
                return "Lead Manager";
          }
-      },
-
-	  projectID_optional: function(sId){
-		  if(sId)
-		  {
-			return sId;
-		  }
-		  	return "Project not specified"
-	  }
+      }
    };
 });

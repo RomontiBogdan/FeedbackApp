@@ -54,10 +54,7 @@
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Sent At"
-							subheader="{
-                        path: 'SentAt',
-                        formatter: '.formatter.timestamp'
-                     }"
+							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
 							headerImage="sap-icon://date-time"
 						/>

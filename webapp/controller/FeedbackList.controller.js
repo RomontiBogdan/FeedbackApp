@@ -2,9 +2,9 @@ sap.ui.define([
    "./BaseController",
    "../model/formatter",
    "sap/ui/model/Filter",
-   "sap/ui/model/FilterOperator"
-
-], function (BaseController, formatter, Filter, FilterOperator) {
+   "sap/ui/model/FilterOperator",
+   "sap/ui/model/json/JSONModel"
+], function (BaseController, formatter, Filter, FilterOperator, JSONModel) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.FeedbackList", {
       formatter: formatter,
@@ -14,6 +14,10 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
+         // Model for anonymous usage
+         var oModel = new JSONModel({currentUser: this.getCurrentUser()});
+         this.getView().setModel(oModel, "AnonymousModel");
+
          this.getView().bindElement({
             path: "/UserPassSet('" + this.getCurrentUser() + "')"
          });
@@ -63,7 +67,5 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
       }
-
-	  
    });
 });

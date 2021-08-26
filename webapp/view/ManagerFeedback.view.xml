@@ -94,10 +94,7 @@
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Date of PEG"
-							subheader="{
-								path: 'SentAt',
-								formatter: '.formatter.timestamp'
-							}"
+							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
 						>
 							<TileContent>

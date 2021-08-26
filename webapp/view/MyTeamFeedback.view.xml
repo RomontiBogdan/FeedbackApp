@@ -77,8 +77,6 @@
 								path: 'Status',
 								formatter: '.formatter.highlightStatus'
 							}">
-						
-
 							<cells>
 								<Text text="{FromUser}"/>
 								<Text text="{ToUser}"/>
@@ -87,17 +85,11 @@
 									path: 'Status',
 									formatter: '.formatter.pegStatus'
 								}"/>
-
 								<Text text="{
 									path: 'Rating',
 									formatter: '.formatter.feedbackRating'
 								}"/>
-
-								<Text text="{
-									path: 'SentAt',
-									formatter: '.formatter.timestamp'
-								}"/>
-
+								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"/>
 							</cells>
 						</ColumnListItem>
 					</items>

@@ -68,13 +68,8 @@
 							press=".onFeedbackPress"
 						>
 							<cells>
-								<Text text="{
-									parts:[
-										{path:'FromUser'},
-										{path:'Anonymous'}
-									], 
-									formatter:'.formatter.feedbackAnonymous'
-								}"/>
+                        <Text text="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
+                           ? 'Anonymous sender' : ${FromUser}}"/>
 								<Text text="{ToUser}"/>
 								<Text text="{ProjectId}"/>
 								<Text text="{
@@ -85,10 +80,7 @@
 									path: 'Rating',
 									formatter: '.formatter.feedbackRating'
 								}"/>
-								<Text text="{
-									path: 'SentAt',
-									formatter: '.formatter.timestamp'
-								}"/>
+								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}" />
 							</cells>
 						</ColumnListItem>
 					</items>

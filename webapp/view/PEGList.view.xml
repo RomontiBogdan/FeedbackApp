@@ -81,10 +81,7 @@
 									path: 'Status',
 									formatter: '.formatter.pegStatus'
 								}"/>
-								<Text text="{
-									path: 'SentAt',
-									formatter: '.formatter.timestamp'
-								}"/>
+								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"/>
 							</cells>
 						</ColumnListItem>
 					</items>

@@ -1,12 +1,16 @@
 sap.ui.define([
    "../controller/BaseController",
-   "../model/formatter"
-
-], function (BaseController, formatter) {
+   "../model/formatter",
+   "sap/ui/model/json/JSONModel"
+], function (BaseController, formatter, JSONModel) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.FeedbackDetails", {
       formatter: formatter,
       onInit: function () {
+         // Model for anonymous usage
+         var oModel = new JSONModel({currentUser: this.getCurrentUser()});
+         this.getView().setModel(oModel, "AnonymousModel");
+
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.getRoute("feedbackdetails").attachPatternMatched(this._onObjectMatched, this);
       },
