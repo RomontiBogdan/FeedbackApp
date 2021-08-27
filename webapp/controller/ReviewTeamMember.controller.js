@@ -1,7 +1,9 @@
 sap.ui.define([
    "./BaseController",
-   "../model/formatter"
-], function (BaseController, formatter) {
+   "../model/formatter",
+   "sap/m/MessageToast"
+
+], function (BaseController, formatter, MessageToast) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.ReviewTeamMember", {
       formatter: formatter,
@@ -11,18 +13,25 @@ sap.ui.define([
       },
 
        _onObjectMatched: function (oEvent) {
-        var sFromUser
-        var sFeedbackID = oEvent.getParameter("arguments").feedbackID;
+        var sFromUser, sPath, sUserPath, sStatus, sStatusPath, oModel;
+        this.sFeedbackID = oEvent.getParameter("arguments").feedbackID;
         this.getView().bindElement({
-           path: "/Feedback360Set(" + sFeedbackID + ")",
+           path: "/FeedbackTeamSet(" + this.sFeedbackID + ")",
            events: {
               dataReceived: function (oData) {
                   sFromUser= oData.getParameter("data").FromUser; 
                   this._restrictEditable(sFromUser);          
               }.bind(this),
               change: function(oData) { 
-                  sFromUser = this.getView().getModel().getProperty(oData.getSource().getBoundContext().sPath + "/FromUser");
+                  oModel = this.getView().getModel();
+                  sPath = oData.getSource().getBoundContext().sPath;
+                  sUserPath = sPath + "/FromUser";
+                  sStatusPath = sPath + "/Status";
+                  sFromUser = oModel.getProperty(sUserPath);
+                  sStatus = oModel.getProperty(sStatusPath);
                   this._restrictEditable(sFromUser);
+                  if(sFromUser == this.getCurrentUser())
+                     this._changeStatusIfOpened(sStatus);
               }.bind(this)
         }});
 
@@ -40,6 +49,20 @@ sap.ui.define([
             this.getView().byId("RatingTeamMember").setEditable(false);
          }
       },
+
+      _changeStatusIfOpened: function (sStatus) {
+         if (sStatus === "0") {
+            var oModel = this.getView().byId("teamFeedbackVBox").getModel();
+            oModel.update("/FeedbackTeamSet(" + this.sFeedbackID + ")", { Status: "1" }, {
+               merge: true,
+               success: function () {
+                  MessageToast.show("This Feedback is now on Pending!");
+               }
+            });
+         }
+      },
+
+
      
      onNavBack: function () {
          this.navBack();
