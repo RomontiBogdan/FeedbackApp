@@ -27,22 +27,22 @@ sap.ui.define(
          },
 
          onFeedback: function (oEvent) {
-            var oRouter = this.getOwnerComponent().getRouter();
+            var oRouter = this.getRouter();
             oRouter.navTo("feedbacklist");
          },
 
          onProfile: function (oEvent) {
-            var oRouter = this.getOwnerComponent().getRouter();
+            var oRouter = this.getRouter();
             oRouter.navTo("myprofile");
          },
 
          onPEG: function (oEvent) {
-            var oRouter = this.getOwnerComponent().getRouter();
+            var oRouter = this.getRouter();
             oRouter.navTo("peglist");
          },
 
          onTeamFeedback: function (oEvent) {
-            var oRouter = this.getOwnerComponent().getRouter();
+            var oRouter = this.getRouter();
             oRouter.navTo("myteam");
          },
 
@@ -51,7 +51,7 @@ sap.ui.define(
             MessageBox.confirm("Are you sure you want to log out?", {
                onClose: function (oAction) {
                   if (oAction == "OK") {
-                     var oRouter = this.getOwnerComponent().getRouter();
+                     var oRouter = this.getRouter();
                      oRouter.navTo("overview");
                   }
                }.bind(this),

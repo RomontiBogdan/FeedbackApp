@@ -11,7 +11,7 @@ sap.ui.define([
          var oModel = new JSONModel({currentUser: this.getCurrentUser()});
          this.getView().setModel(oModel, "AnonymousModel");
 
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.getRoute("feedbackdetails").attachPatternMatched(this._onObjectMatched, this);
       },
 

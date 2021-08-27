@@ -15,18 +15,19 @@ sap.ui.define([
 
       _onObjectMatched: function (oEvent) {
          // Model for anonymous usage
-         var oModel = new JSONModel({currentUser: this.getCurrentUser()});
+         sUsername = this.getCurrentUser();
+         var oModel = new JSONModel({currentUser: sUsername});
          this.getView().setModel(oModel, "AnonymousModel");
 
          this.getView().bindElement({
-            path: "/UserPassSet('" + this.getCurrentUser() + "')"
+            path: "/UserPassSet('" + sUsername + "')"
          });
 
          this._sFilter = [];
          this._sFilter.push(new Filter({
             filters: [
-               new Filter("ToUser", FilterOperator.EQ, this.getCurrentUser()),
-               new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser()),
+               new Filter("ToUser", FilterOperator.EQ, sUsername),
+               new Filter("FromUser", FilterOperator.EQ, sUsername),
             ],
             and: true,
          }));
@@ -43,14 +44,14 @@ sap.ui.define([
       onFeedbackPress: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.navTo("feedbackdetails", {
             feedbackID: oBindingObject.FeedbackId
          });
       },
 
       onNewFeedback: function (oEvent) {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.navTo("newfeedback");
       },
 

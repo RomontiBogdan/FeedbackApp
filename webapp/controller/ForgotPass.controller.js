@@ -10,9 +10,10 @@ sap.ui.define([
       },
 
       onPressForgotPass: function () {
-         var sUsername = this.getView().byId("usernameTextFP").getValue();
-         var sEmail = this.getView().byId("emailTextFP").getValue();
-         var sPassword = this.getView().byId("passwordTextFP").getValue();
+         var oView = this.getView();
+         var sUsername = oView.byId("usernameTextFP").getValue();
+         var sEmail = oView.byId("emailTextFP").getValue();
+         var sPassword = oView.byId("passwordTextFP").getValue();
          var oModel = this.getOwnerComponent().getModel();
          oModel.read("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
             success: function (oSuccess) {
