@@ -65,12 +65,9 @@ sap.ui.define([
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== this.getCurrentUser()) {
-            this.byId("gradeIndicator").setEnabled(false);
-            this.byId("recommendationInput").setEnabled(false);
-            this.byId("submitChangesButton").setVisible(false);
-            this.byId("completedCheckBox").setVisible(false);
-            this.byId("daysEvaluatedSelect").setVisible(false);
+            this.giveRightsToEdit(false);
          } else {
+            this.giveRightsToEdit(true);
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
@@ -83,6 +80,14 @@ sap.ui.define([
                }
             }.bind(this))
          }
+      },
+
+      giveRightsToEdit: function(bRight){
+         this.byId("gradeIndicator").setEditable(bRight);
+         this.byId("recommendationInput").setEditable(bRight);
+         this.byId("submitChangesButton").setVisible(bRight);
+         this.byId("completedCheckBox").setVisible(bRight);
+         this.byId("daysEvaluatedSelect").setVisible(bRight);
       },
 
       // check if current peg status is new or not
