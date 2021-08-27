@@ -62,13 +62,15 @@
 				</VBox>
 			</content>
 		</Panel>
-		<TextArea
-			class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
-			placeholder="Enter feedback description"
-			growing="true"
-			growingMaxLines="7"
-			width="95%"
-			height="60%"
+        <TextArea
+				id="ReviewTextArea"
+                class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
+				placeholder="Enter feedback description"
+				editable="true"
+				growing="true"
+				growingMaxLines="7"
+				width="95%"
+				height="60%"
 		/>
 		<footer>
 			<Bar>

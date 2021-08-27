@@ -23,6 +23,11 @@ sap.ui.define([
 
          this._aFilter = [];
          var sCriteria;
+         if(this.getUserCareerLevel() == "5")
+            if(this.getView().byId("myteambutton").getType() == "Emphasized")
+               sCriteria = "Manager";
+            else
+               sCriteria = "FromUser";
          if (this.getView().byId("myteambutton").getType() == "Emphasized")
             sCriteria = "Manager";
          else
@@ -37,6 +42,11 @@ sap.ui.define([
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
+
+         if(this.getUserCareerLevel() !== "5")
+            this.getView().byId("buttonbar").setVisible(false);
+         else
+         this.getView().byId("buttonbar").setVisible(true);
       },
 
       onNavBack: function () {

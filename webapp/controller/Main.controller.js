@@ -8,11 +8,20 @@ sap.ui.define(
       return BaseController.extend("sap.ui.demo.walkthrough.controller.Main", {
 
          onInit: function () {
+            var oRouter = this.getOwnerComponent().getRouter();
+            oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
+         },
+
+         _onObjectMatched: function(){
             this.getView().bindElement({
                path: "/UserPassSet('" + this.getCurrentUser() + "')",
                events: {
                   dataReceived: function (oData) {
                      this.getOwnerComponent().getModel("userCareerLevel").setData(oData.getParameter("data").CareerLevel);               
+                  }.bind(this),
+                  change: function(oData) { 
+                     var sCareerLvl = this.getView().getModel().getProperty(oData.getSource().getPath() + "/CareerLevel");
+                     this.getOwnerComponent().getModel("userCareerLevel").setData(sCareerLvl);
                   }.bind(this)
             }});
          },

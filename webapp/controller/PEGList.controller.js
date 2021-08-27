@@ -29,6 +29,11 @@ sap.ui.define([
          var oList = this.byId("PegTableManager");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
+
+         if(this.getUserCareerLevel() == "5")
+            this.getView().byId("newrequestbar").setVisible(false);
+         else
+            this.getView().byId("newrequestbar").setVisible(true);
       },
 
       onNavBack: function () {

@@ -89,7 +89,7 @@
 			</content>
 		</IconTabBar>
 		<footer>
-			<Bar>
+			<Bar id="newrequestbar">
 				<contentRight>
 					<Button
 						text="{i18n>PEGRequestBtn}"
