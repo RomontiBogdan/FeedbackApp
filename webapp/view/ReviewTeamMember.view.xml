@@ -21,6 +21,7 @@
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 								header="Manager who demanded feedback"
+								subheader="{Manager}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://manager"
 							/>

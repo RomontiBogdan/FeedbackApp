@@ -10,31 +10,39 @@ sap.ui.define([
       onInit: function () {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.getRoute("myteam").attachPatternMatched(this._onObjectMatched, this);
-         if (this.getUserCareerLevel() !== "5")
-            this.getView().byId("buttonbar").setVisible(false);
-         else
-            this.getView().byId("buttonbar").setVisible(true);
       },
 
       _onObjectMatched: function (oEvent) {
+         var sUsername = this.getCurrentUser();
          this.getView().bindElement({
-            path: "/UserPassSet('" + this.getCurrentUser() + "')"
+            path: "/UserPassSet('" + sUsername + "')"
          });
 
          this._aFilter = [];
+         this._isTeamManager(sUsername)
+               .then(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+               .catch(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+      },
+
+      _restrictIfNotTeamManager: function(bTeamManager, sUsername){
          var sCriteria;
-         if(this.getUserCareerLevel() == "5")
+         if(bTeamManager)
+         {
+            this.getView().byId("buttonbar").setVisible(true);
             if(this.getView().byId("myteambutton").getType() == "Emphasized")
                sCriteria = "Manager";
             else
                sCriteria = "FromUser";
-         if (this.getView().byId("myteambutton").getType() == "Emphasized")
-            sCriteria = "Manager";
+         }
          else
+         {
+            this.getView().byId("buttonbar").setVisible(false);
             sCriteria = "FromUser";
+         }
+            
          this._aFilter.push(new Filter({
             filters: [
-               new Filter(sCriteria, FilterOperator.EQ, this.getCurrentUser()),
+               new Filter(sCriteria, FilterOperator.EQ, sUsername),
             ],
             and: true,
          }));
@@ -42,15 +50,24 @@ sap.ui.define([
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
-
-         if(this.getUserCareerLevel() !== "5")
-            this.getView().byId("buttonbar").setVisible(false);
-         else
-         this.getView().byId("buttonbar").setVisible(true);
       },
 
       onNavBack: function () {
          this.navBack();
+      },
+
+      _isTeamManager: function (sUsername) {
+         var oModel = this.getOwnerComponent().getModel();
+         return new Promise((resolve, reject) => {
+            oModel.read("/TeamManagersSet('" + sUsername + "')", {
+               success: function () {
+                  resolve(true);
+               }.bind(this),
+               error: function () {
+                  reject(false);
+               }.bind(this)
+            })
+         })
       },
 
 
