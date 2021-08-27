@@ -31,6 +31,7 @@ sap.ui.define([
          var userCareerLevelModel = new JSONModel();
          this.setModel(userCareerLevelModel, "userCareerLevel");
 
+
          this.getRouter().initialize();
       }
    });

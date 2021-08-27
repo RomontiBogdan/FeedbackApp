@@ -16,7 +16,11 @@ sap.ui.define([
         var sFromUser, sPath, sUserPath, sStatus, sStatusPath, oModel;
         this.sFeedbackID = oEvent.getParameter("arguments").feedbackID;
         this.getView().bindElement({
+
+          
+
            path: "/FeedbackTeamSet(" + this.sFeedbackID + ")",
+
            events: {
               dataReceived: function (oData) {
                   sFromUser= oData.getParameter("data").FromUser; 

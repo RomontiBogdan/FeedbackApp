@@ -45,6 +45,9 @@
 						text="{TeamManager}"
 					/>
 				</Select>
+
+
+
 				<Label
 					text="Select team member"
 					labelFor="inputToMember"
@@ -60,6 +63,8 @@
 						text="{Username}"
 					/>
 				</Select>
+
+
 				<Label
 					text="Select project"
 					labelFor="inputToProjects"
@@ -74,6 +79,26 @@
 						text="{ProjectName}"
 					/>
 				</Select>
+
+
+				<Label
+					text="Offer feedback based on the following skill"
+					labelFor="inputSkill"
+				/>
+				<Select
+					forceSelection="false"
+					id="inputSkill"
+						items="{
+                  path: 'newTeamFeedbackModel>/SkillCollection'
+               }"
+				>
+					<core:ListItem
+						key="{newTeamFeedbackModel>Id}"
+						text="{newTeamFeedbackModel>Name}"
+					/>
+				</Select>
+
+
 			</f:SimpleForm>
 		</l:VerticalLayout>
 		<footer>

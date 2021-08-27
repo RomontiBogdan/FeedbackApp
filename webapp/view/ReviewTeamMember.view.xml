@@ -53,13 +53,29 @@
 								tooltip="Rating Tooltip"
 							/>
 						</VBox>
+						<VBox>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Sent At"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
-							frameType="TwoByOne"
+							frameType="TwoByHalf"
 							headerImage="sap-icon://date-time"
 						/>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="Category"
+							subheader="{
+                        path: 'Categories',
+                        formatter: '.formatter.feedbackCategory'
+                     }"
+							frameType="TwoByHalf"
+							headerImage="sap-icon://multi-select"
+						/>
+
+						
+						
+						</VBox>
+						
 					</HBox>
 				</VBox>
 			</content>
