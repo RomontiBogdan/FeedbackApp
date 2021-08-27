@@ -11,6 +11,7 @@
 		<Panel height="230px">
 			<content>
 				<VBox
+					id="teamFeedbackVBox"
 					alignItems="Center"
 					width="100%"
 				>
