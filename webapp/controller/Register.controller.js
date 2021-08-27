@@ -4,18 +4,12 @@ sap.ui.define([
 ], function (BaseController, MessageBox) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.Register", {
-      onInit: function () {
-
-      },
-
       onNavBack: function () {
          this.navBack();
       },
 
       onCreateRegister: function (oEvent) {
-
-         var params =
-         {
+         var params = {
             FullName: "",
             Username: this.getView().byId("UsernameRegisterField").getValue(),
             Email: this.getView().byId("EmailRegisterField").getValue(),
@@ -24,7 +18,6 @@ sap.ui.define([
             Su: "",
             CareerLevel: "",
             FiscalYear: ""
-
          }
          var oModel = this.getOwnerComponent().getModel();
 
@@ -41,8 +34,8 @@ sap.ui.define([
 
             }.bind(this),
             error: function (oError) {
-               sap.m.MessageToast.show(JSON.parse(oError.responseText).error.message.value)
-            }
+               sap.m.MessageToast.show(this.errorText(oError))
+            }.bind(this)
          });
       }
    });

@@ -4,11 +4,10 @@
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<Page
-		title="My Team Feedback"
+		title="{i18n>MyTeamFeedbackPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
-
 		<IconTabBar
 			id="PegTabBarManager"
 			select=".onFilterSelect"
@@ -48,8 +47,19 @@
 						path: '/FeedbackTeamSet'
 					}"
 				>
+					<headerToolbar>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Title text="Search by employee:"/>
+							<SearchField
+								id="searchField"
+								width="30%"
+								liveChange=".onUserFilter"
+								placeholder="Filter by employee"
+							/>
+						</Toolbar>
+					</headerToolbar>
 					<columns>
-						
 						<Column width="12em">
 							<Text text="From Manager"/>
 						</Column>
@@ -72,13 +82,12 @@
 					<items>
 						<ColumnListItem
 							type="Navigation"
-							press = "onPressTeamFeedback"
+							press="onPressTeamFeedback"
 							highlight="{
 								path: 'Status',
 								formatter: '.formatter.highlightStatus'
-							}">
-						
-
+							}"
+						>
 							<cells>
 								<Text text="{FromUser}"/>
 								<Text text="{ToUser}"/>
@@ -87,17 +96,11 @@
 									path: 'Status',
 									formatter: '.formatter.pegStatus'
 								}"/>
-
 								<Text text="{
 									path: 'Rating',
 									formatter: '.formatter.feedbackRating'
 								}"/>
-
-								<Text text="{
-									path: 'SentAt',
-									formatter: '.formatter.timestamp'
-								}"/>
-
+								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"/>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -114,7 +117,7 @@
 						type="Emphasized"
 						icon="sap-icon://group"
 					/>
-                    <Button
+					<Button
 						id="otherteamsbutton"
 						text="Other teams"
 						press=".onOtherTeams"
@@ -127,7 +130,7 @@
 						press=".onNewFeedback"
 						class="myCustomButton"
 						icon="sap-icon://add"
-					/>			
+					/>
 				</contentRight>
 			</Bar>
 		</footer>

@@ -1,13 +1,8 @@
 sap.ui.define([
-   "./BaseController",
-   "sap/ui/model/json/JSONModel"
-], function (BaseController, JSONModel) {
+   "./BaseController"
+], function (BaseController) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.LogReg", {
-      onInit: function () {
-
-      },
-
       onLogIn: function (oEvent) {
          var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
          var oModel = this.getOwnerComponent().getModel();

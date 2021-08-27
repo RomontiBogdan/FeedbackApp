@@ -38,12 +38,6 @@ sap.ui.define([], function () {
          }
       },
 
-      feedbackAnonymous: function (sName, bAnonVal) {
-         if (bAnonVal)
-            return "Anonymous";
-         return sName;
-      },
-
       highlightStatus: function (sStatus) {
          switch (sStatus) {
             case "0":
@@ -62,11 +56,11 @@ sap.ui.define([], function () {
       daysEvaluated: function (sDays) {
          switch (sDays) {
             case "0":
-               return "Less than 3 months";
+               return "Less than 90 days";
             case "1":
-               return "Between 3 - 6 months";
+               return "Between 90 and 180 days";
             case "2":
-               return "More than 6 months";
+               return "More than 180 days";
          }
       },
 
@@ -102,10 +96,10 @@ sap.ui.define([], function () {
          }
       },
 
-	  careerLevel: function(sLevel){
-		switch (sLevel) {
-			case "0":
-				return "Junior Consultant";
+      careerLevel: function (sLevel) {
+         switch (sLevel) {
+            case "0":
+               return "Junior Consultant";
             case "1":
                return "Consultant";
             case "2":
@@ -117,15 +111,6 @@ sap.ui.define([], function () {
             case "5":
                return "Lead Manager";
          }
-	  },
-
-	  projectID_optional: function(sId){
-		  if(sId)
-		  {
-			return sId;
-		  }
-		  else
-		  	return "Project not specified"
-	  }
+      }
    };
 });

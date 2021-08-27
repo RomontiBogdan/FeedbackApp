@@ -15,55 +15,49 @@
 					width="100%"
 				>
 					<HBox>
-                        <VBox
-					    alignItems="Left"
-					    width="100%"
-				        >
-						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Manager who demanded feedback"
-							frameType="TwoByHalf"
-                            headerImage="sap-icon://manager"
+						<VBox
+							width="100%"
 						>
-						</GenericTile>
-						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Employee reviewed"
-                            subheader="{ToUser}"
-							frameType="TwoByHalf"
-                            headerImage="sap-icon://employee"
+							<GenericTile
+								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								header="Manager who demanded feedback"
+								frameType="TwoByHalf"
+								headerImage="sap-icon://manager"
+							/>
+							<GenericTile
+								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								header="Employee reviewed"
+								subheader="{ToUser}"
+								frameType="TwoByHalf"
+								headerImage="sap-icon://employee"
+							/>
+						</VBox>
+						<VBox
+							alignItems="Center"
+							width="100%"
 						>
-						</GenericTile>
-                        </VBox>
-                        <VBox
-					    alignItems="Center"
-					    width="100%"
-				        >
-						<GenericTile
-							class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Project ID"
-							subheader="{
-                        				path: 'ProjectId',
-                       					formatter: '.formatter.projectID_optional'
-                    				}"
-							frameType="TwoByHalf"
-                            headerImage="sap-icon://group"
-						>
-						</GenericTile>
-                        <Label text="Give a grade"/>
-                        <RatingIndicator id="RatingTeamMember" maxValue="4" value="0" iconSize="32px" tooltip="Rating Tooltip" />
-                        </VBox>
+							<GenericTile
+								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								header="Project ID"
+								subheader="{= ${ProjectId} !== '0000' ? ${ProjectId} : 'Project not specified'}"
+								frameType="TwoByHalf"
+								headerImage="sap-icon://group"
+							/>
+							<Label text="Give a grade"/>
+							<RatingIndicator
+								id="RatingTeamMember"
+								maxValue="4"
+								iconSize="32px"
+								tooltip="Rating Tooltip"
+							/>
+						</VBox>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Sent At"
-							subheader="{
-										path: 'SentAt',
-										formatter: '.formatter.timestamp'
-									}"
+							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
-                            headerImage="sap-icon://date-time"
-						>
-						</GenericTile>
+							headerImage="sap-icon://date-time"
+						/>
 					</HBox>
 				</VBox>
 			</content>
@@ -78,7 +72,7 @@
 				width="95%"
 				height="60%"
 		/>
-        <footer>
+		<footer>
 			<Bar>
 				<contentRight>
 					<Button

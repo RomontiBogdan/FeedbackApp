@@ -1,20 +1,14 @@
 sap.ui.define([
-    "../controller/BaseController",
-    "../model/formatter"
-    
- 
- ], function (BaseController, formatter) {
-    "use strict";
-    return BaseController.extend("sap.ui.demo.walkthrough.controller.ReviewTeamMember", {
-        formatter: formatter,
-       onInit: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
-            oRouter.getRoute("reviewteammember").attachPatternMatched(this._onObjectMatched, this);
-       },
- 
-       onNavBack: function () {
-          this.navBack();
-       },
+   "./BaseController",
+   "../model/formatter"
+], function (BaseController, formatter) {
+   "use strict";
+   return BaseController.extend("sap.ui.demo.walkthrough.controller.ReviewTeamMember", {
+      formatter: formatter,
+      onInit: function () {
+         var oRouter = this.getOwnerComponent().getRouter();
+         oRouter.getRoute("reviewteammember").attachPatternMatched(this._onObjectMatched, this);
+      },
 
        _onObjectMatched: function (oEvent) {
         var sFromUser
@@ -45,7 +39,12 @@ sap.ui.define([
             this.getView().byId("ReviewTextArea").setEditable(false);
             this.getView().byId("RatingTeamMember").setEditable(false);
          }
+      },
+     
+     onNavBack: function () {
+         this.navBack();
       }
  
     });
  });
+

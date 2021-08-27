@@ -6,19 +6,19 @@ sap.ui.define([
    "use strict";
    return Controller.extend("sap.ui.demo.walkthrough.controller.BaseController", {
       navBack: function () {
-
          var oHistory = History.getInstance();
-         var sPreviousHash = oHistory.getPreviousHash();
+			var sPreviousHash = oHistory.getPreviousHash();
 
-         if (sPreviousHash !== undefined) {
-            window.history.back();
-
-         }
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = this.getRouter()
+				oRouter.navTo("overview", true);
+			}
       },
 
       getRouter: function () {
-         // return sap.ui.core.UIComponent.getRouterFor(this);
-         var oRouter = this.getOwnerComponent().getRouter();
+         return this.getOwnerComponent().getRouter();
       },
 
       getCurrentUser: function () {
@@ -27,7 +27,10 @@ sap.ui.define([
 
       getUserCareerLevel: function () {
          return this.getOwnerComponent().getModel("userCareerLevel").getData();
-      }
+      },
 
+      errorText: function (oError) {
+         return JSON.parse(oError.responseText).error.message.value
+      }
    });
 });

@@ -18,13 +18,8 @@
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="FROM"
-							subheader="{	
-										parts: [
-										{path:'FromUser'},
-										{path:'Anonymous'}
-										], 
-										formatter: '.formatter.feedbackAnonymous'
-									}"
+							subheader="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
+                        ? 'Anonymous sender' : ${FromUser}}"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -55,9 +50,9 @@
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Review"
 							subheader="{
-                        				path: 'Rating',
-                       					formatter: '.formatter.feedbackRating'
-                    				}"
+                        path: 'Rating',
+                        formatter: '.formatter.feedbackRating'
+                     }"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -72,9 +67,9 @@
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Category"
 							subheader="{
-										path: 'Categories',
-										formatter: '.formatter.feedbackCategory'
-									}"
+                        path: 'Categories',
+                        formatter: '.formatter.feedbackCategory'
+                     }"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -84,10 +79,7 @@
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Sent At"
-							subheader="{
-										path: 'SentAt',
-										formatter: '.formatter.timestamp'
-									}"
+							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -98,14 +90,20 @@
 				</VBox>
 			</content>
 		</Panel>
+		<Label
+			class="sapUiSmallMarginTopBottom sapUiMediumMarginBeginEnd"
+			text="Comments"
+			labelFor="descriptionTextArea"
+		/>
 		<TextArea
-				value="{Description}"
-				class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
-				editable="false"
-				growing="true"
-				growingMaxLines="7"
-				width="95%"
-				height="60%"
+			id="descriptionTextArea"
+			value="{Description}"
+			class="sapUiMediumMarginBeginEnd"
+			editable="false"
+			growing="true"
+			growingMaxLines="7"
+			width="94%"
+			height="90%"
 		/>
 	</Page>
 </mvc:View>

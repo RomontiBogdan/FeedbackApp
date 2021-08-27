@@ -1,5 +1,6 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.ManagerFeedback"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 >
@@ -93,10 +94,7 @@
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 							header="Date of PEG"
-							subheader="{
-								path: 'SentAt',
-								formatter: '.formatter.timestamp'
-							}"
+							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
 						>
 							<TileContent>
@@ -226,10 +224,29 @@
 						class="myCustomButton"
 						icon="sap-icon://accept"
 					/>
-					<CheckBox
-						id="completedCheckBox"
-						text="is Completed?"
-					/>
+					<HBox id="toUpdateFields">
+						<CheckBox
+                     class="sapUiMediumMarginEnd"
+							id="completedCheckBox"
+							text="is Completed?"
+							selected="{= ${Status} === '2' ? true : false}"
+                     select="onToggleStatus"
+						/>
+						<Select
+							forceSelection="false"
+							id="daysEvaluatedSelect"
+                     tooltip="Select the number of project days evaluated"
+							selectedKey="{DaysEvaluated}"
+							items="{
+                        path: 'DaysEvaluatedModel>/EvaluatedDays'
+                     }"
+						>
+							<core:ListItem
+								key="{DaysEvaluatedModel>Id}"
+								text="{DaysEvaluatedModel>Name}"
+							/>
+						</Select>
+					</HBox>
 				</contentLeft>
 				<contentRight>
 					<Button

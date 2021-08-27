@@ -4,7 +4,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="Feedbacks"
+		title="{i18n>FeedbackPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -18,20 +18,20 @@
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
 					iconColor="Neutral"
-					text="All Feedbacks"
+					text="{i18n>IconTabFilterAllFeedbacks}"
 					key="All"
 				/>
 				<IconTabSeparator/>
 				<IconTabFilter
 					icon="sap-icon://back-to-top"
 					iconColor="Critical"
-					text="Sent"
+					text="{i18n>IconTabFilterSentFeedbacks}"
 					key="Sent"
 				/>
 				<IconTabFilter
 					icon="sap-icon://download"
 					iconColor="Positive"
-					text="Received"
+					text="{i18n>IconTabFilterReceivedFeedbacks}"
 					key="Received"
 				/>
 			</items>
@@ -68,13 +68,8 @@
 							press=".onFeedbackPress"
 						>
 							<cells>
-								<Text text="{
-									parts:[
-										{path:'FromUser'},
-										{path:'Anonymous'}
-									], 
-									formatter:'.formatter.feedbackAnonymous'
-								}"/>
+                        <Text text="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
+                           ? 'Anonymous sender' : ${FromUser}}"/>
 								<Text text="{ToUser}"/>
 								<Text text="{ProjectId}"/>
 								<Text text="{
@@ -85,10 +80,7 @@
 									path: 'Rating',
 									formatter: '.formatter.feedbackRating'
 								}"/>
-								<Text text="{
-									path: 'SentAt',
-									formatter: '.formatter.timestamp'
-								}"/>
+								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}" />
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -99,7 +91,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="New Feedback"
+						text="{i18n>FeedbackRequestBtn}"
 						press=".onNewFeedback"
 						class="myCustomButton"
 						icon="sap-icon://add"

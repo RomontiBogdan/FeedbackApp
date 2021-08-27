@@ -10,6 +10,10 @@ sap.ui.define([
       onInit: function () {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.getRoute("myteam").attachPatternMatched(this._onObjectMatched, this);
+         if (this.getUserCareerLevel() !== "5")
+            this.getView().byId("buttonbar").setVisible(false);
+         else
+            this.getView().byId("buttonbar").setVisible(true);
       },
 
       _onObjectMatched: function (oEvent) {
@@ -24,6 +28,8 @@ sap.ui.define([
                sCriteria = "Manager";
             else
                sCriteria = "FromUser";
+         if (this.getView().byId("myteambutton").getType() == "Emphasized")
+            sCriteria = "Manager";
          else
             sCriteria = "FromUser";
          this._aFilter.push(new Filter({
@@ -69,8 +75,7 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
-      onPressTeamFeedback: function(oEvent)
-      {
+      onPressTeamFeedback: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
          var oRouter = this.getOwnerComponent().getRouter();
@@ -79,14 +84,12 @@ sap.ui.define([
          });
       },
 
-      onNewFeedback :function()
-     {
-      var oRouter = this.getOwnerComponent().getRouter();
-      oRouter.navTo("newteamfeedback"); 
-     },
+      onNewFeedback: function () {
+         var oRouter = this.getOwnerComponent().getRouter();
+         oRouter.navTo("newteamfeedback");
+      },
 
-     onMyTeam: function(oEvent)
-      {
+      onMyTeam: function (oEvent) {
          this.getView().byId("myteambutton").setType("Emphasized");
          this.getView().byId("otherteamsbutton").setType("Default");
          var auxFilter = this._aFilter[0];
@@ -97,8 +100,7 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
-     onOtherTeams: function(oEvent)
-      {
+      onOtherTeams: function (oEvent) {
          this.getView().byId("otherteamsbutton").setType("Emphasized");
          this.getView().byId("myteambutton").setType("Default");
          var auxFilter = this._aFilter[0];
@@ -107,7 +109,22 @@ sap.ui.define([
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
+      },
+
+      onUserFilter: function (oEvent) {
+         var auxFilter = this._aFilter[0];
+         var sKey = oEvent.getParameter("newValue");
+         Object.entries(auxFilter.aFilters).forEach(oPath => {
+            if(oPath[1].sPath === "ToUser") {
+               auxFilter.aFilters.pop(oPath[0])
+            }
+         })
+         auxFilter.aFilters.push(new Filter("ToUser", FilterOperator.EQ, sKey.toUpperCase()));
+
+         var oList = this.byId("MyTeamTable");
+         var oBinding = oList.getBinding("items");
+         oBinding.filter(auxFilter);
       }
-     
+
    });
 });
