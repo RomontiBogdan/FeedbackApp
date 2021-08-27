@@ -4,7 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<Page
-		title="{i18n>MyTeamFeedbackPageTitle}"
+		title="{i18n>myTeamFeedbackPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -18,25 +18,25 @@
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
 					iconColor="Neutral"
-					text="All Feedbacks"
+					text="{i18n>iconTabFilterAllTeamFeedbacks}"
 					key="allpegs"
 				/>
 				<IconTabFilter
 					icon="sap-icon://add-document"
 					iconColor="Negative"
-					text="New"
+					text="{i18n>iconTabFilterNewTeamFeedbacks}"
 					key="New"
 				/>
 				<IconTabFilter
 					icon="sap-icon://pending"
 					iconColor="Critical"
-					text="Pending"
+					text="{i18n>iconTabFilterPendingTeamFeedbacks}"
 					key="Pending"
 				/>
 				<IconTabFilter
 					icon="sap-icon://accept"
 					iconColor="Positive"
-					text="Completed"
+					text="{i18n>iconTabFilterCompletedTeamFeedbacks}"
 					key="Completed"
 				/>
 			</items>
@@ -61,22 +61,22 @@
 					</headerToolbar>
 					<columns>
 						<Column width="12em">
-							<Text text="From Manager"/>
+							<Text text="{i18n>columnFromManager}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="To Employee"/>
+							<Text text="{i18n>columnToEmployee}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Project"/>
+							<Text text="{i18n>columnProject}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Status"/>
+							<Text text="{i18n>columnStatus}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Rating"/>
+							<Text text="{i18n>columnRating}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Sent Date"/>
+							<Text text="{i18n>columnSentDate}"/>
 						</Column>
 					</columns>
 					<items>
