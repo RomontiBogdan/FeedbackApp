@@ -65,11 +65,11 @@ sap.ui.define([
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== this.getCurrentUser()) {
-            // this.byId("gradeIndicator").setEnabled(false);
-            // this.byId("recommendationInput").setEnabled(false);
-            // this.byId("submitChangesButton").setVisible(false);
-            // this.byId("completedCheckBox").setVisible(false);
-            // this.byId("daysEvaluatedSelect").setVisible(false);
+            this.byId("gradeIndicator").setEnabled(false);
+            this.byId("recommendationInput").setEnabled(false);
+            this.byId("submitChangesButton").setVisible(false);
+            this.byId("completedCheckBox").setVisible(false);
+            this.byId("daysEvaluatedSelect").setVisible(false);
          } else {
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
