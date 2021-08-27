@@ -22,14 +22,14 @@
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 								
-								header = "{i18n>teamFeedbackDetailPageManagerTileTitle}"
+								header = "{i18n>ManagerTileTitle}"
 								subheader="{Manager}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://manager"
 							/>
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header = "{i18n>teamFeedbackDetailPageEmployeeReviewTileTitle}"
+								header = "{i18n>EmployeeReviewTileTitle}"
 								subheader="{ToUser}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://employee"
@@ -41,7 +41,7 @@
 						>
 							<GenericTile
 								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header = "{i18n>teamFeedbackDetailPageProjectTileTitle}"
+								header = "{i18n>ProjectTileTitle}"
 								subheader="{= ${ProjectId} !== '0000' ? ${ProjectId} : 'Project not specified'}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
@@ -57,14 +57,14 @@
 						<VBox>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>teamFeedbackDetailPageSendDateTileTitle}"
+							header="{i18n>SendDateTileTitle}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByHalf"
 							headerImage="sap-icon://date-time"
 						/>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>teamFeedbackDetailPageCategoryTileTitle}"
+							header="{i18n>CategoryTileTitle}"
 							subheader="{
                         path: 'Categories',
                         formatter: '.formatter.feedbackCategory'

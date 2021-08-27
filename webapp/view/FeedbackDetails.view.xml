@@ -4,7 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<Page
-		title="Info about Feedback"
+		title="{i18n>feedbackDetailsPage}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>

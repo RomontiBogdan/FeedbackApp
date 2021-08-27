@@ -15,40 +15,37 @@
 			<VBox width="100%">
 				<VBox id="mainInfoContainer">
 					<Label
-						text="Name"
+						text="{i18n>nameText}"
 						labelFor="inputText"
 					/>
 					<Input
 						value="{FullName}"
 						id="inputText"
 						editable="false"
-						placeholder="Enter full name"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Email"
+						text="{i18n>emailText}"
 						labelFor="inputEmail"
 					/>
 					<Input
 						value="{Email}"
 						id="inputEmail"
 						editable="false"
-						placeholder="Enter email"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Service Unit"
+						text="{i18n>suText}"
 						labelFor="inputSU"
 					/>
 					<Input
 						value="{Su}"
 						id="inputSU"
 						editable="false"
-						placeholder="Enter service unit"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Fiscal year"
+						text="{i18n>fiscalYearText}"
 						labelFor="inputFiscalYear"
 					/>
 					<Input
@@ -58,7 +55,7 @@
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Project name"
+						text="{i18n>projectSelect}"
 						labelFor="selectProjectName"
 						required="true"
 					/>
@@ -76,7 +73,7 @@
 				</VBox>
 				<VBox id="selectManagerInfoContainer">
 					<Label
-						text="Responsible manager"
+						text="{i18n>managerSelect}"
 						labelFor="selectManager"
 						required="true"
 					/>
@@ -97,7 +94,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="Send request"
+						text="{i18n>sendSRequestBtn}"
 						press="onSendRequest"
 						class="myCustomButton"
 						icon="sap-icon://paper-plane"
