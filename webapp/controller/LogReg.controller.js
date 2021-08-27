@@ -6,8 +6,9 @@ sap.ui.define([
       onLogIn: function (oEvent) {
          var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
          var oModel = this.getOwnerComponent().getModel();
-         var sUsername = this.getView().byId("UsernameField");
-         var sPassword = this.getView().byId("PasswordField");
+         var oView = this.getView();
+         var sUsername = oView.byId("UsernameField");
+         var sPassword = oView.byId("PasswordField");
 
          oModel.read("/UsersSet(Username='" + sUsername.getValue() + "',Password='" + sPassword.getValue() + "')", {
             success: function (oRetrievedResult) {
@@ -29,12 +30,12 @@ sap.ui.define([
          });
       },
       onRegister: function (oEvent) {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.navTo("register");
       },
 
       onForgotPass: function (oEvent) {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.navTo("forgotpass");
       }
    });

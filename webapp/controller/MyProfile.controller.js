@@ -38,7 +38,7 @@ sap.ui.define([
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "myProfileModel");
 
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.getRoute("myprofile").attachPatternMatched(this._onObjectMatched, this);
       },
 
@@ -65,10 +65,11 @@ sap.ui.define([
       },
 
       _setFieldsState: function (bState) {
-         this.getView().byId("inputName").setEditable(bState);
-         this.getView().byId("inputEmail").setEditable(bState);
-         this.getView().byId("inputTel").setEditable(bState);
-         this.getView().byId("inputSU").setEditable(bState);
+         var oView = this.getView();
+         oView.byId("inputName").setEditable(bState);
+         oView.byId("inputEmail").setEditable(bState);
+         oView.byId("inputTel").setEditable(bState);
+         oView.byId("inputSU").setEditable(bState);
       },
 
       onEdit: function (oEvent) {

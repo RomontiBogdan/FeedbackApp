@@ -65,12 +65,9 @@ sap.ui.define([
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== this.getCurrentUser()) {
-            this.byId("gradeIndicator").setEnabled(false);
-            this.byId("recommendationInput").setEnabled(false);
-            this.byId("submitChangesButton").setVisible(false);
-            this.byId("completedCheckBox").setVisible(false);
-            this.byId("daysEvaluatedSelect").setVisible(false);
+            this.giveRightsToEdit(false);
          } else {
+            this.giveRightsToEdit(true);
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
@@ -83,6 +80,14 @@ sap.ui.define([
                }
             }.bind(this))
          }
+      },
+
+      giveRightsToEdit: function(bRight){
+         this.byId("gradeIndicator").setEditable(bRight);
+         this.byId("recommendationInput").setEditable(bRight);
+         this.byId("submitChangesButton").setVisible(bRight);
+         this.byId("completedCheckBox").setVisible(bRight);
+         this.byId("daysEvaluatedSelect").setVisible(bRight);
       },
 
       // check if current peg status is new or not
@@ -125,18 +130,20 @@ sap.ui.define([
       },
 
       _fillModel: function () {
-
-         var fiscal_year = this.getView().byId("userContainer").getBindingContext().getObject().FiscalYear;
-         var personnel_number = this.getView().byId("userContainer").getBindingContext().getObject().PersonalNo;
-         var career_lvl = formatter.careerLevel(this.getView().byId("userContainer").getBindingContext().getObject().CareerLevel);
-         var SU = this.getView().byId("userContainer").getBindingContext().getObject().Su;
-         var peg_Date = formatter.timestamp(this.getView().byId("pegContainer").getBindingContext().getObject().SentAt);
-         var project_ID = this.getView().byId("pegContainer").getBindingContext().getObject().ProjectId;
-         var evaluator_name = this.getView().byId("pegContainer").getBindingContext().getObject().FromUser;
-         var days_eval = formatter.daysEvaluated(this.getView().byId("pegContainer").getBindingContext().getObject().DaysEvaluated);
-         var customer_name = this.getView().byId("projectContainer").getBindingContext().getObject().Customer;
-         var project_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName;
-         var project_man_name = this.getView().byId("projectContainer").getBindingContext().getObject().ProjectManager;
+         var oUserContainerObj = this.getView().byId("userContainer").getBindingContext().getObject();
+         var oPegContainerObj = this.getView().byId("pegContainer").getBindingContext().getObject();
+         var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
+         var sFiscal_Year = oUserContainerObj.FiscalYear;
+         var sPersonnelNumber = oUserContainerObj.PersonalNo;
+         var sCareerLvl = formatter.careerLevel(oUserContainerObj.CareerLevel);
+         var sSU = oUserContainerObj.Su;
+         var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
+         var sProjectID = oPegContainerObj.ProjectId;
+         var sEvaluatorName = oPegContainerObj.FromUser;
+         var sDaysEval = formatter.daysEvaluated(oPegContainerObj.DaysEvaluated);
+         var sCustomerName = oProjectContainerObj.Customer;
+         var sProjectName = oProjectContainerObj.ProjectName;
+         var sProjectManName = oProjectContainerObj.ProjectManager;
 
 
          var iRowIndex = 0;  // For First row in the table
@@ -147,73 +154,64 @@ sap.ui.define([
          if (iRowIndex < aItems.length) {
             oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext());
          }
-         var ratingPIE = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
-         var descrPIE = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
-         var recomPIE = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
-         iRowIndex++;
-         var ratingPPM = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
-         var descrPPM = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
-         var recomPPM = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
-         iRowIndex++;
-         var ratingSF = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
-         var descrSF = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
-         var recomSF = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
-         iRowIndex++;
-         var ratingCF = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
-         var descrCF = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
-         var recomCF = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
-         iRowIndex++;
-         var ratingEF = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
-         var descrEF = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
-         var recomEF = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
-         iRowIndex++;
-         var ratingFE = oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()) + " Stars";
-         var descrFE = formatter.gradeDescription(oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext()));
-         var recomFE = oModel.getProperty("Recommendation", aItems[iRowIndex].getBindingContext());
+         var iNumberOfCriterias = 6;
+         var aRatings = [];
+         var aDescr = [];
+         var aRecommendations = [];
+         var oItemsBindingContext;
+
+         while(iRowIndex < iNumberOfCriterias)
+         {
+            oItemsBindingContext = aItems[iRowIndex].getBindingContext();
+            aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
+            aDescr.push(formatter.gradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
+            aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
+            iRowIndex++;
+         }
 
          var oViewModel = new JSONModel([{
             Descr: "Fiscal year",
-            Value: fiscal_year
+            Value: sFiscal_Year
          },
          {
             Descr: "Personnel number",
-            Value: personnel_number
+            Value: sPersonnelNumber
          },
          {
             Descr: "Current career level",
-            Value: career_lvl
+            Value: sCareerLvl
          },
          {
             Descr: "Organizational assignment (SU)",
-            Value: SU
+            Value: sSU
          },
          {
             Descr: "Date of PEG",
-            Value: peg_Date
+            Value: sPegDate
          },
          {
             Descr: "Project ID",
-            Value: project_ID
+            Value: sProjectID
          },
          {
             Descr: "Customer name",
-            Value: customer_name
+            Value: sCustomerName
          },
          {
             Descr: "Name of the Project",
-            Value: project_name
+            Value: sProjectName
          },
          {
             Descr: "Name of the Project Manager",
-            Value: project_man_name
+            Value: sProjectManName
          },
          {
             Descr: "Name of the Evaluator",
-            Value: evaluator_name
+            Value: sEvaluatorName
          },
          {
             Descr: "Number of project days evaluated",
-            Value: days_eval
+            Value: sDaysEval
          },
          {
             Descr: "",
@@ -227,39 +225,39 @@ sap.ui.define([
          },
          {
             Descr: "Professional and Industry Experience",
-            Value: ratingPIE,
-            Descr_rating: descrPIE,
-            Recommendations: recomPIE
+            Value: aRatings[0],
+            Descr_rating: aDescr[0],
+            Recommendations: aRecommendations[0]
          },
          {
             Descr: "Project and Program Management",
-            Value: ratingPPM,
-            Descr_rating: descrPPM,
-            Recommendations: recomPPM
+            Value: aRatings[1],
+            Descr_rating: aDescr[1],
+            Recommendations: aRecommendations[1]
          },
          {
             Descr: "Strategy Focus",
-            Value: ratingSF,
-            Descr_rating: descrSF,
-            Recommendations: recomSF
+            Value: aRatings[2],
+            Descr_rating: aDescr[2],
+            Recommendations: aRecommendations[2]
          },
          {
             Descr: "Customer Focus",
-            Value: ratingCF,
-            Descr_rating: descrCF,
-            Recommendations: recomCF
+            Value: aRatings[3],
+            Descr_rating: aDescr[3],
+            Recommendations: aRecommendations[3]
          },
          {
             Descr: "Employee Focus",
-            Value: ratingEF,
-            Descr_rating: descrEF,
-            Recommendations: recomEF
+            Value: aRatings[4],
+            Descr_rating: aDescr[4],
+            Recommendations: aRecommendations[4]
          },
          {
             Descr: "Focus on Excellence",
-            Value: ratingFE,
-            Descr_rating: descrFE,
-            Recommendations: recomFE
+            Value: aRatings[5],
+            Descr_rating: aDescr[5],
+            Recommendations: aRecommendations[5]
          }]);
 
          this.getView().setModel(oViewModel, "DataForExport");
