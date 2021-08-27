@@ -270,10 +270,6 @@ sap.ui.define([
 
       onNavBack: function () {
          this.navBack();
-      },
-
-      onSubmitChanges: function (oEvent) {
-
       }
 
    });
