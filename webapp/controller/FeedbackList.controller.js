@@ -15,7 +15,7 @@ sap.ui.define([
 
       _onObjectMatched: function (oEvent) {
          // Model for anonymous usage
-         sUsername = this.getCurrentUser();
+         var sUsername = this.getCurrentUser();
          var oModel = new JSONModel({currentUser: sUsername});
          this.getView().setModel(oModel, "AnonymousModel");
 
