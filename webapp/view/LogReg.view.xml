@@ -28,20 +28,20 @@
 			</content>
 			<content>
 				<Button
-					text="{i18n>LogIn}"
+					text="{i18n>loginBtn}"
 					press=".onLogIn"
 					class="myCustomButton"
 					icon="sap-icon://visits"
 					width="80%"
 				/>
 				<Button
-					text="{i18n>Register}"
+					text="{i18n>registerBtn}"
 					press=".onRegister"
 					class="myCustomButton"
 					width="80%"
 				/>
 				<Button
-					text="{i18n>ForgotPass}"
+					text="{i18n>forgotPassBtn}"
 					press=".onForgotPass"
 					class="myCustomButton"
 					width="80%"

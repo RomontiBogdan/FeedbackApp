@@ -30,7 +30,7 @@
 					type="Password"
 				/>
 				<Button
-					text="{i18n>ChangePassword}"
+					text="{i18n>changePasswordBtn}"
 					class="myCustomButton"
 					width="80%"
 					type="Emphasized"

@@ -18,25 +18,25 @@
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
 					iconColor="Neutral"
-					text="{i18n>IconTabFilterAllPEGs}"
+					text="{i18n>iconTabFilterAllPEGs}"
 					key="allpegs"
 				/>
 				<IconTabFilter
 					icon="sap-icon://add-document"
 					iconColor="Negative"
-					text="{i18n>IconTabFilterNewPEGs}"
+					text="{i18n>iconTabFilterNewPEGs}"
 					key="New"
 				/>
 				<IconTabFilter
 					icon="sap-icon://pending"
 					iconColor="Critical"
-					text="{i18n>IconTabFilterPendingPEGs}"
+					text="{i18n>iconTabFilterPendingPEGs}"
 					key="Pending"
 				/>
 				<IconTabFilter
 					icon="sap-icon://accept"
 					iconColor="Positive"
-					text="{i18n>IconTabFilterCompletedPEGs}"
+					text="{i18n>iconTabFilterCompletedPEGs}"
 					key="Completed"
 				/>
 			</items>
@@ -49,19 +49,19 @@
 				>
 					<columns>
 						<Column width="12em">
-							<Text text="Evaluator"/>
+							<Text text="{i18n>columnEvaluator}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Employee"/>
+							<Text text="{i18n>columnEmployee}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Project"/>
+							<Text text="{i18n>columnProject}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Status"/>
+							<Text text="{i18n>columnStatus}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Request Date"/>
+							<Text text="{i18n>columnRequestDate}"/>
 						</Column>
 					</columns>
 					<items>

@@ -7,7 +7,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="New Feedback"
+		title="{i18n>newFeedbackPage}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -31,7 +31,7 @@
 				singleContainerFullSize="false"
 			>
 				<Label
-					text="Select user"
+					text="{i18n>selectUserInput}"
 					labelFor="inputToUser"
 				/>
 				<Select
@@ -46,7 +46,7 @@
 					/>
 				</Select>
 				<Label
-					text="Select projects "
+					text="{i18n>selectProjectsInput} "
 					labelFor="inputToProject"
 				/>
 				<Select
@@ -62,10 +62,10 @@
 				<!-- Annonymous? -->
 				<CheckBox
 					id="AnonymousCB"
-					text="Anonymous feedback"
+					text="{i18n>anonymousCheckBox}"
 				/>
 				<Label
-					text="Offer feedback based on the following skill"
+					text="{i18n>categoryFeedback}"
 					labelFor="inputSkill"
 				/>
 				<Select
@@ -89,11 +89,11 @@
 				/>
 			</f:SimpleForm>
 			<Label
-				text="Description"
+				text="{i18n>description}"
 				labelFor="inputDescription"
 			/>
 			<TextArea
-				placeholder="Enter Text"
+				placeholder="{i18n>descriptionTextArea}"
 				id="inputDescription"
 				growing="true"
 				growingMaxLines="7"

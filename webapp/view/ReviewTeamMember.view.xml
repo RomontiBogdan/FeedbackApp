@@ -4,7 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<Page
-		title="Complete Feedback"
+		title="{i18n>teamFeedbackDetailPage}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -21,14 +21,15 @@
 						>
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="Manager who demanded feedback"
+								
+								header = "{i18n>ManagerTileTitle}"
 								subheader="{Manager}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://manager"
 							/>
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="Employee reviewed"
+								header = "{i18n>EmployeeReviewTileTitle}"
 								subheader="{ToUser}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://employee"
@@ -40,7 +41,7 @@
 						>
 							<GenericTile
 								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="Project ID"
+								header = "{i18n>ProjectTileTitle}"
 								subheader="{= ${ProjectId} !== '0000' ? ${ProjectId} : 'Project not specified'}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
@@ -56,14 +57,14 @@
 						<VBox>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Sent At"
+							header="{i18n>SendDateTileTitle}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByHalf"
 							headerImage="sap-icon://date-time"
 						/>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Category"
+							header="{i18n>CategoryTileTitle}"
 							subheader="{
                         path: 'Categories',
                         formatter: '.formatter.feedbackCategory'
@@ -94,7 +95,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="Send Feedback"
+						text="{i18n>sendFeedbackBtn}"
 						press=".onSendFeedback"
 						icon="sap-icon://paper-plane"
 					/>

@@ -4,7 +4,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="{i18n>FeedbackPageTitle}"
+		title="{i18n>feedbackPageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
@@ -18,20 +18,20 @@
 				<IconTabFilter
 					icon="sap-icon://multiselect-all"
 					iconColor="Neutral"
-					text="{i18n>IconTabFilterAllFeedbacks}"
+					text="{i18n>iconTabFilterAllFeedbacks}"
 					key="All"
 				/>
 				<IconTabSeparator/>
 				<IconTabFilter
 					icon="sap-icon://back-to-top"
 					iconColor="Critical"
-					text="{i18n>IconTabFilterSentFeedbacks}"
+					text="{i18n>iconTabFilterSentFeedbacks}"
 					key="Sent"
 				/>
 				<IconTabFilter
 					icon="sap-icon://download"
 					iconColor="Positive"
-					text="{i18n>IconTabFilterReceivedFeedbacks}"
+					text="{i18n>iconTabFilterReceivedFeedbacks}"
 					key="Received"
 				/>
 			</items>
@@ -44,22 +44,22 @@
 				>
 					<columns>
 						<Column width="12em">
-							<Text text="From User"/>
+							<Text text="{i18n>columnFromUser}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="To User"/>
+							<Text text="{i18n>columnToUser}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Project"/>
+							<Text text="{i18n>columnProject}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Category"/>
+							<Text text="{i18n>columnCategory}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Rating"/>
+							<Text text="{i18n>columnRating}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Sent Date"/>
+							<Text text="{i18n>columnSentDate}"/>
 						</Column>
 					</columns>
 					<items>
@@ -91,7 +91,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="{i18n>FeedbackRequestBtn}"
+						text="{i18n>feedbackRequestBtn}"
 						press=".onNewFeedback"
 						class="myCustomButton"
 						icon="sap-icon://add"

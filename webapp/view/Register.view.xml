@@ -30,7 +30,7 @@
 					width="80%"
 				/>
 				<Button
-					text="{i18n>SubmitRegister}"
+					text="{i18n>submitRegisterBtn}"
 					class="myCustomButton"
 					width="80%"
 					type="Emphasized"
