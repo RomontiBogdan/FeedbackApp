@@ -6,7 +6,7 @@
 >
 	<Page
 		class="sapUiContentPadding"
-		title="{i18n>RequestPEG}"
+		title="{i18n>requestPEGPage}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 		enableScrolling="false"
