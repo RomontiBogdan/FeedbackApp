@@ -34,11 +34,11 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         this.sFeedbackId = oEvent.getParameter("arguments").pegID;
+         this._sFeedbackId = oEvent.getParameter("arguments").pegID;
          var oDetailPEG = this.getView().byId("pegContainer");
 
          oDetailPEG.bindElement({
-            path: "/PegReqSet(" + this.sFeedbackId + ")",
+            path: "/PegReqSet(" + this._sFeedbackId + ")",
             events: {
                dataReceived: function (oData) {
                   var oUserDetail = this.getView().byId("userContainer");
@@ -50,10 +50,10 @@ sap.ui.define([
                   oProjectDetail.bindElement({ path: "/ProjectDetailsSet('" + sProjectId + "')" });
 
                   var oCriteriaTable = this.getView().byId("pegTable");
-                  oCriteriaTable.bindElement({ path: "/PegReqSet(" + this.sFeedbackId + ")" })
+                  oCriteriaTable.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
 
                   var oFieldsForUpdate = this.getView().byId("toUpdateFields");
-                  oFieldsForUpdate.bindElement({ path: "/PegReqSet(" + this.sFeedbackId + ")" })
+                  oFieldsForUpdate.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
 
                   this._checkEvaluator(oData.getParameter("data").FromUser);
 
@@ -65,13 +65,13 @@ sap.ui.define([
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== this.getCurrentUser()) {
-            this.giveRightsToEdit(false);
+            this._toggleRightsToEdit(false);
          } else {
-            this.giveRightsToEdit(true);
+            this._toggleRightsToEdit(true);
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
-                  oModel.update("/PegReqSet(" + this.sFeedbackId + ")", { Status: "1" }, {
+                  oModel.update("/PegReqSet(" + this._sFeedbackId + ")", { Status: "1" }, {
                      merge: true,
                      success: function () {
                         MessageToast.show("This PEG is now on Pending!");
@@ -82,7 +82,7 @@ sap.ui.define([
          }
       },
 
-      giveRightsToEdit: function(bRight){
+      _toggleRightsToEdit: function (bRight) {
          this.byId("gradeIndicator").setEditable(bRight);
          this.byId("recommendationInput").setEditable(bRight);
          this.byId("submitChangesButton").setVisible(bRight);
@@ -95,7 +95,7 @@ sap.ui.define([
       _currentPegStatus: function () {
          var oModel = this.getOwnerComponent().getModel();
          return new Promise((resolve, reject) => {
-            oModel.read("/PegReqSet(" + this.sFeedbackId + ")", {
+            oModel.read("/PegReqSet(" + this._sFeedbackId + ")", {
                success: function (oData) {
                   resolve(oData.Status === "0")
                }
@@ -160,8 +160,7 @@ sap.ui.define([
          var aRecommendations = [];
          var oItemsBindingContext;
 
-         while(iRowIndex < iNumberOfCriterias)
-         {
+         while (iRowIndex < iNumberOfCriterias) {
             oItemsBindingContext = aItems[iRowIndex].getBindingContext();
             aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
             aDescr.push(formatter.gradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
@@ -293,7 +292,7 @@ sap.ui.define([
 
       onToggleStatus: function (oEvent) {
          var oModel = this.byId("pegTable").getModel()
-         oModel.setProperty("/PegReqSet(" + this.sFeedbackId + "l)/Status",
+         oModel.setProperty("/PegReqSet(" + this._sFeedbackId + "l)/Status",
             oEvent.getParameters().selected ? "2" : "1")
       },
 

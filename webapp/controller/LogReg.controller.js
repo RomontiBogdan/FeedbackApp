@@ -4,7 +4,7 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.LogReg", {
       onLogIn: function (oEvent) {
-         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+         var oRouter = this.getRouter();
          var oModel = this.getOwnerComponent().getModel();
          var oView = this.getView();
          var sUsername = oView.byId("UsernameField");
@@ -25,7 +25,7 @@ sap.ui.define([
             error: function (oError) {
                sUsername.setValueState("Error");
                sPassword.setValueState("Error");
-               sap.m.MessageToast.show(JSON.parse(oError.responseText).error.message.value)
+               sap.m.MessageToast.show(this.errorText(oError))
             }
          });
       },

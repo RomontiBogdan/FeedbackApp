@@ -50,21 +50,21 @@
 					<headerToolbar>
 						<Toolbar>
 							<ToolbarSpacer/>
-							<Title text="Search by employee:"/>
+							<Title text="Search by Team Member:"/>
 							<SearchField
 								id="searchField"
 								width="30%"
 								liveChange=".onUserFilter"
-								placeholder="Filter by employee"
+								placeholder="Filter by Team Member"
 							/>
 						</Toolbar>
 					</headerToolbar>
 					<columns>
 						<Column width="12em">
-							<Text text="{i18n>columnFromManager}"/>
+							<Text text="{i18n>columnFromUser}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="{i18n>columnToEmployee}"/>
+							<Text text="{i18n>columnToTeamMember}"/>
 						</Column>
 						<Column width="12em">
 							<Text text="{i18n>columnProject}"/>
@@ -108,17 +108,17 @@
 			</content>
 		</IconTabBar>
 		<footer>
-			<Bar id="buttonbar">
+			<Bar id="buttonBar">
 				<contentLeft>
 					<Button
-						id="myteambutton"
+						id="myTeamButton"
 						text="My team"
 						press=".onMyTeam"
 						type="Emphasized"
 						icon="sap-icon://group"
 					/>
 					<Button
-						id="otherteamsbutton"
+						id="otherTeamsButton"
 						text="Other teams"
 						press=".onOtherTeams"
 						icon="sap-icon://group"

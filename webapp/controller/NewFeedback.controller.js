@@ -1,5 +1,4 @@
-sap.ui.define(
-   [
+sap.ui.define([
       "../controller/BaseController",
       "sap/ui/model/json/JSONModel",
       "sap/m/MessageBox"

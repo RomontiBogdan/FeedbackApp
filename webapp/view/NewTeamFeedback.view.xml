@@ -11,8 +11,7 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
-
-    <l:VerticalLayout
+		<l:VerticalLayout
 			class="sapUiContentPadding"
 			width="100%"
 		>
@@ -31,30 +30,27 @@
 				columnsL="1"
 				singleContainerFullSize="false"
 			>
-                <Label
-					text="Select manager"
-					labelFor="inputToManager"
+				<Label
+					text="Select Evaluator User"
+					labelFor="evaluatorUserSelect"
 				/>
 				<Select
 					forceSelection="false"
-					id="inputToManager"
-					items="{/TeamManagersSet}"
+					id="evaluatorUserSelect"
+					items="{/UsernamesSet}"
 				>
 					<core:ListItem
-						key="{TeamManager}"
-						text="{TeamManager}"
+						key="{Username}"
+						text="{Username}"
 					/>
 				</Select>
-
-
-
 				<Label
-					text="Select team member"
-					labelFor="inputToMember"
+					text="Select Team Member"
+					labelFor="teamMemberSelect"
 				/>
 				<Select
 					forceSelection="false"
-					id="inputToMember"
+					id="teamMemberSelect"
 					items="{toMembers}"
 					change="onUserChange"
 				>
@@ -63,15 +59,13 @@
 						text="{Username}"
 					/>
 				</Select>
-
-
 				<Label
 					text="Select project"
-					labelFor="inputToProjects"
+					labelFor="userProjectsSelect"
 				/>
 				<Select
 					forceSelection="false"
-					id="inputToProjects"
+					id="userProjectsSelect"
 					items="{toProjects}"
 				>
 					<core:ListItem
@@ -79,16 +73,14 @@
 						text="{ProjectName}"
 					/>
 				</Select>
-
-
 				<Label
 					text="Offer feedback based on the following skill"
-					labelFor="inputSkill"
+					labelFor="skillSelect"
 				/>
 				<Select
 					forceSelection="false"
-					id="inputSkill"
-						items="{
+					id="skillSelect"
+					items="{
                   path: 'newTeamFeedbackModel>/SkillCollection'
                }"
 				>
@@ -97,8 +89,6 @@
 						text="{newTeamFeedbackModel>Name}"
 					/>
 				</Select>
-
-
 			</f:SimpleForm>
 		</l:VerticalLayout>
 		<footer>
@@ -106,13 +96,12 @@
 				<contentRight>
 					<Button
 						text="Request Feedback"
-						press=".onSend"
+						press="onSendRequest"
 						class="myCustomButton"
 						icon="sap-icon://paper-plane"
 					/>
 				</contentRight>
 			</Bar>
 		</footer>
-		
 	</Page>
 </mvc:View>

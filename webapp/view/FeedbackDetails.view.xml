@@ -90,11 +90,6 @@
 				</VBox>
 			</content>
 		</Panel>
-		<Label
-			class="sapUiSmallMarginTopBottom sapUiMediumMarginBeginEnd"
-			text="Comments"
-			labelFor="descriptionTextArea"
-		/>
 		<TextArea
 			id="descriptionTextArea"
 			value="{Description}"
