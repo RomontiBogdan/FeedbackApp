@@ -5,7 +5,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="PEG Details"
+		title="{i18n>PEGDetailsPageTitle}"
 		showNavButton="true"
 		navButtonPress="onNavBack"
 	>
@@ -16,13 +16,13 @@
 					width="100%"
 				>
 					<Label
-						text="Details about Employee"
+						text="{i18n>employeeDetails}"
 						labelFor="userContainer"
 					/>
 					<HBox id="userContainer">
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Employee name"
+							header="{i18n>employeeNameTileTitle}"
 							subheader="{FullName}"
 							frameType="TwoByOne"
 						>
@@ -32,7 +32,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Personnel Number"
+							header="{i18n>personnelNumberTileTitle}"
 							subheader="{PersonalNo}"
 							frameType="Auto"
 						>
@@ -42,7 +42,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Fiscal Year"
+							header="{i18n>fiscalYearTileTitle}"
 							subheader="{FiscalYear}"
 							frameType="Auto"
 						>
@@ -52,7 +52,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Current Career Level"
+							header="{i18n>currentCarrerLevelTileTitle}"
 							subheader="{
 								path: 'CareerLevel',
 								formatter: '.formatter.careerLevel'
@@ -65,7 +65,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Organizational Assignment"
+							header="{i18n>organizationalAssignmentTileTitle}"
 							subheader="{Su}"
 							frameType="Auto"
 						>
@@ -76,13 +76,13 @@
 					</HBox>
 					<Label
 						class="sapUiTinyMarginTop"
-						text="Details about Feedback"
+						text="{i18n>feedbackDetails}"
 						labelFor="pegContainer"
 					/>
 					<HBox id="pegContainer">
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Project ID"
+							header="{i18n>projectIDTileTitle}"
 							subheader="{ProjectId}"
 							frameType="Auto"
 							id="GenericTileProjectId"
@@ -93,7 +93,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Date of PEG"
+							header="{i18n>dateOfPEGTileTitle}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
 						>
@@ -103,7 +103,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Name of the Evaluator"
+							header="{i18n>evaluatorTileTitle}"
 							subheader="{FromUser}"
 							frameType="Auto"
 						>
@@ -113,7 +113,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Number of Project Days Evaluated"
+							header="{i18n>noOfProjectDaysEvaluatedTileTitle}"
 							subheader="{
 								path: 'DaysEvaluated',
 								formatter: '.formatter.daysEvaluated'
@@ -127,13 +127,13 @@
 					</HBox>
 					<Label
 						class="sapUiTinyMarginTop"
-						text="Details about Project"
+						text="{i18n>projectDetails}"
 						labelFor="projectContainer"
 					/>
 					<HBox id="projectContainer">
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Name of the project"
+							header="{i18n>projectTileTitle}"
 							subheader="{ProjectName}"
 							frameType="TwoByOne"
 						>
@@ -143,7 +143,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Name of the Project Manager"
+							header="{i18n>projectManagerTileTitle}"
 							subheader="{ProjectManager}"
 							frameType="Auto"
 						>
@@ -153,7 +153,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Customer name"
+							header="{i18n>customerTileTitle}"
 							subheader="{Customer}"
 							frameType="TwoByOne"
 						>
@@ -173,16 +173,16 @@
 				>
 					<columns>
 						<Column width="12em">
-							<Text text="Criteria"/>
+							<Text text="{i18n>criteriaColumn}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Rating"/>
+							<Text text="{i18n>ratingColumn}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Description of the Rating"/>
+							<Text text="{i18n>ratingDescriptionColumn}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="Recommendations/Comments"/>
+							<Text text="{i18n>recommendationsColumn}"/>
 						</Column>
 					</columns>
 					<items>
