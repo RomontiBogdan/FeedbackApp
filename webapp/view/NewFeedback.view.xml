@@ -11,6 +11,16 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<l:VerticalLayout
 			class="sapUiContentPadding"
 			width="100%"
@@ -105,7 +115,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="Send"
+						text="{i18n>send}"
 						press=".onSend"
 						class="myCustomButton"
 						icon="sap-icon://paper-plane"

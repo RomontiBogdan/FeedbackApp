@@ -11,6 +11,16 @@
 		navButtonPress=".onNavBack"
 		enableScrolling="false"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<content>
 			<VBox width="100%">
 				<VBox id="mainInfoContainer">
@@ -94,7 +104,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="{i18n>sendSRequestBtn}"
+						text="{i18n>sendRequestBtn}"
 						press="onSendRequest"
 						class="myCustomButton"
 						icon="sap-icon://paper-plane"

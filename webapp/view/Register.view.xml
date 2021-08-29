@@ -4,28 +4,38 @@
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<Page
-		title="Register"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+		<headerContent>
+			<Button 
+			icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+			press=".setGermani18n"
+			class="sapUiSmallMarginBeginEnd"/>
+			<Button
+			icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+			press=".setEnglishi18n"
+			class="sapUiTinyMarginEnd"/>
+		</headerContent>
+
 		<Panel>
 			<content>
 				<Input
 					id="UsernameRegisterField"
-					placeholder="Username"
+					placeholder="{i18n>Username}"
 					valueLiveUpdate="true"
 					width="80%"
 				/>
 				<Input
 					id="PasswordRegisterField"
 					type="Password"
-					placeholder="Password"
+					placeholder="{i18n>Password}"
 					valueLiveUpdate="true"
 					width="80%"
 				/>
 				<Input
 					id="EmailRegisterField"
-					placeholder="Company email"
+					placeholder="{i18n>companyEmail}"
 					valueLiveUpdate="true"
 					width="80%"
 				/>

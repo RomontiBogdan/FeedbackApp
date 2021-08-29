@@ -12,7 +12,7 @@
 			<content>
 				<Input
 					id="UsernameField"
-					placeholder="Username"
+					placeholder="{i18n>Username}"
 					valueLiveUpdate="true"
 					submit="onLogIn"
 					width="80%"
@@ -20,7 +20,7 @@
 				<Input
 					id="PasswordField"
 					type="Password"
-					placeholder="Password"
+					placeholder="{i18n>Password}"
 					valueLiveUpdate="true"
 					submit="onLogIn"
 					width="80%"

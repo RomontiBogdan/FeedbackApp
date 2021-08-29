@@ -10,7 +10,15 @@
 			icon="sap-icon://account"
 			press=".onProfile"/>
 			<Button 
-			tooltip="Log Out"
+			icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+			press=".setGermani18n"
+			class="sapUiSmallMarginBeginEnd"/>
+			<Button
+			icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+			press=".setEnglishi18n"
+			class="sapUiTinyMarginEnd"/>
+			<Button 
+			tooltip="{i18n>logOut}"
 			type="Emphasized"
 			icon="sap-icon://visits"
 			press=".onLogOut"/>
@@ -28,7 +36,7 @@
 				/>
 				<GenericTile
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-					header="{i18n>feedback}"
+					header="{i18n>feedback360}"
 					mode="HeaderMode"
 					frameType="TwoByOne"
 					press=".onFeedback"

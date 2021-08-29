@@ -8,6 +8,16 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<IconTabBar
 			id="PegTabBarManager"
 			select=".onFilterSelect"
@@ -50,12 +60,12 @@
 					<headerToolbar>
 						<Toolbar>
 							<ToolbarSpacer/>
-							<Title text="Search by Team Member:"/>
+							<Title text="{i18n>searchTeamMember}:"/>
 							<SearchField
 								id="searchField"
 								width="30%"
 								liveChange=".onUserFilter"
-								placeholder="Filter by Team Member"
+								placeholder="{i18n>filterTeamMember}"
 							/>
 						</Toolbar>
 					</headerToolbar>
@@ -112,21 +122,21 @@
 				<contentLeft>
 					<Button
 						id="myTeamButton"
-						text="My team"
+						text="{i18n>myTeam}"
 						press=".onMyTeam"
 						type="Emphasized"
 						icon="sap-icon://group"
 					/>
 					<Button
 						id="otherTeamsButton"
-						text="Other teams"
+						text="{i18n>otherTeams}"
 						press=".onOtherTeams"
 						icon="sap-icon://group"
 					/>
 				</contentLeft>
 				<contentRight>
 					<Button
-						text="New Feedback"
+						text="{i18n>feedbackRequestBtn}"
 						press=".onNewFeedback"
 						class="myCustomButton"
 						icon="sap-icon://add"

@@ -11,6 +11,16 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<l:VerticalLayout
 			class="sapUiContentPadding"
 			width="100%"
@@ -31,7 +41,7 @@
 				singleContainerFullSize="false"
 			>
 				<Label
-					text="Select Evaluator User"
+					text="{i18n>selectEvaluator}"
 					labelFor="evaluatorUserSelect"
 				/>
 				<Select
@@ -45,7 +55,7 @@
 					/>
 				</Select>
 				<Label
-					text="Select Team Member"
+					text="{i18n>selectTeamMember}"
 					labelFor="teamMemberSelect"
 				/>
 				<Select
@@ -60,7 +70,7 @@
 					/>
 				</Select>
 				<Label
-					text="Select project"
+					text="{i18n>selectProjectsInput}"
 					labelFor="userProjectsSelect"
 				/>
 				<Select
@@ -74,7 +84,7 @@
 					/>
 				</Select>
 				<Label
-					text="Offer feedback based on the following skill"
+					text="{i18n>categoryFeedback}"
 					labelFor="skillSelect"
 				/>
 				<Select
@@ -95,7 +105,7 @@
 			<Bar>
 				<contentRight>
 					<Button
-						text="Request Feedback"
+						text="{i18n>requestFeedback}"
 						press="onSendRequest"
 						class="myCustomButton"
 						icon="sap-icon://paper-plane"

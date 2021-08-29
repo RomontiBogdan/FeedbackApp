@@ -4,27 +4,37 @@
 	xmlns:mvc="sap.ui.core.mvc"
 >
 	<Page
-		title="{i18n>ForgotPassword}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+		<headerContent>
+			<Button 
+			icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+			press=".setGermani18n"
+			class="sapUiSmallMarginBeginEnd"/>
+			<Button
+			icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+			press=".setEnglishi18n"
+			class="sapUiTinyMarginEnd"/>
+		</headerContent>
+		
 		<Panel class="sapUiResponsiveMargin">
 			<content>
 				<Input
 					id="usernameTextFP"
-					placeholder="Enter your username"
+					placeholder="{i18n>enterUsername}"
 					valueLiveUpdate="true"
 					width="80%"
 				/>
 				<Input
 					id="emailTextFP"
-					placeholder="Enter your email"
+					placeholder="{i18n>enterMail}"
 					valueLiveUpdate="true"
 					width="80%"
 				/>
 				<Input
 					id="passwordTextFP"
-					placeholder="Enter your new password"
+					placeholder="{i18n>enterNewPassword}"
 					valueLiveUpdate="true"
 					width="80%"
 					type="Password"
