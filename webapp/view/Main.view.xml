@@ -23,7 +23,6 @@
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 					header="{i18n>PEG}"
 					mode="HeaderMode"
-					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
 					press=".onPEG"
 				/>
@@ -31,7 +30,6 @@
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 					header="{i18n>feedback}"
 					mode="HeaderMode"
-					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
 					press=".onFeedback"
 				/>
@@ -39,7 +37,6 @@
 					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
 					header="{i18n>teamFeedback}"
 					mode="HeaderMode"
-					backgroundImage="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXP3/n/SH/PAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"
 					frameType="TwoByOne"
 					press=".onTeamFeedback"
 				/>
