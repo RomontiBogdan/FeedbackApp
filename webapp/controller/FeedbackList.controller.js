@@ -68,22 +68,5 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
       }
-      //,
-
-
-      // onFeedbackFilter: function (oEvent) {
-      //    var auxFilter = this._aFilter[0];
-      //    var sKey = oEvent.getParameter("newValue");
-      //    Object.entries(auxFilter.aFilters).forEach(oPath => {
-      //       if(oPath[1].sPath === "ToUser") {
-      //          auxFilter.aFilters.pop(oPath[0])
-      //       }
-      //    })
-      //    auxFilter.aFilters.push(new Filter("ToUser", FilterOperator.EQ, sKey.toUpperCase()));
-
-      //    var oList = this.byId("feedbackTable");
-      //    var oBinding = oList.getBinding("items");
-      //    oBinding.filter(auxFilter);
-      // }
    });
 });

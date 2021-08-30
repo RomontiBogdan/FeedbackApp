@@ -44,6 +44,7 @@ sap.ui.define([
                sap.m.MessageToast.show("Username or email invalid!")
             }
          })
+
       }
       },
    
@@ -64,6 +65,7 @@ sap.ui.define([
          }
          
          return exceptions
+
       }
 
    });

@@ -57,18 +57,6 @@
 						path: '/PegReqSet'
 					}"
 				>
-				<headerToolbar>
-						<Toolbar>
-							<ToolbarSpacer/>
-							<Title text="{i18n>searchEvaluatorEmployee}:"/>
-							<SearchField
-								id="searchField"
-								width="30%"
-								liveChange=".onPEGFilter"
-								placeholder="{i18n>filterEvaluatorEmployee}"
-							/>
-						</Toolbar>
-					</headerToolbar>
 					<columns>
 						<Column width="12em">
 							<Text text="{i18n>columnEvaluator}"/>
