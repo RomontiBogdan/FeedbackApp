@@ -22,6 +22,8 @@ sap.ui.define([
          this._isTeamManager(sUsername)
                .then(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
                .catch(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+         
+         this.byId("MyTeamTable").getModel().updateBindings(true);
       },
 
       _restrictIfNotTeamManager: function(bTeamManager, sUsername){

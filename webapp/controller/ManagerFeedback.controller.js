@@ -61,6 +61,7 @@ sap.ui.define([
          };
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "DaysEvaluatedModel");
+         this.byId("pegTable").getModel().updateBindings(true);
       },
 
       _checkEvaluator: function (sEvaluator) {

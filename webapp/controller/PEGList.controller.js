@@ -34,6 +34,8 @@ sap.ui.define([
             this.getView().byId("newrequestbar").setVisible(false);
          else
             this.getView().byId("newrequestbar").setVisible(true);
+
+         this.byId("PegTableManager").getModel().updateBindings(true);                    //Comanda asta m-a costat doi ani din viata
       },
 
       onNavBack: function () {

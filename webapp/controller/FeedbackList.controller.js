@@ -35,6 +35,8 @@ sap.ui.define([
          var oList = this.byId("feedbackTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._sFilter);
+
+         this.byId("feedbackTable").getModel().updateBindings(true);
        },
 
       onNavBack: function () {

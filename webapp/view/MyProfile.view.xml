@@ -5,22 +5,18 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m"
 >
-	<Page
-		title="{i18n>ViewProfilePageTitle}"
-		showNavButton="true"
-		navButtonPress=".onNavBack"
-		class="sapUiContentPadding"
-	>
-	<headerContent>
-		<Button 
-		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
-		press=".setGermani18n"
-		class="sapUiSmallMarginBeginEnd"/>
-		<Button
-		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
-		press=".setEnglishi18n"
-		class="sapUiTinyMarginEnd"/>
-	</headerContent>	
+	<Page class="sapUiContentPadding">
+		<customHeader>
+           <Bar>
+				<contentLeft>
+					<Button
+						icon="sap-icon://nav-back"
+						press=".navBack"
+						class="sapUiSmallMarginEnd"/>
+					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+				</contentLeft>
+           </Bar>
+      	</customHeader>
 		<Panel>
 			<f:SimpleForm
 				id="form"

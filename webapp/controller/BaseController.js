@@ -20,6 +20,11 @@ sap.ui.define([
 			}
       },
 
+      toMain: function () {
+         var oRouter = this.getRouter()
+			oRouter.navTo("main", true);
+      },
+
       getRouter: function () {
          return this.getOwnerComponent().getRouter();
       },
