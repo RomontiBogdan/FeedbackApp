@@ -9,6 +9,16 @@
 		showNavButton="true"
 		navButtonPress="onNavBack"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<Panel>
 			<content>
 				<VBox
@@ -22,7 +32,7 @@
 					<HBox id="userContainer">
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>employeeNameTileTitle}"
+							header="{i18n>employeeName}"
 							subheader="{FullName}"
 							frameType="TwoByOne"
 						>
@@ -32,7 +42,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>personnelNumberTileTitle}"
+							header="{i18n>personnelNumber}"
 							subheader="{PersonalNo}"
 							frameType="Auto"
 						>
@@ -42,7 +52,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>fiscalYearTileTitle}"
+							header="{i18n>fiscalYear}"
 							subheader="{FiscalYear}"
 							frameType="Auto"
 						>
@@ -52,7 +62,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>currentCarrerLevelTileTitle}"
+							header="{i18n>careerLevel}"
 							subheader="{
 								path: 'CareerLevel',
 								formatter: '.formatter.careerLevel'
@@ -65,7 +75,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>organizationalAssignmentTileTitle}"
+							header="{i18n>organizationalAssignment}"
 							subheader="{Su}"
 							frameType="Auto"
 						>
@@ -82,7 +92,7 @@
 					<HBox id="pegContainer">
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>projectIDTileTitle}"
+							header="{i18n>projectID}"
 							subheader="{ProjectId}"
 							frameType="Auto"
 							id="GenericTileProjectId"
@@ -93,7 +103,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>dateOfPEGTileTitle}"
+							header="{i18n>pegDate}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
 						>
@@ -103,7 +113,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>evaluatorTileTitle}"
+							header="{i18n>evaluatorName}"
 							subheader="{FromUser}"
 							frameType="Auto"
 						>
@@ -113,7 +123,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>noOfProjectDaysEvaluatedTileTitle}"
+							header="{i18n>nrProjectDays}"
 							subheader="{
 								path: 'DaysEvaluated',
 								formatter: '.formatter.daysEvaluated'
@@ -133,7 +143,7 @@
 					<HBox id="projectContainer">
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>projectTileTitle}"
+							header="{i18n>projectName}"
 							subheader="{ProjectName}"
 							frameType="TwoByOne"
 						>
@@ -143,9 +153,9 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>projectManagerTileTitle}"
+							header="{i18n>projectManagerName}"
 							subheader="{ProjectManager}"
-							frameType="Auto"
+							frameType="TwoByOne"
 						>
 							<TileContent>
 								<ImageContent src="sap-icon://manager"/>
@@ -153,7 +163,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="{i18n>customerTileTitle}"
+							header="{i18n>customerName}"
 							subheader="{Customer}"
 							frameType="TwoByOne"
 						>
@@ -173,16 +183,16 @@
 				>
 					<columns>
 						<Column width="12em">
-							<Text text="{i18n>criteriaColumn}"/>
+							<Text text="{i18n>criteria}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="{i18n>ratingColumn}"/>
+							<Text text="{i18n>rating}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="{i18n>ratingDescriptionColumn}"/>
+							<Text text="{i18n>ratingDescription}"/>
 						</Column>
 						<Column width="12em">
-							<Text text="{i18n>recommendationsColumn}"/>
+							<Text text="{i18n>recommendations}"/>
 						</Column>
 					</columns>
 					<items>
@@ -219,7 +229,7 @@
 				<contentLeft>
 					<Button
 						id="submitChangesButton"
-						text="Submit"
+						text="{i18n>submit}"
 						press="onSubmitChanges"
 						class="myCustomButton"
 						icon="sap-icon://accept"
@@ -228,14 +238,14 @@
 						<CheckBox
                      class="sapUiMediumMarginEnd"
 							id="completedCheckBox"
-							text="is Completed?"
+							text="{i18n>isCompleted}?"
 							selected="{= ${Status} === '2' ? true : false}"
                      select="onToggleStatus"
 						/>
 						<Select
 							forceSelection="false"
 							id="daysEvaluatedSelect"
-                     tooltip="Select the number of project days evaluated"
+                     		tooltip="{i18n>selectDaysEval}"
 							selectedKey="{DaysEvaluated}"
 							items="{
                         path: 'DaysEvaluatedModel>/EvaluatedDays'
@@ -251,7 +261,7 @@
 				<contentRight>
 					<Button
 						id="exportButton"
-						text="Export to excel"
+						text="{i18n>exportExcel}"
 						class="myCustomButton"
 						press="onExport"
 						icon="sap-icon://download"

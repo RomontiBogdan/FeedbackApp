@@ -8,6 +8,16 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<Panel height="230px">
 			<content>
 				<VBox
@@ -45,7 +55,7 @@
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
 							/>
-							<Label text="Give a grade"/>
+							<Label text="{i18n>giveGrade}"/>
 							<RatingIndicator
 								id="RatingTeamMember"
 								maxValue="4"
@@ -80,19 +90,25 @@
 				</VBox>
 			</content>
 		</Panel>
-        <TextArea
-				id="ReviewTextArea"
-                class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
-				placeholder="Enter feedback description"
-				editable="true"
-				growing="true"
-				growingMaxLines="7"
-				width="95%"
-				height="60%"
+		<TextArea
+			id="ReviewTextArea"
+			value="{Description}"
+			class="sapUiMediumMarginBeginEnd sapUiSmallMarginTop"
+			placeholder="{i18n>descriptionTextArea}"
+			growing="true"
+			growingMaxLines="7"
+			width="95%"
+			height="60%"
 		/>
 		<footer>
 			<Bar>
 				<contentRight>
+					<CheckBox
+						id="completedCheckBox"
+						text="{i18n>isCompleted}?"
+						selected="{= ${Status} === '2' ? true : false}"
+						select="onToggleStatus"
+					/>
 					<Button
 						text="{i18n>sendFeedbackBtn}"
 						press=".onSendFeedback"

@@ -19,11 +19,14 @@ sap.ui.define([
          // call the init function of the parent
          UIComponent.prototype.init.apply(this, arguments);
 
-         // set i18n model
-         var i18nModel = new ResourceModel({
+         this._Englishi18nModel = new ResourceModel({
             bundleName: "sap.ui.demo.walkthrough.i18n.i18n"
          });
-         this.setModel(i18nModel, "i18n");
+         this._Germani18nModel = new ResourceModel({
+            bundleName: "sap.ui.demo.walkthrough.i18n.i18n_de"
+         });
+
+         this.setModel(this._Englishi18nModel, "i18n");
 
          var currentUserModel = new JSONModel();
          this.setModel(currentUserModel, "currentUser");
@@ -33,6 +36,16 @@ sap.ui.define([
 
 
          this.getRouter().initialize();
+      },
+
+      setGermani18n: function(){
+         this.setModel(this._Englishi18nModel, "i18n");
+      },
+
+      setEnglishi18n: function(){
+         this.setModel(this._Germani18nModel, "i18n");
       }
+
+
    });
 });

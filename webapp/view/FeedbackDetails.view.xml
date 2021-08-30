@@ -8,6 +8,16 @@
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 	>
+	<headerContent>
+		<Button 
+		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+		press=".setGermani18n"
+		class="sapUiSmallMarginBeginEnd"/>
+		<Button
+		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+		press=".setEnglishi18n"
+		class="sapUiTinyMarginEnd"/>
+	</headerContent>	
 		<Panel>
 			<content>
 				<VBox
@@ -17,7 +27,7 @@
 					<HBox>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="FROM"
+							header="{i18n>from}"
 							subheader="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
                         ? 'Anonymous sender' : ${FromUser}}"
 							frameType="Auto"
@@ -28,7 +38,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="TO"
+							header="{i18n>to}"
 							subheader="{ToUser}"
 							frameType="Auto"
 						>
@@ -38,7 +48,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Project ID"
+							header="{i18n>projectID}"
 							subheader="{ProjectId}"
 							frameType="Auto"
 						>
@@ -48,7 +58,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Review"
+							header="{i18n>review}"
 							subheader="{
                         path: 'Rating',
                         formatter: '.formatter.feedbackRating'
@@ -65,7 +75,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Category"
+							header="{i18n>category}"
 							subheader="{
                         path: 'Categories',
                         formatter: '.formatter.feedbackCategory'
@@ -78,7 +88,7 @@
 						</GenericTile>
 						<GenericTile
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-							header="Sent At"
+							header="{i18n>sentDate}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="Auto"
 						>
