@@ -68,5 +68,19 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
       }
+
+      //,
+
+
+      // onFeedbackFilter: function (oEvent) {
+      //    var auxFilter = this._aFilter[0];
+      //    var sKey = oEvent.getParameter("newValue");
+        
+
+      //    var oList = this.byId("feedbackTable");
+      //    var oBinding = oList.getBinding("items");
+      //    oBinding.filter(auxFilter);
+      // }
+
    });
 });
