@@ -136,12 +136,12 @@ sap.ui.define([
          var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
          var sFiscal_Year = oUserContainerObj.FiscalYear;
          var sPersonnelNumber = oUserContainerObj.PersonalNo;
-         var sCareerLvl = formatter.careerLevel(oUserContainerObj.CareerLevel);
+         var sCareerLvl = formatter.careerLevelExcel(oUserContainerObj.CareerLevel);
          var sSU = oUserContainerObj.Su;
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
          var sEvaluatorName = oPegContainerObj.FromUser;
-         var sDaysEval = formatter.daysEvaluated(oPegContainerObj.DaysEvaluated);
+         var sDaysEval = formatter.daysEvaluatedExcel(oPegContainerObj.DaysEvaluated);
          var sCustomerName = oProjectContainerObj.Customer;
          var sProjectName = oProjectContainerObj.ProjectName;
          var sProjectManName = oProjectContainerObj.ProjectManager;
@@ -164,7 +164,7 @@ sap.ui.define([
          while (iRowIndex < iNumberOfCriterias) {
             oItemsBindingContext = aItems[iRowIndex].getBindingContext();
             aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
-            aDescr.push(formatter.gradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
+            aDescr.push(formatter.gradeDescriptionExcel(oModel.getProperty("Grade", oItemsBindingContext)));
             aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
             iRowIndex++;
          }
@@ -328,13 +328,14 @@ sap.ui.define([
       },
 
       _criteriaBatchUpdate: function (oModel) {
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          return new Promise((resolve, reject) => {
             oModel.submitChanges();
             oModel.attachRequestCompleted(function (oEvent) {
                if (oEvent.getParameters("success")) {
-                  resolve("The information was updated successfully!");
+                  resolve(oi18nModel.getText("infoUpdated"));
                } else {
-                  reject("Update failed!")
+                  reject(oi18nModel.getText("infoError"))
                }
             });
          })
