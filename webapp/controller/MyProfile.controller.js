@@ -75,5 +75,20 @@ sap.ui.define([
       onEdit: function (oEvent) {
          this._setFieldsState(oEvent.getParameter("state"))
       }
+
+
+      // _validateData: function (oParams) {
+      //    var exceptions = ""
+      //    if (oParams.ProjectId === null) {
+      //       exceptions += "Please select a project!\n"
+      //    }
+      //    if (oParams.FromUser === null) {
+      //       exceptions += "Please select a manager!\n"
+      //    }
+      //    if (oParams.FromUser === this.getCurrentUser()) {
+      //       exceptions += "You cannot select yourself to be the Evaluator!\n"
+      //    }
+      //    return exceptions
+      // }
    });
 });
