@@ -1,7 +1,9 @@
 sap.ui.define([
    "./BaseController",
-   'sap/ui/model/json/JSONModel'
-], function (BaseController, JSONModel) {
+   'sap/ui/model/json/JSONModel',
+   "sap/m/MessageBox"
+
+], function (BaseController, JSONModel, MessageBox) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
       onInit: function () {
@@ -53,16 +55,6 @@ sap.ui.define([
          this.navBack();
       },
 
-      onPressSave: function () {
-         var oModel = this.getView().getModel();
-         oModel.setUseBatch(true);
-         oModel.submitChanges({
-            success: function (oData) {
-               sap.m.MessageToast.show("The information was updated successfully!");
-               oModel.setUseBatch(false);
-            }
-         });
-      },
 
       _setFieldsState: function (bState) {
          var oView = this.getView();
@@ -72,23 +64,88 @@ sap.ui.define([
          oView.byId("inputSU").setEditable(bState);
       },
 
+
+         _validateData: function (oParams) {
+         var exceptions = ""
+         if (oParams.FullName === "") {
+            exceptions += "Please introduce your full name!\n"
+         }
+         if (oParams.Email === "") {
+            exceptions += "Please introduce your email!\n"
+         }
+         if (oParams.PersonalNo === "") {
+            exceptions += "Please introduce your personal number!\n"
+         }
+         if (oParams.Su === "") {
+            exceptions += "Please introduce service unit!\n"
+         }
+        
+         return exceptions
+      },
+
+
       onEdit: function (oEvent) {
-         this._setFieldsState(oEvent.getParameter("state"))
+         this._setFieldsState(oEvent.getParameter("state"));
+
+      },
+
+
+      onPressSave: function () {
+         var oModel = this.getView().getModel();
+         oModel.setUseBatch(true);
+
+
+         oModel.submitChanges({
+            success: function (oData) {
+               sap.m.MessageToast.show("The information was updated successfully!");
+               oModel.setUseBatch(false);
+            }
+         });
+
+         var params =  {
+            FullName: this.getView().byId("inputName").getValue(),
+            Username: "",
+            Email: this.getView().byId("inputEmail").getValue(),
+            Password: "",
+            PersonalNo: this.getView().byId("inputTel").getValue(),
+            Su: this.getView().byId("inputSU").getValue(),
+            CareerLevel: "",
+            FiscalYear: ""
+         }
+         var exceptions = this._validateData(params);
+         if (exceptions !== "") {
+            MessageBox.error(exceptions)
+         }
+         else {
+        // var oModel = this.getOwnerComponent().getModel();
+
+      //   var oModel = this.getView().getModel();
+      //    oModel.setUseBatch(true);
+
+         // oModel.create('/UserPassSet', params, {
+         //    success: function (oCreatedEntry) {
+         //       MessageBox.information("The information was updated successfully!", {
+         //          // onClose: function (oAction) {
+         //          //    if (oAction == "OK") {
+         //          //       var oRouter = this.getOwnerComponent().getRouter();
+         //          //       oRouter.navTo("myprofile");
+         //          //    }
+         //          // }.bind(this)
+         //       });
+
+         //    }.bind(this),
+         //    error: function (oError) {
+         //       sap.m.MessageToast.show(this.errorText(oError))
+         //    }.bind(this)
+         // });
+
+          
+
+
+ 
       }
 
-
-      // _validateData: function (oParams) {
-      //    var exceptions = ""
-      //    if (oParams.ProjectId === null) {
-      //       exceptions += "Please select a project!\n"
-      //    }
-      //    if (oParams.FromUser === null) {
-      //       exceptions += "Please select a manager!\n"
-      //    }
-      //    if (oParams.FromUser === this.getCurrentUser()) {
-      //       exceptions += "You cannot select yourself to be the Evaluator!\n"
-      //    }
-      //    return exceptions
-      // }
+      }
+     
    });
 });

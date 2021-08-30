@@ -80,12 +80,7 @@ sap.ui.define([
       // onPEGFilter: function (oEvent) {
       //    var auxFilter = this._aFilter[0];
       //    var sKey = oEvent.getParameter("newValue");
-      //    // Object.entries(auxFilter.aFilters).forEach(oPath => {
-      //    //    if(oPath[1].sPath === "ToUser") {
-      //    //       auxFilter.aFilters.pop(oPath[0])
-      //    //    }
-      //    // })
-      //    auxFilter.aFilters.push(new Filter("ToUser", FilterOperator.EQ, sKey.toUpperCase()));
+        
 
       //    var oList = this.byId("PegTableManager");
       //    var oBinding = oList.getBinding("items");
