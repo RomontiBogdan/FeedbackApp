@@ -3,21 +3,18 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 >
-	<Page
-		title="{i18n>PEGPageTitle}"
-		showNavButton="true"
-		navButtonPress=".onNavBack"
-	>
-	<headerContent>
-		<Button 
-		icon="https://image.flaticon.com/icons/png/512/197/197374.png"
-		press=".setGermani18n"
-		class="sapUiSmallMarginBeginEnd"/>
-		<Button
-		icon="https://image.flaticon.com/icons/png/512/197/197571.png"
-		press=".setEnglishi18n"
-		class="sapUiTinyMarginEnd"/>
-	</headerContent>	
+	<Page>
+		<customHeader>
+           <Bar>
+				<contentLeft>
+					<Button
+						icon="sap-icon://nav-back"
+						press=".navBack"
+						class="sapUiSmallMarginEnd"/>
+					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+				</contentLeft>
+           </Bar>
+      	</customHeader>
 		<IconTabBar
 			id="PegTabBarManager"
 			select=".onFilterSelect"
