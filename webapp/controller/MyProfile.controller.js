@@ -1,9 +1,10 @@
 sap.ui.define([
    "./BaseController",
-   'sap/ui/model/json/JSONModel',
-   "sap/m/MessageBox"
+   "sap/ui/model/json/JSONModel",
+   "sap/m/MessageBox",
+   "sap/m/MessageToast",
 
-], function (BaseController, JSONModel, MessageBox) {
+], function (BaseController, JSONModel, MessageBox, MessageToast) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
       onInit: function () {
@@ -91,16 +92,7 @@ sap.ui.define([
 
 
       onPressSave: function () {
-         var oModel = this.getView().getModel();
-         oModel.setUseBatch(true);
 
-
-         oModel.submitChanges({
-            success: function (oData) {
-               sap.m.MessageToast.show("The information was updated successfully!");
-               oModel.setUseBatch(false);
-            }
-         });
 
          var params =  {
             FullName: this.getView().byId("inputName").getValue(),
@@ -117,31 +109,18 @@ sap.ui.define([
             MessageBox.error(exceptions)
          }
          else {
-        // var oModel = this.getOwnerComponent().getModel();
+     
 
-      //   var oModel = this.getView().getModel();
-      //    oModel.setUseBatch(true);
-
-         // oModel.create('/UserPassSet', params, {
-         //    success: function (oCreatedEntry) {
-         //       MessageBox.information("The information was updated successfully!", {
-         //          // onClose: function (oAction) {
-         //          //    if (oAction == "OK") {
-         //          //       var oRouter = this.getOwnerComponent().getRouter();
-         //          //       oRouter.navTo("myprofile");
-         //          //    }
-         //          // }.bind(this)
-         //       });
-
-         //    }.bind(this),
-         //    error: function (oError) {
-         //       sap.m.MessageToast.show(this.errorText(oError))
-         //    }.bind(this)
-         // });
-
-          
-
-
+        var oModel = this.getView().getModel();
+        oModel.setUseBatch(true);
+   
+         oModel.submitChanges({
+            success: function (oData) {
+               sap.m.MessageToast.show("The information was updated successfully!");
+               oModel.setUseBatch(false);
+            }
+         });
+         
  
       }
 
