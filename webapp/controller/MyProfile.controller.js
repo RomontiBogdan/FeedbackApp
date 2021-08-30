@@ -1,7 +1,10 @@
 sap.ui.define([
    "./BaseController",
-   'sap/ui/model/json/JSONModel'
-], function (BaseController, JSONModel) {
+   "sap/ui/model/json/JSONModel",
+   "sap/m/MessageBox",
+   "sap/m/MessageToast",
+
+], function (BaseController, JSONModel, MessageBox, MessageToast) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
       onInit: function () {
@@ -53,17 +56,6 @@ sap.ui.define([
          this.navBack();
       },
 
-      onPressSave: function () {
-         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-         var oModel = this.getView().getModel();
-         oModel.setUseBatch(true);
-         oModel.submitChanges({
-            success: function (oData) {
-               sap.m.MessageToast.show(oi18nModel.getText("infoUpdated"));
-               oModel.setUseBatch(false);
-            }
-         });
-      },
 
       _setFieldsState: function (bState) {
          var oView = this.getView();
@@ -73,8 +65,67 @@ sap.ui.define([
          oView.byId("inputSU").setEditable(bState);
       },
 
+
+         _validateData: function (oParams) {
+         var exceptions = ""
+         if (oParams.FullName === "") {
+            exceptions += "Please introduce your full name!\n"
+         }
+         if (oParams.Email === "") {
+            exceptions += "Please introduce your email!\n"
+         }
+         if (oParams.PersonalNo === "") {
+            exceptions += "Please introduce your personal number!\n"
+         }
+         if (oParams.Su === "") {
+            exceptions += "Please introduce service unit!\n"
+         }
+        
+         return exceptions
+      },
+
+
       onEdit: function (oEvent) {
-         this._setFieldsState(oEvent.getParameter("state"))
+
+         this._setFieldsState(oEvent.getParameter("state"));
+
+      },
+
+
+      onPressSave: function () {
+
+
+         var params =  {
+            FullName: this.getView().byId("inputName").getValue(),
+            Username: "",
+            Email: this.getView().byId("inputEmail").getValue(),
+            Password: "",
+            PersonalNo: this.getView().byId("inputTel").getValue(),
+            Su: this.getView().byId("inputSU").getValue(),
+            CareerLevel: "",
+            FiscalYear: ""
+         }
+         var exceptions = this._validateData(params);
+         if (exceptions !== "") {
+            MessageBox.error(exceptions)
+         }
+         else {
+     
+        var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+        var oModel = this.getView().getModel();
+        oModel.setUseBatch(true);
+   
+         oModel.submitChanges({
+            success: function (oData) {
+               sap.m.MessageToast.show(oi18nModel.getText("infoUpdated"));
+               oModel.setUseBatch(false);
+            }
+         });
+         
+ 
       }
+
+      }
+    
    });
 });
