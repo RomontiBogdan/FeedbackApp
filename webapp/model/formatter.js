@@ -14,39 +14,40 @@ sap.ui.define([], function () {
       },
 
       feedbackRating: function (sRating) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sRating) {
             case "1":
-               return "Disappointing";
+               return oModel.getText("disappointing");
             case "2":
-               return "Mediocre";
+               return oModel.getText("mediocre");
             case "3":
-               return "Average";
+               return oModel.getText("average");
             case "4":
-               return "Good";
+               return oModel.getText("good");
             case "5":
-               return "Excellent";
+               return oModel.getText("excellent");
          }
       },
 
       feedbackCategory: function (sCategory) {
          switch (sCategory) {
             case "0":
-               return "Technical";
+               return oModel.getText("technical");
             case "1":
-               return "Soft";
+               return oModel.getText("soft");
             case "2":
-               return "Other";
+               return oModel.getText("other");
          }
       },
 
       highlightStatus: function (sStatus) {
          switch (sStatus) {
             case "0":
-               return "Error";
+               return oModel.getText("error");
             case "1":
-               return "Warning";
+               return oModel.getText("warning");
             case "2":
-               return "Success";
+               return oModel.getText("success");
          }
       },
 
@@ -57,60 +58,60 @@ sap.ui.define([], function () {
       daysEvaluated: function (sDays) {
          switch (sDays) {
             case "0":
-               return "Less than 90 days";
+               return oModel.getText("lessThan");
             case "1":
-               return "Between 90 and 180 days";
+               return oModel.getText("between");
             case "2":
-               return "More than 180 days";
+               return oModel.getText("moreThan");
          }
       },
 
       gradeDescription: function (sGrade) {
          switch (sGrade.toString()) {
             case "0":
-               return "Not assessable at this time";
+               return oModel.getText("gradeZero");
             case "1":
-               return "Does not meet expectations";
+               return oModel.getText("gradeOne");
             case "2":
-               return "Partially meets expectations";
+               return oModel.getText("gradeTwo");
             case "3":
-               return "Fully meets expectations";
+               return oModel.getText("gradeThree");
             case "4":
-               return "Exceeds expectations";
+               return oModel.getText("gradeFour");
          }
       },
 
       criteriaDescription: function (sCriteria) {
          switch (sCriteria) {
             case "1":
-               return "Professional and Industry Experience";
+               return oModel.getText("firstCriteria");
             case "2":
-               return "Project and Program Management";
+               return oModel.getText("secondCriteria");
             case "3":
-               return "Strategy Focus";
+               return oModel.getText("thirdCriteria");
             case "4":
-               return "Customer Focus";
+               return oModel.getText("fourthCriteria");
             case "5":
-               return "Employee Focus";
+               return oModel.getText("fifthCriteria");
             case "6":
-               return "Focus on Excellence";
+               return oModel.getText("sixthCriteria");
          }
       },
 
       careerLevel: function (sLevel) {
          switch (sLevel) {
             case "0":
-               return "Junior Consultant";
+               return oModel.getText("careerLevelZero");
             case "1":
-               return "Consultant";
+               return oModel.getText("careerLevelOne");
             case "2":
-               return "Senior Consultant";
+               return oModel.getText("careerLevelTwo");
             case "3":
-               return "Manager";
+               return oModel.getText("careerLevelThree");
             case "4":
-               return "Senior Manager";
+               return oModel.getText("careerLevelFour");
             case "5":
-               return "Lead Manager";
+               return oModel.getText("careerLevelFive");
          }
       }
    };
