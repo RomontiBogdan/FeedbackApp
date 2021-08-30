@@ -9,26 +9,6 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
       formatter: formatter,
       onInit: function () {
-         var oData = {
-            EvaluatedDays: [
-               {
-                  Id: "0",
-                  Name: "Less than 90 days",
-               },
-               {
-                  Id: "1",
-                  Name: "Between 90 and 180 days",
-               },
-               {
-                  Id: "2",
-                  Name: "More than 180 days",
-               },
-            ],
-         };
-
-         var oModel = new JSONModel(oData);
-         this.getView().setModel(oModel, "DaysEvaluatedModel");
-
          var oRouter = this.getRouter();
          oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
       },
@@ -61,6 +41,26 @@ sap.ui.define([
                }.bind(this)
             }
          });
+
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+         var oData = {
+            EvaluatedDays: [
+               {
+                  Id: "0",
+                  Name: oi18nModel.getText("lessThan")
+               },
+               {
+                  Id: "1",
+                  Name: oi18nModel.getText("between")
+               },
+               {
+                  Id: "2",
+                  Name: oi18nModel.getText("moreThan")
+               },
+            ],
+         };
+         var oModel = new JSONModel(oData);
+         this.getView().setModel(oModel, "DaysEvaluatedModel");
       },
 
       _checkEvaluator: function (sEvaluator) {
