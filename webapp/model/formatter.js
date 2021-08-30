@@ -30,6 +30,7 @@ sap.ui.define([], function () {
       },
 
       feedbackCategory: function (sCategory) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sCategory) {
             case "0":
                return oModel.getText("technical");
@@ -41,6 +42,7 @@ sap.ui.define([], function () {
       },
 
       highlightStatus: function (sStatus) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sStatus) {
             case "0":
                return oModel.getText("error");
@@ -56,6 +58,7 @@ sap.ui.define([], function () {
       },
 
       daysEvaluated: function (sDays) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sDays) {
             case "0":
                return oModel.getText("lessThan");
@@ -67,6 +70,7 @@ sap.ui.define([], function () {
       },
 
       gradeDescription: function (sGrade) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sGrade.toString()) {
             case "0":
                return oModel.getText("gradeZero");
@@ -82,6 +86,7 @@ sap.ui.define([], function () {
       },
 
       criteriaDescription: function (sCriteria) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sCriteria) {
             case "1":
                return oModel.getText("firstCriteria");
@@ -99,6 +104,7 @@ sap.ui.define([], function () {
       },
 
       careerLevel: function (sLevel) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sLevel) {
             case "0":
                return oModel.getText("careerLevelZero");
