@@ -26,17 +26,19 @@
 					width="100%"
 				>
 					<HBox>
-						<VBox width="100%">
+						<VBox
+							width="100%"
+						>
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="{i18n>ManagerTileTitle}"
+								header = "{i18n>managerTileTitle}"
 								subheader="{Manager}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://manager"
 							/>
 							<GenericTile
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="{i18n>EmployeeReviewTileTitle}"
+								header = "{i18n>employeeReviewTileTitle}"
 								subheader="{ToUser}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://employee"
@@ -48,7 +50,7 @@
 						>
 							<GenericTile
 								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="{i18n>ProjectTileTitle}"
+								header = "{i18n>projectTileTitle}"
 								subheader="{= ${ProjectId} !== '0000' ? ${ProjectId} : 'Project not specified'}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
@@ -56,30 +58,34 @@
 							<Label text="{i18n>giveGrade}"/>
 							<RatingIndicator
 								id="RatingTeamMember"
+								maxValue="4"
 								iconSize="32px"
-								value="{Rating}"
-								tooltip="{i18n>RatingTooltip}"
+								tooltip="Rating Tooltip"
 							/>
 						</VBox>
 						<VBox>
-							<GenericTile
-								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="{i18n>SendDateTileTitle}"
-								subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
-								frameType="TwoByHalf"
-								headerImage="sap-icon://date-time"
-							/>
-							<GenericTile
-								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-								header="{i18n>CategoryTileTitle}"
-								subheader="{
-                           path: 'Categories',
-                           formatter: '.formatter.feedbackCategory'
-                        }"
-								frameType="TwoByHalf"
-								headerImage="sap-icon://multi-select"
-							/>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="{i18n>sendDateTileTitle}"
+							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
+							frameType="TwoByHalf"
+							headerImage="sap-icon://date-time"
+						/>
+						<GenericTile
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							header="{i18n>categoryTileTitle}"
+							subheader="{
+                        path: 'Categories',
+                        formatter: '.formatter.feedbackCategory'
+                     }"
+							frameType="TwoByHalf"
+							headerImage="sap-icon://multi-select"
+						/>
+
+						
+						
 						</VBox>
+						
 					</HBox>
 				</VBox>
 			</content>
@@ -105,7 +111,7 @@
 					/>
 					<Button
 						text="{i18n>sendFeedbackBtn}"
-						press="onSendFeedback"
+						press=".onSendFeedback"
 						icon="sap-icon://paper-plane"
 					/>
 				</contentRight>
