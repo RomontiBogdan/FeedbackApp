@@ -14,3 +14,38 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
 .bigLabel {
    font-size: x-large !important;
 }
+
+.backgroundBlue {
+	background-color: #dadada;
+
+}
+
+.shadow{
+    box-shadow: 2px 2px 5px grey;
+    border-radius:5%;
+}
+
+.nestedFlexboxes .item2 {
+	padding: 1rem;
+	background-color: #7D8A2E;
+}
+.nestedFlexboxes .item3 {
+	padding: 1rem;
+	background-color: #C9D787;
+}
+.nestedFlexboxes .item4 {
+	padding: 1rem;
+	background-color: #FFFFFF;
+}
+.nestedFlexboxes .item5 {
+	padding: 1rem;
+	background-color: #FFC0A9;
+}
+.nestedFlexboxes .item6 {
+	padding: 1rem;
+	background-color: #FF8598;
+}
+
+.nestedFlexboxes h2 {
+	color: #32363a;
+}

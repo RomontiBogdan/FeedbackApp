@@ -2,20 +2,31 @@
 	controllerName="sap.ui.demo.walkthrough.controller.LogReg"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
->
+		xmlns:core="sap.ui.core">
+	
 	<FlexBox
-		height="600px"
-		alignItems="Center"
-		justifyContent="Center"
-	>
-		<Panel>
-			<content>
-				<Input
+			width="1200px"
+			alignItems="Center"
+			justifyContent="Center">
+		
+		<Image src="../resources/MHP_login.png" height="280px"/>
+
+		<FlexBox
+				height="650px"
+				alignItems="Center"
+				justifyContent="Center">
+
+			<VBox fitContainer="true">
+			<layoutData>
+				<FlexItemData growFactor="7" />
+			</layoutData>
+			
+			<Input
 					id="UsernameField"
 					placeholder="{i18n>Username}"
 					valueLiveUpdate="true"
 					submit="onLogIn"
-					width="80%"
+					width="450px"
 				/>
 				<Input
 					id="PasswordField"
@@ -23,31 +34,42 @@
 					placeholder="{i18n>Password}"
 					valueLiveUpdate="true"
 					submit="onLogIn"
-					width="80%"
+					width="450px"
 				/>
-			</content>
-			<content>
-				<Button
-					text="{i18n>loginBtn}"
-					press=".onLogIn"
-					class="myCustomButton"
-					icon="sap-icon://visits"
-					width="80%"
-				/>
-				<Button
-					text="{i18n>registerBtn}"
-					press=".onRegister"
-					class="myCustomButton"
-					width="80%"
-				/>
+
+			<HBox fitContainer="true" alignItems="Stretch">
+				<layoutData>
+					<FlexItemData growFactor="4" />
+				</layoutData>
+
+				
 				<Button
 					text="{i18n>forgotPassBtn}"
 					press=".onForgotPass"
-					class="myCustomButton"
-					width="80%"
+					class="sapUiLargeMarginEnd "
+					width="150px"
 					type="Transparent"
 				/>
-			</content>
-		</Panel>
-	</FlexBox>
+				<VBox >
+					<Button
+						text="{i18n>loginBtn}"
+						press=".onLogIn"
+						class="sapUiLargeMarginBegin sapUiLittleMarginBottom shadow"
+						icon="sap-icon://visits"
+						width="200px"
+						type="Transparent"
+					/>
+					<Button
+						text="{i18n>registerBtn}"
+						press=".onRegister"
+						class="sapUiLargeMarginBegin sapUiLittleMarginTop shadow"
+						width="200px"
+						type="Transparent"
+					/>
+				</VBox>
+			</HBox>
+		</VBox>
+		</FlexBox>
+
+	</FlexBox>	
 </mvc:View>
