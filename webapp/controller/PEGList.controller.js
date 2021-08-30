@@ -88,7 +88,7 @@ sap.ui.define([
       //    oBinding.filter(auxFilter);
       // }
 
-      },
+     
 
    });
 });
