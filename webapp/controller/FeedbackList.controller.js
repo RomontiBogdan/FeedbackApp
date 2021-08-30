@@ -68,6 +68,7 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
       }
+
       //,
 
 
@@ -80,5 +81,6 @@ sap.ui.define([
       //    var oBinding = oList.getBinding("items");
       //    oBinding.filter(auxFilter);
       // }
+
    });
 });

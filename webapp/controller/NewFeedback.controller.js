@@ -36,24 +36,25 @@ sap.ui.define([
          },
 
          _validateData: function (oParams) {
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var exceptions = ""
             if (oParams.ToUser === oParams.FromUser) {
-               exceptions += "You cannot send a feedback to yourself!\n"
+               exceptions += oi18nModel.getText("feedbackToYourself");
             }
             if (oParams.ToUser === null) {
-               exceptions += "Please select an user!\n"
+               exceptions += oi18nModel.getText("userNotSelected");
             }
             if (oParams.Description === "") {
-               exceptions += "Please insert a description!\n"
+               exceptions += oi18nModel.getText("descriptionNotFilled");
             }
             if (oParams.ProjectId === null) {
-               exceptions += "Please select a project!\n"
+               exceptions += oi18nModel.getText("projectNotSelected");
             }
             if (oParams.Categories === null) {
-               exceptions += "Please select a skill!\n"
+               exceptions += oi18nModel.getText("skillNotSelected");
             }
             if (oParams.Rating === "0") {
-               exceptions += "Rating cannot be 0!\n"
+               exceptions += oi18nModel.getText("ratingIsZero");
             }
             return exceptions
          },
@@ -79,10 +80,10 @@ sap.ui.define([
             }
             else {
                var oModel = this.getOwnerComponent().getModel();
-
+               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
                oModel.create('/Feedback360Set', params, {
                   success: function (oCreatedEntry) {
-                     MessageBox.success("Feedback has been successfully sent!", {
+                     MessageBox.success(oi18nModel.getText("feedbackSucces"), {
                         onClose: function (oAction) {
                            if (oAction === "OK") {
                               var oRouter = this.getOwnerComponent().getRouter();
@@ -92,7 +93,7 @@ sap.ui.define([
                      });
 
                   }.bind(this),
-                  error: function (oError) { sap.m.MessageToast.show("Feedback failed to send!") }
+                  error: function (oError) { sap.m.MessageToast.show(oi18nModel.getText("feedbackError")) }
                });
             }
          },

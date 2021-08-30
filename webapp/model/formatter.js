@@ -2,50 +2,54 @@ sap.ui.define([], function () {
    "use strict";
    return {
       pegStatus: function (sStatusValue) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sStatusValue) {
             case "0":
-               return "New";
+               return oModel.getText("new");
             case "1":
-               return "Pending";
+               return oModel.getText("pending");
             case "2":
-               return "Completed";
+               return oModel.getText("completed");
          }
       },
 
       feedbackRating: function (sRating) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sRating) {
             case "1":
-               return "Disappointing";
+               return oModel.getText("disappointing");
             case "2":
-               return "Mediocre";
+               return oModel.getText("mediocre");
             case "3":
-               return "Average";
+               return oModel.getText("average");
             case "4":
-               return "Good";
+               return oModel.getText("good");
             case "5":
-               return "Excellent";
+               return oModel.getText("excellent");
          }
       },
 
       feedbackCategory: function (sCategory) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sCategory) {
             case "0":
-               return "Technical";
+               return oModel.getText("technical");
             case "1":
-               return "Soft";
+               return oModel.getText("soft");
             case "2":
-               return "Other";
+               return oModel.getText("other");
          }
       },
 
       highlightStatus: function (sStatus) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sStatus) {
             case "0":
-               return "Error";
+               return oModel.getText("error");
             case "1":
-               return "Warning";
+               return oModel.getText("warning");
             case "2":
-               return "Success";
+               return oModel.getText("success");
          }
       },
 
@@ -54,17 +58,87 @@ sap.ui.define([], function () {
       },
 
       daysEvaluated: function (sDays) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sDays) {
             case "0":
-               return "Less than 90 days";
+               return oModel.getText("lessThan");
             case "1":
-               return "Between 90 and 180 days";
+               return oModel.getText("between");
             case "2":
-               return "More than 180 days";
+               return oModel.getText("moreThan");
          }
       },
 
       gradeDescription: function (sGrade) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sGrade.toString()) {
+            case "0":
+               return oModel.getText("gradeZero");
+            case "1":
+               return oModel.getText("gradeOne");
+            case "2":
+               return oModel.getText("gradeTwo");
+            case "3":
+               return oModel.getText("gradeThree");
+            case "4":
+               return oModel.getText("gradeFour");
+         }
+      },
+
+      criteriaDescription: function (sCriteria) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sCriteria) {
+            case "1":
+               return oModel.getText("firstCriteria");
+            case "2":
+               return oModel.getText("secondCriteria");
+            case "3":
+               return oModel.getText("thirdCriteria");
+            case "4":
+               return oModel.getText("fourthCriteria");
+            case "5":
+               return oModel.getText("fifthCriteria");
+            case "6":
+               return oModel.getText("sixthCriteria");
+         }
+      },
+
+      careerLevel: function (sLevel) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sLevel) {
+            case "0":
+               return oModel.getText("careerLevelZero");
+            case "1":
+               return oModel.getText("careerLevelOne");
+            case "2":
+               return oModel.getText("careerLevelTwo");
+            case "3":
+               return oModel.getText("careerLevelThree");
+            case "4":
+               return oModel.getText("careerLevelFour");
+            case "5":
+               return oModel.getText("careerLevelFive");
+         }
+      },
+
+      careerLevelExcel: function (sLevel) {
+         switch (sLevel) {
+            case "0":
+               return "Junior Consultant";
+            case "1":
+               return "Consultant";
+            case "2":
+               return "Senior Consultant";
+            case "3":
+               return "Manager";
+            case "4":
+               return "Senior Manager";
+            case "5":
+               return "Lead Manager";
+         }
+      },
+
+      gradeDescriptionExcel: function (sGrade) {
          switch (sGrade.toString()) {
             case "0":
                return "Not assessable at this time";
@@ -79,37 +153,14 @@ sap.ui.define([], function () {
          }
       },
 
-      criteriaDescription: function (sCriteria) {
-         switch (sCriteria) {
-            case "1":
-               return "Professional and Industry Experience";
-            case "2":
-               return "Project and Program Management";
-            case "3":
-               return "Strategy Focus";
-            case "4":
-               return "Customer Focus";
-            case "5":
-               return "Employee Focus";
-            case "6":
-               return "Focus on Excellence";
-         }
-      },
-
-      careerLevel: function (sLevel) {
-         switch (sLevel) {
+      daysEvaluatedExcel: function (sDays) {
+         switch (sDays) {
             case "0":
-               return "Junior Consultant";
+               return "Less than 90 days";
             case "1":
-               return "Consultant";
+               return "Between 90 and 180 days";
             case "2":
-               return "Senior Consultant";
-            case "3":
-               return "Manager";
-            case "4":
-               return "Senior Manager";
-            case "5":
-               return "Lead Manager";
+               return "More than 180 days";
          }
       }
    };

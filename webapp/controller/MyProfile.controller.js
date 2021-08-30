@@ -86,6 +86,7 @@ sap.ui.define([
 
 
       onEdit: function (oEvent) {
+
          this._setFieldsState(oEvent.getParameter("state"));
 
       },
@@ -110,13 +111,13 @@ sap.ui.define([
          }
          else {
      
-
+        var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
         var oModel = this.getView().getModel();
         oModel.setUseBatch(true);
    
          oModel.submitChanges({
             success: function (oData) {
-               sap.m.MessageToast.show("The information was updated successfully!");
+               sap.m.MessageToast.show(oi18nModel.getText("infoUpdated"));
                oModel.setUseBatch(false);
             }
          });
@@ -125,6 +126,6 @@ sap.ui.define([
       }
 
       }
-     
+    
    });
 });

@@ -73,6 +73,7 @@ sap.ui.define([
       onNewRequest: function (oEvent) {
          var oRouter = this.getOwnerComponent().getRouter();
          oRouter.navTo("requestpeg");
+
       }
       //,
 
@@ -86,5 +87,8 @@ sap.ui.define([
       //    var oBinding = oList.getBinding("items");
       //    oBinding.filter(auxFilter);
       // }
+
+      },
+
    });
 });

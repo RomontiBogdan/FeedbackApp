@@ -48,7 +48,9 @@ sap.ui.define(
 
 
          onLogOut: function () {
-            MessageBox.confirm("Are you sure you want to log out?", {
+            var oModel = this.getView().getModel("i18n").getResourceBundle();
+            MessageBox.confirm(oModel.getText("logOutConfirm"), {
+               title: oModel.getText("logOut"),
                onClose: function (oAction) {
                   if (oAction == "OK") {
                      var oRouter = this.getRouter();
