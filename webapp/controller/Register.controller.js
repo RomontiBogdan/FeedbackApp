@@ -8,6 +8,22 @@ sap.ui.define([
          this.navBack();
       },
 
+      _validateData: function (oParams) {
+         var exceptions = ""
+         if (oParams.Username === "") {
+            exceptions += "Please introduce a username!\n"
+         }
+         if (oParams.Password === "") {
+            exceptions += "Please introduce a password!\n"
+         }
+
+         if (oParams.Email === "") {
+            exceptions += "Please introduce an email!\n"
+         }
+         
+         return exceptions
+      },
+
       onCreateRegister: function (oEvent) {
          var params = {
             FullName: "",
@@ -19,6 +35,12 @@ sap.ui.define([
             CareerLevel: "",
             FiscalYear: ""
          }
+
+         var exceptions = this._validateData(params);
+         if (exceptions !== "") {
+            MessageBox.error(exceptions)
+         }
+         else {
          var oModel = this.getOwnerComponent().getModel();
 
          oModel.create('/UserPassSet', params, {
@@ -37,23 +59,10 @@ sap.ui.define([
                sap.m.MessageToast.show(this.errorText(oError))
             }.bind(this)
          });
-      },
-
-
-      _validateData: function (oParams) {
-         var exceptions = ""
-         if (oParams.Username === null) {
-            exceptions += "Please introduce a username!\n"
-         }
-         if (oParams.Password === null) {
-            exceptions += "Please introduce a password!\n"
-         }
-
-         if (oParams.Email === null) {
-            exceptions += "Please introduce an email!\n"
-         }
-         
-         return exceptions
       }
+   }
+
+
+     
    });
 });
