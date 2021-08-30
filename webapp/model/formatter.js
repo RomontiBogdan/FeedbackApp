@@ -2,13 +2,14 @@ sap.ui.define([], function () {
    "use strict";
    return {
       pegStatus: function (sStatusValue) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sStatusValue) {
             case "0":
-               return "New";
+               return oModel.getText("new");
             case "1":
-               return "Pending";
+               return oModel.getText("pending");
             case "2":
-               return "Completed";
+               return oModel.getText("completed");
          }
       },
 

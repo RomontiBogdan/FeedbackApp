@@ -39,62 +39,61 @@
 			>
 				<f:content>
 					<Label
-						text="Name"
+						text="{i18n>nameText}"
 						labelFor="inputName"
 					/>
 					<Input
 						value="{FullName}"
 						id="inputName"
 						editable="false"
-						placeholder="Enter full name"
+						placeholder="{i18n>newName}"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Username"
+						text="{i18n>Username}"
 						labelFor="inputUser"
 					/>
 					<Input
 						value="{Username}"
 						id="inputUser"
 						editable="false"
-						placeholder="Enter usernmame"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Email"
+						text="{i18n>emailText}"
 						labelFor="inputEmail"
 					/>
 					<Input
 						value="{Email}"
 						id="inputEmail"
 						editable="false"
-						placeholder="Enter email"
+						placeholder="{i18n>newEmail}"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Telephone"
+						text="{i18n>telephone}"
 						labelFor="inputTel"
 					/>
 					<Input
 						value="{PersonalNo}"
 						id="inputTel"
 						editable="false"
-						placeholder="Enter personal number"
+						placeholder="{i18n>newTelephone}"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="SU"
+						text="{i18n>suText}"
 						labelFor="inputSU"
 					/>
 					<Input
 						value="{Su}"
 						id="inputSU"
 						editable="false"
-						placeholder="Enter Service Unit"
+						placeholder="{i18n>newServiceUnit}"
 						class="sapUiSmallMarginBottom"
 					/>
 					<Label
-						text="Career level"
+						text="{i18n>careerLevel}"
 						labelFor="inputLevel"
 					/>
 					<Select
@@ -113,7 +112,7 @@
 						/>
 					</Select>
 					<Label
-						text="Fiscal year"
+						text="{i18n>fiscalYear}"
 						labelFor="inputFiscalYear"
 					/>
 					<Input
@@ -130,14 +129,15 @@
 				<ToolbarSpacer/>
 				<Button
 					type="Emphasized"
-					text="Save"
+					text="{i18n>save}"
 					press="onPressSave"
 				/>
 				<HBox>
 					<Switch
 						customTextOn="✓"
-						customTextOff="Edit"
+						customTextOff="{i18n>edit}"
 						change="onEdit"
+						width="90%"
 					>
 						<layoutData>
 							<FlexItemData growFactor="1"/>
