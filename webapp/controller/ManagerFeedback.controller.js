@@ -9,26 +9,6 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
       formatter: formatter,
       onInit: function () {
-         var oData = {
-            EvaluatedDays: [
-               {
-                  Id: "0",
-                  Name: "Less than 90 days",
-               },
-               {
-                  Id: "1",
-                  Name: "Between 90 and 180 days",
-               },
-               {
-                  Id: "2",
-                  Name: "More than 180 days",
-               },
-            ],
-         };
-
-         var oModel = new JSONModel(oData);
-         this.getView().setModel(oModel, "DaysEvaluatedModel");
-
          var oRouter = this.getRouter();
          oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
       },
@@ -61,6 +41,26 @@ sap.ui.define([
                }.bind(this)
             }
          });
+
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+         var oData = {
+            EvaluatedDays: [
+               {
+                  Id: "0",
+                  Name: oi18nModel.getText("lessThan")
+               },
+               {
+                  Id: "1",
+                  Name: oi18nModel.getText("between")
+               },
+               {
+                  Id: "2",
+                  Name: oi18nModel.getText("moreThan")
+               },
+            ],
+         };
+         var oModel = new JSONModel(oData);
+         this.getView().setModel(oModel, "DaysEvaluatedModel");
       },
 
       _checkEvaluator: function (sEvaluator) {
@@ -68,13 +68,14 @@ sap.ui.define([
             this._toggleRightsToEdit(false);
          } else {
             this._toggleRightsToEdit(true);
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
                   oModel.update("/PegReqSet(" + this._sFeedbackId + ")", { Status: "1" }, {
                      merge: true,
                      success: function () {
-                        MessageToast.show("This PEG is now on Pending!");
+                        MessageToast.show(oi18nModel.getText("toPendingPEG"));
                      }
                   });
                }
@@ -135,12 +136,12 @@ sap.ui.define([
          var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
          var sFiscal_Year = oUserContainerObj.FiscalYear;
          var sPersonnelNumber = oUserContainerObj.PersonalNo;
-         var sCareerLvl = formatter.careerLevel(oUserContainerObj.CareerLevel);
+         var sCareerLvl = formatter.careerLevelExcel(oUserContainerObj.CareerLevel);
          var sSU = oUserContainerObj.Su;
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
          var sEvaluatorName = oPegContainerObj.FromUser;
-         var sDaysEval = formatter.daysEvaluated(oPegContainerObj.DaysEvaluated);
+         var sDaysEval = formatter.daysEvaluatedExcel(oPegContainerObj.DaysEvaluated);
          var sCustomerName = oProjectContainerObj.Customer;
          var sProjectName = oProjectContainerObj.ProjectName;
          var sProjectManName = oProjectContainerObj.ProjectManager;
@@ -163,11 +164,12 @@ sap.ui.define([
          while (iRowIndex < iNumberOfCriterias) {
             oItemsBindingContext = aItems[iRowIndex].getBindingContext();
             aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
-            aDescr.push(formatter.gradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
+            aDescr.push(formatter.gradeDescriptionExcel(oModel.getProperty("Grade", oItemsBindingContext)));
             aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
             iRowIndex++;
          }
 
+         
          var oViewModel = new JSONModel([{
             Descr: "Fiscal year",
             Value: sFiscal_Year
@@ -276,10 +278,11 @@ sap.ui.define([
             fileName: "PEG " + this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName + ".xlsx"
          };
 
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          oSheet = new Spreadsheet(oSettings);
          oSheet.build()
             .then(function () {
-               MessageToast.show('Spreadsheet export has finished');
+               MessageToast.show(oi18nModel.getText("spreadsheedExport"));
             })
             .finally(oSheet.destroy);
       },
@@ -325,13 +328,14 @@ sap.ui.define([
       },
 
       _criteriaBatchUpdate: function (oModel) {
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          return new Promise((resolve, reject) => {
             oModel.submitChanges();
             oModel.attachRequestCompleted(function (oEvent) {
                if (oEvent.getParameters("success")) {
-                  resolve("The information was updated successfully!");
+                  resolve(oi18nModel.getText("infoUpdated"));
                } else {
-                  reject("Update failed!")
+                  reject(oi18nModel.getText("infoError"))
                }
             });
          })

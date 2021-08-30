@@ -44,11 +44,12 @@ sap.ui.define([
 
       _changeStatusIfOpened: function (sStatus) {
          if (sStatus === "0") {
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var oModel = this.getView().byId("teamFeedbackVBox").getModel();
             oModel.update("/FeedbackTeamSet(" + this._sFeedbackId + ")", { Status: "1" }, {
                merge: true,
                success: function () {
-                  MessageToast.show("This Feedback is now on Pending!");
+                  MessageToast.show(oi18nModel.getText("toPendingFeedback"));
                }
             });
          }
@@ -67,6 +68,7 @@ sap.ui.define([
       },
 
       onSendFeedback: function () {
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var oModel = this.getView().getModel()
          if (!oModel.hasPendingChanges()) {
             return;
@@ -81,7 +83,7 @@ sap.ui.define([
          oModel.setUseBatch(true)
          oModel.submitChanges({
             success: function(oData) {
-               MessageToast.show("The information was updated successfully!");
+               MessageToast.show(oi18nModel.getText("infoUpdated"));
                oModel.setUseBatch(false)
             }
          })

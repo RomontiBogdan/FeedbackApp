@@ -45,7 +45,8 @@ sap.ui.define([
 
          oModel.create('/UserPassSet', params, {
             success: function (oCreatedEntry) {
-               MessageBox.information("You have successfully registered!", {
+               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+               MessageBox.information(oi18nModel.getText("registerSucces"), {
                   onClose: function (oAction) {
                      if (oAction == "OK") {
                         var oRouter = this.getOwnerComponent().getRouter();
