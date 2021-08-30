@@ -15,6 +15,7 @@ sap.ui.define([
          var sEmail = oView.byId("emailTextFP").getValue();
          var sPassword = oView.byId("passwordTextFP").getValue();
          var oModel = this.getOwnerComponent().getModel();
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          oModel.read("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
             success: function (oSuccess) {
                oModel.update("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
@@ -22,12 +23,12 @@ sap.ui.define([
                   Username: sUsername
                }, {
                   success: function (oUpdateSuccess) {
-                     sap.m.MessageToast.show("Password changed!")
+                     sap.m.MessageToast.show(oi18nModel.getText("passChanged"))
                   }
                })
             },
             error: function (oError) {
-               sap.m.MessageToast.show("Username or email invalid!")
+               sap.m.MessageToast.show(oi18nModel.getText("invalidUserEmail"))
             }
          })
       }

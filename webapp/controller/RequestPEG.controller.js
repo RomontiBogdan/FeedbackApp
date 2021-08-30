@@ -27,15 +27,16 @@ sap.ui.define([
       },
 
       _validateData: function (oParams) {
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var exceptions = ""
          if (oParams.ProjectId === null) {
-            exceptions += "Please select a project!\n"
+            exceptions += oi18nModel.getText("projectNotSelected");
          }
          if (oParams.FromUser === null) {
-            exceptions += "Please select a manager!\n"
+            exceptions += oi18nModel.getText("managerNotSelected");
          }
          if (oParams.FromUser === this.getCurrentUser()) {
-            exceptions += "You cannot select yourself to be the Evaluator!\n"
+            exceptions += oi18nModel.getText("evaluatorSelfSelect");
          }
          return exceptions
       },
@@ -57,10 +58,10 @@ sap.ui.define([
          }
          else {
             var oModel = this.getOwnerComponent().getModel();
-
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             oModel.create('/PegReqSet', params, {
                success: function () {
-                  MessageBox.success("PEG has been successfully requested!", {
+                  MessageBox.success(oi18nModel.getText("pegRequestSucces"), {
                      onClose: function (oAction) {
                         if (oAction === "OK") {
                            var oRouter = this.getOwnerComponent().getRouter();
@@ -70,7 +71,7 @@ sap.ui.define([
                   });
 
                }.bind(this),
-               error: function (oError) { sap.m.MessageToast.show("Fail to request PEG!") }
+               error: function (oError) { sap.m.MessageToast.show(oi18nModel.getText("pegRequestError")) }
             });
          }
       }

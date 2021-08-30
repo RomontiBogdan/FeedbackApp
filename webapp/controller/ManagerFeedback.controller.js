@@ -68,13 +68,14 @@ sap.ui.define([
             this._toggleRightsToEdit(false);
          } else {
             this._toggleRightsToEdit(true);
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
                   oModel.update("/PegReqSet(" + this._sFeedbackId + ")", { Status: "1" }, {
                      merge: true,
                      success: function () {
-                        MessageToast.show("This PEG is now on Pending!");
+                        MessageToast.show(oi18nModel.getText("toPendingPEG"));
                      }
                   });
                }
@@ -168,6 +169,7 @@ sap.ui.define([
             iRowIndex++;
          }
 
+         
          var oViewModel = new JSONModel([{
             Descr: "Fiscal year",
             Value: sFiscal_Year
@@ -276,10 +278,11 @@ sap.ui.define([
             fileName: "PEG " + this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName + ".xlsx"
          };
 
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          oSheet = new Spreadsheet(oSettings);
          oSheet.build()
             .then(function () {
-               MessageToast.show('Spreadsheet export has finished');
+               MessageToast.show(oi18nModel.getText("spreadsheedExport"));
             })
             .finally(oSheet.destroy);
       },
