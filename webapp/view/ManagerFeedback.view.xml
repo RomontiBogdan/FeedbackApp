@@ -5,7 +5,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="PEG Details"
+		title="{i18n>PEGDetailsPageTitle}"
 		showNavButton="true"
 		navButtonPress="onNavBack"
 	>
