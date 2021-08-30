@@ -6,7 +6,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		title="{i18n>ViewProfile}"
+		title="{i18n>ViewProfilePageTitle}"
 		showNavButton="true"
 		navButtonPress=".onNavBack"
 		class="sapUiContentPadding"
