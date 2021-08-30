@@ -52,6 +52,18 @@
 						path : '/Feedback360Set'
 					}"
 				>
+				<headerToolbar>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Title text="{i18n>searchUser}:"/>
+							<SearchField
+								id="searchField"
+								width="30%"
+								liveChange=".onFeedbackFilter"
+								placeholder="{i18n>filterUser}"
+							/>
+						</Toolbar>
+					</headerToolbar>
 					<columns>
 						<Column width="12em">
 							<Text text="{i18n>columnFromUser}"/>

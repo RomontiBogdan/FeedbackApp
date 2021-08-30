@@ -37,6 +37,23 @@ sap.ui.define([
                sap.m.MessageToast.show(this.errorText(oError))
             }.bind(this)
          });
+      },
+
+
+      _validateData: function (oParams) {
+         var exceptions = ""
+         if (oParams.Username === null) {
+            exceptions += "Please introduce a username!\n"
+         }
+         if (oParams.Password === null) {
+            exceptions += "Please introduce a password!\n"
+         }
+
+         if (oParams.Email === null) {
+            exceptions += "Please introduce an email!\n"
+         }
+         
+         return exceptions
       }
    });
 });

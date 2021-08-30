@@ -30,6 +30,25 @@ sap.ui.define([
                sap.m.MessageToast.show("Username or email invalid!")
             }
          })
+      },
+
+
+      _validateData: function (oParams) {
+         var exceptions = ""
+         if (oParams.Username === null) {
+            exceptions += "You have to enter your username for password recovery!\n"
+         }
+         
+
+         if (oParams.Email === null) {
+            exceptions += "You have to enter your e-mail for password recovery!!\n"
+         }
+
+         if (oParams.Password === null) {
+            exceptions += "You have to enter your e-mail for password recovery!!\n"
+         }
+         
+         return exceptions
       }
 
    });
