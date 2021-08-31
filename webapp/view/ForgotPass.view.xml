@@ -43,6 +43,7 @@
 					placeholder="{i18n>enterUsername}"
 					valueLiveUpdate="true"
 					width="450px"
+					class="shadow"
 					value="{ path: '/username',type: '.customUserType'}"
 				/>
 				<Label
@@ -55,6 +56,7 @@
 					placeholder="{i18n>enterMail}"
 					valueLiveUpdate="true"
 					width="450px"
+					class="shadow"
 					value="{ path: '/email',type: '.customEMailType'}"
 				/>
 					<Label
@@ -68,6 +70,7 @@
 					valueLiveUpdate="true"
 					width="450px"
 					type="Password"
+					class="shadow"
 					value="{ path: '/newpassword',type: '.customNewPasswordType'}"
 				/>
 
@@ -79,7 +82,7 @@
 				<VBox alignItems="Center" width="400px">
 				<Button
 					text="{i18n>changePasswordBtn}"
-					class="myCustomButton"
+					class="sapUiTinyMarginTop "
 					width="300px"
 					type="Emphasized"
 					press="onPressForgotPass"

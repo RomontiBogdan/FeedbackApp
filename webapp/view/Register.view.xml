@@ -45,6 +45,7 @@
 					valueLiveUpdate="true"
 					width="450px"
 					value="{ path: '/username',type: '.customUserType'}"
+					class="shadow"
 				/>
 				<Label
 						text="{i18n>passText}"
@@ -58,6 +59,7 @@
 					valueLiveUpdate="true"
 					width="450px"
 					value="{ path: '/password',type: '.customPasswordType'}"
+					class="shadow"
 				/>
 				<Label
 						text="{i18n>emailText}"
@@ -70,6 +72,7 @@
 					valueLiveUpdate="true"
 					width="450px"
 					value="{ path: '/email',type: '.customEMailType'}"
+					class="shadow"
 				/>
 
 			<HBox fitContainer="true" alignItems="Stretch">
@@ -79,7 +82,7 @@
 				<VBox alignItems="Center" width="450px">
 					<Button
 					text="{i18n>submitRegisterBtn}"
-					class="myCustomButton"
+					class="sapUiSmallMarginTop "
 					width="400px"
 					type="Emphasized"
 					press=".onCreateRegister"
