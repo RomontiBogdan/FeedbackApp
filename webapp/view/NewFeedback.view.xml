@@ -116,6 +116,14 @@
 						</HBox>
 					</HBox>
 					</VBox>
+			<VBox fitContainer="true"
+				width="800px"
+				class="shadow boxBackground roundedBorders">
+				<layoutData>
+					<FlexItemData growFactor="7" />
+				</layoutData>
+				
+			</VBox>
 			</VBox>
 		</FlexBox>
 		</VBox>
