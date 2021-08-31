@@ -59,6 +59,13 @@ sap.ui.define([
                },
             ],
          };
+         
+         var oEditableData = {
+            Editable:""
+         } 
+         var oModelEditable = new JSONModel(oData);
+         this.getView().setModel(oModelEditable, "Edit");
+         
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "DaysEvaluatedModel");
          this.byId("pegTable").getModel().updateBindings(true);
@@ -85,11 +92,7 @@ sap.ui.define([
       },
 
       _toggleRightsToEdit: function (bRight) {
-         this.byId("gradeIndicator").setEditable(bRight);
-         this.byId("recommendationInput").setEditable(bRight);
-         this.byId("submitChangesButton").setVisible(bRight);
-         this.byId("completedCheckBox").setVisible(bRight);
-         this.byId("daysEvaluatedSelect").setVisible(bRight);
+         this.getView().getModel("Edit").setProperty("/Editable", bRight);
       },
 
       // check if current peg status is new or not
@@ -137,12 +140,12 @@ sap.ui.define([
          var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
          var sFiscal_Year = oUserContainerObj.FiscalYear;
          var sPersonnelNumber = oUserContainerObj.PersonalNo;
-         var sCareerLvl = formatter.careerLevelExcel(oUserContainerObj.CareerLevel);
+         var sCareerLvl = this.getCareerLevel(oUserContainerObj.CareerLevel);
          var sSU = oUserContainerObj.Su;
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
          var sEvaluatorName = oPegContainerObj.FromUser;
-         var sDaysEval = formatter.daysEvaluatedExcel(oPegContainerObj.DaysEvaluated);
+         var sDaysEval = this.getDaysEvaluated(oPegContainerObj.DaysEvaluated);
          var sCustomerName = oProjectContainerObj.Customer;
          var sProjectName = oProjectContainerObj.ProjectName;
          var sProjectManName = oProjectContainerObj.ProjectManager;
@@ -165,54 +168,55 @@ sap.ui.define([
          while (iRowIndex < iNumberOfCriterias) {
             oItemsBindingContext = aItems[iRowIndex].getBindingContext();
             aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
-            aDescr.push(formatter.gradeDescriptionExcel(oModel.getProperty("Grade", oItemsBindingContext)));
+            aDescr.push(this.getGradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
             aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
             iRowIndex++;
          }
 
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          
          var oViewModel = new JSONModel([{
-            Descr: "Fiscal year",
+            Descr: oi18nModel.getText("fiscalYear"),
             Value: sFiscal_Year
          },
          {
-            Descr: "Personnel number",
+            Descr: oi18nModel.getText("personnelNumber"),
             Value: sPersonnelNumber
          },
          {
-            Descr: "Current career level",
+            Descr: oi18nModel.getText("careerLevel"),
             Value: sCareerLvl
          },
          {
-            Descr: "Organizational assignment (SU)",
+            Descr: oi18nModel.getText("organizationalAssignment"),
             Value: sSU
          },
          {
-            Descr: "Date of PEG",
+            Descr: oi18nModel.getText("pegDate"),
             Value: sPegDate
          },
          {
-            Descr: "Project ID",
+            Descr: oi18nModel.getText("projectID"),
             Value: sProjectID
          },
          {
-            Descr: "Customer name",
+            Descr: oi18nModel.getText("customerName"),
             Value: sCustomerName
          },
          {
-            Descr: "Name of the Project",
+            Descr: oi18nModel.getText("projectName"),
             Value: sProjectName
          },
          {
-            Descr: "Name of the Project Manager",
+            Descr: oi18nModel.getText("projectManagerName"),
             Value: sProjectManName
          },
          {
-            Descr: "Name of the Evaluator",
+            Descr: oi18nModel.getText("evaluatorName"),
             Value: sEvaluatorName
          },
          {
-            Descr: "Number of project days evaluated",
+            Descr: oi18nModel.getText("nrProjectDays"),
             Value: sDaysEval
          },
          {
@@ -220,43 +224,43 @@ sap.ui.define([
             Value: ""
          },
          {
-            Descr: "Criteria",
-            Value: "Rating",
-            Descr_rating: "Description of the rating",
-            Recommendations: "Recommendations / Comments"
+            Descr: oi18nModel.getText("criteria"),
+            Value: oi18nModel.getText("rating"),
+            Descr_rating: oi18nModel.getText("ratingDescription"),
+            Recommendations: oi18nModel.getText("recommendations")
          },
          {
-            Descr: "Professional and Industry Experience",
+            Descr: oi18nModel.getText("firstCriteria"),
             Value: aRatings[0],
             Descr_rating: aDescr[0],
             Recommendations: aRecommendations[0]
          },
          {
-            Descr: "Project and Program Management",
+            Descr: oi18nModel.getText("secondCriteria"),
             Value: aRatings[1],
             Descr_rating: aDescr[1],
             Recommendations: aRecommendations[1]
          },
          {
-            Descr: "Strategy Focus",
+            Descr: oi18nModel.getText("thirdCriteria"),
             Value: aRatings[2],
             Descr_rating: aDescr[2],
             Recommendations: aRecommendations[2]
          },
          {
-            Descr: "Customer Focus",
+            Descr: oi18nModel.getText("fourthCriteria"),
             Value: aRatings[3],
             Descr_rating: aDescr[3],
             Recommendations: aRecommendations[3]
          },
          {
-            Descr: "Employee Focus",
+            Descr: oi18nModel.getText("fifthCriteria"),
             Value: aRatings[4],
             Descr_rating: aDescr[4],
             Recommendations: aRecommendations[4]
          },
          {
-            Descr: "Focus on Excellence",
+            Descr: oi18nModel.getText("sixthCriteria"),
             Value: aRatings[5],
             Descr_rating: aDescr[5],
             Recommendations: aRecommendations[5]
@@ -340,6 +344,52 @@ sap.ui.define([
                }
             });
          })
+      },
+
+      getCareerLevel: function (sLevel) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sLevel) {
+            case "0":
+               return oModel.getText("careerLevelZero");
+            case "1":
+               return oModel.getText("careerLevelOne");
+            case "2":
+               return oModel.getText("careerLevelTwo");
+            case "3":
+               return oModel.getText("careerLevelThree");
+            case "4":
+               return oModel.getText("careerLevelFour");
+            case "5":
+               return oModel.getText("careerLevelFive");
+         }
+      },
+
+      getGradeDescription: function (sGrade) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sGrade.toString()) {
+            case "0":
+               return oModel.getText("gradeZero");
+            case "1":
+               return oModel.getText("gradeOne");
+            case "2":
+               return oModel.getText("gradeTwo");
+            case "3":
+               return oModel.getText("gradeThree");
+            case "4":
+               return oModel.getText("gradeFour");
+         }
+      },
+
+      getDaysEvaluated: function (sDays) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sDays) {
+            case "0":
+               return oModel.getText("lessThan");
+            case "1":
+               return oModel.getText("between");
+            case "2":
+               return oModel.getText("moreThan");
+         }
       }
    });
 });

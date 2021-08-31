@@ -203,7 +203,7 @@
 									formatter: '.formatter.criteriaDescription'
 								}"/>
 								<RatingIndicator
-									id="gradeIndicator"
+									editable="{Edit>/Editable}"
 									value="{Grade}"
 									maxValue="4"
 								/>
@@ -212,6 +212,7 @@
 									formatter: '.formatter.gradeDescription'
 								}"/>
 								<Input
+									editable="{Edit>/Editable}"
 									id="recommendationInput"
 									value="{Recommendation}"
 								/>
@@ -225,6 +226,7 @@
 			<Bar>
 				<contentLeft>
 					<Button
+						visible="{Edit>/Editable}"
 						id="submitChangesButton"
 						text="{i18n>submit}"
 						press="onSubmitChanges"
@@ -233,20 +235,22 @@
 					/>
 					<HBox id="toUpdateFields">
 						<CheckBox
-                     class="sapUiMediumMarginEnd"
+							visible="{Edit>/Editable}"
+                     		class="sapUiMediumMarginEnd"
 							id="completedCheckBox"
 							text="{i18n>isCompleted}?"
 							selected="{= ${Status} === '2' ? true : false}"
-                     select="onToggleStatus"
+                     		select="onToggleStatus"
 						/>
 						<Select
+							visible="{Edit>/Editable}"
 							forceSelection="false"
 							id="daysEvaluatedSelect"
                      		tooltip="{i18n>selectDaysEval}"
 							selectedKey="{DaysEvaluated}"
 							items="{
-                        path: 'DaysEvaluatedModel>/EvaluatedDays'
-                     }"
+                        	path: 'DaysEvaluatedModel>/EvaluatedDays'
+                    	 }"
 						>
 							<core:ListItem
 								key="{DaysEvaluatedModel>Id}"
