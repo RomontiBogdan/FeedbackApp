@@ -5,7 +5,7 @@
 	xmlns="sap.m"
 >
 	<Page
-		class="sapUiContentPadding"
+		class="sapUiContentPadding backgroundGradient"
 		enableScrolling="false"
 	>
 		<customHeader>
@@ -20,83 +20,123 @@
            </Bar>
       	</customHeader>
 		<content>
-			<VBox width="100%">
-				<VBox id="mainInfoContainer">
+			<VBox
+			height="500px"
+			width="1200px"
+			alignItems="Center">
+		
+		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" />
+
+		<FlexBox
+				height="650px"
+				width="500px"
+				alignItems="Center"
+				justifyContent="Center"
+				>
+			<HBox width="800px" alignItems="Center">
+			<VBox fitContainer="true"
+					width="800px"
+					class="shadow boxBackground roundedBorders">
+			<layoutData>
+				<FlexItemData growFactor="7" />
+			</layoutData>
 					<Label
 						text="{i18n>nameText}"
 						labelFor="inputText"
+						class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
 					/>
 					<Input
 						value="{FullName}"
 						id="inputText"
 						editable="false"
-						class="sapUiSmallMarginBottom"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+						
 					/>
 					<Label
 						text="{i18n>emailText}"
 						labelFor="inputEmail"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{Email}"
 						id="inputEmail"
 						editable="false"
-						class="sapUiSmallMarginBottom"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
 					/>
 					<Label
 						text="{i18n>suText}"
 						labelFor="inputSU"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{Su}"
 						id="inputSU"
 						editable="false"
-						class="sapUiSmallMarginBottom"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
 					/>
 					<Label
 						text="{i18n>fiscalYearText}"
 						labelFor="inputFiscalYear"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{FiscalYear}"
 						id="inputFiscalYear"
 						editable="false"
-						class="sapUiSmallMarginBottom"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom sapUiMediumMarginBottom" 
 					/>
+			</VBox>
+			<VBox fitContainer="true"
+					width="800px"
+					class="shadow boxBackground roundedBorders sapUiMediumMarginBeginEnd">
+			<layoutData>
+				<FlexItemData growFactor="7" />
+			</layoutData>
 					<Label
 						text="{i18n>projectSelect}"
 						labelFor="selectProjectName"
 						required="true"
+						class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
 					/>
 					<Select
 						forceSelection="false"
 						id="selectProjectName"
 						change="onProjectChange"
 						items="{toProjects}"
+						width="300px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
 					>
 						<core:ListItem
 							key="{ProjectId}"
 							text="{ProjectName}"
 						/>
 					</Select>
-				</VBox>
-				<VBox id="selectManagerInfoContainer">
 					<Label
 						text="{i18n>managerSelect}"
 						labelFor="selectManager"
 						required="true"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Select
 						forceSelection="false"
 						id="selectManager"
 						items="{toManagers}"
+						width="300px"
+						class="sapUiMediumMarginBeginEnd sapUiMediumMarginBottom"
 					>
 						<core:ListItem
 							key="{Username}"
 							text="{Username}"
 						/>
 					</Select>
-				</VBox>
 			</VBox>
+			</HBox>
+		</FlexBox>
+		</VBox>
 		</content>
 		<footer>
 			<Bar>
