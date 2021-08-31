@@ -1,7 +1,9 @@
 <mvc:View
 	controllerName="sap.ui.demo.walkthrough.controller.Register"
-	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m"
 >
 	<Page>
 		<customHeader>
@@ -16,35 +18,86 @@
            </Bar>
       	</customHeader>
 
-		<Panel>
-			<content>
+		<FlexBox
+                height="650px"
+                alignItems="Center"
+                justifyContent="Center">
+
+		 <VBox fitContainer="true">
+            <layoutData>
+                <FlexItemData growFactor="7" />
+            </layoutData>
+		
+		<f:SimpleForm
+				id="form"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				labelSpanXL="3"
+				labelSpanL="3"
+				labelSpanM="3"
+				adjustLabelSpan="false"
+				emptySpanXL="3"
+				emptySpanL="3"
+				emptySpanM="3"
+				columnsXL="1"
+				columnsL="1"
+				singleContainerFullSize="false"
+			>
+			<f:content>
+				<Label
+						text="{i18n>userText}"
+						labelFor="UsernameRegisterField"
+						required = "true"
+					/>
 				<Input
 					id="UsernameRegisterField"
-					placeholder="{i18n>Username}"
+					placeholder="{i18n>enterUsername}"
 					valueLiveUpdate="true"
 					width="80%"
+					value="{ path: '/username',type: '.customUserType'}"
 				/>
+				<Label
+						text="{i18n>passText}"
+						labelFor="UsernameRegisterField"
+						required = "true"
+					/>
 				<Input
 					id="PasswordRegisterField"
 					type="Password"
-					placeholder="{i18n>Password}"
+					placeholder="{i18n>enterPassword}"
 					valueLiveUpdate="true"
 					width="80%"
+					value="{ path: '/password',type: '.customPasswordType'}"
 				/>
+				<Label
+						text="{i18n>emailText}"
+						labelFor="UsernameRegisterField"
+						required = "true"
+					/>
 				<Input
 					id="EmailRegisterField"
-					placeholder="{i18n>companyEmail}"
+					placeholder="{i18n>enterMail}"
 					valueLiveUpdate="true"
 					width="80%"
+					value="{ path: '/email',type: '.customEMailType'}"
 				/>
+					</f:content>
+			</f:SimpleForm>
+
+		<FlexBox
+        alignItems="Center"
+        justifyContent="Center">
+      <items>
 				<Button
 					text="{i18n>submitRegisterBtn}"
 					class="myCustomButton"
-					width="80%"
+					width="500px"
 					type="Emphasized"
 					press=".onCreateRegister"
 				/>
-			</content>
-		</Panel>
+			  </items>
+    </FlexBox>
+			</VBox>
+	       </FlexBox>
 	</Page>
 </mvc:View>
