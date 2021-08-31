@@ -15,7 +15,7 @@ sap.ui.define([
 
       _onObjectMatched: function () {
          this.getView().byId("mainInfoContainer").bindElement({
-            path: "/UserPassSet('" + this.getCurrentUser() + "')"
+            path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
          });
       },
 
@@ -35,7 +35,7 @@ sap.ui.define([
          if (oParams.FromUser === null) {
             exceptions += oi18nModel.getText("managerNotSelected");
          }
-         if (oParams.FromUser === this.getCurrentUser()) {
+         if (oParams.FromUser === sessionStorage.getItem("username")) {
             exceptions += oi18nModel.getText("evaluatorSelfSelect");
          }
          return exceptions
@@ -45,7 +45,7 @@ sap.ui.define([
          var params = {
             FeedbackId: "0",
             FromUser: this.byId("selectManager").getSelectedItem() === null ? null : this.byId("selectManager").getSelectedItem().getText(),
-            ToUser: this.getCurrentUser(),
+            ToUser: sessionStorage.getItem("username"),
             Description: "",
             ProjectId: this.byId("selectProjectName").getSelectedItem() === null ? null : this.byId("selectProjectName").getSelectedItem().getKey(),
             SentAt: new Date(),

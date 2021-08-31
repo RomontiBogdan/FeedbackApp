@@ -13,7 +13,7 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         var sUsername = this.getCurrentUser();
+         var sUsername = sessionStorage.getItem("username");
          this.getView().bindElement({
             path: "/UserPassSet('" + sUsername + "')"
          });
@@ -112,7 +112,7 @@ sap.ui.define([
          this.getView().byId("myTeamButton").setType("Emphasized");
          this.getView().byId("otherTeamsButton").setType("Default");
          var auxFilter = this._aFilter[0];
-         auxFilter.aFilters[0] = new Filter("Manager", FilterOperator.EQ, this.getCurrentUser());
+         auxFilter.aFilters[0] = new Filter("Manager", FilterOperator.EQ, sessionStorage.getItem("username"));
 
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
@@ -123,7 +123,7 @@ sap.ui.define([
          this.getView().byId("otherTeamsButton").setType("Emphasized");
          this.getView().byId("myTeamButton").setType("Default");
          var auxFilter = this._aFilter[0];
-         auxFilter.aFilters[0] = new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser());
+         auxFilter.aFilters[0] = new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username"));
 
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");

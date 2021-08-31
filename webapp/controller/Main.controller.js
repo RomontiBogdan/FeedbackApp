@@ -14,14 +14,14 @@ sap.ui.define(
 
          _onObjectMatched: function(){
             this.getView().bindElement({
-               path: "/UserPassSet('" + this.getCurrentUser() + "')",
+               path: "/UserPassSet('" + sessionStorage.getItem("username") + "')",
                events: {
                   dataReceived: function (oData) {
-                     this.getOwnerComponent().getModel("userCareerLevel").setData(oData.getParameter("data").CareerLevel);               
+                     sessionStorage.setItem("careerLevel", oData.getParameter("data").CareerLevel);               
                   }.bind(this),
                   change: function(oData) { 
                      var sCareerLvl = this.getView().getModel().getProperty(oData.getSource().getPath() + "/CareerLevel");
-                     this.getOwnerComponent().getModel("userCareerLevel").setData(sCareerLvl);
+                     sessionStorage.setItem("careerLevel", sCareerLvl);
                   }.bind(this)
             }});
          },

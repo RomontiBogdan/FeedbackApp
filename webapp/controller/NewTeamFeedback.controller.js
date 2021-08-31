@@ -7,7 +7,7 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.NewTeamFeedback", {
       onInit: function () {
          this.getView().byId("teamMemberSelect").bindElement({
-            path: "/TeamManagersSet('" + this.getCurrentUser() + "')"
+            path: "/TeamManagersSet('" + sessionStorage.getItem("username") + "')"
          });
          var oData = {
             SkillCollection: [
@@ -50,7 +50,7 @@ sap.ui.define([
          if (oParams.FromUser === null) {
             exceptions += oi18nModel.getText("evaluatorNotSelected")
          }
-         if (oParams.FromUser === this.getCurrentUser()) {
+         if (oParams.FromUser === sessionStorage.getItem("username")) {
             exceptions += oi18nModel.getText("evaluatorSelfSelect")
          }
          if (oParams.ToUser === null) {
@@ -71,7 +71,7 @@ sap.ui.define([
             FeedbackId: "0",
             FromUser: oEvaluator === null ? null : oEvaluator.getText(),
             ToUser: oTeamMember === null ? null : oTeamMember.getText(),
-            Manager: this.getCurrentUser(),
+            Manager: sessionStorage.getItem("username"),
             Description: "",
             ProjectId: oProject === null ? null : oProject.getKey(),
             SentAt: new Date(),

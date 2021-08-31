@@ -14,14 +14,14 @@ sap.ui.define([
 
       _onObjectMatched: function (oEvent) {
          this.getView().bindElement({
-            path: "/UserPassSet('" + this.getCurrentUser() + "')"
+            path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
          });
 
          this._aFilter = [];
          this._aFilter.push(new Filter({
             filters: [
-               new Filter("ToUser", FilterOperator.EQ, this.getCurrentUser()),
-               new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser()),
+               new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")),
+               new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username")),
             ],
             and: true,
          }));
@@ -30,7 +30,7 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
 
-         if(this.getUserCareerLevel() == "5")
+         if(sessionStorage.getItem("careerLevel") === "5")
             this.getView().byId("newPegRequest").setVisible(false);
          else
             this.getView().byId("newPegRequest").setVisible(true);
