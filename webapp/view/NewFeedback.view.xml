@@ -23,18 +23,18 @@
 			width="1200px"
 			alignItems="Center">
 		
-		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" />
+		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" class="sapUiLargeMarginBottom"/>
 
 		<FlexBox
 				height="650px"
-				width="450px"
+				width="350px"
 				alignItems="Center"
 				justifyContent="Center"
 				>
-
+			<VBox>
 			<VBox fitContainer="true"
-					width="800px"
-					class="shadow boxBackground roundedBorders">
+					width="525px"
+					class="shadow boxBackground roundedBorders sapUiMediumMarginBottom">
 				<layoutData>
 					<FlexItemData growFactor="7" />
 				</layoutData>
@@ -116,12 +116,28 @@
 						</HBox>
 					</HBox>
 					</VBox>
-			<VBox fitContainer="true"
-				width="800px"
-				class="shadow boxBackground roundedBorders">
+				</VBox>
+				<VBox fitContainer="true"
+				width="525px"
+				height="320px"
+				class="shadow boxBackground roundedBorders sapUiMediumMarginTopBottom">
 				<layoutData>
 					<FlexItemData growFactor="7" />
 				</layoutData>
+				<Label
+					text="{i18n>description}"
+					labelFor="inputDescription"
+					class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
+				/>
+				<TextArea
+					placeholder="{i18n>descriptionTextArea}"
+					id="inputDescription"
+					growing="true"
+					growingMaxLines="7"
+					height="240px"
+					width="450px"
+					class="sapUiMediumMarginBeginEnd"
+				/>
 				
 			</VBox>
 			</VBox>

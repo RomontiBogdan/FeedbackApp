@@ -8,7 +8,7 @@ sap.ui.define([
       formatter: formatter,
       onInit: function () {
          // Model for anonymous usage
-         var oModel = new JSONModel({currentUser: this.getCurrentUser()});
+         var oModel = new JSONModel({currentUser: sessionStorage.getItem("username")});
          this.getView().setModel(oModel, "AnonymousModel");
 
          var oRouter = this.getRouter();
