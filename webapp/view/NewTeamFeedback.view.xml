@@ -6,7 +6,7 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m"
 >
-	<Page>
+	<Page class="backgroundGradient">
 		<customHeader>
            <Bar>
 				<contentLeft>
@@ -18,33 +18,38 @@
 				</contentLeft>
            </Bar>
       	</customHeader>	
-		<l:VerticalLayout
-			class="sapUiContentPadding"
-			width="100%"
-		>
-			<f:SimpleForm
-				id="form"
-				editable="true"
-				layout="ResponsiveGridLayout"
-				labelSpanXL="3"
-				labelSpanL="3"
-				labelSpanM="3"
-				adjustLabelSpan="false"
-				emptySpanXL="3"
-				emptySpanL="3"
-				emptySpanM="3"
-				columnsXL="1"
-				columnsL="1"
-				singleContainerFullSize="false"
-			>
-				<Label
+		<VBox
+			height="500px"
+			width="1200px"
+			alignItems="Center">
+		
+		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" />
+
+		<FlexBox
+				height="650px"
+				width="450px"
+				alignItems="Center"
+				justifyContent="Center"
+				>
+
+			<VBox fitContainer="true"
+					width="800px"
+					class="shadow boxBackground roundedBorders">
+			<layoutData>
+				<FlexItemData growFactor="7" />
+			</layoutData>
+			
+			<Label
 					text="{i18n>selectEvaluator}"
 					labelFor="evaluatorUserSelect"
+					class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
 				/>
 				<Select
 					forceSelection="false"
 					id="evaluatorUserSelect"
 					items="{/UsernamesSet}"
+					width="450px"
+					class="sapUiMediumMarginBeginEnd textGray"
 				>
 					<core:ListItem
 						key="{Username}"
@@ -54,12 +59,15 @@
 				<Label
 					text="{i18n>selectTeamMember}"
 					labelFor="teamMemberSelect"
+					class="sapUiMediumMarginBeginEnd textGray"
 				/>
 				<Select
 					forceSelection="false"
 					id="teamMemberSelect"
 					items="{toMembers}"
 					change="onUserChange"
+					width="450px"
+					class="sapUiMediumMarginBeginEnd"
 				>
 					<core:ListItem
 						key="{Username}"
@@ -69,11 +77,14 @@
 				<Label
 					text="{i18n>selectProjectsInput}"
 					labelFor="userProjectsSelect"
+					class="sapUiMediumMarginBeginEnd textGray"
 				/>
 				<Select
 					forceSelection="false"
 					id="userProjectsSelect"
 					items="{toProjects}"
+					width="450px"
+					class="sapUiMediumMarginBeginEnd"
 				>
 					<core:ListItem
 						key="{ProjectId}"
@@ -83,21 +94,25 @@
 				<Label
 					text="{i18n>categoryFeedback}"
 					labelFor="skillSelect"
+					class="sapUiMediumMarginBeginEnd textGray"
 				/>
 				<Select
 					forceSelection="false"
 					id="skillSelect"
 					items="{
-                  path: 'newTeamFeedbackModel>/SkillCollection'
-               }"
+                  		path: 'newTeamFeedbackModel>/SkillCollection'
+               		}"
+					width="450px"
+					class="sapUiMediumMarginBeginEnd sapUiMediumMarginBottom"
 				>
 					<core:ListItem
 						key="{newTeamFeedbackModel>Id}"
 						text="{newTeamFeedbackModel>Name}"
 					/>
 				</Select>
-			</f:SimpleForm>
-		</l:VerticalLayout>
+			</VBox>
+		</FlexBox>
+		</VBox>
 		<footer>
 			<Bar>
 				<contentRight>

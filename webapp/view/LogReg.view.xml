@@ -9,7 +9,7 @@
 			alignItems="Center"
 			justifyContent="Center">
 		
-		<Image src="../resources/MHP_login.png" height="280px" class="img"/>
+		<Image src="../resources/MHP_login.png" height="280px" class="imgShadow"/>
 
 		<FlexBox
 				height="650px"

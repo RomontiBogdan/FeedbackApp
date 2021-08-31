@@ -24,6 +24,19 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
     box-shadow: 2px 2px 5px grey;
 }
 
-.img {
+.imgShadow {
    -webkit-box-reflect: below -10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+ }
+
+ .backgroundGradient{
+   background: rgb(255,255,255);
+   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(102,149,194,1) 100%);
+ }
+
+ .boxBackground{
+   background: rgb(67, 87, 105);
+ }
+
+ .textGray{
+   color: #d9d9d9;
  }
