@@ -40,6 +40,8 @@ sap.ui.define([
       _restrictEditable: function (bValue) {
          this.getView().byId("ReviewTextArea").setEditable(bValue);
          this.getView().byId("RatingTeamMember").setEditable(bValue);
+         this.getView().byId("teamFeedbackSendButton").setVisible(bValue);
+         this.getView().byId("completedCheckBox").setVisible(bValue);
       },
 
       _changeStatusIfOpened: function (sStatus) {

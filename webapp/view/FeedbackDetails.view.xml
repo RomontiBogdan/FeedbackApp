@@ -23,10 +23,10 @@
 				>
 					<HBox>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>from}"
 							subheader="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
-                        ? 'Anonymous sender' : ${FromUser}}"
+                        				? 'Anonymous sender' : ${FromUser}}"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -34,7 +34,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>to}"
 							subheader="{ToUser}"
 							frameType="Auto"
@@ -44,7 +44,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>projectID}"
 							subheader="{ProjectId}"
 							frameType="Auto"
@@ -54,12 +54,12 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>review}"
 							subheader="{
-                        path: 'Rating',
-                        formatter: '.formatter.feedbackRating'
-                     }"
+									path: 'Rating',
+									formatter: '.formatter.feedbackRating'
+								}"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -71,12 +71,12 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>category}"
 							subheader="{
-                        path: 'Categories',
-                        formatter: '.formatter.feedbackCategory'
-                     }"
+									path: 'Categories',
+									formatter: '.formatter.feedbackCategory'
+								}"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -84,7 +84,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>sentDate}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="Auto"
@@ -105,7 +105,7 @@
 			growing="true"
 			growingMaxLines="7"
 			width="94%"
-			height="70%"
+			height="60%"
 		/>
 	</Page>
 </mvc:View>
