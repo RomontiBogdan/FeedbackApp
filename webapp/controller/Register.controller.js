@@ -18,19 +18,32 @@ sap.ui.define([
          oMM.registerObject(oView.byId("UsernameRegisterField"), true);
          oMM.registerObject(oView.byId("PasswordRegisterField"), true);
          oMM.registerObject(oView.byId("EmailRegisterField"), true);
+         
+         this.bValidUser = false;
+         this.bValidEmail = false;
+         this.bValidPassword = false;
       },
 
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
          if (oParams.Username === "") {
-            sExceptions += oi18nModel.getText("usernameNotEntered");
+            sExceptions += oi18nModel.getText("introduceUsername");
          }
          if (oParams.Password === "") {
-            sExceptions += oi18nModel.getText("passwordNotEntered");
+            sExceptions += oi18nModel.getText("introducePassword");
          }
          if (oParams.Email === "") {
-            sExceptions += oi18nModel.getText("emailNotEntered");
+            sExceptions += oi18nModel.getText("introduceEmail");
+         }
+         if (!this.bValidUser) {
+            sExceptions += oi18nModel.getText("invalidUsername");
+         }
+         if (!this.bValidEmail) {
+            sExceptions += oi18nModel.getText("invalidEmail");
+         }
+         if (!this.bValidPassword) {
+            sExceptions += oi18nModel.getText("invalidPassword");
          }
          return sExceptions
       },
@@ -48,29 +61,30 @@ sap.ui.define([
          }
 
          var sExceptions = this._validateData(params);
-         if (sExceptions !== "") {
+         if (!this.bValidUser || !this.bValidEmail || !this.bValidPassword || sExceptions !== "") {
             MessageBox.error(sExceptions)
          }
          else {
-            var oModel = this.getOwnerComponent().getModel();
+            sap.m.MessageToast.show("MERGE WTF???")
+            // var oModel = this.getOwnerComponent().getModel();
 
-            oModel.create('/UserPassSet', params, {
-               success: function (oCreatedEntry) {
-                  var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-                  MessageBox.information(oi18nModel.getText("registerSucces"), {
-                     onClose: function (oAction) {
-                        if (oAction == "OK") {
-                           var oRouter = this.getOwnerComponent().getRouter();
-                           oRouter.navTo("overview");
-                        }
-                     }.bind(this)
-                  });
+            // oModel.create('/UserPassSet', params, {
+            //    success: function (oCreatedEntry) {
+            //       var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+            //       MessageBox.information(oi18nModel.getText("registerSucces"), {
+            //          onClose: function (oAction) {
+            //             if (oAction == "OK") {
+            //                var oRouter = this.getOwnerComponent().getRouter();
+            //                oRouter.navTo("overview");
+            //             }
+            //          }.bind(this)
+            //       });
 
-               }.bind(this),
-               error: function (oError) {
-                  sap.m.MessageToast.show(this.errorText(oError))
-               }.bind(this)
-            });
+            //    }.bind(this),
+            //    error: function (oError) {
+            //       sap.m.MessageToast.show(this.errorText(oError))
+            //    }.bind(this)
+            // });
          }
 
       },
@@ -87,7 +101,12 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
-               throw new ValidateException("Username should contain only lowercase and uppercase letters and numbers");
+               this.bValidUser = false;
+               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+               throw new ValidateException("asd");
+            }
+            else{
+               this.bValidUser = true;
             }
          }
       }),
@@ -104,7 +123,12 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             if (!oValue.match(rexPassword)) {
-               throw new ValidateException("Password must contain minimum six characters, at least one letter and one number");
+               this.bValidPassword = false;
+               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+               throw new ValidateException(oi18nModel.getText("inputInvalidPassword"));
+            }
+            else{
+               this.bValidPassword = true;
             }
          }
       }),
@@ -122,7 +146,12 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
-               throw new ValidateException("'" + oValue + "' is not a valid e-mail address");
+               this.bValidEmail = false;
+               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+               throw new ValidateException("'" + oValue + "'" + oi18nModel.getText("inputInvalidEmail"));
+            }
+            else{
+               this.bValidEmail = true;
             }
          }
       })
