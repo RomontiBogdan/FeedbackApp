@@ -16,7 +16,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getRouter()
-				oRouter.navTo("overview", true);
+				oRouter.navTo("main", true);
 			}
       },
 
@@ -27,14 +27,6 @@ sap.ui.define([
 
       getRouter: function () {
          return this.getOwnerComponent().getRouter();
-      },
-
-      getCurrentUser: function () {
-         return this.getOwnerComponent().getModel("currentUser").getData();
-      },
-
-      getUserCareerLevel: function () {
-         return this.getOwnerComponent().getModel("userCareerLevel").getData();
       },
 
       errorText: function (oError) {

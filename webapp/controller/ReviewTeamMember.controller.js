@@ -19,7 +19,7 @@ sap.ui.define([
             events: {
                dataReceived: function (oData) {
                   sFromUser = oData.getParameter("data").FromUser;
-                  this._restrictEditable(sFromUser === this.getCurrentUser());
+                  this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
                }.bind(this),
                change: function (oData) {
                   oModel = this.getView().getModel();
@@ -28,8 +28,8 @@ sap.ui.define([
                   sStatusPath = sPath + "/Status";
                   sFromUser = oModel.getProperty(sUserPath);
                   sStatus = oModel.getProperty(sStatusPath);
-                  this._restrictEditable(sFromUser === this.getCurrentUser());
-                  if (sFromUser == this.getCurrentUser()) {
+                  this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
+                  if (sFromUser == sessionStorage.getItem("username")) {
                      this._changeStatusIfOpened(sStatus);
                   }
                }.bind(this)

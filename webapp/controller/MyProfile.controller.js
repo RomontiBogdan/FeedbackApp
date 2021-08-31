@@ -46,7 +46,7 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         var sUsername = this.getCurrentUser();
+         var sUsername = sessionStorage.getItem("username");
          this.getView().bindElement({
             path: "/UserPassSet('" + sUsername + "')"
          });

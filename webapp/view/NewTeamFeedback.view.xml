@@ -49,7 +49,7 @@
 					id="evaluatorUserSelect"
 					items="{/UsernamesSet}"
 					width="450px"
-					class="sapUiMediumMarginBeginEnd textGray"
+					class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
 				>
 					<core:ListItem
 						key="{Username}"
@@ -67,7 +67,7 @@
 					items="{toMembers}"
 					change="onUserChange"
 					width="450px"
-					class="sapUiMediumMarginBeginEnd"
+					class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
 				>
 					<core:ListItem
 						key="{Username}"
@@ -84,7 +84,7 @@
 					id="userProjectsSelect"
 					items="{toProjects}"
 					width="450px"
-					class="sapUiMediumMarginBeginEnd"
+					class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
 				>
 					<core:ListItem
 						key="{ProjectId}"

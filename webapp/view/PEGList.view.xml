@@ -96,9 +96,10 @@
 			</content>
 		</IconTabBar>
 		<footer>
-			<Bar id="newrequestbar">
+			<Bar>
 				<contentRight>
 					<Button
+						id="newPegRequest"
 						text="{i18n>PEGRequestBtn}"
 						press=".onNewRequest"
 						class="myCustomButton"

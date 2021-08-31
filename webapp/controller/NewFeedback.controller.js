@@ -63,7 +63,7 @@ sap.ui.define([
 
             var params = {
                FeedbackId: "0",
-               FromUser: this.getCurrentUser(),
+               FromUser: sessionStorage.getItem("username"),
                ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
                Description: this.byId("inputDescription").getValue(),
                ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),

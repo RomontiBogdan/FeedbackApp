@@ -38,5 +38,5 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
  }
 
  .textGray{
-   color: #d9d9d9;
+   color: #d9d9d9 !important;
  }

@@ -15,7 +15,7 @@ sap.ui.define([
 
       _onObjectMatched: function (oEvent) {
          // Model for anonymous usage
-         var sUsername = this.getCurrentUser();
+         var sUsername = sessionStorage.getItem("username");
          var oModel = new JSONModel({currentUser: sUsername});
          this.getView().setModel(oModel, "AnonymousModel");
 
@@ -61,10 +61,10 @@ sap.ui.define([
          var sKey = oEvent.getParameter("key");
          var aFilter = [];
          if (sKey === "Sent" || sKey === "All") {
-            aFilter.push(new Filter("FromUser", FilterOperator.EQ, this.getCurrentUser()))
+            aFilter.push(new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username")))
          }
          if (sKey === "Received" || sKey === "All") {
-            aFilter.push(new Filter("ToUser", FilterOperator.EQ, this.getCurrentUser()))
+            aFilter.push(new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")))
          }
          var oList = this.byId("feedbackTable");
          var oBinding = oList.getBinding("items");
