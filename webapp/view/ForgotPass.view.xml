@@ -2,8 +2,10 @@
 	controllerName="sap.ui.demo.walkthrough.controller.ForgotPass"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
 >
-	<Page>
+<Page 
+		class="backgroundGradient">
 		<customHeader>
            <Bar>
 				<contentLeft>
@@ -11,13 +13,26 @@
 						icon="sap-icon://nav-back"
 						press=".navBack"
 						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%"/>
+					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" />
 				</contentLeft>
            </Bar>
-      	</customHeader>
+      </customHeader>
+<FlexBox
+			width="1200px"
+			alignItems="Center"
+			justifyContent="Center">
 		
-		<Panel class="sapUiResponsiveMargin">
-			<content>
+		<Image src="../resources/MHP_login.png" height="280px" class="imgShadow"/>
+
+		<FlexBox
+				height="650px"
+				alignItems="Center"
+				justifyContent="Center">
+
+			<VBox fitContainer="true">
+			<layoutData>
+				<FlexItemData growFactor="7" />
+			</layoutData>
 			<Label
 						text="{i18n>userText}"
 						labelFor="usernameTextFP"
@@ -27,7 +42,7 @@
 					id="usernameTextFP"
 					placeholder="{i18n>enterUsername}"
 					valueLiveUpdate="true"
-					width="80%"
+					width="450px"
 					value="{ path: '/username',type: '.customUserType'}"
 				/>
 				<Label
@@ -39,7 +54,7 @@
 					id="emailTextFP"
 					placeholder="{i18n>enterMail}"
 					valueLiveUpdate="true"
-					width="80%"
+					width="450px"
 					value="{ path: '/email',type: '.customEMailType'}"
 				/>
 					<Label
@@ -51,18 +66,29 @@
 					id="passwordTextFP"
 					placeholder="{i18n>enterNewPassword}"
 					valueLiveUpdate="true"
-					width="80%"
+					width="450px"
 					type="Password"
 					value="{ path: '/newpassword',type: '.customNewPasswordType'}"
 				/>
+
+
+				<HBox fitContainer="true" alignItems="Stretch">
+				<layoutData>
+					<FlexItemData growFactor="4" />
+				</layoutData>
+				<VBox alignItems="Center" width="400px">
 				<Button
 					text="{i18n>changePasswordBtn}"
 					class="myCustomButton"
-					width="80%"
+					width="300px"
 					type="Emphasized"
 					press="onPressForgotPass"
 				/>
-			</content>
-		</Panel>
+			</VBox>
+			</HBox>
+		</VBox>
+		</FlexBox>
+
+	</FlexBox>	
 	</Page>
 </mvc:View>
