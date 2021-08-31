@@ -40,9 +40,9 @@ sap.ui.define([
             Password: this.getView().byId("passwordTextFP").getValue()
          }
          
-         var exceptions = this._validateData(params);
-         if (exceptions !== "") {
-            MessageBox.error(exceptions)
+         var sExceptions = this._validateData(params);
+         if (sExceptions !== "") {
+            MessageBox.error(sExceptions)
          }
          else {
          var oModel = this.getOwnerComponent().getModel();
@@ -68,21 +68,22 @@ sap.ui.define([
    
 
       _validateData: function (oParams) {
-         var exceptions = ""
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+         var sExceptions = ""
          if (oParams.Username === "") {
-            exceptions += "You have to enter your username for password recovery!\n"
+            sExceptions += oi18nModel.getText("introduceUsernamePassRecovery")
          }
          
 
          if (oParams.Email === "") {
-            exceptions += "You have to enter your e-mail for password recovery!\n"
+            sExceptions += oi18nModel.getText("introduceEmailPassRecovery")
          }
 
          if (oParams.Password === "") {
-            exceptions += "You have to enter a new password!\n"
+            sExceptions += oi18nModel.getText("introducePassword")
          }
          
-         return exceptions
+         return sExceptions
 
       },
 

@@ -43,7 +43,7 @@ sap.ui.define([
            exceptions += oi18nModel.getText("emailNotEntered");
          }
          
-         return exceptions
+         return sExceptions
       },
 
       onCreateRegister: function (oEvent) {
@@ -58,9 +58,9 @@ sap.ui.define([
             FiscalYear: ""
          }
 
-         var exceptions = this._validateData(params);
-         if (exceptions !== "") {
-            MessageBox.error(exceptions)
+         var sExceptions = this._validateData(params);
+         if (sExceptions !== "") {
+            MessageBox.error(sExceptions)
          }
          else {
          var oModel = this.getOwnerComponent().getModel();
