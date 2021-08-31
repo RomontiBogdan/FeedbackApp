@@ -31,9 +31,9 @@ sap.ui.define([
          oBinding.filter(this._aFilter);
 
          if(this.getUserCareerLevel() == "5")
-            this.getView().byId("newrequestbar").setVisible(false);
+            this.getView().byId("newPegRequest").setVisible(false);
          else
-            this.getView().byId("newrequestbar").setVisible(true);
+            this.getView().byId("newPegRequest").setVisible(true);
 
          this.byId("PegTableManager").getModel().updateBindings(true);                    //Comanda asta m-a costat doi ani din viata
       },
