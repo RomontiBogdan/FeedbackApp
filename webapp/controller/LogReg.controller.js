@@ -15,7 +15,6 @@ sap.ui.define([
                sUsername.setValueState("Success");
                sPassword.setValueState("Success");
 
-               //this.getOwnerComponent().getModel("currentUser").setData(sUsername.getValue());
                sessionStorage.setItem("username", sUsername.getValue());
 
                oRouter.navTo("main", {
