@@ -59,6 +59,13 @@ sap.ui.define([
                },
             ],
          };
+         
+         var oEditableData = {
+            Editable:""
+         } 
+         var oModelEditable = new JSONModel(oData);
+         this.getView().setModel(oModelEditable, "Edit");
+         
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "DaysEvaluatedModel");
          this.byId("pegTable").getModel().updateBindings(true);
@@ -85,11 +92,7 @@ sap.ui.define([
       },
 
       _toggleRightsToEdit: function (bRight) {
-         this.byId("gradeIndicator").setEditable(bRight);
-         this.byId("recommendationInput").setEditable(bRight);
-         this.byId("submitChangesButton").setVisible(bRight);
-         this.byId("completedCheckBox").setVisible(bRight);
-         this.byId("daysEvaluatedSelect").setVisible(bRight);
+         this.getView().getModel("Edit").setProperty("/Editable", bRight);
       },
 
       // check if current peg status is new or not
@@ -137,7 +140,7 @@ sap.ui.define([
          var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
          var sFiscal_Year = oUserContainerObj.FiscalYear;
          var sPersonnelNumber = oUserContainerObj.PersonalNo;
-         var sCareerLvl = formatter.careerLevelExcel(oUserContainerObj.CareerLevel);
+         var sCareerLvl = this.formatter.careerLevel(oUserContainerObj.CareerLevel);
          var sSU = oUserContainerObj.Su;
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
@@ -340,6 +343,52 @@ sap.ui.define([
                }
             });
          })
+      },
+
+      getCareerLevel: function (sLevel) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sLevel) {
+            case "0":
+               return oModel.getText("careerLevelZero");
+            case "1":
+               return oModel.getText("careerLevelOne");
+            case "2":
+               return oModel.getText("careerLevelTwo");
+            case "3":
+               return oModel.getText("careerLevelThree");
+            case "4":
+               return oModel.getText("careerLevelFour");
+            case "5":
+               return oModel.getText("careerLevelFive");
+         }
+      },
+
+      getGradeDescription: function (sGrade) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sGrade.toString()) {
+            case "0":
+               return oModel.getText("gradeZero");
+            case "1":
+               return oModel.getText("gradeOne");
+            case "2":
+               return oModel.getText("gradeTwo");
+            case "3":
+               return oModel.getText("gradeThree");
+            case "4":
+               return oModel.getText("gradeFour");
+         }
+      },
+
+      getDaysEvaluated: function (sDays) {
+         var oModel = this.getView().getModel("i18n").getResourceBundle();
+         switch (sDays) {
+            case "0":
+               return oModel.getText("lessThan");
+            case "1":
+               return oModel.getText("between");
+            case "2":
+               return oModel.getText("moreThan");
+         }
       }
    });
 });
