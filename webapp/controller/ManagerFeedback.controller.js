@@ -72,7 +72,7 @@ sap.ui.define([
       },
 
       _checkEvaluator: function (sEvaluator) {
-         if (sEvaluator !== this.getCurrentUser()) {
+         if (sEvaluator !== sessionStorage.getItem("username")) {
             this._toggleRightsToEdit(false);
          } else {
             this._toggleRightsToEdit(true);

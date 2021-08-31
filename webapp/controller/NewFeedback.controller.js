@@ -60,16 +60,18 @@ sap.ui.define([
          },
 
          onSend: function () {
-
+            var oUserSelection = this.byId("inputToUser").getSelectedItem();
+            var oProjectSelection = this.byId("inputToProject").getSelectedItem();
+            var oSkillSelection = this.byId("inputSkill").getSelectedItem();
             var params = {
                FeedbackId: "0",
                FromUser: sessionStorage.getItem("username"),
-               ToUser: this.byId("inputToUser").getSelectedItem() === null ? null : this.byId("inputToUser").getSelectedItem().getText(),
+               ToUser: oUserSelection === null ? null : oUserSelection.getText(),
                Description: this.byId("inputDescription").getValue(),
-               ProjectId: this.byId("inputToProject").getSelectedItem() === null ? null : this.byId("inputToProject").getSelectedItem().getKey(),
+               ProjectId: oProjectSelection === null ? null : oProjectSelection.getKey(),
                SentAt: new Date(),
                Type: "1",
-               Categories: this.byId("inputSkill").getSelectedItem() === null ? null : this.byId("inputSkill").getSelectedItem().getKey(),
+               Categories: oSkillSelection === null ? null : oSkillSelection.getKey(),
                Rating: this.byId("inputRating").getValue().toString(),
                Anonymous: this.byId("AnonymousCB").getSelected() ? "X" : " "
             }
@@ -87,7 +89,7 @@ sap.ui.define([
                         onClose: function (oAction) {
                            if (oAction === "OK") {
                               var oRouter = this.getOwnerComponent().getRouter();
-                              oRouter.navTo("FeedbackList");
+                              oRouter.navTo("feedbacklist");
                            }
                         }.bind(this)
                      });
