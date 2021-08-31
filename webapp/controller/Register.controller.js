@@ -22,15 +22,15 @@ sap.ui.define([
 
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-         var exceptions = ""
+         var sExceptions = ""
          if (oParams.Username === "") {
-            exceptions += oi18nModel.getText("usernameNotEntered");
+            sExceptions += oi18nModel.getText("usernameNotEntered");
          }
          if (oParams.Password === "") {
-            exceptions += oi18nModel.getText("passwordNotEntered");
+            sExceptions += oi18nModel.getText("passwordNotEntered");
          }
          if (oParams.Email === "") {
-            exceptions += oi18nModel.getText("emailNotEntered");
+            sExceptions += oi18nModel.getText("emailNotEntered");
          }
          return sExceptions
       },
@@ -74,7 +74,7 @@ sap.ui.define([
          }
 
       },
-      customUserType: SimpleType.extend(" username", {
+      customUserType: SimpleType.extend("username", {
          formatValue: function (oValue) {
             return oValue;
          },
@@ -102,9 +102,7 @@ sap.ui.define([
          },
 
          validateValue: function (oValue) {
-
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
-
             if (!oValue.match(rexPassword)) {
                throw new ValidateException("Password must contain minimum six characters, at least one letter and one number");
             }
@@ -122,14 +120,11 @@ sap.ui.define([
          },
 
          validateValue: function (oValue) {
-
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
                throw new ValidateException("'" + oValue + "' is not a valid e-mail address");
             }
          }
       })
-
-
    });
 });
