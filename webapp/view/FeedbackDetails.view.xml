@@ -3,7 +3,7 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<Page>
+	<Page class="backgroundGradient">
 		<customHeader>
            <Bar>
 				<contentLeft>
@@ -15,7 +15,7 @@
 				</contentLeft>
            </Bar>
       	</customHeader>
-		<Panel>
+		<Panel class="backgroundGradient">
 			<content>
 				<VBox
 					alignItems="Center"
@@ -105,7 +105,7 @@
 			growing="true"
 			growingMaxLines="7"
 			width="94%"
-			height="90%"
+			height="70%"
 		/>
 	</Page>
 </mvc:View>

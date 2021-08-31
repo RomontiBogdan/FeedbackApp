@@ -3,7 +3,7 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 >
-	<Page>
+	<Page class="backgroundGradient">
 		<customHeader>
            <Bar>
 				<contentLeft>
