@@ -39,7 +39,7 @@
 						<FlexItemData growFactor="7"/>
 					</layoutData>
 					<Label
-						text="{i18n>userText}"
+						text="{i18n>Username}"
 						labelFor="UsernameRegisterField"
 						required="true"
 					/>
@@ -52,7 +52,7 @@
 						class="shadow"
 					/>
 					<Label
-						text="{i18n>passText}"
+						text="{i18n>Password}"
 						labelFor="PasswordRegisterField"
 						required="true"
 					/>

@@ -22,6 +22,8 @@ sap.ui.define([
          this.bValidUser = false;
          this.bValidEmail = false;
          this.bValidPassword = false;
+
+         
       },
 
       _validateData: function (oParams) {
@@ -30,25 +32,28 @@ sap.ui.define([
          if (oParams.Username === "") {
             sExceptions += oi18nModel.getText("introduceUsername");
          }
+         else if (!this.bValidUser) {
+            sExceptions += oi18nModel.getText("inputInvalidUsername");
+         }
+
          if (oParams.Password === "") {
             sExceptions += oi18nModel.getText("introducePassword");
          }
+         else if (!this.bValidPassword) {
+            sExceptions += oi18nModel.getText("inputInvalidPassword");
+         }
+
          if (oParams.Email === "") {
             sExceptions += oi18nModel.getText("introduceEmail");
          }
-         if (!this.bValidUser) {
-            sExceptions += oi18nModel.getText("invalidUsername");
-         }
-         if (!this.bValidEmail) {
-            sExceptions += oi18nModel.getText("invalidEmail");
-         }
-         if (!this.bValidPassword) {
-            sExceptions += oi18nModel.getText("invalidPassword");
+         else if (!this.bValidEmail) {
+            sExceptions += "'" + this.getView().byId("EmailRegisterField").getValue() + "' " + oi18nModel.getText("inputInvalidEmail");
          }
          return sExceptions
       },
 
       onCreateRegister: function (oEvent) {
+         var CV = this.customUserType.formatValue("value");
          var params = {
             FullName: "",
             Username: this.getView().byId("UsernameRegisterField").getValue(),
@@ -102,8 +107,7 @@ sap.ui.define([
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
                this.bValidUser = false;
-               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-               throw new ValidateException("asd");
+               throw new ValidateException(" ");
             }
             else{
                this.bValidUser = true;
@@ -124,8 +128,7 @@ sap.ui.define([
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             if (!oValue.match(rexPassword)) {
                this.bValidPassword = false;
-               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-               throw new ValidateException(oi18nModel.getText("inputInvalidPassword"));
+               throw new ValidateException(" ");
             }
             else{
                this.bValidPassword = true;
@@ -147,8 +150,7 @@ sap.ui.define([
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
                this.bValidEmail = false;
-               var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-               throw new ValidateException("'" + oValue + "'" + oi18nModel.getText("inputInvalidEmail"));
+               throw new ValidateException(" ");
             }
             else{
                this.bValidEmail = true;

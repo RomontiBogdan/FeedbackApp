@@ -75,7 +75,7 @@ sap.ui.define([
             sExceptions += oi18nModel.getText("introduceEmailPassRecovery")
          }
          if (oParams.Password === "") {
-            sExceptions += oi18nModel.getText("introducePassword")
+            sExceptions += oi18nModel.getText("introducePasswordRecovery")
          }
          return sExceptions
       },
