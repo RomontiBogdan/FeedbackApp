@@ -7,19 +7,19 @@
 		<customHeader>
            	<Bar>
                 <contentRight>
-					<Button 
+				<Button 
 					icon="https://image.flaticon.com/icons/png/512/197/197374.png"
-					press=".setGermani18n"
-					class="sapUiSmallMarginBeginEnd"/>
-					<Button
-					icon="https://image.flaticon.com/icons/png/512/197/197571.png"
 					press=".setEnglishi18n"
+					class="sapUiSmallMarginBeginEnd"/>
+				<Button
+					icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+					press=".setGermani18n"
 					class="sapUiTinyMarginEnd"/>
-					<Button 
+				<Button 
 					text="{i18n>profileBtn}"
 					icon="sap-icon://account"
 					press=".onProfile"/>
-					<Button 
+				<Button 
 					tooltip="{i18n>logOut}"
 					type="Emphasized"
 					icon="sap-icon://visits"

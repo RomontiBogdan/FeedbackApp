@@ -25,18 +25,25 @@ sap.ui.define([
          this._Germani18nModel = new ResourceModel({
             bundleName: "sap.ui.demo.walkthrough.i18n.i18n_de"
          });
-
-         this.setModel(this._Englishi18nModel, "i18n");
+         
+         if(sessionStorage.getItem("language") === "DE")
+            this.setModel(this._Germani18nModel, "i18n");
+         else
+            this.setModel(this._Englishi18nModel, "i18n");
 
          this.getRouter().initialize();
       },
 
       setGermani18n: function () {
-         this.setModel(this._Englishi18nModel, "i18n");
-      },
-
-      setEnglishi18n: function () {
          this.setModel(this._Germani18nModel, "i18n");
+         sessionStorage.setItem("language", "DE")
+      },
+      
+      setEnglishi18n: function () {
+         this.setModel(this._Englishi18nModel, "i18n");
+         sessionStorage.setItem("language", "EN")
       }
+
+
    });
 });

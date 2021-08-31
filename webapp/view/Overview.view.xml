@@ -10,11 +10,11 @@
                 <contentRight>
                      <Button 
 						icon="https://image.flaticon.com/icons/png/512/197/197374.png"
-						press=".setGermani18n"
+						press=".setEnglishi18n"
 						class="sapUiSmallMarginBeginEnd"/>
 						<Button
 						icon="https://image.flaticon.com/icons/png/512/197/197571.png"
-						press=".setEnglishi18n"
+						press=".setGermani18n"
 						class="sapUiTinyMarginEnd"/>
                 </contentRight>
 				<contentLeft>
