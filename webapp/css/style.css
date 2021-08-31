@@ -37,6 +37,14 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
    background: rgb(67, 87, 105);
  }
 
+ .mainMenuBoxBackground{
+   background: rgba(67, 87, 105, 0.589);
+ }
+
+ .mainMenuShadow{
+   box-shadow: 3px 3px 4px rgb(29, 29, 29);
+}
+
  .borderColourBlue{
    border-style: solid;
    border-width: 2px;
@@ -50,3 +58,7 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
 .textBlack{
    color: #000000 !important;
 }
+
+.textBlue{
+   color: #a6d2da !important;
+ }
