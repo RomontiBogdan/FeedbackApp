@@ -18,24 +18,42 @@
 		
 		<Panel class="sapUiResponsiveMargin">
 			<content>
+			<Label
+						text="{i18n>userText}"
+						labelFor="usernameTextFP"
+						required = "true"
+					/>
 				<Input
 					id="usernameTextFP"
 					placeholder="{i18n>enterUsername}"
 					valueLiveUpdate="true"
 					width="80%"
+					value="{ path: '/username',type: '.customUserType'}"
 				/>
+				<Label
+						text="{i18n>emailText}"
+						labelFor="UsernameRegisterField"
+						required = "true"
+					/>
 				<Input
 					id="emailTextFP"
 					placeholder="{i18n>enterMail}"
 					valueLiveUpdate="true"
 					width="80%"
+					value="{ path: '/email',type: '.customEMailType'}"
 				/>
+					<Label
+						text="{i18n>passText}"
+						labelFor="passwordTextFP"
+						required = "true"
+					/>
 				<Input
 					id="passwordTextFP"
 					placeholder="{i18n>enterNewPassword}"
 					valueLiveUpdate="true"
 					width="80%"
 					type="Password"
+					value="{ path: '/newpassword',type: '.customNewPasswordType'}"
 				/>
 				<Button
 					text="{i18n>changePasswordBtn}"
