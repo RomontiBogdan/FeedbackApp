@@ -4,7 +4,7 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 >
-	<Page>
+	<Page class="backgroundGradient">
 		<customHeader>
            <Bar>
 				<contentLeft>
@@ -28,7 +28,7 @@
 					/>
 					<HBox id="userContainer">
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>employeeName}"
 							subheader="{FullName}"
 							frameType="TwoByOne"
@@ -38,7 +38,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>personnelNumber}"
 							subheader="{PersonalNo}"
 							frameType="Auto"
@@ -48,7 +48,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>fiscalYear}"
 							subheader="{FiscalYear}"
 							frameType="Auto"
@@ -58,7 +58,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>careerLevel}"
 							subheader="{
 								path: 'CareerLevel',
@@ -71,7 +71,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>organizationalAssignment}"
 							subheader="{Su}"
 							frameType="Auto"
@@ -88,7 +88,7 @@
 					/>
 					<HBox id="pegContainer">
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>projectID}"
 							subheader="{ProjectId}"
 							frameType="Auto"
@@ -99,7 +99,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>pegDate}"
 							subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 							frameType="TwoByOne"
@@ -109,7 +109,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>evaluatorName}"
 							subheader="{FromUser}"
 							frameType="Auto"
@@ -119,7 +119,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>nrProjectDays}"
 							subheader="{
 								path: 'DaysEvaluated',
@@ -139,7 +139,7 @@
 					/>
 					<HBox id="projectContainer">
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>projectName}"
 							subheader="{ProjectName}"
 							frameType="TwoByOne"
@@ -149,7 +149,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>projectManagerName}"
 							subheader="{ProjectManager}"
 							frameType="TwoByOne"
@@ -159,7 +159,7 @@
 							</TileContent>
 						</GenericTile>
 						<GenericTile
-							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow "
 							header="{i18n>customerName}"
 							subheader="{Customer}"
 							frameType="TwoByOne"
