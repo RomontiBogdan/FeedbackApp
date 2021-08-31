@@ -5,7 +5,7 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m"
 >
-	<Page class="sapUiContentPadding">
+	<Page class="backgroundGradient">
 		<customHeader>
            <Bar>
 				<contentLeft>
@@ -17,86 +17,104 @@
 				</contentLeft>
            </Bar>
       	</customHeader>
-		<Panel>
-			<f:SimpleForm
-				id="form"
-				editable="true"
-				layout="ResponsiveGridLayout"
-				labelSpanXL="3"
-				labelSpanL="3"
-				labelSpanM="3"
-				adjustLabelSpan="false"
-				emptySpanXL="3"
-				emptySpanL="3"
-				emptySpanM="3"
-				columnsXL="1"
-				columnsL="1"
-				singleContainerFullSize="false"
-			>
-				<f:content>
+		  
+		<VBox
+			height="800px"
+			width="1200px"
+			alignItems="Center">
+		
+		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" />
+
+		<FlexBox
+				height="650px"
+				width="450px"
+				alignItems="Center"
+				justifyContent="Center"
+				>
+
+			<VBox fitContainer="true"
+					width="800px"
+					height = "550px"
+					class="shadow boxBackground roundedBorders">
+			<layoutData>
+				<FlexItemData growFactor="7" />
+			</layoutData>
 					<Label
 						text="{i18n>nameText}"
 						labelFor="inputName"
+						class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
 					/>
 					<Input
 						value="{FullName}"
 						id="inputName"
 						editable="false"
 						placeholder="{i18n>newName}"
-						class="sapUiSmallMarginBottom"
+						class="sapUiMediumMarginBeginEnd"
+						width="450px"
 					/>
 					<Label
 						text="{i18n>Username}"
 						labelFor="inputUser"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{Username}"
 						id="inputUser"
 						editable="false"
-						class="sapUiSmallMarginBottom"
+						class="sapUiMediumMarginBeginEnd"
+						width="450px"
 					/>
 					<Label
 						text="{i18n>emailText}"
 						labelFor="inputEmail"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{Email}"
 						id="inputEmail"
 						editable="false"
 						placeholder="{i18n>newEmail}"
-						class="sapUiSmallMarginBottom"
+						class="sapUiMediumMarginBeginEnd"
+						width="450px"
 					/>
 					<Label
 						text="{i18n>telephone}"
 						labelFor="inputTel"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{PersonalNo}"
 						id="inputTel"
 						editable="false"
 						placeholder="{i18n>newTelephone}"
-						class="sapUiSmallMarginBottom"
+						class="sapUiMediumMarginBeginEnd"
+						width="450px"
 					/>
 					<Label
 						text="{i18n>suText}"
 						labelFor="inputSU"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{Su}"
 						id="inputSU"
-						editable="false"
+						editable="false"	
 						placeholder="{i18n>newServiceUnit}"
-						class="sapUiSmallMarginBottom"
+						class="sapUiMediumMarginBeginEnd"
+					    width="450px"
 					/>
 					<Label
 						text="{i18n>careerLevel}"
 						labelFor="inputLevel"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Select
 						forceSelection="false"
 						id="inputLevel"
 						editable="false"
 						selectedKey="{CareerLevel}"
+						class="sapUiMediumMarginBeginEnd textGray"
+					    width="450px"
 						items="{
                             path: 'myProfileModel>/Levels',
                             sorter: { path: 'myProfileModel>Levels/Name' }
@@ -110,16 +128,18 @@
 					<Label
 						text="{i18n>fiscalYear}"
 						labelFor="inputFiscalYear"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
 					<Input
 						value="{FiscalYear}"
 						id="inputFiscalYear"
 						editable="false"
-						class="sapUiSmallMarginBottom"
+						class="sapUiMediumMarginBeginEnd"
+						width="450px"
 					/>
-				</f:content>
-			</f:SimpleForm>
-		</Panel>
+			</VBox>
+		</FlexBox>
+		</VBox>
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>
