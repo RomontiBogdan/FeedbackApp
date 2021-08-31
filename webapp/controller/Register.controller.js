@@ -9,19 +9,20 @@ sap.ui.define([
       },
 
       _validateData: function (oParams) {
-         var exceptions = ""
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+         var sExceptions = ""
          if (oParams.Username === "") {
-            exceptions += "Please introduce a username!\n"
+            sExceptions += oi18nModel.getText("introduceUsername");
          }
          if (oParams.Password === "") {
-            exceptions += "Please introduce a password!\n"
+            sExceptions += oi18nModel.getText("introducePassword");
          }
 
          if (oParams.Email === "") {
-            exceptions += "Please introduce an email!\n"
+            sExceptions += oi18nModel.getText("introduceEmail");
          }
          
-         return exceptions
+         return sExceptions
       },
 
       onCreateRegister: function (oEvent) {
@@ -36,9 +37,9 @@ sap.ui.define([
             FiscalYear: ""
          }
 
-         var exceptions = this._validateData(params);
-         if (exceptions !== "") {
-            MessageBox.error(exceptions)
+         var sExceptions = this._validateData(params);
+         if (sExceptions !== "") {
+            MessageBox.error(sExceptions)
          }
          else {
          var oModel = this.getOwnerComponent().getModel();

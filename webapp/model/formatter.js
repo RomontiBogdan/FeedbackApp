@@ -119,49 +119,6 @@ sap.ui.define([], function () {
             case "5":
                return oModel.getText("careerLevelFive");
          }
-      },
-
-      careerLevelExcel: function (sLevel) {
-         switch (sLevel) {
-            case "0":
-               return "Junior Consultant";
-            case "1":
-               return "Consultant";
-            case "2":
-               return "Senior Consultant";
-            case "3":
-               return "Manager";
-            case "4":
-               return "Senior Manager";
-            case "5":
-               return "Lead Manager";
-         }
-      },
-
-      gradeDescriptionExcel: function (sGrade) {
-         switch (sGrade.toString()) {
-            case "0":
-               return "Not assessable at this time";
-            case "1":
-               return "Does not meet expectations";
-            case "2":
-               return "Partially meets expectations";
-            case "3":
-               return "Fully meets expectations";
-            case "4":
-               return "Exceeds expectations";
-         }
-      },
-
-      daysEvaluatedExcel: function (sDays) {
-         switch (sDays) {
-            case "0":
-               return "Less than 90 days";
-            case "1":
-               return "Between 90 and 180 days";
-            case "2":
-               return "More than 180 days";
-         }
       }
    };
 });

@@ -66,22 +66,23 @@ sap.ui.define([
       },
 
 
-         _validateData: function (oParams) {
-         var exceptions = ""
+      _validateData: function (oParams) {
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+         var sExceptions = ""
          if (oParams.FullName === "") {
-            exceptions += "Please introduce your full name!\n"
+            sExceptions += oi18nModel.getText("introduceYourName");
          }
          if (oParams.Email === "") {
-            exceptions += "Please introduce your email!\n"
+            sExceptions += oi18nModel.getText("introduceYourEmail");
          }
          if (oParams.PersonalNo === "") {
-            exceptions += "Please introduce your personal number!\n"
+            sExceptions += oi18nModel.getText("introduceYourPersonalNo");
          }
          if (oParams.Su === "") {
-            exceptions += "Please introduce service unit!\n"
+            sExceptions += oi18nModel.getText("introduceServiceUnit");
          }
         
-         return exceptions
+         return sExceptions
       },
 
 
@@ -105,9 +106,9 @@ sap.ui.define([
             CareerLevel: "",
             FiscalYear: ""
          }
-         var exceptions = this._validateData(params);
-         if (exceptions !== "") {
-            MessageBox.error(exceptions)
+         var sExceptions = this._validateData(params);
+         if (sExceptions !== "") {
+            MessageBox.error(sExceptions)
          }
          else {
      
