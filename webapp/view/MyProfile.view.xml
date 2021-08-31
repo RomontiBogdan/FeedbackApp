@@ -141,15 +141,11 @@
 		</FlexBox>
 		</VBox>
 		<footer>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<Button
-					type="Emphasized"
-					text="{i18n>save}"
-					press="onPressSave"
-				/>
-				<HBox>
-					<Switch
+			
+
+			<Bar id="buttonBar">
+				<contentLeft>
+				<Switch
 						customTextOn="✓"
 						customTextOff="{i18n>edit}"
 						change="onEdit"
@@ -159,8 +155,17 @@
 							<FlexItemData growFactor="1"/>
 						</layoutData>
 					</Switch>
-				</HBox>
-			</Toolbar>
+				
+				</contentLeft>
+				<contentRight>
+					<Button
+					type="Emphasized"
+					text="{i18n>save}"
+					press="onPressSave"
+				    />
+					</contentRight>
+				</Bar>
+			
 		</footer>
 	</Page>
 </mvc:View>
