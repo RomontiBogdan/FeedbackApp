@@ -2,96 +2,104 @@
 	controllerName="sap.ui.demo.walkthrough.controller.LogReg"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-		xmlns:core="sap.ui.core">
-
-	<Page 
-		class="backgroundGradient">
+>
+	<Page class="backgroundGradient">
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" />
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+					/>
 				</contentLeft>
-           </Bar>
-      </customHeader>
-	<FlexBox
+			</Bar>
+		</customHeader>
+		<FlexBox
 			width="1200px"
 			alignItems="Center"
-			justifyContent="Center">
-		
-		<Image src="../resources/MHP_login.png" height="280px" class="imgShadow"/>
-
-		<FlexBox
+			justifyContent="Center"
+		>
+			<Image
+				src="../resources/MHP_login.png"
+				height="280px"
+				class="imgShadow"
+			/>
+			<FlexBox
 				height="650px"
 				alignItems="Center"
-				justifyContent="Center">
-
-			<VBox fitContainer="true">
-			<layoutData>
-				<FlexItemData growFactor="7" />
-			</layoutData>
-			
-			<Label
+				justifyContent="Center"
+			>
+				<VBox fitContainer="true">
+					<layoutData>
+						<FlexItemData growFactor="7"/>
+					</layoutData>
+					<Label
 						text="{i18n>userText}"
 						labelFor="UsernameRegisterField"
-						required = "true"
+						required="true"
 					/>
-				<Input
-					id="UsernameRegisterField"
-					placeholder="{i18n>enterUsername}"
-					valueLiveUpdate="true"
-					width="450px"
-					value="{ path: '/username',type: '.customUserType'}"
-					class="shadow"
-				/>
-				<Label
+					<Input
+						id="UsernameRegisterField"
+						placeholder="{i18n>enterUsername}"
+						valueLiveUpdate="true"
+						width="450px"
+						value="{ path: '/username',type: '.customUserType'}"
+						class="shadow"
+					/>
+					<Label
 						text="{i18n>passText}"
-						labelFor="UsernameRegisterField"
-						required = "true"
+						labelFor="PasswordRegisterField"
+						required="true"
 					/>
-				<Input
-					id="PasswordRegisterField"
-					type="Password"
-					placeholder="{i18n>enterPassword}"
-					valueLiveUpdate="true"
-					width="450px"
-					value="{ path: '/password',type: '.customPasswordType'}"
-					class="shadow"
-				/>
-				<Label
+					<Input
+						id="PasswordRegisterField"
+						type="Password"
+						placeholder="{i18n>enterPassword}"
+						valueLiveUpdate="true"
+						width="450px"
+						value="{ path: '/password',type: '.customPasswordType'}"
+						class="shadow"
+					/>
+					<Label
 						text="{i18n>emailText}"
-						labelFor="UsernameRegisterField"
-						required = "true"
+						labelFor="EmailRegisterField"
+						required="true"
 					/>
-				<Input
-					id="EmailRegisterField"
-					placeholder="{i18n>enterMail}"
-					valueLiveUpdate="true"
-					width="450px"
-					value="{ path: '/email',type: '.customEMailType'}"
-					class="shadow"
-				/>
-
-			<HBox fitContainer="true" alignItems="Stretch">
-				<layoutData>
-					<FlexItemData growFactor="4" />
-				</layoutData>
-				<VBox alignItems="Center" width="450px">
-					<Button
-					text="{i18n>submitRegisterBtn}"
-					class="sapUiSmallMarginTop "
-					width="400px"
-					type="Emphasized"
-					press=".onCreateRegister"
-				/>
+					<Input
+						id="EmailRegisterField"
+						placeholder="{i18n>enterMail}"
+						valueLiveUpdate="true"
+						width="450px"
+						value="{ path: '/email',type: '.customEMailType'}"
+						class="shadow"
+					/>
+					<HBox
+						fitContainer="true"
+						alignItems="Stretch"
+					>
+						<layoutData>
+							<FlexItemData growFactor="4"/>
+						</layoutData>
+						<VBox
+							alignItems="Center"
+							width="450px"
+						>
+							<Button
+								text="{i18n>submitRegisterBtn}"
+								class="sapUiSmallMarginTop"
+								width="400px"
+								type="Emphasized"
+								press="onCreateRegister"
+							/>
+						</VBox>
+					</HBox>
 				</VBox>
-			</HBox>
-		</VBox>
+			</FlexBox>
 		</FlexBox>
-
-	</FlexBox>	
-		</Page>
+	</Page>
 </mvc:View>

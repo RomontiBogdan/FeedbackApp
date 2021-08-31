@@ -10,18 +10,18 @@ sap.ui.define([
 ], function (BaseController, History, JSONModel, MessageBox, SimpleType, ValidateException, Core) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.ForgotPass", {
-      
+
       onInit: function () {
-			var oView = this.getView(),
-				oMM = Core.getMessageManager();
+         var oView = this.getView(),
+            oMM = Core.getMessageManager();
 
-			oView.setModel(new JSONModel({ username: "", email: "", newpassword:"" }));
+         oView.setModel(new JSONModel({ username: "", email: "", newpassword: "" }));
 
-			// attach handlers for validation errors
-			oMM.registerObject(oView.byId("usernameTextFP"), true);
-			oMM.registerObject(oView.byId("emailTextFP"), true);
+         // attach handlers for validation errors
+         oMM.registerObject(oView.byId("usernameTextFP"), true);
+         oMM.registerObject(oView.byId("emailTextFP"), true);
          oMM.registerObject(oView.byId("passwordTextFP"), true);
-		},
+      },
 
       onNavBack: function () {
          this.navBack();
@@ -33,39 +33,37 @@ sap.ui.define([
          var sEmail = oView.byId("emailTextFP").getValue();
          var sPassword = oView.byId("passwordTextFP").getValue();
 
-
          var params = {
             Username: this.getView().byId("usernameTextFP").getValue(),
             Email: this.getView().byId("emailTextFP").getValue(),
             Password: this.getView().byId("passwordTextFP").getValue()
          }
-         
+
          var sExceptions = this._validateData(params);
          if (sExceptions !== "") {
             MessageBox.error(sExceptions)
          }
          else {
-         var oModel = this.getOwnerComponent().getModel();
-         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-         oModel.read("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
-            success: function (oSuccess) {
-               oModel.update("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
-                  Password: sPassword,
-                  Username: sUsername
-               }, {
-                  success: function (oUpdateSuccess) {
-                     sap.m.MessageToast.show(oi18nModel.getText("passChanged"))
-                  }
-               })
-            },
-            error: function (oError) {
-               sap.m.MessageToast.show(oi18nModel.getText("invalidUserEmail"))
-            }
-         })
+            var oModel = this.getOwnerComponent().getModel();
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+            oModel.read("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
+               success: function (oSuccess) {
+                  oModel.update("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {
+                     Password: sPassword,
+                     Username: sUsername
+                  }, {
+                     success: function (oUpdateSuccess) {
+                        sap.m.MessageToast.show(oi18nModel.getText("passChanged"))
+                     }
+                  })
+               },
+               error: function (oError) {
+                  sap.m.MessageToast.show(oi18nModel.getText("invalidUserEmail"))
+               }
+            })
 
-      }
+         }
       },
-   
 
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
@@ -73,18 +71,13 @@ sap.ui.define([
          if (oParams.Username === "") {
             sExceptions += oi18nModel.getText("introduceUsernamePassRecovery")
          }
-         
-
          if (oParams.Email === "") {
             sExceptions += oi18nModel.getText("introduceEmailPassRecovery")
          }
-
          if (oParams.Password === "") {
             sExceptions += oi18nModel.getText("introducePassword")
          }
-         
          return sExceptions
-
       },
 
 
@@ -92,34 +85,32 @@ sap.ui.define([
          formatValue: function (oValue) {
             return oValue;
          },
-   
+
          parseValue: function (oValue) {
             //parsing step takes place before validating step, value could be altered here
             return oValue;
          },
-   
+
          validateValue: function (oValue) {
-            
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
                throw new ValidateException("Username should contain only lowercase and uppercase letters and numbers");
             }
          }
       }),
-   
-   
-      
+
+
+
       customEMailType: SimpleType.extend("email", {
          formatValue: function (oValue) {
             return oValue;
          },
-   
+
          parseValue: function (oValue) {
             return oValue;
          },
-   
+
          validateValue: function (oValue) {
-            
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
                throw new ValidateException("'" + oValue + "' is not a valid e-mail address");
@@ -132,19 +123,17 @@ sap.ui.define([
          formatValue: function (oValue) {
             return oValue;
          },
-   
+
          parseValue: function (oValue) {
             return oValue;
          },
-   
+
          validateValue: function (oValue) {
-            
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             if (!oValue.match(rexPassword)) {
                throw new ValidateException("Password must contain minimum six characters, at least one letter and one number");
             }
          }
       }),
-
    });
 });

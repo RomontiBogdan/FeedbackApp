@@ -31,14 +31,12 @@ sap.ui.define([
          this.getRouter().initialize();
       },
 
-      setGermani18n: function(){
+      setGermani18n: function () {
          this.setModel(this._Englishi18nModel, "i18n");
       },
 
-      setEnglishi18n: function(){
+      setEnglishi18n: function () {
          this.setModel(this._Germani18nModel, "i18n");
       }
-
-
    });
 });
