@@ -14,29 +14,36 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         // Model for anonymous usage
-         var sUsername = sessionStorage.getItem("username");
-         var oModel = new JSONModel({currentUser: sUsername});
-         this.getView().setModel(oModel, "AnonymousModel");
+         if(sessionStorage.getItem("username") === null)
+         {
+            this.userValidator();
+         }
+         else
+         {
+            // Model for anonymous usage
+            var sUsername = sessionStorage.getItem("username");
+            var oModel = new JSONModel({currentUser: sUsername});
+            this.getView().setModel(oModel, "AnonymousModel");
 
-         this.getView().bindElement({
-            path: "/UserPassSet('" + sUsername + "')"
-         });
+            this.getView().bindElement({
+               path: "/UserPassSet('" + sUsername + "')"
+            });
 
-         this._sFilter = [];
-         this._sFilter.push(new Filter({
-            filters: [
-               new Filter("ToUser", FilterOperator.EQ, sUsername),
-               new Filter("FromUser", FilterOperator.EQ, sUsername),
-            ],
-            and: true,
-         }));
+            this._sFilter = [];
+            this._sFilter.push(new Filter({
+               filters: [
+                  new Filter("ToUser", FilterOperator.EQ, sUsername),
+                  new Filter("FromUser", FilterOperator.EQ, sUsername),
+               ],
+               and: true,
+            }));
 
-         var oList = this.byId("feedbackTable");
-         var oBinding = oList.getBinding("items");
-         oBinding.filter(this._sFilter);
+            var oList = this.byId("feedbackTable");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(this._sFilter);
 
-         this.byId("feedbackTable").getModel().updateBindings(true);
+            this.byId("feedbackTable").getModel().updateBindings(true);
+         }
        },
 
       onNavBack: function () {

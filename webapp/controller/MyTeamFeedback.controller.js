@@ -13,17 +13,25 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         var sUsername = sessionStorage.getItem("username");
-         this.getView().bindElement({
-            path: "/UserPassSet('" + sUsername + "')"
-         });
-
-         this._aFilter = [];
-         this._isTeamManager(sUsername)
-               .then(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
-               .catch(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+         if(sessionStorage.getItem("username") === null)
+         {
+            this.userValidator();
+         }
+         else
+         {
          
-         this.byId("MyTeamTable").getModel().updateBindings(true);
+            var sUsername = sessionStorage.getItem("username");
+            this.getView().bindElement({
+               path: "/UserPassSet('" + sUsername + "')"
+            });
+
+            this._aFilter = [];
+            this._isTeamManager(sUsername)
+                  .then(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+                  .catch(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+            
+            this.byId("MyTeamTable").getModel().updateBindings(true);
+         }
       },
 
       _restrictIfNotTeamManager: function(bTeamManager, sUsername){

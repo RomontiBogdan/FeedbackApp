@@ -6,6 +6,8 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.NewTeamFeedback", {
       onInit: function () {
+         this.userValidator();
+
          this.getView().byId("teamMemberSelect").bindElement({
             path: "/TeamManagersSet('" + sessionStorage.getItem("username") + "')"
          });
