@@ -78,3 +78,19 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
   color: white !important;
   transition:0.2s;
 }
+
+
+
+.sapMSwt {
+  width: 68px; 
+  }
+  
+  .sapMSwtOn div.sapMSwtHandle {
+    left: 90px; 
+    }
+
+  .sapMSwtText{
+    font-size: 10px;
+    font-weight: 550;
+    padding-right: 0.4em;
+  }
