@@ -3,29 +3,34 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<Page enableScrolling="false"
-		class="backgroundGradient">
+	<Page
+		enableScrolling="false"
+		class="backgroundGradient"
+	>
 		<customHeader>
-           <Bar>
-                <contentRight>
-                     <Button 
+			<Bar>
+				<contentRight>
+					<Button
 						icon="https://image.flaticon.com/icons/png/512/197/197374.png"
 						press=".setEnglishi18n"
-						class="sapUiSmallMarginBeginEnd"/>
-						<Button
+						class="sapUiSmallMarginBeginEnd"
+					/>
+					<Button
 						icon="https://image.flaticon.com/icons/png/512/197/197571.png"
 						press=".setGermani18n"
-						class="sapUiTinyMarginEnd"/>
-                </contentRight>
+						class="sapUiTinyMarginEnd"
+					/>
+				</contentRight>
 				<contentLeft>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%"/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+					/>
 				</contentLeft>
-           </Bar>
-      </customHeader>
-		
+			</Bar>
+		</customHeader>
 		<content>
 			<mvc:XMLView viewName="sap.ui.demo.walkthrough.view.LogReg"/>
-	
 		</content>
 	</Page>
 </mvc:View>

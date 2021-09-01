@@ -9,7 +9,7 @@
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
-						press=".navBack"
+						press=".onNavBack"
 						class="sapUiSmallMarginEnd"
 					/>
 					<Image
@@ -55,7 +55,10 @@
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
 							/>
-							<Label text="{i18n>giveGrade}" class="textGray"/>
+							<Label
+								text="{i18n>giveGrade}"
+								class="textGray"
+							/>
 							<RatingIndicator
 								id="RatingTeamMember"
 								iconSize="32px"
@@ -75,9 +78,9 @@
 								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 								header="{i18n>categoryTileTitle}"
 								subheader="{
-										path: 'Categories',
-										formatter: '.formatter.feedbackCategory'
-									}"
+                           path: 'Categories',
+                           formatter: '.formatter.feedbackCategory'
+                        }"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://multi-select"
 							/>

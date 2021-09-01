@@ -1,19 +1,16 @@
 sap.ui.define([
-   "../controller/BaseController",
-   "sap/ui/core/routing/History",
+   "./BaseController",
    "sap/ui/model/json/JSONModel",
    "sap/m/MessageBox",
    "sap/ui/model/SimpleType",
    "sap/ui/model/ValidateException",
    "sap/ui/core/Core",
-
-], function (BaseController, History, JSONModel, MessageBox, SimpleType, ValidateException, Core) {
+], function (BaseController, JSONModel, MessageBox, SimpleType, ValidateException, Core) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.ForgotPass", {
-
       onInit: function () {
-         var oView = this.getView(),
-            oMM = Core.getMessageManager();
+         var oView = this.getView();
+         var oMM = Core.getMessageManager();
 
          oView.setModel(new JSONModel({ username: "", email: "", newpassword: "" }));
 
@@ -23,17 +20,13 @@ sap.ui.define([
          oMM.registerObject(oView.byId("passwordTextFP"), true);
       },
 
-      onNavBack: function () {
-         this.navBack();
-      },
-
       onPressForgotPass: function () {
          var oUsernameField = this.getView().byId("usernameTextFP");
-			var oEmailField = this.getView().byId("emailTextFP");
+         var oEmailField = this.getView().byId("emailTextFP");
          var oPasswordField = this.getView().byId("passwordTextFP");
 
          var sUsername = oUsernameField.getValue();
-         var sEmail =oEmailField.getValue();
+         var sEmail = oEmailField.getValue();
          var sPassword = oPasswordField.getValue();
 
          var params = {
@@ -42,16 +35,16 @@ sap.ui.define([
             Password: sPassword
          }
 
-         var oInputs = [
+         var aInputs = [
             oUsernameField.getBinding("value").getType(),
-			   oEmailField.getBinding("value").getType(),
+            oEmailField.getBinding("value").getType(),
             oPasswordField.getBinding("value").getType()
          ]
 
          var sExceptions = this._validateData(params);
 
          if (sExceptions === "") {
-            sExceptions += this._validateInputFormat(oInputs);
+            sExceptions += this._validateInputFormat(aInputs);
          }
 
          if (sExceptions !== "") {
@@ -94,30 +87,31 @@ sap.ui.define([
          return sExceptions
       },
 
-      _validateInputFormat: function (oInputs){
+      _validateInputFormat: function (aInputs) {
          var oUsernameFieldValue = this.getView().byId("usernameTextFP").getValue();
-			var oEmailFieldValue = this.getView().byId("emailTextFP").getValue();
+         var oEmailFieldValue = this.getView().byId("emailTextFP").getValue();
          var oPasswordFieldValue = this.getView().byId("passwordTextFP").getValue();
+
          var sExceptions = "";
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
 
          try {
-				oInputs[0].validateValue(oUsernameFieldValue);
-			} catch (oException) {
-				sExceptions += oi18nModel.getText("inputInvalidUsername")
-			}
+            aInputs[0].validateValue(oUsernameFieldValue);
+         } catch (oException) {
+            sExceptions += oi18nModel.getText("inputInvalidUsername")
+         }
 
          try {
-            oInputs[1].validateValue(oEmailFieldValue);
+            aInputs[1].validateValue(oEmailFieldValue);
          } catch (oException) {
-            sExceptions += "'" + oEmailFieldValue + "'" +oi18nModel.getText("inputInvalidEmail")
+            sExceptions += "'" + oEmailFieldValue + "'" + oi18nModel.getText("inputInvalidEmail")
          }
-         
+
          try {
-				oInputs[2].validateValue(oPasswordFieldValue);
-			} catch (oException) {
-				sExceptions += oi18nModel.getText("inputInvalidPassword")
-			}
+            aInputs[2].validateValue(oPasswordFieldValue);
+         } catch (oException) {
+            sExceptions += oi18nModel.getText("inputInvalidPassword")
+         }
 
          return sExceptions;
       },

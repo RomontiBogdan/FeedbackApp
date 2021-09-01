@@ -10,19 +10,19 @@ sap.ui.define([
 
       navBack: function () {
          var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
+         var sPreviousHash = oHistory.getPreviousHash();
 
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getRouter()
-				oRouter.navTo("main", true);
-			}
+         if (sPreviousHash !== undefined) {
+            window.history.go(-1);
+         } else {
+            var oRouter = this.getRouter()
+            oRouter.navTo("main", true);
+         }
       },
 
       toMain: function () {
          var oRouter = this.getRouter()
-			oRouter.navTo("main", true);
+         oRouter.navTo("main", true);
       },
 
       getRouter: function () {
@@ -33,15 +33,15 @@ sap.ui.define([
          return JSON.parse(oError.responseText).error.message.value
       },
 
-      setGermani18n: function(){
+      setGermani18n: function () {
          this.getOwnerComponent().setGermani18n();
       },
 
-      setEnglishi18n: function(){
+      setEnglishi18n: function () {
          this.getOwnerComponent().setEnglishi18n();
       },
 
-      userValidator: function(){
+      userValidator: function () {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          MessageBox.information(oi18nModel.getText("loginRedirect"), {
             title: "",

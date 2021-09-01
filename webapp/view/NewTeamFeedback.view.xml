@@ -2,116 +2,122 @@
 	controllerName="sap.ui.demo.walkthrough.controller.NewTeamFeedback"
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m"
 >
 	<Page class="backgroundGradient">
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>	
+			</Bar>
+		</customHeader>
 		<VBox
 			height="500px"
 			width="1200px"
-			alignItems="Center">
-		
-		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" />
-
-		<FlexBox
+			alignItems="Center"
+		>
+			<Image
+				src="../resources/MHP_Excellence.svg"
+				height="40px"
+				width="700px"
+			/>
+			<FlexBox
 				height="650px"
 				width="450px"
 				alignItems="Center"
 				justifyContent="Center"
-				>
-
-			<VBox fitContainer="true"
+			>
+				<VBox
+					fitContainer="true"
 					width="800px"
-					class="shadow boxBackground roundedBorders">
-			<layoutData>
-				<FlexItemData growFactor="7" />
-			</layoutData>
-			
-			<Label
-					text="{i18n>selectEvaluator}"
-					labelFor="evaluatorUserSelect"
-					class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
-				/>
-				<Select
-					forceSelection="false"
-					id="evaluatorUserSelect"
-					items="{/UsernamesSet}"
-					width="450px"
-					class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+					class="shadow boxBackground roundedBorders"
 				>
-					<core:ListItem
-						key="{Username}"
-						text="{Username}"
+					<layoutData>
+						<FlexItemData growFactor="7"/>
+					</layoutData>
+					<Label
+						text="{i18n>selectEvaluator}"
+						labelFor="evaluatorUserSelect"
+						class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
 					/>
-				</Select>
-				<Label
-					text="{i18n>selectTeamMember}"
-					labelFor="teamMemberSelect"
-					class="sapUiMediumMarginBeginEnd textGray"
-				/>
-				<Select
-					forceSelection="false"
-					id="teamMemberSelect"
-					items="{toMembers}"
-					change="onUserChange"
-					width="450px"
-					class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
-				>
-					<core:ListItem
-						key="{Username}"
-						text="{Username}"
+					<Select
+						forceSelection="false"
+						id="evaluatorUserSelect"
+						items="{/UsernamesSet}"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+					>
+						<core:ListItem
+							key="{Username}"
+							text="{Username}"
+						/>
+					</Select>
+					<Label
+						text="{i18n>selectTeamMember}"
+						labelFor="teamMemberSelect"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
-				</Select>
-				<Label
-					text="{i18n>selectProjectsInput}"
-					labelFor="userProjectsSelect"
-					class="sapUiMediumMarginBeginEnd textGray"
-				/>
-				<Select
-					forceSelection="false"
-					id="userProjectsSelect"
-					items="{toProjects}"
-					width="450px"
-					class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
-				>
-					<core:ListItem
-						key="{ProjectId}"
-						text="{ProjectName}"
+					<Select
+						forceSelection="false"
+						id="teamMemberSelect"
+						items="{toMembers}"
+						change="onUserChange"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+					>
+						<core:ListItem
+							key="{Username}"
+							text="{Username}"
+						/>
+					</Select>
+					<Label
+						text="{i18n>selectProjectsInput}"
+						labelFor="userProjectsSelect"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
-				</Select>
-				<Label
-					text="{i18n>categoryFeedback}"
-					labelFor="skillSelect"
-					class="sapUiMediumMarginBeginEnd textGray"
-				/>
-				<Select
-					forceSelection="false"
-					id="skillSelect"
-					items="{
-                  		path: 'newTeamFeedbackModel>/SkillCollection'
-               		}"
-					width="450px"
-					class="sapUiMediumMarginBeginEnd sapUiMediumMarginBottom"
-				>
-					<core:ListItem
-						key="{newTeamFeedbackModel>Id}"
-						text="{newTeamFeedbackModel>Name}"
+					<Select
+						forceSelection="false"
+						id="userProjectsSelect"
+						items="{toProjects}"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+					>
+						<core:ListItem
+							key="{ProjectId}"
+							text="{ProjectName}"
+						/>
+					</Select>
+					<Label
+						text="{i18n>categoryFeedback}"
+						labelFor="skillSelect"
+						class="sapUiMediumMarginBeginEnd textGray"
 					/>
-				</Select>
-			</VBox>
-		</FlexBox>
+					<Select
+						forceSelection="false"
+						id="skillSelect"
+						items="{
+                     path: 'newTeamFeedbackModel>/SkillCollection'
+                  }"
+						width="450px"
+						class="sapUiMediumMarginBeginEnd sapUiMediumMarginBottom"
+					>
+						<core:ListItem
+							key="{newTeamFeedbackModel>Id}"
+							text="{newTeamFeedbackModel>Name}"
+						/>
+					</Select>
+				</VBox>
+			</FlexBox>
 		</VBox>
 		<footer>
 			<Bar>

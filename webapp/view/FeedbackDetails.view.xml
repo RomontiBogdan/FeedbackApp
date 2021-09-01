@@ -5,16 +5,21 @@
 >
 	<Page class="backgroundGradient2">
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>
+			</Bar>
+		</customHeader>
 		<Panel>
 			<content>
 				<VBox
@@ -26,7 +31,7 @@
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>from}"
 							subheader="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
-                        				? 'Anonymous sender' : ${FromUser}}"
+                        ? 'Anonymous sender' : ${FromUser}}"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -57,9 +62,9 @@
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>review}"
 							subheader="{
-									path: 'Rating',
-									formatter: '.formatter.feedbackRating'
-								}"
+                        path: 'Rating',
+                        formatter: '.formatter.feedbackRating'
+                     }"
 							frameType="Auto"
 						>
 							<TileContent>
@@ -74,9 +79,9 @@
 							class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 							header="{i18n>category}"
 							subheader="{
-									path: 'Categories',
-									formatter: '.formatter.feedbackCategory'
-								}"
+                        path: 'Categories',
+                        formatter: '.formatter.feedbackCategory'
+                     }"
 							frameType="Auto"
 						>
 							<TileContent>

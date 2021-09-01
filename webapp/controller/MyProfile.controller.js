@@ -3,7 +3,6 @@ sap.ui.define([
    "sap/ui/model/json/JSONModel",
    "sap/m/MessageBox",
    "sap/m/MessageToast",
-
 ], function (BaseController, JSONModel, MessageBox, MessageToast) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
@@ -37,7 +36,6 @@ sap.ui.define([
             ]
          };
 
-
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "myProfileModel");
 
@@ -46,23 +44,15 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
-         }
-         else
-         {
+         } else {
             var sUsername = sessionStorage.getItem("username");
             this.getView().bindElement({
                path: "/UserPassSet('" + sUsername + "')"
             });
          }
       },
-
-      onNavBack: function () {
-         this.navBack();
-      },
-
 
       _setFieldsState: function (bState) {
          var oView = this.getView();
@@ -71,7 +61,6 @@ sap.ui.define([
          oView.byId("inputTel").setEditable(bState);
          oView.byId("inputSU").setEditable(bState);
       },
-
 
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
@@ -88,22 +77,15 @@ sap.ui.define([
          if (oParams.Su === "") {
             sExceptions += oi18nModel.getText("introduceServiceUnit");
          }
-        
          return sExceptions
       },
 
-
       onEdit: function (oEvent) {
-
          this._setFieldsState(oEvent.getParameter("state"));
-
       },
 
-
       onPressSave: function () {
-
-
-         var params =  {
+         var params = {
             FullName: this.getView().byId("inputName").getValue(),
             Username: "",
             Email: this.getView().byId("inputEmail").getValue(),
@@ -113,27 +95,22 @@ sap.ui.define([
             CareerLevel: "",
             FiscalYear: ""
          }
+
          var sExceptions = this._validateData(params);
+
          if (sExceptions !== "") {
             MessageBox.error(sExceptions)
+         } else {
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+            var oModel = this.getView().getModel();
+            oModel.setUseBatch(true);
+            oModel.submitChanges({
+               success: function (oData) {
+                  MessageToast.show(oi18nModel.getText("infoUpdated"));
+                  oModel.setUseBatch(false);
+               }
+            });
          }
-         else {
-     
-        var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-        var oModel = this.getView().getModel();
-        oModel.setUseBatch(true);
-   
-         oModel.submitChanges({
-            success: function (oData) {
-               sap.m.MessageToast.show(oi18nModel.getText("infoUpdated"));
-               oModel.setUseBatch(false);
-            }
-         });
-         
- 
       }
-
-      }
-    
    });
 });

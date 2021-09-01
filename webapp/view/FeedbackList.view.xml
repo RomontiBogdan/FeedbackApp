@@ -5,16 +5,21 @@
 >
 	<Page>
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>
+			</Bar>
+		</customHeader>
 		<IconTabBar
 			id="FeedbackTabBar"
 			select=".onFilterSelect"
@@ -75,7 +80,7 @@
 							press=".onFeedbackPress"
 						>
 							<cells>
-                        <Text text="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
+								<Text text="{= ${Anonymous} &amp;&amp; ${FromUser} !== ${AnonymousModel>/currentUser} 
                            ? 'Anonymous sender' : ${FromUser}}"/>
 								<Text text="{ToUser}"/>
 								<Text text="{ProjectId}"/>
@@ -87,7 +92,7 @@
 									path: 'Rating',
 									formatter: '.formatter.feedbackRating'
 								}"/>
-								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}" />
+								<Text text="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"/>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -103,7 +108,6 @@
 						class="myCustomButton"
 						icon="sap-icon://add"
 					/>
-				
 				</contentRight>
 			</Bar>
 		</footer>

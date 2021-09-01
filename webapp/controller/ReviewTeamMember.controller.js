@@ -12,13 +12,9 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
-         }
-         else
-         {
-         
+         } else {
             var sFromUser, sPath, sUserPath, sStatus, sStatusPath, oModel;
             this._sFeedbackId = oEvent.getParameter("arguments").feedbackID;
             this.getView().bindElement({
@@ -83,6 +79,7 @@ sap.ui.define([
          if (!oModel.hasPendingChanges()) {
             return;
          }
+
          var oPendingChanges = oModel.getPendingChanges();
          var oFirstProperty = Object.keys(oPendingChanges)[0]
          var oChangedProperties = oPendingChanges[oFirstProperty]
@@ -92,13 +89,12 @@ sap.ui.define([
 
          oModel.setUseBatch(true)
          oModel.submitChanges({
-            success: function(oData) {
+            success: function (oData) {
                MessageToast.show(oi18nModel.getText("infoUpdated"));
                oModel.setUseBatch(false)
             }
          })
       }
-
    });
 });
 

@@ -1,5 +1,5 @@
 sap.ui.define([
-   "../controller/BaseController",
+   "./BaseController",
    "sap/ui/model/json/JSONModel",
    "sap/m/MessageBox"
 ], function (BaseController, JSONModel, MessageBox) {
@@ -30,17 +30,13 @@ sap.ui.define([
          this.getView().setModel(oModel, "newTeamFeedbackModel");
 
          var oRouter = this.getRouter();
-            oRouter.getRoute("newteamfeedback").attachPatternMatched(this._onObjectMatched, this);
+         oRouter.getRoute("newteamfeedback").attachPatternMatched(this._onObjectMatched, this);
       },
 
       _onObjectMatched: function () {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          }
-      },
-
-      onNavBack: function () {
-         this.navBack();
       },
 
       onUserChange: function () {
@@ -89,11 +85,11 @@ sap.ui.define([
             Rating: "0",
             Status: "0"
          }
+
          var exceptions = this._validateData(params);
          if (exceptions !== "") {
             MessageBox.error(exceptions)
-         }
-         else {
+         } else {
             var oModel = this.getOwnerComponent().getModel();
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             oModel.create('/FeedbackTeamSet', params, {
@@ -107,8 +103,8 @@ sap.ui.define([
                      }.bind(this)
                   });
                }.bind(this),
-               error: function (oError) { 
-                  sap.m.MessageToast.show(oi18nModel.getText("feedbackRequestError")) 
+               error: function (oError) {
+                  sap.m.MessageToast.show(oi18nModel.getText("feedbackRequestError"))
                }
             });
          }

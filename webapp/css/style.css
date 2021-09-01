@@ -32,12 +32,12 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(102,149,194,1) 100%);
 }
 
- .backgroundGradient2{
-  background: rgb(63, 81, 97);
-  background: linear-gradient(180deg, rgba(63,81,97,1) 0%, rgba(154,192,227,1) 100%, rgba(27,46,152,1) 100%);
- }
+.backgroundGradient2 {
+   background: rgb(63, 81, 97);
+   background: linear-gradient(180deg, rgba(63,81,97,1) 0%, rgba(154,192,227,1) 100%, rgba(27,46,152,1) 100%);
+}
 
- .boxBackground{
+.boxBackground {
    background: rgb(67, 87, 105);
 }
 
@@ -91,7 +91,6 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
    left: 40px;
 }
 
-
 .sapMSwt {
   width: 68px; 
   }
@@ -116,3 +115,7 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
       border-color: #ababab;
       transition: 0.4s;
   }
+
+.sapMPanelContent {
+   border: none !important;
+}

@@ -133,9 +133,9 @@
                "target": "peglist"
             },
             {
-               "pattern": "managerFeedback/{pegID}",
-               "name": "managerFeedback",
-               "target": "managerFeedback"
+               "pattern": "editpeg/{pegID}",
+               "name": "editpeg",
+               "target": "editpeg"
             },
             {
                "pattern": "feedbackdetails/{feedbackID}",
@@ -195,9 +195,9 @@
                "viewId": "peglist",
                "viewName": "PegList"
             },
-            "managerFeedback": {
-               "viewId": "managerFeedback",
-               "viewName": "ManagerFeedback"
+            "editpeg": {
+               "viewId": "editpeg",
+               "viewName": "EditPeg"
             },
             "feedbackdetails": {
                "viewId": "feedbackdetails",

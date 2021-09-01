@@ -49,7 +49,10 @@
 						valueLiveUpdate="true"
 						width="450px"
 						class="shadow"
-						value="{ path: '/username',type: '.customUserType'}"
+						value="{
+                     path: '/username',
+                     type: '.customUserType'
+                  }"
 					/>
 					<Label
 						text="{i18n>emailText}"
@@ -63,7 +66,10 @@
 						valueLiveUpdate="true"
 						width="450px"
 						class="shadow"
-						value="{ path: '/email',type: '.customEMailType'}"
+						value="{
+                     path: '/email',
+                     type: '.customEMailType'
+                  }"
 					/>
 					<Label
 						text="{i18n>Password}"
@@ -78,12 +84,12 @@
 						width="450px"
 						type="Password"
 						class="shadow"
-						value="{ path: '/newpassword',type: '.customNewPasswordType'}"
+						value="{
+                     path: '/newpassword',
+                     type: '.customNewPasswordType'
+                  }"
 					/>
-					<HBox
-						fitContainer="true"
-						alignItems="Stretch"
-					>
+					<HBox fitContainer="true">
 						<layoutData>
 							<FlexItemData growFactor="4"/>
 						</layoutData>
@@ -95,7 +101,6 @@
 								text="{i18n>changePasswordBtn}"
 								class="sapUiTinyMarginTop blueButton"
 								width="400px"
-								type="Default"
 								press="onPressForgotPass"
 							/>
 						</VBox>
