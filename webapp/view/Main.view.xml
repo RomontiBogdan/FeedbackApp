@@ -5,69 +5,85 @@
 >
 	<Page class="backgroundGradient2">
 		<customHeader>
-           	<Bar>
-                <contentRight>
-				<Button 
-					icon="https://image.flaticon.com/icons/png/512/197/197374.png"
-					press=".setEnglishi18n"
-					class="sapUiSmallMarginBeginEnd"/>
-				<Button
-					icon="https://image.flaticon.com/icons/png/512/197/197571.png"
-					press=".setGermani18n"
-					class="sapUiTinyMarginEnd"/>
-				<Button 
-					text="{i18n>profileBtn}"
-					icon="sap-icon://account"
-					press=".onProfile"/>
-				<Button 
-					tooltip="{i18n>logOut}"
-					type="Emphasized"
-					icon="sap-icon://visits"
-					press=".onLogOut"/>
-                </contentRight>
+			<Bar>
+				<contentRight>
+					<Button
+						icon="https://image.flaticon.com/icons/png/512/197/197374.png"
+						press=".setEnglishi18n"
+						class="sapUiSmallMarginBeginEnd"
+					/>
+					<Button
+						icon="https://image.flaticon.com/icons/png/512/197/197571.png"
+						press=".setGermani18n"
+						class="sapUiTinyMarginEnd"
+					/>
+					<Button
+						text="{i18n>profileBtn}"
+						icon="sap-icon://account"
+						press=".onProfile"
+					/>
+					<Button
+						tooltip="{i18n>logOut}"
+						type="Emphasized"
+						icon="sap-icon://visits"
+						press=".onLogOut"
+					/>
+				</contentRight>
 				<contentLeft>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%"/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+					/>
 				</contentLeft>
-           	</Bar>
-     	</customHeader>
+			</Bar>
+		</customHeader>
 		<FlexBox
-				fitContainer="true"
-				alignItems="Center"
-				justifyContent="Center">
-				<GenericTile
-					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
-					header="{i18n>PEG}"
-					headerImage="sap-icon://activities"
-					frameType="TwoByOne"
-					press=".onPEG"
-				>
-					<TileContent>
-						<Text text="{i18n>pegDescription}" class="textBlue"/>
-					</TileContent>
-				</GenericTile>
-				<GenericTile
-					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
-					header="{i18n>feedback360}"
-					headerImage="sap-icon://feedback"
-					frameType="TwoByOne"
-					press=".onFeedback"
-				>
-					<TileContent>
-						<Text text="{i18n>feedback360Description}" class="textBlue"/>
-					</TileContent>
-				</GenericTile>
-				<GenericTile
-					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
-					header="{i18n>teamFeedback}"
-					headerImage="sap-icon://citizen-connect"
-					frameType="TwoByOne"
-					press=".onTeamFeedback"
-				>
-					<TileContent>
-						<Text text="{i18n>teamFeedbackDescription}" class="textBlue"/>
-					</TileContent>
-				</GenericTile>
+			fitContainer="true"
+			alignItems="Center"
+			justifyContent="Center"
+		>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
+				header="{i18n>PEG}"
+				headerImage="sap-icon://activities"
+				frameType="TwoByOne"
+				press=".onPEG"
+			>
+				<TileContent>
+					<Text
+						text="{i18n>pegDescription}"
+						class="textBlue"
+					/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
+				header="{i18n>feedback360}"
+				headerImage="sap-icon://feedback"
+				frameType="TwoByOne"
+				press=".onFeedback"
+			>
+				<TileContent>
+					<Text
+						text="{i18n>feedback360Description}"
+						class="textBlue"
+					/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile
+				class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
+				header="{i18n>teamFeedback}"
+				headerImage="sap-icon://citizen-connect"
+				frameType="TwoByOne"
+				press=".onTeamFeedback"
+			>
+				<TileContent>
+					<Text
+						text="{i18n>teamFeedbackDescription}"
+						class="textBlue"
+					/>
+				</TileContent>
+			</GenericTile>
 		</FlexBox>
-		
 	</Page>
 </mvc:View>

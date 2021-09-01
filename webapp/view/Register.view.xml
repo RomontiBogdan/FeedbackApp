@@ -48,7 +48,10 @@
 						placeholder="{i18n>enterUsername}"
 						valueLiveUpdate="true"
 						width="450px"
-						value="{ path: '/username',type: '.customUserType'}"
+						value="{
+                     path: '/username',
+                     type: '.customUserType'
+                  }"
 						class="shadow"
 					/>
 					<Label
@@ -63,7 +66,10 @@
 						placeholder="{i18n>enterPassword}"
 						valueLiveUpdate="true"
 						width="450px"
-						value="{ path: '/password',type: '.customPasswordType'}"
+						value="{
+                     path: '/password',
+                     type: '.customPasswordType'
+                  }"
 						class="shadow"
 					/>
 					<Label
@@ -77,13 +83,13 @@
 						placeholder="{i18n>enterMail}"
 						valueLiveUpdate="true"
 						width="450px"
-						value="{ path: '/email',type: '.customEMailType'}"
+						value="{
+                     path: '/email',
+                     type: '.customEMailType'
+                  }"
 						class="shadow"
 					/>
-					<HBox
-						fitContainer="true"
-						alignItems="Stretch"
-					>
+					<HBox fitContainer="true">
 						<layoutData>
 							<FlexItemData growFactor="4"/>
 						</layoutData>
@@ -95,7 +101,6 @@
 								text="{i18n>submitRegisterBtn}"
 								class="sapUiSmallMarginTop blueButton"
 								width="400px"
-								type="Default"
 								press="onCreateRegister"
 							/>
 						</VBox>

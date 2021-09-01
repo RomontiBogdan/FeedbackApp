@@ -2,43 +2,50 @@
 	controllerName="sap.ui.demo.walkthrough.controller.MyProfile"
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m"
 >
 	<Page class="backgroundGradient">
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>
-		  
+			</Bar>
+		</customHeader>
 		<VBox
 			height="800px"
 			width="1200px"
-			alignItems="Center">
-		
-		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" />
-
-		<FlexBox
+			alignItems="Center"
+		>
+			<Image
+				src="../resources/MHP_Excellence.svg"
+				height="40px"
+				width="700px"
+			/>
+			<FlexBox
 				height="650px"
 				width="450px"
 				alignItems="Center"
 				justifyContent="Center"
-				>
-
-			<VBox fitContainer="true"
+			>
+				<VBox
+					fitContainer="true"
 					width="800px"
-					height = "550px"
-					class="shadow boxBackground roundedBorders">
-			<layoutData>
-				<FlexItemData growFactor="7" />
-			</layoutData>
+					height="550px"
+					class="shadow boxBackground roundedBorders"
+				>
+					<layoutData>
+						<FlexItemData growFactor="7"/>
+					</layoutData>
 					<Label
 						text="{i18n>nameText}"
 						labelFor="inputName"
@@ -98,10 +105,10 @@
 					<Input
 						value="{Su}"
 						id="inputSU"
-						editable="false"	
+						editable="false"
 						placeholder="{i18n>newServiceUnit}"
 						class="sapUiMediumMarginBeginEnd"
-					    width="450px"
+						width="450px"
 					/>
 					<Label
 						text="{i18n>careerLevel}"
@@ -114,11 +121,11 @@
 						editable="false"
 						selectedKey="{CareerLevel}"
 						class="sapUiMediumMarginBeginEnd textGray"
-					    width="450px"
+						width="450px"
 						items="{
-                            path: 'myProfileModel>/Levels',
-                            sorter: { path: 'myProfileModel>Levels/Name' }
-                        }"
+                     path: 'myProfileModel>/Levels',
+                     sorter: { path: 'myProfileModel>Levels/Name' }
+                  }"
 					>
 						<core:ListItem
 							key="{myProfileModel>Id}"
@@ -137,35 +144,30 @@
 						class="sapUiMediumMarginBeginEnd"
 						width="450px"
 					/>
-			</VBox>
-		</FlexBox>
+				</VBox>
+			</FlexBox>
 		</VBox>
 		<footer>
-			
-
 			<Bar id="buttonBar">
 				<contentLeft>
-				<Switch
+					<Switch
 						customTextOn="✓"
 						customTextOff="{i18n>edit}"
 						change="onEdit"
-						width="90%"
 					>
 						<layoutData>
 							<FlexItemData growFactor="1"/>
 						</layoutData>
 					</Switch>
-				
 				</contentLeft>
 				<contentRight>
 					<Button
-					type="Emphasized"
-					text="{i18n>save}"
-					press="onPressSave"
-				    />
-					</contentRight>
-				</Bar>
-			
+						type="Emphasized"
+						text="{i18n>save}"
+						press="onPressSave"
+					/>
+				</contentRight>
+			</Bar>
 		</footer>
 	</Page>
 </mvc:View>

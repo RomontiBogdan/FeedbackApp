@@ -5,16 +5,21 @@
 >
 	<Page>
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>
+			</Bar>
+		</customHeader>
 		<IconTabBar
 			id="PegTabBarManager"
 			select=".onFilterSelect"

@@ -9,17 +9,10 @@ sap.ui.define([
          oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
-      onNavBack: function () {
-         this.navBack();
-      },
-
       _onObjectMatched: function () {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
-         }
-         else
-         {
+         } else {
             this.getView().bindElement({
                path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
             });
@@ -49,21 +42,23 @@ sap.ui.define([
       },
 
       onSendRequest: function () {
+         var oManagerSelection = this.byId("selectManager").getSelectedItem();
+         var oProjectNameSelection = this.byId("selectProjectName").getSelectedItem();
          var params = {
             FeedbackId: "0",
-            FromUser: this.byId("selectManager").getSelectedItem() === null ? null : this.byId("selectManager").getSelectedItem().getText(),
+            FromUser: oManagerSelection === null ? null : oManagerSelection.getText(),
             ToUser: sessionStorage.getItem("username"),
             Description: "",
-            ProjectId: this.byId("selectProjectName").getSelectedItem() === null ? null : this.byId("selectProjectName").getSelectedItem().getKey(),
+            ProjectId: oProjectNameSelection === null ? null : oProjectNameSelection.getKey(),
             SentAt: new Date(),
             Type: "0",
             Status: "0"
          }
+
          var exceptions = this._validateData(params);
          if (exceptions !== "") {
             MessageBox.error(exceptions)
-         }
-         else {
+         } else {
             var oModel = this.getOwnerComponent().getModel();
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             oModel.create('/PegReqSet', params, {
@@ -76,9 +71,10 @@ sap.ui.define([
                         }
                      }.bind(this)
                   });
-
                }.bind(this),
-               error: function (oError) { sap.m.MessageToast.show(oi18nModel.getText("pegRequestError")) }
+               error: function (oError) {
+                  sap.m.MessageToast.show(oi18nModel.getText("pegRequestError"))
+               }
             });
          }
       }

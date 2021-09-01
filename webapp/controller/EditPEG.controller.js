@@ -6,76 +6,71 @@ sap.ui.define([
    "../model/formatter"
 ], function (BaseController, JSONModel, Spreadsheet, MessageToast, formatter) {
    "use strict";
-   return BaseController.extend("sap.ui.demo.walkthrough.controller.ManagerFeedback", {
+   return BaseController.extend("sap.ui.demo.walkthrough.controller.EditPEG", {
       formatter: formatter,
       onInit: function () {
          var oRouter = this.getRouter();
-         oRouter.getRoute("managerFeedback").attachPatternMatched(this._onObjectMatched, this);
+         oRouter.getRoute("editpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
       _onObjectMatched: function (oEvent) {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
+         } else {
+            this._sFeedbackId = oEvent.getParameter("arguments").pegID;
+            var oDetailPEG = this.getView().byId("pegContainer");
+
+            oDetailPEG.bindElement({
+               path: "/PegReqSet(" + this._sFeedbackId + ")",
+               events: {
+                  dataReceived: function (oData) {
+                     var oUserDetail = this.getView().byId("userContainer");
+                     var sUsername = oData.getParameter("data").ToUser;
+                     oUserDetail.bindElement({ path: "/UserPassSet('" + sUsername + "')" });
+
+                     var oProjectDetail = this.getView().byId("projectContainer");
+                     var sProjectId = oData.getParameter("data").ProjectId;
+                     oProjectDetail.bindElement({ path: "/ProjectDetailsSet('" + sProjectId + "')" });
+
+                     var oCriteriaTable = this.getView().byId("pegTable");
+                     oCriteriaTable.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
+
+                     var oFieldsForUpdate = this.getView().byId("toUpdateFields");
+                     oFieldsForUpdate.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
+
+                     this._checkEvaluator(oData.getParameter("data").FromUser);
+
+                     this.getView().byId("exportButton").setVisible(oData.getParameter("data").Status === "2");
+                  }.bind(this)
+               }
+            });
+
+            var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+            var oData = {
+               EvaluatedDays: [
+                  {
+                     Id: "0",
+                     Name: oi18nModel.getText("lessThan")
+                  },
+                  {
+                     Id: "1",
+                     Name: oi18nModel.getText("between")
+                  },
+                  {
+                     Id: "2",
+                     Name: oi18nModel.getText("moreThan")
+                  },
+               ],
+            };
+
+            var oModelEditable = new JSONModel(oData);
+            this.getView().setModel(oModelEditable, "Edit");
+
+            var oModel = new JSONModel(oData);
+            this.getView().setModel(oModel, "DaysEvaluatedModel");
+            this.byId("pegTable").getModel().updateBindings(true);
          }
-         else
-         {
-         this._sFeedbackId = oEvent.getParameter("arguments").pegID;
-         var oDetailPEG = this.getView().byId("pegContainer");
-
-         oDetailPEG.bindElement({
-            path: "/PegReqSet(" + this._sFeedbackId + ")",
-            events: {
-               dataReceived: function (oData) {
-                  var oUserDetail = this.getView().byId("userContainer");
-                  var sUsername = oData.getParameter("data").ToUser;
-                  oUserDetail.bindElement({ path: "/UserPassSet('" + sUsername + "')" });
-
-                  var oProjectDetail = this.getView().byId("projectContainer");
-                  var sProjectId = oData.getParameter("data").ProjectId;
-                  oProjectDetail.bindElement({ path: "/ProjectDetailsSet('" + sProjectId + "')" });
-
-                  var oCriteriaTable = this.getView().byId("pegTable");
-                  oCriteriaTable.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
-
-                  var oFieldsForUpdate = this.getView().byId("toUpdateFields");
-                  oFieldsForUpdate.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
-
-                  this._checkEvaluator(oData.getParameter("data").FromUser);
-
-                  this.getView().byId("exportButton").setVisible(oData.getParameter("data").Status === "2");
-               }.bind(this)
-            }
-         });
-
-         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-         var oData = {
-            EvaluatedDays: [
-               {
-                  Id: "0",
-                  Name: oi18nModel.getText("lessThan")
-               },
-               {
-                  Id: "1",
-                  Name: oi18nModel.getText("between")
-               },
-               {
-                  Id: "2",
-                  Name: oi18nModel.getText("moreThan")
-               },
-            ],
-         };
-         
-         var oEditableData = {
-            Editable:""
-         } 
-         var oModelEditable = new JSONModel(oData);
-         this.getView().setModel(oModelEditable, "Edit");
-         
-         var oModel = new JSONModel(oData);
-         this.getView().setModel(oModel, "DaysEvaluatedModel");
-         this.byId("pegTable").getModel().updateBindings(true);
-      }},
+      },
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== sessionStorage.getItem("username")) {
@@ -146,26 +141,27 @@ sap.ui.define([
          var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
          var sFiscal_Year = oUserContainerObj.FiscalYear;
          var sPersonnelNumber = oUserContainerObj.PersonalNo;
-         var sCareerLvl = this.getCareerLevel(oUserContainerObj.CareerLevel);
+         var sCareerLvl = this._getCareerLevel(oUserContainerObj.CareerLevel);
          var sSU = oUserContainerObj.Su;
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
          var sEvaluatorName = oPegContainerObj.FromUser;
          var sEmployeeName = oPegContainerObj.ToUser;
-         var sDaysEval = this.getDaysEvaluated(oPegContainerObj.DaysEvaluated);
+         var sDaysEval = this._getDaysEvaluated(oPegContainerObj.DaysEvaluated);
          var sCustomerName = oProjectContainerObj.Customer;
          var sProjectName = oProjectContainerObj.ProjectName;
          var sProjectManName = oProjectContainerObj.ProjectManager;
 
 
          var iRowIndex = 0;  // For First row in the table
-         var oTable = this.getView().byId("pegTable"),
-            oModel = oTable.getModel(),
-            aItems = oTable.getItems();
+         var oTable = this.getView().byId("pegTable");
+         var oModel = oTable.getModel();
+         var aItems = oTable.getItems();
 
          if (iRowIndex < aItems.length) {
             oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext());
          }
+
          var iNumberOfCriterias = 6;
          var aRatings = [];
          var aDescr = [];
@@ -178,7 +174,7 @@ sap.ui.define([
             oItemsBindingContext = aItems[iRowIndex].getBindingContext();
             iRating += parseFloat(oModel.getProperty("Grade", oItemsBindingContext));
             aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
-            aDescr.push(this.getGradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
+            aDescr.push(this._getGradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
             aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
             iRowIndex++;
          }
@@ -289,7 +285,6 @@ sap.ui.define([
          }]);
 
          this.getView().setModel(oViewModel, "DataForExport");
-
       },
 
       onExport: function (oEvent) {
@@ -368,7 +363,7 @@ sap.ui.define([
          })
       },
 
-      getCareerLevel: function (sLevel) {
+      _getCareerLevel: function (sLevel) {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sLevel) {
             case "0":
@@ -386,7 +381,7 @@ sap.ui.define([
          }
       },
 
-      getGradeDescription: function (sGrade) {
+      _getGradeDescription: function (sGrade) {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sGrade.toString()) {
             case "0":
@@ -402,7 +397,7 @@ sap.ui.define([
          }
       },
 
-      getDaysEvaluated: function (sDays) {
+      _getDaysEvaluated: function (sDays) {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sDays) {
             case "0":

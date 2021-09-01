@@ -9,8 +9,8 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.Register", {
       onInit: function () {
-         var oView = this.getView(),
-            oMM = Core.getMessageManager();
+         var oView = this.getView();
+         var oMM = Core.getMessageManager();
 
          oView.setModel(new JSONModel({ username: "", password: "", email: "" }));
 
@@ -18,7 +18,6 @@ sap.ui.define([
          oMM.registerObject(oView.byId("UsernameRegisterField"), true);
          oMM.registerObject(oView.byId("PasswordRegisterField"), true);
          oMM.registerObject(oView.byId("EmailRegisterField"), true);
-         
       },
 
       _validateData: function (oParams) {
@@ -33,41 +32,40 @@ sap.ui.define([
          if (oParams.Email === "") {
             sExceptions += oi18nModel.getText("introduceEmail");
          }
-
          return sExceptions
       },
 
-      _validateInputFormat: function (oInputs){
+      _validateInputFormat: function (aInputs) {
          var oUsernameFieldValue = this.getView().byId("UsernameRegisterField").getValue();
-			var oEmailFieldValue = this.getView().byId("EmailRegisterField").getValue();
+         var oEmailFieldValue = this.getView().byId("EmailRegisterField").getValue();
          var oPasswordFieldValue = this.getView().byId("PasswordRegisterField").getValue();
          var sExceptions = "";
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
 
          try {
-				oInputs[0].validateValue(oUsernameFieldValue);
-			} catch (oException) {
-				sExceptions += oi18nModel.getText("inputInvalidUsername")
-			}
+            aInputs[0].validateValue(oUsernameFieldValue);
+         } catch (oException) {
+            sExceptions += oi18nModel.getText("inputInvalidUsername")
+         }
 
          try {
-            oInputs[1].validateValue(oEmailFieldValue);
+            aInputs[1].validateValue(oEmailFieldValue);
          } catch (oException) {
-            sExceptions += "'" + oEmailFieldValue + "'" +oi18nModel.getText("inputInvalidEmail")
+            sExceptions += "'" + oEmailFieldValue + "'" + oi18nModel.getText("inputInvalidEmail")
          }
-         
+
          try {
-				oInputs[2].validateValue(oPasswordFieldValue);
-			} catch (oException) {
-				sExceptions += oi18nModel.getText("inputInvalidPassword")
-			}
+            aInputs[2].validateValue(oPasswordFieldValue);
+         } catch (oException) {
+            sExceptions += oi18nModel.getText("inputInvalidPassword")
+         }
 
          return sExceptions;
       },
 
       onCreateRegister: function (oEvent) {
          var oUsernameField = this.getView().byId("UsernameRegisterField");
-			var oEmailField = this.getView().byId("EmailRegisterField");
+         var oEmailField = this.getView().byId("EmailRegisterField");
          var oPasswordField = this.getView().byId("PasswordRegisterField");
          this.getView().byId("EmailRegisterField").getBinding("value").getType().validateValue("asdasd@asda.com")
          var params = {
@@ -81,24 +79,22 @@ sap.ui.define([
             FiscalYear: ""
          }
 
-         var oInputs = [
+         var aInputs = [
             oUsernameField.getBinding("value").getType(),
-			   oEmailField.getBinding("value").getType(),
+            oEmailField.getBinding("value").getType(),
             oPasswordField.getBinding("value").getType()
          ]
 
          var sExceptions = this._validateData(params);
 
          if (sExceptions === "") {
-            sExceptions += this._validateInputFormat(oInputs);
+            sExceptions += this._validateInputFormat(aInputs);
          }
 
          if (sExceptions !== "") {
             MessageBox.error(sExceptions)
-         }
-         else {
+         } else {
             var oModel = this.getOwnerComponent().getModel();
-
             oModel.create('/UserPassSet', params, {
                success: function (oCreatedEntry) {
                   var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
@@ -110,14 +106,12 @@ sap.ui.define([
                         }
                      }.bind(this)
                   });
-
                }.bind(this),
                error: function (oError) {
                   sap.m.MessageToast.show(this.errorText(oError))
                }.bind(this)
             });
          }
-
       },
 
       customUserType: SimpleType.extend("username", {

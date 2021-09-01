@@ -14,15 +14,12 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
-         }
-         else
-         {
+         } else {
             // Model for anonymous usage
             var sUsername = sessionStorage.getItem("username");
-            var oModel = new JSONModel({currentUser: sUsername});
+            var oModel = new JSONModel({ currentUser: sUsername });
             this.getView().setModel(oModel, "AnonymousModel");
 
             this.getView().bindElement({
@@ -44,10 +41,6 @@ sap.ui.define([
 
             this.byId("feedbackTable").getModel().updateBindings(true);
          }
-       },
-
-      onNavBack: function () {
-         this.navBack();
       },
 
       onFeedbackPress: function (oEvent) {
@@ -77,8 +70,5 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
       }
-
-      
-
    });
 });

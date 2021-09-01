@@ -13,12 +13,9 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
-         }
-         else
-         {
+         } else {
             this.getView().bindElement({
                path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
             });
@@ -29,24 +26,21 @@ sap.ui.define([
                   new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")),
                   new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username")),
                ],
-               and: true,
+               and: true
             }));
 
             var oList = this.byId("PegTableManager");
             var oBinding = oList.getBinding("items");
             oBinding.filter(this._aFilter);
 
-            if(sessionStorage.getItem("careerLevel") === "5")
+            if (sessionStorage.getItem("careerLevel") === "5") {
                this.getView().byId("newPegRequest").setVisible(false);
-            else
+            } else {
                this.getView().byId("newPegRequest").setVisible(true);
+            }
 
-            this.byId("PegTableManager").getModel().updateBindings(true);                   
+            this.byId("PegTableManager").getModel().updateBindings(true);
          }
-      },
-
-      onNavBack: function () {
-         this.navBack();
       },
 
       onFilterSelect: function (oEvent) {
@@ -74,7 +68,7 @@ sap.ui.define([
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
          var oRouter = this.getRouter();
-         oRouter.navTo("managerFeedback", {
+         oRouter.navTo("editpeg", {
             pegID: oBindingObject.FeedbackId
          });
       },
@@ -82,10 +76,6 @@ sap.ui.define([
       onNewRequest: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("requestpeg");
-
       }
-    
-     
-
    });
 });

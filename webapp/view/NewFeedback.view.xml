@@ -2,146 +2,154 @@
 	controllerName="sap.ui.demo.walkthrough.controller.NewFeedback"
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
 	xmlns="sap.m"
 >
 	<Page class="backgroundGradient">
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".navBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>
+			</Bar>
+		</customHeader>
 		<VBox
 			height="500px"
 			width="1200px"
-			alignItems="Center">
-		
-		<Image src="../resources/MHP_Excellence.svg" height="40px" width="700px" class="sapUiLargeMarginBottom"/>
-
-		<FlexBox
+			alignItems="Center"
+		>
+			<Image
+				src="../resources/MHP_Excellence.svg"
+				height="40px"
+				width="700px"
+				class="sapUiLargeMarginBottom"
+			/>
+			<FlexBox
 				height="650px"
 				width="350px"
 				alignItems="Center"
 				justifyContent="Center"
-				>
-			<VBox>
-			<VBox fitContainer="true"
-					width="525px"
-					class="shadow boxBackground roundedBorders sapUiMediumMarginBottom">
-				<layoutData>
-					<FlexItemData growFactor="7" />
-				</layoutData>
-				
-				<Label
-						text="{i18n>selectUserInput}"
-						labelFor="inputToUser"
-						class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
-					/>
-					<Select
-						forceSelection="false"
-						id="inputToUser"
-						width="450px"
-						items="{/UsernamesSet}"
-						change="onUserChange"
-						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+			>
+				<VBox>
+					<VBox
+						fitContainer="true"
+						width="525px"
+						class="shadow boxBackground roundedBorders sapUiMediumMarginBottom"
 					>
-						<core:ListItem
-							key="{Username}"
-							text="{Username}"
-						/>
-					</Select>
-					<Label
-						text="{i18n>selectProjectsInput} "
-						labelFor="inputToProject"
-						class="sapUiMediumMarginBeginEnd textGray"
-					/>
-					<Select
-						forceSelection="false"
-						id="inputToProject"
-						width="450px"
-						items="{toProjects}"
-						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
-					>
-						<core:ListItem
-							key="{ProjectId}"
-							text="{ProjectName}"
-						/>
-					</Select>
-					<Label
-						text="{i18n>categoryFeedback}"
-						labelFor="inputSkill"
-						class="sapUiMediumMarginBeginEnd textGray"
-					/>
-					<Select
-						forceSelection="false"
-						id="inputSkill"
-						width="450px"
-						selectedKey="{SelectedSkill}"
-						items="{
-							path: 'newFeedbackModel>/SkillCollection'
-						}"
-						class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
-					>
-						<core:ListItem
-							key="{newFeedbackModel>Id}"
-							text="{newFeedbackModel>Name}"
-						/>
-					</Select>
-					<VBox alignItems="Center">
-					<HBox>
-						<RatingIndicator
-							id="inputRating"
-							class="sapUiTinyMarginTop sapUiLargeMarginEnd sapUiMediumMarginBegin"
-							value="1"
-							tooltip="{i18n>RatingTooltip}"
-						/>
-						<!-- Annonymous? -->
-						<HBox alignItems="Strech"
-								class="sapUiLargeMarginBegin">
+						<layoutData>
+							<FlexItemData growFactor="7"/>
+						</layoutData>
 						<Label
-							text="{i18n>anonymousCheckBox}"
-							class="sapUiTinyMarginEnd sapUiSmallMarginTop textGray"
+							text="{i18n>selectUserInput}"
+							labelFor="inputToUser"
+							class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
 						/>
-						<CheckBox
-							id="AnonymousCB"
-							class="textGray sapUiTinyMarginBegin sapUiLargeMarginEnd"
+						<Select
+							forceSelection="false"
+							id="inputToUser"
+							width="450px"
+							items="{/UsernamesSet}"
+							change="onUserChange"
+							class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+						>
+							<core:ListItem
+								key="{Username}"
+								text="{Username}"
+							/>
+						</Select>
+						<Label
+							text="{i18n>selectProjectsInput} "
+							labelFor="inputToProject"
+							class="sapUiMediumMarginBeginEnd textGray"
 						/>
-						</HBox>
-					</HBox>
+						<Select
+							forceSelection="false"
+							id="inputToProject"
+							width="450px"
+							items="{toProjects}"
+							class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+						>
+							<core:ListItem
+								key="{ProjectId}"
+								text="{ProjectName}"
+							/>
+						</Select>
+						<Label
+							text="{i18n>categoryFeedback}"
+							labelFor="inputSkill"
+							class="sapUiMediumMarginBeginEnd textGray"
+						/>
+						<Select
+							forceSelection="false"
+							id="inputSkill"
+							width="450px"
+							selectedKey="{SelectedSkill}"
+							items="{
+                        path: 'newFeedbackModel>/SkillCollection'
+                     }"
+							class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom"
+						>
+							<core:ListItem
+								key="{newFeedbackModel>Id}"
+								text="{newFeedbackModel>Name}"
+							/>
+						</Select>
+						<VBox alignItems="Center">
+							<HBox>
+								<RatingIndicator
+									id="inputRating"
+									class="sapUiTinyMarginTop sapUiLargeMarginEnd sapUiMediumMarginBegin"
+									value="1"
+									tooltip="{i18n>RatingTooltip}"
+								/>
+								<!-- Annonymous? -->
+								<HBox class="sapUiLargeMarginBegin">
+									<Label
+										text="{i18n>anonymousCheckBox}"
+										class="sapUiTinyMarginEnd sapUiSmallMarginTop textGray"
+									/>
+									<CheckBox
+										id="AnonymousCB"
+										class="textGray sapUiTinyMarginBegin sapUiLargeMarginEnd"
+									/>
+								</HBox>
+							</HBox>
+						</VBox>
+					</VBox>
+					<VBox
+						fitContainer="true"
+						width="525px"
+						height="320px"
+						class="shadow boxBackground roundedBorders sapUiMediumMarginTopBottom"
+					>
+						<layoutData>
+							<FlexItemData growFactor="7"/>
+						</layoutData>
+						<Label
+							text="{i18n>description}"
+							labelFor="inputDescription"
+							class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
+						/>
+						<TextArea
+							placeholder="{i18n>descriptionTextArea}"
+							id="inputDescription"
+							growing="true"
+							growingMaxLines="7"
+							height="240px"
+							width="450px"
+							class="sapUiMediumMarginBeginEnd"
+						/>
 					</VBox>
 				</VBox>
-				<VBox fitContainer="true"
-				width="525px"
-				height="320px"
-				class="shadow boxBackground roundedBorders sapUiMediumMarginTopBottom">
-				<layoutData>
-					<FlexItemData growFactor="7" />
-				</layoutData>
-				<Label
-					text="{i18n>description}"
-					labelFor="inputDescription"
-					class="sapUiMediumMarginBeginEnd sapUiMediumMarginTop textGray"
-				/>
-				<TextArea
-					placeholder="{i18n>descriptionTextArea}"
-					id="inputDescription"
-					growing="true"
-					growingMaxLines="7"
-					height="240px"
-					width="450px"
-					class="sapUiMediumMarginBeginEnd"
-				/>
-				
-			</VBox>
-			</VBox>
-		</FlexBox>
+			</FlexBox>
 		</VBox>
 		<footer>
 			<Bar>

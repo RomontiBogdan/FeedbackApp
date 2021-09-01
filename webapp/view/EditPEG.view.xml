@@ -1,21 +1,26 @@
 <mvc:View
-	controllerName="sap.ui.demo.walkthrough.controller.ManagerFeedback"
+	controllerName="sap.ui.demo.walkthrough.controller.EditPEG"
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 >
 	<Page class="backgroundGradient2">
 		<customHeader>
-           <Bar>
+			<Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
 						press=".onNavBack"
-						class="sapUiSmallMarginEnd"/>
-					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
+						class="sapUiSmallMarginEnd"
+					/>
+					<Image
+						src="../resources/MHP_Logo_RGB.svg"
+						height="75%"
+						press=".toMain"
+					/>
 				</contentLeft>
-           </Bar>
-      	</customHeader>
+			</Bar>
+		</customHeader>
 		<Panel>
 			<content>
 				<VBox
@@ -25,7 +30,7 @@
 					<Label
 						text="{i18n>employeeDetails}"
 						labelFor="userContainer"
-						class = "textGray"
+						class="textGray"
 					/>
 					<HBox id="userContainer">
 						<GenericTile
@@ -86,7 +91,6 @@
 						class="sapUiTinyMarginTop textGray "
 						text="{i18n>feedbackDetails}"
 						labelFor="pegContainer"
-						
 					/>
 					<HBox id="pegContainer">
 						<GenericTile
@@ -238,21 +242,21 @@
 					<HBox id="toUpdateFields">
 						<CheckBox
 							visible="{Edit>/Editable}"
-                     		class="sapUiMediumMarginEnd"
+							class="sapUiMediumMarginEnd"
 							id="completedCheckBox"
 							text="{i18n>isCompleted}?"
 							selected="{= ${Status} === '2' ? true : false}"
-                     		select="onToggleStatus"
+							select="onToggleStatus"
 						/>
 						<Select
 							visible="{Edit>/Editable}"
 							forceSelection="false"
 							id="daysEvaluatedSelect"
-                     		tooltip="{i18n>selectDaysEval}"
+							tooltip="{i18n>selectDaysEval}"
 							selectedKey="{DaysEvaluated}"
 							items="{
-                        	path: 'DaysEvaluatedModel>/EvaluatedDays'
-                    	 }"
+                        path: 'DaysEvaluatedModel>/EvaluatedDays'
+                    	}"
 						>
 							<core:ListItem
 								key="{DaysEvaluatedModel>Id}"

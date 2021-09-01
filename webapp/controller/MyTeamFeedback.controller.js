@@ -13,13 +13,9 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         if(sessionStorage.getItem("username") === null)
-         {
+         if (sessionStorage.getItem("username") === null) {
             this.userValidator();
-         }
-         else
-         {
-         
+         } else {
             var sUsername = sessionStorage.getItem("username");
             this.getView().bindElement({
                path: "/UserPassSet('" + sUsername + "')"
@@ -27,43 +23,37 @@ sap.ui.define([
 
             this._aFilter = [];
             this._isTeamManager(sUsername)
-                  .then(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
-                  .catch(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
-            
+               .then(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+               .catch(bReturnedValue => this._restrictIfNotTeamManager(bReturnedValue, sUsername))
+
             this.byId("MyTeamTable").getModel().updateBindings(true);
          }
       },
 
-      _restrictIfNotTeamManager: function(bTeamManager, sUsername){
+      _restrictIfNotTeamManager: function (bTeamManager, sUsername) {
          var sCriteria;
-         if(bTeamManager)
-         {
+         if (bTeamManager) {
             this.getView().byId("buttonBar").setVisible(true);
-            if(this.getView().byId("myTeamButton").getType() === "Emphasized")
+            if (this.getView().byId("myTeamButton").getType() === "Emphasized") {
                sCriteria = "Manager";
-            else
+            } else {
                sCriteria = "FromUser";
-         }
-         else
-         {
+            }
+         } else {
             this.getView().byId("buttonBar").setVisible(false);
             sCriteria = "FromUser";
          }
-            
+
          this._aFilter.push(new Filter({
             filters: [
                new Filter(sCriteria, FilterOperator.EQ, sUsername),
             ],
-            and: true,
+            and: true
          }));
 
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
-      },
-
-      onNavBack: function () {
-         this.navBack();
       },
 
       _isTeamManager: function (sUsername) {
@@ -79,7 +69,6 @@ sap.ui.define([
             })
          })
       },
-
 
       onFilterSelect: function (oEvent) {
          var sKey = oEvent.getParameter("key");
@@ -142,7 +131,7 @@ sap.ui.define([
          var auxFilter = this._aFilter[0];
          var sKey = oEvent.getParameter("newValue");
          Object.entries(auxFilter.aFilters).forEach(oPath => {
-            if(oPath[1].sPath === "ToUser") {
+            if (oPath[1].sPath === "ToUser") {
                auxFilter.aFilters.pop(oPath[0])
             }
          })
@@ -152,6 +141,5 @@ sap.ui.define([
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
       }
-
    });
 });
