@@ -63,7 +63,7 @@ sap.ui.define([
                ],
             };
 
-            var oModelEditable = new JSONModel(oData);
+            var oModelEditable = new JSONModel({Editable: true});
             this.getView().setModel(oModelEditable, "Edit");
 
             var oModel = new JSONModel(oData);
