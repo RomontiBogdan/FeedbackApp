@@ -14,9 +14,16 @@ sap.ui.define([
       },
 
       _onObjectMatched: function () {
-         this.getView().bindElement({
-            path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
-         });
+         if(sessionStorage.getItem("username") === null)
+         {
+            this.userValidator();
+         }
+         else
+         {
+            this.getView().bindElement({
+               path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
+            });
+         }
       },
 
       onProjectChange: function () {

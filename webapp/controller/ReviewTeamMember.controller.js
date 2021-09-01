@@ -12,29 +12,37 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         var sFromUser, sPath, sUserPath, sStatus, sStatusPath, oModel;
-         this._sFeedbackId = oEvent.getParameter("arguments").feedbackID;
-         this.getView().bindElement({
-            path: "/FeedbackTeamSet(" + this._sFeedbackId + ")",
-            events: {
-               dataReceived: function (oData) {
-                  sFromUser = oData.getParameter("data").FromUser;
-                  this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
-               }.bind(this),
-               change: function (oData) {
-                  oModel = this.getView().getModel();
-                  sPath = oData.getSource().getBoundContext().sPath;
-                  sUserPath = sPath + "/FromUser";
-                  sStatusPath = sPath + "/Status";
-                  sFromUser = oModel.getProperty(sUserPath);
-                  sStatus = oModel.getProperty(sStatusPath);
-                  this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
-                  if (sFromUser == sessionStorage.getItem("username")) {
-                     this._changeStatusIfOpened(sStatus);
-                  }
-               }.bind(this)
-            }
-         });
+         if(sessionStorage.getItem("username") === null)
+         {
+            this.userValidator();
+         }
+         else
+         {
+         
+            var sFromUser, sPath, sUserPath, sStatus, sStatusPath, oModel;
+            this._sFeedbackId = oEvent.getParameter("arguments").feedbackID;
+            this.getView().bindElement({
+               path: "/FeedbackTeamSet(" + this._sFeedbackId + ")",
+               events: {
+                  dataReceived: function (oData) {
+                     sFromUser = oData.getParameter("data").FromUser;
+                     this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
+                  }.bind(this),
+                  change: function (oData) {
+                     oModel = this.getView().getModel();
+                     sPath = oData.getSource().getBoundContext().sPath;
+                     sUserPath = sPath + "/FromUser";
+                     sStatusPath = sPath + "/Status";
+                     sFromUser = oModel.getProperty(sUserPath);
+                     sStatus = oModel.getProperty(sStatusPath);
+                     this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
+                     if (sFromUser == sessionStorage.getItem("username")) {
+                        this._changeStatusIfOpened(sStatus);
+                     }
+                  }.bind(this)
+               }
+            });
+         }
       },
 
       _restrictEditable: function (bValue) {

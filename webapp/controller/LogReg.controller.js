@@ -17,9 +17,7 @@ sap.ui.define([
 
                sessionStorage.setItem("username", sUsername.getValue());
 
-               oRouter.navTo("main", {
-                  Username: sUsername.getValue()
-               });
+               oRouter.navTo("main");
             }.bind(this),
 
             error: function (oError) {

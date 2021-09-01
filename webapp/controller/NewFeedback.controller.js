@@ -9,6 +9,8 @@ sap.ui.define([
       "use strict";
       return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
          onInit: function () {
+            this.userValidator();
+            
             var oData = {
 
                SkillCollection: [

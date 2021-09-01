@@ -13,17 +13,24 @@ sap.ui.define(
          },
 
          _onObjectMatched: function(){
-            this.getView().bindElement({
-               path: "/UserPassSet('" + sessionStorage.getItem("username") + "')",
-               events: {
-                  dataReceived: function (oData) {
-                     sessionStorage.setItem("careerLevel", oData.getParameter("data").CareerLevel);               
-                  }.bind(this),
-                  change: function(oData) { 
-                     var sCareerLvl = this.getView().getModel().getProperty(oData.getSource().getPath() + "/CareerLevel");
-                     sessionStorage.setItem("careerLevel", sCareerLvl);
-                  }.bind(this)
-            }});
+            if(sessionStorage.getItem("username") === null)
+            {
+               this.userValidator();
+            }
+            else
+            {
+               this.getView().bindElement({
+                  path: "/UserPassSet('" + sessionStorage.getItem("username") + "')",
+                  events: {
+                     dataReceived: function (oData) {
+                        sessionStorage.setItem("careerLevel", oData.getParameter("data").CareerLevel);               
+                     }.bind(this),
+                     change: function(oData) { 
+                        var sCareerLvl = this.getView().getModel().getProperty(oData.getSource().getPath() + "/CareerLevel");
+                        sessionStorage.setItem("careerLevel", sCareerLvl);
+                     }.bind(this)
+               }});
+            }
          },
 
          onFeedback: function (oEvent) {
@@ -53,6 +60,7 @@ sap.ui.define(
                title: oModel.getText("logOut"),
                onClose: function (oAction) {
                   if (oAction == "OK") {
+                     sessionStorage.removeItem("username");
                      var oRouter = this.getRouter();
                      oRouter.navTo("overview");
                   }

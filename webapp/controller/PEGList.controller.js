@@ -13,29 +13,36 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         this.getView().bindElement({
-            path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
-         });
-
-         this._aFilter = [];
-         this._aFilter.push(new Filter({
-            filters: [
-               new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")),
-               new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username")),
-            ],
-            and: true,
-         }));
-
-         var oList = this.byId("PegTableManager");
-         var oBinding = oList.getBinding("items");
-         oBinding.filter(this._aFilter);
-
-         if(sessionStorage.getItem("careerLevel") === "5")
-            this.getView().byId("newPegRequest").setVisible(false);
+         if(sessionStorage.getItem("username") === null)
+         {
+            this.userValidator();
+         }
          else
-            this.getView().byId("newPegRequest").setVisible(true);
+         {
+            this.getView().bindElement({
+               path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
+            });
 
-         this.byId("PegTableManager").getModel().updateBindings(true);                    //Comanda asta m-a costat doi ani din viata
+            this._aFilter = [];
+            this._aFilter.push(new Filter({
+               filters: [
+                  new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")),
+                  new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username")),
+               ],
+               and: true,
+            }));
+
+            var oList = this.byId("PegTableManager");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(this._aFilter);
+
+            if(sessionStorage.getItem("careerLevel") === "5")
+               this.getView().byId("newPegRequest").setVisible(false);
+            else
+               this.getView().byId("newPegRequest").setVisible(true);
+
+            this.byId("PegTableManager").getModel().updateBindings(true);                   
+         }
       },
 
       onNavBack: function () {
@@ -77,19 +84,7 @@ sap.ui.define([
          oRouter.navTo("requestpeg");
 
       }
-      //,
-
-
-      // onPEGFilter: function (oEvent) {
-      //    var auxFilter = this._aFilter[0];
-      //    var sKey = oEvent.getParameter("newValue");
-        
-
-      //    var oList = this.byId("PegTableManager");
-      //    var oBinding = oList.getBinding("items");
-      //    oBinding.filter(auxFilter);
-      // }
-
+    
      
 
    });

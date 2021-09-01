@@ -1,8 +1,9 @@
 sap.ui.define([
    "sap/ui/core/mvc/Controller",
    "sap/ui/core/routing/History",
-   "sap/ui/model/resource/ResourceModel"
-], function (Controller, History, ResourceModel) {
+   "sap/ui/model/resource/ResourceModel",
+   "sap/m/MessageBox"
+], function (Controller, History, ResourceModel, MessageBox) {
    "use strict";
    return Controller.extend("sap.ui.demo.walkthrough.controller.BaseController", {
       onInit: function () {
@@ -16,7 +17,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getRouter()
-				oRouter.navTo("overview", true);
+				oRouter.navTo("main", true);
 			}
       },
 
@@ -39,6 +40,17 @@ sap.ui.define([
 
       setEnglishi18n: function(){
          this.getOwnerComponent().setEnglishi18n();
+      },
+
+      userValidator: function(){
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+         MessageBox.information(oi18nModel.getText("loginRedirect"), {
+            title: "",
+            onClose: function (oAction) {
+               var oRouter = this.getOwnerComponent().getRouter();
+               oRouter.navTo("overview");
+            }.bind(this),
+         })
       }
    });
 });

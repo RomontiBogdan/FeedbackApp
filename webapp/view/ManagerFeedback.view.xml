@@ -4,13 +4,13 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 >
-	<Page class="backgroundGradient">
+	<Page class="backgroundGradient2">
 		<customHeader>
            <Bar>
 				<contentLeft>
 					<Button
 						icon="sap-icon://nav-back"
-						press=".navBack"
+						press=".onNavBack"
 						class="sapUiSmallMarginEnd"/>
 					<Image src="../resources/MHP_Logo_RGB.svg" height="75%" press=".toMain"/>
 				</contentLeft>
@@ -25,6 +25,7 @@
 					<Label
 						text="{i18n>employeeDetails}"
 						labelFor="userContainer"
+						class = "textGray"
 					/>
 					<HBox id="userContainer">
 						<GenericTile
@@ -82,9 +83,10 @@
 						</GenericTile>
 					</HBox>
 					<Label
-						class="sapUiTinyMarginTop"
+						class="sapUiTinyMarginTop textGray "
 						text="{i18n>feedbackDetails}"
 						labelFor="pegContainer"
+						
 					/>
 					<HBox id="pegContainer">
 						<GenericTile
@@ -133,7 +135,7 @@
 						</GenericTile>
 					</HBox>
 					<Label
-						class="sapUiTinyMarginTop"
+						class="sapUiTinyMarginTop textGray"
 						text="{i18n>projectDetails}"
 						labelFor="projectContainer"
 					/>
