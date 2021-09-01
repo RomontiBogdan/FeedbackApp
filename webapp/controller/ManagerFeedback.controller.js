@@ -14,6 +14,12 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
+         if(sessionStorage.getItem("username") === null)
+         {
+            this.userValidator();
+         }
+         else
+         {
          this._sFeedbackId = oEvent.getParameter("arguments").pegID;
          var oDetailPEG = this.getView().byId("pegContainer");
 
@@ -69,7 +75,7 @@ sap.ui.define([
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "DaysEvaluatedModel");
          this.byId("pegTable").getModel().updateBindings(true);
-      },
+      }},
 
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== sessionStorage.getItem("username")) {
@@ -292,10 +298,18 @@ sap.ui.define([
             .finally(oSheet.destroy);
       },
 
-      onNavBack: function () {
+      navBack: function () {
          var oModel = this.getView().byId("pegTable").getModel();
          oModel.resetChanges();
-         this.navBack();
+         var oHistory = History.getInstance();
+			var sPreviousHash = oHistory.getPreviousHash();
+
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				var oRouter = this.getRouter()
+				oRouter.navTo("overview", true);
+			}
       },
 
       onToggleStatus: function (oEvent) {
