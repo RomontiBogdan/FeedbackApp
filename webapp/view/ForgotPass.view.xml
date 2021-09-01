@@ -93,9 +93,9 @@
 						>
 							<Button
 								text="{i18n>changePasswordBtn}"
-								class="sapUiTinyMarginTop"
+								class="sapUiTinyMarginTop blueButton"
 								width="400px"
-								type="Emphasized"
+								type="Default"
 								press="onPressForgotPass"
 							/>
 						</VBox>

@@ -93,9 +93,9 @@
 						>
 							<Button
 								text="{i18n>submitRegisterBtn}"
-								class="sapUiSmallMarginTop"
+								class="sapUiSmallMarginTop blueButton"
 								width="400px"
-								type="Emphasized"
+								type="Default"
 								press="onCreateRegister"
 							/>
 						</VBox>

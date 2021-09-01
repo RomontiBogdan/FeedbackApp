@@ -62,3 +62,35 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
 .textBlue{
    color: #a6d2da !important;
  }
+
+
+ 
+.blueButton .sapMBtnInner.sapMBtnDefault {
+  
+  background-color: #3333ff !important;
+  color: white !important;
+  
+}
+
+
+.blueButton .sapMBtnInner.sapMBtnDefault:hover {
+  background-color: #0000ff !important;
+  color: white !important;
+  transition:0.2s;
+}
+
+
+
+.sapMSwt {
+  width: 68px; 
+  }
+  
+  .sapMSwtOn div.sapMSwtHandle {
+    left: 90px; 
+    }
+
+  .sapMSwtText{
+    font-size: 10px;
+    font-weight: 550;
+    padding-right: 0.4em;
+  }
