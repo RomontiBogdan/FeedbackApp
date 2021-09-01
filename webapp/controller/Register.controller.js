@@ -19,11 +19,6 @@ sap.ui.define([
          oMM.registerObject(oView.byId("PasswordRegisterField"), true);
          oMM.registerObject(oView.byId("EmailRegisterField"), true);
          
-         this.bValidUser = false;
-         this.bValidEmail = false;
-         this.bValidPassword = false;
-
-         
       },
 
       _validateData: function (oParams) {
@@ -32,67 +27,99 @@ sap.ui.define([
          if (oParams.Username === "") {
             sExceptions += oi18nModel.getText("introduceUsername");
          }
-         else if (!this.bValidUser) {
-            sExceptions += oi18nModel.getText("inputInvalidUsername");
-         }
-
          if (oParams.Password === "") {
             sExceptions += oi18nModel.getText("introducePassword");
          }
-         else if (!this.bValidPassword) {
-            sExceptions += oi18nModel.getText("inputInvalidPassword");
-         }
-
          if (oParams.Email === "") {
             sExceptions += oi18nModel.getText("introduceEmail");
          }
-         else if (!this.bValidEmail) {
-            sExceptions += "'" + this.getView().byId("EmailRegisterField").getValue() + "' " + oi18nModel.getText("inputInvalidEmail");
-         }
+
          return sExceptions
       },
 
+      _validateInputFormat: function (oInputs){
+         var oUsernameFieldValue = this.getView().byId("UsernameRegisterField").getValue();
+			var oEmailFieldValue = this.getView().byId("EmailRegisterField").getValue();
+         var oPasswordFieldValue = this.getView().byId("PasswordRegisterField").getValue();
+         var sExceptions = "";
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+
+         try {
+				oInputs[0].validateValue(oUsernameFieldValue);
+			} catch (oException) {
+				sExceptions += oi18nModel.getText("inputInvalidUsername")
+			}
+
+         try {
+            oInputs[1].validateValue(oEmailFieldValue);
+         } catch (oException) {
+            sExceptions += "'" + oEmailFieldValue + "'" +oi18nModel.getText("inputInvalidEmail")
+         }
+         
+         try {
+				oInputs[2].validateValue(oPasswordFieldValue);
+			} catch (oException) {
+				sExceptions += oi18nModel.getText("inputInvalidPassword")
+			}
+
+         return sExceptions;
+      },
+
       onCreateRegister: function (oEvent) {
-         var CV = this.customUserType.formatValue("value");
+         var oUsernameField = this.getView().byId("UsernameRegisterField");
+			var oEmailField = this.getView().byId("EmailRegisterField");
+         var oPasswordField = this.getView().byId("PasswordRegisterField");
+         this.getView().byId("EmailRegisterField").getBinding("value").getType().validateValue("asdasd@asda.com")
          var params = {
             FullName: "",
-            Username: this.getView().byId("UsernameRegisterField").getValue(),
-            Email: this.getView().byId("EmailRegisterField").getValue(),
-            Password: this.getView().byId("PasswordRegisterField").getValue(),
+            Username: oUsernameField.getValue(),
+            Email: oEmailField.getValue(),
+            Password: oPasswordField.getValue(),
             PersonalNo: "",
             Su: "",
             CareerLevel: "",
             FiscalYear: ""
          }
 
+         var oInputs = [
+            oUsernameField.getBinding("value").getType(),
+			   oEmailField.getBinding("value").getType(),
+            oPasswordField.getBinding("value").getType()
+         ]
+
          var sExceptions = this._validateData(params);
-         if (!this.bValidUser || !this.bValidEmail || !this.bValidPassword || sExceptions !== "") {
+
+         if (sExceptions === "") {
+            sExceptions += this._validateInputFormat(oInputs);
+         }
+
+         if (sExceptions !== "") {
             MessageBox.error(sExceptions)
          }
          else {
-            sap.m.MessageToast.show("MERGE WTF???")
-            // var oModel = this.getOwnerComponent().getModel();
+            var oModel = this.getOwnerComponent().getModel();
 
-            // oModel.create('/UserPassSet', params, {
-            //    success: function (oCreatedEntry) {
-            //       var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-            //       MessageBox.information(oi18nModel.getText("registerSucces"), {
-            //          onClose: function (oAction) {
-            //             if (oAction == "OK") {
-            //                var oRouter = this.getOwnerComponent().getRouter();
-            //                oRouter.navTo("overview");
-            //             }
-            //          }.bind(this)
-            //       });
+            oModel.create('/UserPassSet', params, {
+               success: function (oCreatedEntry) {
+                  var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+                  MessageBox.information(oi18nModel.getText("registerSucces"), {
+                     onClose: function (oAction) {
+                        if (oAction == "OK") {
+                           var oRouter = this.getOwnerComponent().getRouter();
+                           oRouter.navTo("overview");
+                        }
+                     }.bind(this)
+                  });
 
-            //    }.bind(this),
-            //    error: function (oError) {
-            //       sap.m.MessageToast.show(this.errorText(oError))
-            //    }.bind(this)
-            // });
+               }.bind(this),
+               error: function (oError) {
+                  sap.m.MessageToast.show(this.errorText(oError))
+               }.bind(this)
+            });
          }
 
       },
+
       customUserType: SimpleType.extend("username", {
          formatValue: function (oValue) {
             return oValue;
@@ -106,11 +133,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
-               this.bValidUser = false;
                throw new ValidateException(" ");
-            }
-            else{
-               this.bValidUser = true;
             }
          }
       }),
@@ -127,11 +150,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             if (!oValue.match(rexPassword)) {
-               this.bValidPassword = false;
                throw new ValidateException(" ");
-            }
-            else{
-               this.bValidPassword = true;
             }
          }
       }),
@@ -149,11 +168,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
-               this.bValidEmail = false;
                throw new ValidateException(" ");
-            }
-            else{
-               this.bValidEmail = true;
             }
          }
       })

@@ -55,6 +55,7 @@
 						text="{i18n>Password}"
 						labelFor="PasswordRegisterField"
 						required="true"
+						class="sapUiTinyMarginTop"
 					/>
 					<Input
 						id="PasswordRegisterField"
@@ -69,6 +70,7 @@
 						text="{i18n>emailText}"
 						labelFor="EmailRegisterField"
 						required="true"
+						class="sapUiTinyMarginTop"
 					/>
 					<Input
 						id="EmailRegisterField"
