@@ -77,19 +77,7 @@ sap.ui.define([
          oRouter.navTo("requestpeg");
 
       }
-      //,
-
-
-      // onPEGFilter: function (oEvent) {
-      //    var auxFilter = this._aFilter[0];
-      //    var sKey = oEvent.getParameter("newValue");
-        
-
-      //    var oList = this.byId("PegTableManager");
-      //    var oBinding = oList.getBinding("items");
-      //    oBinding.filter(auxFilter);
-      // }
-
+    
      
 
    });
