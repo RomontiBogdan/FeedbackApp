@@ -1,9 +1,8 @@
 sap.ui.define([
    "sap/ui/core/mvc/Controller",
    "sap/ui/core/routing/History",
-   "sap/ui/model/resource/ResourceModel",
    "sap/m/MessageBox"
-], function (Controller, History, ResourceModel, MessageBox) {
+], function (Controller, History, MessageBox) {
    "use strict";
    return Controller.extend("sap.ui.demo.walkthrough.controller.BaseController", {
       onInit: function () {
@@ -17,7 +16,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getRouter()
-				oRouter.navTo("main", true);
+				oRouter.navTo("overview", true);
 			}
       },
 
