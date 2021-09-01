@@ -99,3 +99,7 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
     font-weight: 550;
     padding-right: 0.4em;
   }
+
+  .sapMPanelContent {
+    border: none !important;
+  }
