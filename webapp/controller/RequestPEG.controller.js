@@ -5,7 +5,7 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.RequestPEG", {
       onInit: function () {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
@@ -14,14 +14,14 @@ sap.ui.define([
       },
 
       _onObjectMatched: function () {
-         this.getView().byId("mainInfoContainer").bindElement({
+         this.getView().bindElement({
             path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
          });
       },
 
       onProjectChange: function () {
          var SelectedItem = this.byId("selectProjectName").getSelectedItem().getKey();
-         this.getView().byId("selectManagerInfoContainer").bindElement({
+         this.getView().byId("selectManager").bindElement({
             path: "/UserProjectsSet(Username='',ProjectId='" + SelectedItem + "')"
          });
       },
@@ -64,7 +64,7 @@ sap.ui.define([
                   MessageBox.success(oi18nModel.getText("pegRequestSucces"), {
                      onClose: function (oAction) {
                         if (oAction === "OK") {
-                           var oRouter = this.getOwnerComponent().getRouter();
+                           var oRouter = this.getRouter();
                            oRouter.navTo("peglist");
                         }
                      }.bind(this)

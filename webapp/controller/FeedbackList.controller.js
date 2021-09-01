@@ -9,7 +9,7 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.FeedbackList", {
       formatter: formatter,
       onInit: function () {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.getRoute("feedbacklist").attachPatternMatched(this._onObjectMatched, this);
       },
 

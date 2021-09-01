@@ -88,7 +88,7 @@ sap.ui.define([
                      MessageBox.success(oi18nModel.getText("feedbackSucces"), {
                         onClose: function (oAction) {
                            if (oAction === "OK") {
-                              var oRouter = this.getOwnerComponent().getRouter();
+                              var oRouter = this.getRouter();
                               oRouter.navTo("feedbacklist");
                            }
                         }.bind(this)

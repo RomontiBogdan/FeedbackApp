@@ -36,7 +36,8 @@
 			<HBox width="800px" alignItems="Center">
 			<VBox fitContainer="true"
 					width="800px"
-					class="shadow boxBackground roundedBorders">
+					class="shadow boxBackground roundedBorders"
+					id="mainInfoContainer">
 			<layoutData>
 				<FlexItemData growFactor="7" />
 			</layoutData>

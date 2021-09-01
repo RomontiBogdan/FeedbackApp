@@ -105,7 +105,7 @@ sap.ui.define([
                   MessageBox.information(oi18nModel.getText("registerSucces"), {
                      onClose: function (oAction) {
                         if (oAction == "OK") {
-                           var oRouter = this.getOwnerComponent().getRouter();
+                           var oRouter = this.getRouter();
                            oRouter.navTo("overview");
                         }
                      }.bind(this)

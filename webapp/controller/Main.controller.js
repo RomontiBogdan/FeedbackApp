@@ -8,7 +8,7 @@ sap.ui.define(
       return BaseController.extend("sap.ui.demo.walkthrough.controller.Main", {
 
          onInit: function () {
-            var oRouter = this.getOwnerComponent().getRouter();
+            var oRouter = this.getRouter();
             oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
          },
 

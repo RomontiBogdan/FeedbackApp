@@ -8,7 +8,7 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.PEGList", {
       formatter: formatter,
       onInit: function () {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.getRoute("peglist").attachPatternMatched(this._onObjectMatched, this);
       },
 
@@ -66,14 +66,14 @@ sap.ui.define([
       onPegPress: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.navTo("managerFeedback", {
             pegID: oBindingObject.FeedbackId
          });
       },
 
       onNewRequest: function (oEvent) {
-         var oRouter = this.getOwnerComponent().getRouter();
+         var oRouter = this.getRouter();
          oRouter.navTo("requestpeg");
 
       }

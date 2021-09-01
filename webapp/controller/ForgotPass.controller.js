@@ -136,7 +136,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
-               throw new ValidateException("");
+               throw new ValidateException(" ");
             }
          }
       }),
