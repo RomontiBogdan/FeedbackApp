@@ -55,7 +55,7 @@
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
 							/>
-							<Label text="{i18n>giveGrade}" class="textBlack"/>
+							<Label text="{i18n>giveGrade}" class="textGray"/>
 							<RatingIndicator
 								id="RatingTeamMember"
 								iconSize="32px"

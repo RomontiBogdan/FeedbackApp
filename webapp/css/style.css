@@ -86,7 +86,21 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
    left: 40px;
 }
 
-.sapMSwtText {
-   font-size: 10px;
-   padding-right: 0.4em;
-}
+
+.sapMSwt {
+  width: 68px; 
+  }
+  
+  .sapMSwtOn div.sapMSwtHandle {
+    left: 90px; 
+    }
+
+  .sapMSwtText{
+    font-size: 10px;
+    padding-right: 0.4em;
+  }
+
+  .sapMPanelContent {
+    border: none !important;
+  }
+
