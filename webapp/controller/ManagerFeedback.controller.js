@@ -151,6 +151,7 @@ sap.ui.define([
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
          var sEvaluatorName = oPegContainerObj.FromUser;
+         var sEmployeeName = oPegContainerObj.ToUser;
          var sDaysEval = this.getDaysEvaluated(oPegContainerObj.DaysEvaluated);
          var sCustomerName = oProjectContainerObj.Customer;
          var sProjectName = oProjectContainerObj.ProjectName;
@@ -170,44 +171,47 @@ sap.ui.define([
          var aDescr = [];
          var aRecommendations = [];
          var oItemsBindingContext;
+         var sOverallRating;
+         var iRating = 0;
 
          while (iRowIndex < iNumberOfCriterias) {
             oItemsBindingContext = aItems[iRowIndex].getBindingContext();
+            iRating += parseFloat(oModel.getProperty("Grade", oItemsBindingContext));
             aRatings.push(oModel.getProperty("Grade", oItemsBindingContext) + " Stars");
             aDescr.push(this.getGradeDescription(oModel.getProperty("Grade", oItemsBindingContext)));
             aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
             iRowIndex++;
          }
+         iRating /= 6;
+         sOverallRating = iRating.toFixed(2).toString() + " Stars";
 
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-         
          var oViewModel = new JSONModel([{
-            Descr: oi18nModel.getText("fiscalYear"),
-            Value: sFiscal_Year
+            Descr: "PEG Evaluation"
+         },
+         {
+            Descr: oi18nModel.getText("employeeName"),
+            Value: sEmployeeName
          },
          {
             Descr: oi18nModel.getText("personnelNumber"),
             Value: sPersonnelNumber
          },
          {
-            Descr: oi18nModel.getText("careerLevel"),
-            Value: sCareerLvl
-         },
-         {
             Descr: oi18nModel.getText("organizationalAssignment"),
             Value: sSU
          },
          {
-            Descr: oi18nModel.getText("pegDate"),
-            Value: sPegDate
+            Descr: oi18nModel.getText("careerLevel"),
+            Value: sCareerLvl
+         },
+         {
+            Descr: oi18nModel.getText("fiscalYear"),
+            Value: sFiscal_Year
          },
          {
             Descr: oi18nModel.getText("projectID"),
             Value: sProjectID
-         },
-         {
-            Descr: oi18nModel.getText("customerName"),
-            Value: sCustomerName
          },
          {
             Descr: oi18nModel.getText("projectName"),
@@ -218,8 +222,16 @@ sap.ui.define([
             Value: sProjectManName
          },
          {
+            Descr: oi18nModel.getText("customerName"),
+            Value: sCustomerName
+         },
+         {
             Descr: oi18nModel.getText("evaluatorName"),
             Value: sEvaluatorName
+         },
+         {
+            Descr: oi18nModel.getText("pegDate"),
+            Value: sPegDate
          },
          {
             Descr: oi18nModel.getText("nrProjectDays"),
@@ -231,7 +243,7 @@ sap.ui.define([
          },
          {
             Descr: oi18nModel.getText("criteria"),
-            Value: oi18nModel.getText("rating"),
+            Value: oi18nModel.getText("ratingMax"),
             Descr_rating: oi18nModel.getText("ratingDescription"),
             Recommendations: oi18nModel.getText("recommendations")
          },
@@ -270,6 +282,10 @@ sap.ui.define([
             Value: aRatings[5],
             Descr_rating: aDescr[5],
             Recommendations: aRecommendations[5]
+         },
+         {
+            Descr: oi18nModel.getText("overall"),
+            Value: sOverallRating
          }]);
 
          this.getView().setModel(oViewModel, "DataForExport");
