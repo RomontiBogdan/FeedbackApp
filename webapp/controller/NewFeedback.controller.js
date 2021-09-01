@@ -1,16 +1,14 @@
 sap.ui.define([
-      "../controller/BaseController",
-      "sap/ui/model/json/JSONModel",
-      "sap/m/MessageBox"
-   ],
+   "../controller/BaseController",
+   "sap/ui/model/json/JSONModel",
+   "sap/m/MessageBox"
+],
    function (BaseController,
       JSONModel,
       MessageBox) {
       "use strict";
       return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
          onInit: function () {
-            this.userValidator();
-            
             var oData = {
 
                SkillCollection: [
@@ -31,6 +29,15 @@ sap.ui.define([
 
             var oModel = new JSONModel(oData);
             this.getView().setModel(oModel, "newFeedbackModel");
+
+            var oRouter = this.getRouter();
+            oRouter.getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
+         },
+
+         _onObjectMatched: function () {
+            if (sessionStorage.getItem("username") === null) {
+               this.userValidator();
+            }
          },
 
          onNavBack: function () {

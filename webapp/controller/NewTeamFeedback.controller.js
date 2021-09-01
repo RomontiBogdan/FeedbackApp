@@ -6,8 +6,6 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.NewTeamFeedback", {
       onInit: function () {
-         this.userValidator();
-
          this.getView().byId("teamMemberSelect").bindElement({
             path: "/TeamManagersSet('" + sessionStorage.getItem("username") + "')"
          });
@@ -30,6 +28,15 @@ sap.ui.define([
 
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "newTeamFeedbackModel");
+
+         var oRouter = this.getRouter();
+            oRouter.getRoute("newteamfeedback").attachPatternMatched(this._onObjectMatched, this);
+      },
+
+      _onObjectMatched: function () {
+         if (sessionStorage.getItem("username") === null) {
+            this.userValidator();
+         }
       },
 
       onNavBack: function () {
