@@ -298,18 +298,10 @@ sap.ui.define([
             .finally(oSheet.destroy);
       },
 
-      navBack: function () {
+      onNavBack: function () {
          var oModel = this.getView().byId("pegTable").getModel();
          oModel.resetChanges();
-         var oHistory = History.getInstance();
-			var sPreviousHash = oHistory.getPreviousHash();
-
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				var oRouter = this.getRouter()
-				oRouter.navTo("overview", true);
-			}
+         this.navBack();
       },
 
       onToggleStatus: function (oEvent) {

@@ -17,7 +17,7 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				var oRouter = this.getRouter()
-				oRouter.navTo("overview", true);
+				oRouter.navTo("main", true);
 			}
       },
 
@@ -43,7 +43,6 @@ sap.ui.define([
       },
 
       userValidator: function(){
-         
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          MessageBox.information(oi18nModel.getText("loginRedirect"), {
             title: "",
