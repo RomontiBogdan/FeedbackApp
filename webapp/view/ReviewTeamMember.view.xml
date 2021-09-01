@@ -3,7 +3,7 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<Page>
+	<Page class="backgroundGradient">
 		<customHeader>
 			<Bar>
 				<contentLeft>
@@ -30,14 +30,14 @@
 					<HBox>
 						<VBox width="100%">
 							<GenericTile
-								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 								header="{i18n>managerTileTitle}"
 								subheader="{Manager}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://manager"
 							/>
 							<GenericTile
-								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 								header="{i18n>employeeReviewTileTitle}"
 								subheader="{ToUser}"
 								frameType="TwoByHalf"
@@ -49,13 +49,13 @@
 							width="100%"
 						>
 							<GenericTile
-								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								class="sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 								header="{i18n>projectTileTitle}"
 								subheader="{= ${ProjectId} !== '0000' ? ${ProjectId} : 'Project not specified'}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://group"
 							/>
-							<Label text="{i18n>giveGrade}"/>
+							<Label text="{i18n>giveGrade}" class="textBlack"/>
 							<RatingIndicator
 								id="RatingTeamMember"
 								iconSize="32px"
@@ -65,19 +65,19 @@
 						</VBox>
 						<VBox>
 							<GenericTile
-								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 								header="{i18n>sendDateTileTitle}"
 								subheader="{= ${SentAt} !== null ? ${SentAt}.toLocaleString() : ''}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://date-time"
 							/>
 							<GenericTile
-								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+								class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue shadow"
 								header="{i18n>categoryTileTitle}"
 								subheader="{
-                           path: 'Categories',
-                           formatter: '.formatter.feedbackCategory'
-                        }"
+										path: 'Categories',
+										formatter: '.formatter.feedbackCategory'
+									}"
 								frameType="TwoByHalf"
 								headerImage="sap-icon://multi-select"
 							/>
@@ -106,6 +106,7 @@
 						select="onToggleStatus"
 					/>
 					<Button
+						id="teamFeedbackSendButton"
 						text="{i18n>sendFeedbackBtn}"
 						press=".onSendFeedback"
 						icon="sap-icon://paper-plane"

@@ -3,7 +3,7 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 >
-	<Page title="{i18n>mainPageTitle}">
+	<Page class="backgroundGradient">
 		<customHeader>
            	<Bar>
                 <contentRight>
@@ -35,26 +35,38 @@
 				alignItems="Center"
 				justifyContent="Center">
 				<GenericTile
-					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
 					header="{i18n>PEG}"
-					mode="HeaderMode"
+					headerImage="sap-icon://activities"
 					frameType="TwoByOne"
 					press=".onPEG"
-				/>
+				>
+					<TileContent>
+						<Text text="{i18n>pegDescription}" class="textBlue"/>
+					</TileContent>
+				</GenericTile>
 				<GenericTile
-					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
 					header="{i18n>feedback360}"
-					mode="HeaderMode"
+					headerImage="sap-icon://feedback"
 					frameType="TwoByOne"
 					press=".onFeedback"
-				/>
+				>
+					<TileContent>
+						<Text text="{i18n>feedback360Description}" class="textBlue"/>
+					</TileContent>
+				</GenericTile>
 				<GenericTile
-					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+					class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout borderColourBlue mainMenuShadow mainMenuBoxBackground roundedBorders"
 					header="{i18n>teamFeedback}"
-					mode="HeaderMode"
+					headerImage="sap-icon://citizen-connect"
 					frameType="TwoByOne"
 					press=".onTeamFeedback"
-				/>
+				>
+					<TileContent>
+						<Text text="{i18n>teamFeedbackDescription}" class="textBlue"/>
+					</TileContent>
+				</GenericTile>
 		</FlexBox>
 		
 	</Page>

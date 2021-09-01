@@ -28,18 +28,32 @@ sap.ui.define([
       },
 
       onPressForgotPass: function () {
-         var oView = this.getView();
-         var sUsername = oView.byId("usernameTextFP").getValue();
-         var sEmail = oView.byId("emailTextFP").getValue();
-         var sPassword = oView.byId("passwordTextFP").getValue();
+         var oUsernameField = this.getView().byId("usernameTextFP");
+			var oEmailField = this.getView().byId("emailTextFP");
+         var oPasswordField = this.getView().byId("passwordTextFP");
+
+         var sUsername = oUsernameField.getValue();
+         var sEmail =oEmailField.getValue();
+         var sPassword = oPasswordField.getValue();
 
          var params = {
-            Username: this.getView().byId("usernameTextFP").getValue(),
-            Email: this.getView().byId("emailTextFP").getValue(),
-            Password: this.getView().byId("passwordTextFP").getValue()
+            Username: sUsername,
+            Email: sEmail,
+            Password: sPassword
          }
 
+         var oInputs = [
+            oUsernameField.getBinding("value").getType(),
+			   oEmailField.getBinding("value").getType(),
+            oPasswordField.getBinding("value").getType()
+         ]
+
          var sExceptions = this._validateData(params);
+
+         if (sExceptions === "") {
+            sExceptions += this._validateInputFormat(oInputs);
+         }
+
          if (sExceptions !== "") {
             MessageBox.error(sExceptions)
          }
@@ -75,9 +89,37 @@ sap.ui.define([
             sExceptions += oi18nModel.getText("introduceEmailPassRecovery")
          }
          if (oParams.Password === "") {
-            sExceptions += oi18nModel.getText("introducePassword")
+            sExceptions += oi18nModel.getText("introducePasswordRecovery")
          }
          return sExceptions
+      },
+
+      _validateInputFormat: function (oInputs){
+         var oUsernameFieldValue = this.getView().byId("usernameTextFP").getValue();
+			var oEmailFieldValue = this.getView().byId("emailTextFP").getValue();
+         var oPasswordFieldValue = this.getView().byId("passwordTextFP").getValue();
+         var sExceptions = "";
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+
+         try {
+				oInputs[0].validateValue(oUsernameFieldValue);
+			} catch (oException) {
+				sExceptions += oi18nModel.getText("inputInvalidUsername")
+			}
+
+         try {
+            oInputs[1].validateValue(oEmailFieldValue);
+         } catch (oException) {
+            sExceptions += "'" + oEmailFieldValue + "'" +oi18nModel.getText("inputInvalidEmail")
+         }
+         
+         try {
+				oInputs[2].validateValue(oPasswordFieldValue);
+			} catch (oException) {
+				sExceptions += oi18nModel.getText("inputInvalidPassword")
+			}
+
+         return sExceptions;
       },
 
 
@@ -94,7 +136,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
-               throw new ValidateException("Username should contain only lowercase and uppercase letters and numbers");
+               throw new ValidateException("");
             }
          }
       }),
@@ -113,7 +155,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
-               throw new ValidateException("'" + oValue + "' is not a valid e-mail address");
+               throw new ValidateException(" ");
             }
          }
       }),
@@ -131,7 +173,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             if (!oValue.match(rexPassword)) {
-               throw new ValidateException("Password must contain minimum six characters, at least one letter and one number");
+               throw new ValidateException(" ");
             }
          }
       }),

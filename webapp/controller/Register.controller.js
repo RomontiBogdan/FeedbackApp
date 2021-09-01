@@ -18,36 +18,81 @@ sap.ui.define([
          oMM.registerObject(oView.byId("UsernameRegisterField"), true);
          oMM.registerObject(oView.byId("PasswordRegisterField"), true);
          oMM.registerObject(oView.byId("EmailRegisterField"), true);
+         
       },
 
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
          if (oParams.Username === "") {
-            sExceptions += oi18nModel.getText("usernameNotEntered");
+            sExceptions += oi18nModel.getText("introduceUsername");
          }
          if (oParams.Password === "") {
-            sExceptions += oi18nModel.getText("passwordNotEntered");
+            sExceptions += oi18nModel.getText("introducePassword");
          }
          if (oParams.Email === "") {
-            sExceptions += oi18nModel.getText("emailNotEntered");
+            sExceptions += oi18nModel.getText("introduceEmail");
          }
+
          return sExceptions
       },
 
+      _validateInputFormat: function (oInputs){
+         var oUsernameFieldValue = this.getView().byId("UsernameRegisterField").getValue();
+			var oEmailFieldValue = this.getView().byId("EmailRegisterField").getValue();
+         var oPasswordFieldValue = this.getView().byId("PasswordRegisterField").getValue();
+         var sExceptions = "";
+         var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
+
+         try {
+				oInputs[0].validateValue(oUsernameFieldValue);
+			} catch (oException) {
+				sExceptions += oi18nModel.getText("inputInvalidUsername")
+			}
+
+         try {
+            oInputs[1].validateValue(oEmailFieldValue);
+         } catch (oException) {
+            sExceptions += "'" + oEmailFieldValue + "'" +oi18nModel.getText("inputInvalidEmail")
+         }
+         
+         try {
+				oInputs[2].validateValue(oPasswordFieldValue);
+			} catch (oException) {
+				sExceptions += oi18nModel.getText("inputInvalidPassword")
+			}
+
+         return sExceptions;
+      },
+
       onCreateRegister: function (oEvent) {
+         var oUsernameField = this.getView().byId("UsernameRegisterField");
+			var oEmailField = this.getView().byId("EmailRegisterField");
+         var oPasswordField = this.getView().byId("PasswordRegisterField");
+         this.getView().byId("EmailRegisterField").getBinding("value").getType().validateValue("asdasd@asda.com")
          var params = {
             FullName: "",
-            Username: this.getView().byId("UsernameRegisterField").getValue(),
-            Email: this.getView().byId("EmailRegisterField").getValue(),
-            Password: this.getView().byId("PasswordRegisterField").getValue(),
+            Username: oUsernameField.getValue(),
+            Email: oEmailField.getValue(),
+            Password: oPasswordField.getValue(),
             PersonalNo: "",
             Su: "",
             CareerLevel: "",
             FiscalYear: ""
          }
 
+         var oInputs = [
+            oUsernameField.getBinding("value").getType(),
+			   oEmailField.getBinding("value").getType(),
+            oPasswordField.getBinding("value").getType()
+         ]
+
          var sExceptions = this._validateData(params);
+
+         if (sExceptions === "") {
+            sExceptions += this._validateInputFormat(oInputs);
+         }
+
          if (sExceptions !== "") {
             MessageBox.error(sExceptions)
          }
@@ -74,6 +119,7 @@ sap.ui.define([
          }
 
       },
+
       customUserType: SimpleType.extend("username", {
          formatValue: function (oValue) {
             return oValue;
@@ -87,7 +133,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexUser = /^[a-z\d]+$/i;
             if (!oValue.match(rexUser)) {
-               throw new ValidateException("Username should contain only lowercase and uppercase letters and numbers");
+               throw new ValidateException(" ");
             }
          }
       }),
@@ -104,7 +150,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
             if (!oValue.match(rexPassword)) {
-               throw new ValidateException("Password must contain minimum six characters, at least one letter and one number");
+               throw new ValidateException(" ");
             }
          }
       }),
@@ -122,7 +168,7 @@ sap.ui.define([
          validateValue: function (oValue) {
             var rexMail = /^\w+[\w-+\.]*\@\w+([-\.]\w+)*\.[a-zA-Z]{2,}$/;
             if (!oValue.match(rexMail)) {
-               throw new ValidateException("'" + oValue + "' is not a valid e-mail address");
+               throw new ValidateException(" ");
             }
          }
       })

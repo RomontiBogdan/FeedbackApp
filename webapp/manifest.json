@@ -176,7 +176,7 @@
                "viewName": "Register"
             },
             "requestpeg": {
-               "viewId": "register",
+               "viewId": "requestpeg",
                "viewName": "RequestPEG"
             },
             "feedbacklist": {

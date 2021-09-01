@@ -39,7 +39,7 @@
 						<FlexItemData growFactor="7"/>
 					</layoutData>
 					<Label
-						text="{i18n>userText}"
+						text="{i18n>Username}"
 						labelFor="usernameTextFP"
 						required="true"
 					/>
@@ -55,6 +55,7 @@
 						text="{i18n>emailText}"
 						labelFor="emailTextFP"
 						required="true"
+						class="sapUiTinyMarginTop"
 					/>
 					<Input
 						id="emailTextFP"
@@ -65,9 +66,10 @@
 						value="{ path: '/email',type: '.customEMailType'}"
 					/>
 					<Label
-						text="{i18n>passText}"
+						text="{i18n>Password}"
 						labelFor="passwordTextFP"
 						required="true"
+						class="sapUiTinyMarginTop"
 					/>
 					<Input
 						id="passwordTextFP"
