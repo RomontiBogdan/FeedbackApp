@@ -45,14 +45,19 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
    background: rgba(67, 87, 105, 0.589);
 }
 
+.mainMenuBoxBackground:hover {
+   background: rgba(67, 87, 105, 0.911);
+   transition: 0.3s;
+}
+
 .mainMenuShadow {
    box-shadow: 3px 3px 4px rgb(29, 29, 29);
 }
 
 .borderColourBlue {
    border-style: solid;
-   border-width: 2px;
-   border-color: rgb(67, 87, 105);
+   border-width: 3px;
+   border-color: rgb(72, 88, 100);
 }
 
 .textGray {
@@ -100,7 +105,14 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
     padding-right: 0.4em;
   }
 
-  .sapMPanelContent {
-    border: none !important;
+  .sapMLIBHoverable:hover {
+   background: #d1d1d1;
+   transition: 0.25s;
+   }
+   
+   .sapMBtn:hover>.sapMBtnHoverable {
+      background-image: none;
+      background-color: #ebebeb;
+      border-color: #ababab;
+      transition: 0.4s;
   }
-

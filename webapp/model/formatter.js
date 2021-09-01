@@ -26,6 +26,8 @@ sap.ui.define([], function () {
                return oModel.getText("good");
             case "5":
                return oModel.getText("excellent");
+            default:
+               return oModel.getText("notSpecified");
          }
       },
 
