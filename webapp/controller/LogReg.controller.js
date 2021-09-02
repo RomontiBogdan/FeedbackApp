@@ -3,8 +3,8 @@ sap.ui.define([
 ], function (BaseController) {
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.LogReg", {
+
       
-      //
       onLogIn: function (oEvent) {
          var oRouter = this.getRouter();
          var oModel = this.getOwnerComponent().getModel();

@@ -102,6 +102,7 @@ sap.ui.define([
          oRouter.navTo("newteamfeedback");
       },
 
+      
       onMyTeam: function (oEvent) {
          this.getView().byId("myTeamButton").setType("Emphasized");
          this.getView().byId("otherTeamsButton").setType("Default");
@@ -113,6 +114,7 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
+      
       onOtherTeams: function (oEvent) {
          this.getView().byId("otherTeamsButton").setType("Emphasized");
          this.getView().byId("myTeamButton").setType("Default");
@@ -124,16 +126,25 @@ sap.ui.define([
          oBinding.filter(auxFilter);
       },
 
+      //filter for search field by team member
       onUserFilter: function (oEvent) {
+         
          var auxFilter = this._aFilter[0];
+         //store the value entered in the search field
          var sKey = oEvent.getParameter("newValue");
+
+         //delete filter action after every search value entered 
          Object.entries(auxFilter.aFilters).forEach(oPath => {
             if (oPath[1].sPath === "ToUser") {
                auxFilter.aFilters.pop(oPath[0])
             }
          })
+        
+         //add auxiliar filter after aFilter, based on "ToUser"
+         //the value entered in search field will be taken over as written with uppercase letters
          auxFilter.aFilters.push(new Filter("ToUser", FilterOperator.EQ, sKey.toUpperCase()));
 
+         //filter binding
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
