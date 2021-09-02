@@ -9,6 +9,7 @@ sap.ui.define([
          oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      //checks if user is connected
       _onObjectMatched: function () {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
@@ -19,6 +20,7 @@ sap.ui.define([
          }
       },
 
+      //function 
       onProjectChange: function () {
          var SelectedItem = this.byId("selectProjectName").getSelectedItem().getKey();
          this.getView().byId("selectManager").bindElement({

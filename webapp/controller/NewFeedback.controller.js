@@ -35,6 +35,8 @@ sap.ui.define([
          }
       },
 
+      //validation function that receives an object parameter that checks if its properties(field names) are empty
+      //returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var exceptions = ""

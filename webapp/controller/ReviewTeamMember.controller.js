@@ -11,6 +11,7 @@ sap.ui.define([
          oRouter.getRoute("reviewteammember").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      
       _onObjectMatched: function (oEvent) {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
@@ -41,6 +42,7 @@ sap.ui.define([
          }
       },
 
+      //receives boolean parameter that restricts editing of fields
       _restrictEditable: function (bValue) {
          this.getView().byId("ReviewTextArea").setEditable(bValue);
          this.getView().byId("RatingTeamMember").setEditable(bValue);
@@ -48,6 +50,7 @@ sap.ui.define([
          this.getView().byId("completedCheckBox").setVisible(bValue);
       },
 
+      
       _changeStatusIfOpened: function (sStatus) {
          if (sStatus === "0") {
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
@@ -69,12 +72,14 @@ sap.ui.define([
          this.navBack();
       },
 
+      
       onToggleStatus: function (oEvent) {
          var oModel = this.getView().byId("teamFeedbackVBox").getModel()
          oModel.setProperty("/FeedbackTeamSet(" + this._sFeedbackId + "l)/Status",
             oEvent.getParameters().selected ? "2" : "1")
       },
 
+      
       onSendFeedback: function () {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var oModel = this.getView().getModel()

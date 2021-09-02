@@ -7,6 +7,8 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
       onInit: function () {
+
+         //set data model for career level on view
          var oData = {
             Levels: [{
                   Id: "0",
@@ -37,15 +39,19 @@ sap.ui.define([
 
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "myProfileModel");
-
+         
+         //routing with username as attached parameter
          var oRouter = this.getRouter();
          oRouter.getRoute("myprofile").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      //method triggered by the router in which we receive an event that checks if user is connected
       _onObjectMatched: function (oEvent) {
+         //
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          } else {
+           
             var sUsername = sessionStorage.getItem("username");
             this.getView().bindElement({
                path: "/UserPassSet('" + sUsername + "')"
@@ -53,6 +59,7 @@ sap.ui.define([
          }
       },
 
+         //function that receives a boolean value as parameter that ensures making fields editable
       _setFieldsState: function (bState) {
          var oView = this.getView();
          oView.byId("inputName").setEditable(bState);
@@ -61,6 +68,8 @@ sap.ui.define([
          oView.byId("inputSU").setEditable(bState);
       },
 
+      //validation function that receives an object parameter that checks if its properties(field names) are empty
+      //returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
@@ -79,10 +88,12 @@ sap.ui.define([
          return sExceptions
       },
 
+      
       onEdit: function (oEvent) {
          this._setFieldsState(oEvent.getParameter("state"));
       },
 
+      
       onPressSave: function () {
          var params = {
             FullName: this.getView().byId("inputName").getValue(),

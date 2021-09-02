@@ -24,6 +24,7 @@ sap.ui.define([
          oMM.registerObject(oView.byId("passwordTextFP"), true);
       },
 
+      
       onPressForgotPass: function () {
          var oUsernameField = this.getView().byId("usernameTextFP");
          var oEmailField = this.getView().byId("emailTextFP");
@@ -119,7 +120,7 @@ sap.ui.define([
          return sExceptions;
       },
 
-
+   //Custom model type for validating an username
       customUserType: SimpleType.extend("username", {
          formatValue: function (oValue) {
             return oValue;
@@ -139,7 +140,7 @@ sap.ui.define([
       }),
 
 
-
+   //Custom model type for validating an Email
       customEMailType: SimpleType.extend("email", {
          formatValue: function (oValue) {
             return oValue;
@@ -157,7 +158,7 @@ sap.ui.define([
          }
       }),
 
-
+      //Custom model type for validating a password
       customNewPasswordType: SimpleType.extend("newpassword", {
          formatValue: function (oValue) {
             return oValue;

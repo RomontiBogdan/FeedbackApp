@@ -28,6 +28,7 @@ sap.ui.define([
                path: "/UserPassSet('" + sUsername + "')"
             });
 
+            //build filter array
             this._sFilter = [];
             this._sFilter.push(new Filter({
                filters: [
@@ -36,7 +37,7 @@ sap.ui.define([
                ],
                and: true,
             }));
-
+            // filter binding
             var oList = this.byId("feedbackTable");
             var oBinding = oList.getBinding("items");
             oBinding.filter(this._sFilter);
@@ -45,6 +46,7 @@ sap.ui.define([
          }
       },
 
+      //event hanler function that ensures navigation with a parameter
       onFeedbackPress: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
@@ -54,20 +56,26 @@ sap.ui.define([
          });
       },
 
+      
       onNewFeedback: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("newfeedback");
       },
 
+      //
       onFilterSelect: function (oEvent) {
          var sKey = oEvent.getParameter("key");
+         //build filter array
          var aFilter = [];
+         
          if (sKey === "Sent" || sKey === "All") {
             aFilter.push(new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username")))
          }
+        
          if (sKey === "Received" || sKey === "All") {
             aFilter.push(new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")))
          }
+         // filter binding
          var oList = this.byId("feedbackTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
