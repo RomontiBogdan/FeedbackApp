@@ -46,6 +46,9 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
 }
 
 .mainMenuBoxBackground:hover {
+   -webkit-transform: scale(1.04);
+   -ms-transform: scale(1.04);
+   transform: scale(1.04);
    background: rgba(67, 87, 105, 0.911);
    transition: 0.3s;
 }
@@ -93,28 +96,28 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
 
 .sapMSwt {
   width: 68px; 
-}
+  }
   
 .sapMSwtOn div.sapMSwtHandle {
    left: 90px; 
-}
+    }
 
-.sapMSwtText{
-   font-size: 10px;
-   padding-right: 0.4em;
-}
+  .sapMSwtText{
+    font-size: 10px;
+    padding-right: 0.4em;
+  }
 
-.sapMLIBHoverable:hover {
+  .sapMLIBHoverable:hover {
    background: #d1d1d1;
    transition: 0.25s;
-}
+   }
    
-.sapMBtn:hover>.sapMBtnHoverable {
-   background-image: none;
-   background-color: #ebebeb;
-   border-color: #ababab;
-   transition: 0.4s;
-}
+   .sapMBtn:hover>.sapMBtnHoverable {
+      background-image: none;
+      background-color: #ebebeb;
+      border-color: #ababab;
+      transition: 0.4s;
+  }
 
 .sapMPanelContent {
    border: none !important;
