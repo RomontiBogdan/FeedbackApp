@@ -9,6 +9,8 @@ sap.ui.define([
          this.getView().byId("teamMemberSelect").bindElement({
             path: "/TeamManagersSet('" + sessionStorage.getItem("username") + "')"
          });
+
+         //set data model for skill on view
          var oData = {
             SkillCollection: [{
                   Id: "0",
@@ -33,11 +35,13 @@ sap.ui.define([
       },
 
       _onObjectMatched: function () {
+         //checks if user is still connected on this page and otherwise, redirects it to login page
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          }
       },
 
+     //take over the selected team member from dropdown
       onUserChange: function () {
          var SelectedItem = this.byId("teamMemberSelect").getSelectedItem().getText();
          this.getView().bindElement({
@@ -45,6 +49,9 @@ sap.ui.define([
          });
       },
 
+
+      //validation function that receives an object as parameter that checks if its properties(field names) are null
+      //returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var exceptions = ""

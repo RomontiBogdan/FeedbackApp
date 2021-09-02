@@ -20,7 +20,7 @@ sap.ui.define([
          }
       },
 
-      //function 
+     
       onProjectChange: function () {
          var SelectedItem = this.byId("selectProjectName").getSelectedItem().getKey();
          this.getView().byId("selectManager").bindElement({

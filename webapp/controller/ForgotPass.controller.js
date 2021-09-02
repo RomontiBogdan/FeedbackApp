@@ -76,6 +76,8 @@ sap.ui.define([
          }
       },
 
+
+      //validation function that receives an object and returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
@@ -91,6 +93,7 @@ sap.ui.define([
          return sExceptions
       },
 
+        //receives an array as paramater and returns a string with an error message
       _validateInputFormat: function (aInputs) {
          var oUsernameFieldValue = this.getView().byId("usernameTextFP").getValue();
          var oEmailFieldValue = this.getView().byId("emailTextFP").getValue();
@@ -98,7 +101,7 @@ sap.ui.define([
 
          var sExceptions = "";
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-
+      
          try {
             aInputs[0].validateValue(oUsernameFieldValue);
          } catch (oException) {

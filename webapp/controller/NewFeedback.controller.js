@@ -6,6 +6,8 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
+         
+         //set model for skills on view
          var oData = {
             SkillCollection: [{
                   Id: "0",
@@ -29,13 +31,14 @@ sap.ui.define([
          oRouter.getRoute("newfeedback").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      //checks if user is still connected on this page and otherwise, redirects it to login page
       _onObjectMatched: function () {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          }
       },
 
-      //validation function that receives an object parameter that checks if its properties(field names) are empty
+      //validation function that receives an object as parameter that checks if its properties(field names) are null
       //returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
@@ -102,6 +105,7 @@ sap.ui.define([
          }
       },
 
+      //take over the selected user from the dropdown
       onUserChange: function (oEvent) {
          var SelectedItem = this.byId("inputToUser").getSelectedItem().getText();
          this.getView().bindElement({

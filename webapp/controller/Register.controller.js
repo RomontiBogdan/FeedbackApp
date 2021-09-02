@@ -40,7 +40,7 @@ sap.ui.define([
          return sExceptions
       },
 
-      //validation input function that receives an array as paramater and returns a string with an error message
+      //receives an array as paramater and returns a string with an error message
       _validateInputFormat: function (aInputs) {
          var oUsernameFieldValue = this.getView().byId("UsernameRegisterField").getValue();
          var oEmailFieldValue = this.getView().byId("EmailRegisterField").getValue();
@@ -69,7 +69,7 @@ sap.ui.define([
          return sExceptions;
       },
 
-      //
+      //event handler function 
       onCreateRegister: function (oEvent) {
          var oUsernameField = this.getView().byId("UsernameRegisterField");
          var oEmailField = this.getView().byId("EmailRegisterField");
