@@ -13,6 +13,7 @@ sap.ui.define([
          oRouter.getRoute("editpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      
       _onObjectMatched: function (oEvent) {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
@@ -68,6 +69,7 @@ sap.ui.define([
                }
             });
 
+            //set data model for number of days evaluated on view
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var oData = {
                EvaluatedDays: [{
