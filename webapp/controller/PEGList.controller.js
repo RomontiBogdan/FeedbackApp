@@ -50,10 +50,15 @@ sap.ui.define([
          }
       },
 
-   
+      //filter function for icon tab bars 
       onFilterSelect: function (oEvent) {
+
+         //sKey stores the value of the icon tab bar
          var sKey = oEvent.getParameter("key");
+
+          //initialize an auxiliar filter with the previous declared filter array
          var auxFilter = this._aFilter[0];
+         
          //fill the index 2 of the array with a filter based on status 
          if (sKey === "New") {
             auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "0")

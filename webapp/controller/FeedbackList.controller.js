@@ -56,13 +56,13 @@ sap.ui.define([
          });
       },
 
-      
+      //navigate to new feedback view
       onNewFeedback: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("newfeedback");
       },
 
-      //
+     // filter function for icon tab bars 
       onFilterSelect: function (oEvent) {
          var sKey = oEvent.getParameter("key");
          //build filter array

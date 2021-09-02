@@ -30,15 +30,18 @@ sap.ui.define([
          }
       },
 
+      //receives a boolean parameter that checks if the user logged is a manager
       _restrictIfNotTeamManager: function (bTeamManager, sUsername) {
          var sCriteria;
          if (bTeamManager) {
+            //if the logged user is a manager, he is able to see the feedbacks requested by him to members from other teams as well
             this.getView().byId("buttonBar").setVisible(true);
             if (this.getView().byId("myTeamButton").getType() === "Emphasized") {
                sCriteria = "Manager";
             } else {
                sCriteria = "FromUser";
             }
+            //restrict "Other teams" funcitonality for users that are not managers
          } else {
             this.getView().byId("buttonBar").setVisible(false);
             sCriteria = "FromUser";
@@ -51,11 +54,13 @@ sap.ui.define([
             and: true
          }));
 
+         //filter binding
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(this._aFilter);
       },
 
+      // check if user logged is manager or not
       _isTeamManager: function (sUsername) {
          var oModel = this.getOwnerComponent().getModel();
          return new Promise((resolve, reject) => {
@@ -70,9 +75,17 @@ sap.ui.define([
          })
       },
 
+      //filter function for icon tab bars 
       onFilterSelect: function (oEvent) {
+
+         //sKey stores the value of the icon tab bar
          var sKey = oEvent.getParameter("key");
+
+         //initialize an auxiliar filter with the previous declared filter array
+         // add on the first position of the previous initialized filter array the auxiliar filter
          var auxFilter = this._aFilter[0];
+
+      
          if (sKey === "New") {
             auxFilter.aFilters[1] = new Filter("Status", FilterOperator.EQ, "0")
          } else if (sKey === "Pending") {
@@ -83,11 +96,14 @@ sap.ui.define([
             auxFilter.aFilters.pop(1);
          }
 
+         //filter binding
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
       },
 
+      
+      // navigate to review team member page with feedback id attached to the navigation route
       onPressTeamFeedback: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
@@ -97,30 +113,38 @@ sap.ui.define([
          });
       },
 
+      //navigate to new team feedback view
       onNewFeedback: function () {
          var oRouter = this.getRouter();
          oRouter.navTo("newteamfeedback");
       },
 
       
+      //event handler function for My Team button
       onMyTeam: function (oEvent) {
          this.getView().byId("myTeamButton").setType("Emphasized");
          this.getView().byId("otherTeamsButton").setType("Default");
          var auxFilter = this._aFilter[0];
+
+         //creates a filter based on manager 
          auxFilter.aFilters[0] = new Filter("Manager", FilterOperator.EQ, sessionStorage.getItem("username"));
 
+         //filter binding
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
       },
 
-      
+      //event handler function for Other Teams button
       onOtherTeams: function (oEvent) {
          this.getView().byId("otherTeamsButton").setType("Emphasized");
          this.getView().byId("myTeamButton").setType("Default");
          var auxFilter = this._aFilter[0];
+
+         //creates a filter based on "From user"
          auxFilter.aFilters[0] = new Filter("FromUser", FilterOperator.EQ, sessionStorage.getItem("username"));
 
+         //filter binding
          var oList = this.byId("MyTeamTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);

@@ -44,7 +44,7 @@ sap.ui.define([
          this.getOwnerComponent().setEnglishi18n();
       },
 
-      
+      //redirect user to login page after session expires
       userValidator: function () {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          MessageBox.information(oi18nModel.getText("loginRedirect"), {

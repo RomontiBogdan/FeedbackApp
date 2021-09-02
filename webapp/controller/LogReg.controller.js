@@ -4,7 +4,7 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.LogReg", {
 
-      
+      //ensures user authentication
       onLogIn: function (oEvent) {
          var oRouter = this.getRouter();
          var oModel = this.getOwnerComponent().getModel();
@@ -12,6 +12,7 @@ sap.ui.define([
          var sUsername = oView.byId("UsernameField");
          var sPassword = oView.byId("PasswordField");
 
+         //if authentication is done successfully, user is redirected to the main menu page
          oModel.read("/UsersSet(Username='" + sUsername.getValue() + "',Password='" + sPassword.getValue() + "')", {
             success: function (oRetrievedResult) {
                sUsername.setValueState("Success");
@@ -22,6 +23,7 @@ sap.ui.define([
                oRouter.navTo("main");
             }.bind(this),
 
+            //if authentication fails, an error message is didplayed in a pop-up
             error: function (oError) {
                sUsername.setValueState("Error");
                sPassword.setValueState("Error");
