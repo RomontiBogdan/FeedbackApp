@@ -40,14 +40,13 @@ sap.ui.define([
          var oModel = new JSONModel(oData);
          this.getView().setModel(oModel, "myProfileModel");
          
-         //routing with username as attached parameter
          var oRouter = this.getRouter();
          oRouter.getRoute("myprofile").attachPatternMatched(this._onObjectMatched, this);
       },
 
       //method triggered by the router in which we receive an event that checks if user is connected
       _onObjectMatched: function (oEvent) {
-         //
+         
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          } else {
@@ -59,7 +58,7 @@ sap.ui.define([
          }
       },
 
-         //function that receives a boolean value as parameter that ensures making fields editable
+         //function that receives a boolean value as parameter that ensures making fields editable when user clicks on switch
       _setFieldsState: function (bState) {
          var oView = this.getView();
          oView.byId("inputName").setEditable(bState);
@@ -88,7 +87,7 @@ sap.ui.define([
          return sExceptions
       },
 
-      
+      //function trigged by the switch that calls setFieldsState method for making fields editable when switch is clicked
       onEdit: function (oEvent) {
          this._setFieldsState(oEvent.getParameter("state"));
       },
