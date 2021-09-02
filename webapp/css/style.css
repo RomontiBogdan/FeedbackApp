@@ -43,6 +43,7 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
 
 .mainMenuBoxBackground {
    background: rgba(67, 87, 105, 0.589);
+   transition: 0.3s;
 }
 
 .mainMenuBoxBackground:hover {
