@@ -12,7 +12,11 @@ sap.ui.define([
          var oView = this.getView();
          var oMM = Core.getMessageManager();
 
-         oView.setModel(new JSONModel({ username: "", email: "", newpassword: "" }));
+         oView.setModel(new JSONModel({
+            username: "",
+            email: "",
+            newpassword: ""
+         }));
 
          // attach handlers for validation errors
          oMM.registerObject(oView.byId("usernameTextFP"), true);
@@ -49,8 +53,7 @@ sap.ui.define([
 
          if (sExceptions !== "") {
             MessageBox.error(sExceptions)
-         }
-         else {
+         } else {
             var oModel = this.getOwnerComponent().getModel();
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             oModel.read("/ForgotPassUserSet(Username='" + sUsername + "',Email='" + sEmail + "')", {

@@ -19,7 +19,9 @@ sap.ui.define([
          } else {
             // Model for anonymous usage
             var sUsername = sessionStorage.getItem("username");
-            var oModel = new JSONModel({ currentUser: sUsername });
+            var oModel = new JSONModel({
+               currentUser: sUsername
+            });
             this.getView().setModel(oModel, "AnonymousModel");
 
             this.getView().bindElement({

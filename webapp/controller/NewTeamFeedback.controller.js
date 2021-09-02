@@ -10,8 +10,7 @@ sap.ui.define([
             path: "/TeamManagersSet('" + sessionStorage.getItem("username") + "')"
          });
          var oData = {
-            SkillCollection: [
-               {
+            SkillCollection: [{
                   Id: "0",
                   Name: "Technical",
                },

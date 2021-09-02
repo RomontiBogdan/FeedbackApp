@@ -52,7 +52,9 @@ sap.ui.define([
          if (sStatus === "0") {
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var oModel = this.getView().byId("teamFeedbackVBox").getModel();
-            oModel.update("/FeedbackTeamSet(" + this._sFeedbackId + ")", { Status: "1" }, {
+            oModel.update("/FeedbackTeamSet(" + this._sFeedbackId + ")", {
+               Status: "1"
+            }, {
                merge: true,
                success: function () {
                   MessageToast.show(oi18nModel.getText("toPendingFeedback"));
@@ -97,4 +99,3 @@ sap.ui.define([
       }
    });
 });
-

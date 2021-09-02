@@ -5,8 +5,7 @@ sap.ui.define([
 ], function (Controller, History, MessageBox) {
    "use strict";
    return Controller.extend("sap.ui.demo.walkthrough.controller.BaseController", {
-      onInit: function () {
-      },
+      onInit: function () {},
 
       navBack: function () {
          var oHistory = History.getInstance();

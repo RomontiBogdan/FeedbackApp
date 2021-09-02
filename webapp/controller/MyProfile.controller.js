@@ -8,8 +8,7 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
       onInit: function () {
          var oData = {
-            Levels: [
-               {
+            Levels: [{
                   Id: "0",
                   Name: "Junior Consultant"
                },
