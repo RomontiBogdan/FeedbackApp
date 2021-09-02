@@ -12,7 +12,11 @@ sap.ui.define([
          var oView = this.getView();
          var oMM = Core.getMessageManager();
 
-         oView.setModel(new JSONModel({ username: "", password: "", email: "" }));
+         oView.setModel(new JSONModel({
+            username: "",
+            password: "",
+            email: ""
+         }));
 
          // attach handlers for validation errors
          oMM.registerObject(oView.byId("UsernameRegisterField"), true);

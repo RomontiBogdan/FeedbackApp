@@ -7,8 +7,7 @@ sap.ui.define([
    return BaseController.extend("sap.ui.demo.walkthrough.controller.NewFeedback", {
       onInit: function () {
          var oData = {
-            SkillCollection: [
-               {
+            SkillCollection: [{
                   Id: "0",
                   Name: "Technical"
                },
@@ -94,8 +93,8 @@ sap.ui.define([
                      }.bind(this)
                   });
                }.bind(this),
-               error: function (oError) { 
-                  sap.m.MessageToast.show(oi18nModel.getText("feedbackError")) 
+               error: function (oError) {
+                  sap.m.MessageToast.show(oi18nModel.getText("feedbackError"))
                }
             });
          }

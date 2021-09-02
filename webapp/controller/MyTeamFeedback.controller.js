@@ -75,14 +75,11 @@ sap.ui.define([
          var auxFilter = this._aFilter[0];
          if (sKey === "New") {
             auxFilter.aFilters[1] = new Filter("Status", FilterOperator.EQ, "0")
-         }
-         else if (sKey === "Pending") {
+         } else if (sKey === "Pending") {
             auxFilter.aFilters[1] = new Filter("Status", FilterOperator.EQ, "1")
-         }
-         else if (sKey === "Completed") {
+         } else if (sKey === "Completed") {
             auxFilter.aFilters[1] = new Filter("Status", FilterOperator.EQ, "2")
-         }
-         else if (auxFilter.aFilters.length > 1) {
+         } else if (auxFilter.aFilters.length > 1) {
             auxFilter.aFilters.pop(1);
          }
 

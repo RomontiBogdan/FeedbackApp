@@ -26,17 +26,40 @@ sap.ui.define([
                   dataReceived: function (oData) {
                      var oUserDetail = this.getView().byId("userContainer");
                      var sUsername = oData.getParameter("data").ToUser;
-                     oUserDetail.bindElement({ path: "/UserPassSet('" + sUsername + "')" });
+                     oUserDetail.bindElement({
+                        path: "/UserPassSet('" + sUsername + "')"
+                     });
+
+                     var oEvaluatorNameTile = this.getView().byId("evaluatorNameTile");
+                     var sEvaluatorUsername = oData.getParameter("data").FromUser;
+                     oEvaluatorNameTile.bindElement({
+                        path: "/UserPassSet('" + sEvaluatorUsername + "')"
+                     });
 
                      var oProjectDetail = this.getView().byId("projectContainer");
                      var sProjectId = oData.getParameter("data").ProjectId;
-                     oProjectDetail.bindElement({ path: "/ProjectDetailsSet('" + sProjectId + "')" });
+                     oProjectDetail.bindElement({
+                        path: "/ProjectDetailsSet('" + sProjectId + "')",
+                        events: {
+                           dataReceived: function (oData) {
+                              var oProjectManagerNameTile = this.getView().byId("projectManagerNameTile");
+                              var sProjectManagerUsername = oData.getParameter("data").ProjectManager;
+                              oProjectManagerNameTile.bindElement({
+                                 path: "/UserPassSet('" + sProjectManagerUsername + "')"
+                              });
+                           }.bind(this)
+                        }
+                     });
 
                      var oCriteriaTable = this.getView().byId("pegTable");
-                     oCriteriaTable.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
+                     oCriteriaTable.bindElement({
+                        path: "/PegReqSet(" + this._sFeedbackId + ")"
+                     })
 
                      var oFieldsForUpdate = this.getView().byId("toUpdateFields");
-                     oFieldsForUpdate.bindElement({ path: "/PegReqSet(" + this._sFeedbackId + ")" })
+                     oFieldsForUpdate.bindElement({
+                        path: "/PegReqSet(" + this._sFeedbackId + ")"
+                     })
 
                      this._checkEvaluator(oData.getParameter("data").FromUser);
 
@@ -47,8 +70,7 @@ sap.ui.define([
 
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var oData = {
-               EvaluatedDays: [
-                  {
+               EvaluatedDays: [{
                      Id: "0",
                      Name: oi18nModel.getText("lessThan")
                   },
@@ -63,7 +85,9 @@ sap.ui.define([
                ],
             };
 
-            var oModelEditable = new JSONModel({Editable: true});
+            var oModelEditable = new JSONModel({
+               Editable: true
+            });
             this.getView().setModel(oModelEditable, "Edit");
 
             var oModel = new JSONModel(oData);
@@ -81,7 +105,9 @@ sap.ui.define([
             this._currentPegStatus().then(function (bReturnedValue) {
                if (bReturnedValue) {
                   var oModel = this.getView().byId("pegContainer").getModel();
-                  oModel.update("/PegReqSet(" + this._sFeedbackId + ")", { Status: "1" }, {
+                  oModel.update("/PegReqSet(" + this._sFeedbackId + ")", {
+                     Status: "1"
+                  }, {
                      merge: true,
                      success: function () {
                         MessageToast.show(oi18nModel.getText("toPendingPEG"));
@@ -110,8 +136,7 @@ sap.ui.define([
       },
 
       _createColumnConfig: function () {
-         return [
-            {
+         return [{
                label: ' ',
                property: 'Descr',
                width: '40',
@@ -139,21 +164,23 @@ sap.ui.define([
          var oUserContainerObj = this.getView().byId("userContainer").getBindingContext().getObject();
          var oPegContainerObj = this.getView().byId("pegContainer").getBindingContext().getObject();
          var oProjectContainerObj = this.getView().byId("projectContainer").getBindingContext().getObject();
+         var oEvaluatorNameTile = this.getView().byId("evaluatorNameTile").getBindingContext().getObject();
+         var oProjectManagerNameTile = this.getView().byId("projectManagerNameTile").getBindingContext().getObject();
          var sFiscal_Year = oUserContainerObj.FiscalYear;
          var sPersonnelNumber = oUserContainerObj.PersonalNo;
          var sCareerLvl = this._getCareerLevel(oUserContainerObj.CareerLevel);
          var sSU = oUserContainerObj.Su;
          var sPegDate = formatter.timestamp(oPegContainerObj.SentAt);
          var sProjectID = oPegContainerObj.ProjectId;
-         var sEvaluatorName = oPegContainerObj.FromUser;
-         var sEmployeeName = oPegContainerObj.ToUser;
+         var sEvaluatorName = oEvaluatorNameTile.FullName;
+         var sEmployeeName = oUserContainerObj.FullName;
          var sDaysEval = this._getDaysEvaluated(oPegContainerObj.DaysEvaluated);
          var sCustomerName = oProjectContainerObj.Customer;
          var sProjectName = oProjectContainerObj.ProjectName;
-         var sProjectManName = oProjectContainerObj.ProjectManager;
+         var sProjectManName = oProjectManagerNameTile.FullName;
 
 
-         var iRowIndex = 0;  // For First row in the table
+         var iRowIndex = 0; // For First row in the table
          var oTable = this.getView().byId("pegTable");
          var oModel = oTable.getModel();
          var aItems = oTable.getItems();
@@ -183,106 +210,107 @@ sap.ui.define([
 
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var oViewModel = new JSONModel([{
-            Descr: "PEG Evaluation"
-         },
-         {
-            Descr: oi18nModel.getText("employeeName"),
-            Value: sEmployeeName
-         },
-         {
-            Descr: oi18nModel.getText("personnelNumber"),
-            Value: sPersonnelNumber
-         },
-         {
-            Descr: oi18nModel.getText("organizationalAssignment"),
-            Value: sSU
-         },
-         {
-            Descr: oi18nModel.getText("careerLevel"),
-            Value: sCareerLvl
-         },
-         {
-            Descr: oi18nModel.getText("fiscalYear"),
-            Value: sFiscal_Year
-         },
-         {
-            Descr: oi18nModel.getText("projectID"),
-            Value: sProjectID
-         },
-         {
-            Descr: oi18nModel.getText("projectName"),
-            Value: sProjectName
-         },
-         {
-            Descr: oi18nModel.getText("projectManagerName"),
-            Value: sProjectManName
-         },
-         {
-            Descr: oi18nModel.getText("customerName"),
-            Value: sCustomerName
-         },
-         {
-            Descr: oi18nModel.getText("evaluatorName"),
-            Value: sEvaluatorName
-         },
-         {
-            Descr: oi18nModel.getText("pegDate"),
-            Value: sPegDate
-         },
-         {
-            Descr: oi18nModel.getText("nrProjectDays"),
-            Value: sDaysEval
-         },
-         {
-            Descr: "",
-            Value: ""
-         },
-         {
-            Descr: oi18nModel.getText("criteria"),
-            Value: oi18nModel.getText("ratingMax"),
-            Descr_rating: oi18nModel.getText("ratingDescription"),
-            Recommendations: oi18nModel.getText("recommendations")
-         },
-         {
-            Descr: oi18nModel.getText("firstCriteria"),
-            Value: aRatings[0],
-            Descr_rating: aDescr[0],
-            Recommendations: aRecommendations[0]
-         },
-         {
-            Descr: oi18nModel.getText("secondCriteria"),
-            Value: aRatings[1],
-            Descr_rating: aDescr[1],
-            Recommendations: aRecommendations[1]
-         },
-         {
-            Descr: oi18nModel.getText("thirdCriteria"),
-            Value: aRatings[2],
-            Descr_rating: aDescr[2],
-            Recommendations: aRecommendations[2]
-         },
-         {
-            Descr: oi18nModel.getText("fourthCriteria"),
-            Value: aRatings[3],
-            Descr_rating: aDescr[3],
-            Recommendations: aRecommendations[3]
-         },
-         {
-            Descr: oi18nModel.getText("fifthCriteria"),
-            Value: aRatings[4],
-            Descr_rating: aDescr[4],
-            Recommendations: aRecommendations[4]
-         },
-         {
-            Descr: oi18nModel.getText("sixthCriteria"),
-            Value: aRatings[5],
-            Descr_rating: aDescr[5],
-            Recommendations: aRecommendations[5]
-         },
-         {
-            Descr: oi18nModel.getText("overall"),
-            Value: sOverallRating
-         }]);
+               Descr: "PEG Evaluation"
+            },
+            {
+               Descr: oi18nModel.getText("employeeName"),
+               Value: sEmployeeName
+            },
+            {
+               Descr: oi18nModel.getText("personnelNumber"),
+               Value: sPersonnelNumber
+            },
+            {
+               Descr: oi18nModel.getText("organizationalAssignment"),
+               Value: sSU
+            },
+            {
+               Descr: oi18nModel.getText("careerLevel"),
+               Value: sCareerLvl
+            },
+            {
+               Descr: oi18nModel.getText("fiscalYear"),
+               Value: sFiscal_Year
+            },
+            {
+               Descr: oi18nModel.getText("projectID"),
+               Value: sProjectID
+            },
+            {
+               Descr: oi18nModel.getText("projectName"),
+               Value: sProjectName
+            },
+            {
+               Descr: oi18nModel.getText("projectManagerName"),
+               Value: sProjectManName
+            },
+            {
+               Descr: oi18nModel.getText("customerName"),
+               Value: sCustomerName
+            },
+            {
+               Descr: oi18nModel.getText("evaluatorName"),
+               Value: sEvaluatorName
+            },
+            {
+               Descr: oi18nModel.getText("pegDate"),
+               Value: sPegDate
+            },
+            {
+               Descr: oi18nModel.getText("nrProjectDays"),
+               Value: sDaysEval
+            },
+            {
+               Descr: "",
+               Value: ""
+            },
+            {
+               Descr: oi18nModel.getText("criteria"),
+               Value: oi18nModel.getText("ratingMax"),
+               Descr_rating: oi18nModel.getText("ratingDescription"),
+               Recommendations: oi18nModel.getText("recommendations")
+            },
+            {
+               Descr: oi18nModel.getText("firstCriteria"),
+               Value: aRatings[0],
+               Descr_rating: aDescr[0],
+               Recommendations: aRecommendations[0]
+            },
+            {
+               Descr: oi18nModel.getText("secondCriteria"),
+               Value: aRatings[1],
+               Descr_rating: aDescr[1],
+               Recommendations: aRecommendations[1]
+            },
+            {
+               Descr: oi18nModel.getText("thirdCriteria"),
+               Value: aRatings[2],
+               Descr_rating: aDescr[2],
+               Recommendations: aRecommendations[2]
+            },
+            {
+               Descr: oi18nModel.getText("fourthCriteria"),
+               Value: aRatings[3],
+               Descr_rating: aDescr[3],
+               Recommendations: aRecommendations[3]
+            },
+            {
+               Descr: oi18nModel.getText("fifthCriteria"),
+               Value: aRatings[4],
+               Descr_rating: aDescr[4],
+               Recommendations: aRecommendations[4]
+            },
+            {
+               Descr: oi18nModel.getText("sixthCriteria"),
+               Value: aRatings[5],
+               Descr_rating: aDescr[5],
+               Recommendations: aRecommendations[5]
+            },
+            {
+               Descr: oi18nModel.getText("overall"),
+               Value: sOverallRating
+            }
+         ]);
 
          this.getView().setModel(oViewModel, "DataForExport");
       },
@@ -295,7 +323,9 @@ sap.ui.define([
          aProducts = this.getView().getModel("DataForExport").getProperty('/');
 
          oSettings = {
-            workbook: { columns: aCols },
+            workbook: {
+               columns: aCols
+            },
             dataSource: aProducts,
             fileName: "PEG " + this.getView().byId("projectContainer").getBindingContext().getObject().ProjectName + ".xlsx"
          };
