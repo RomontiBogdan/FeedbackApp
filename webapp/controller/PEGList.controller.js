@@ -13,7 +13,8 @@ sap.ui.define([
       },
 
       _onObjectMatched: function (oEvent) {
-         //checks if user is connected on this view and otherwise, redirects it to the login page
+         // Checks if user is connected on this view
+         // otherwise: redirects him to the login page
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
             
@@ -22,10 +23,10 @@ sap.ui.define([
                path: "/UserPassSet('" + sessionStorage.getItem("username") + "')"
             });
 
-            //create filter array
+            // Create filter array
             this._aFilter = [];
 
-            //fill the index 0 and 1 of the array with 2 filters based on "To User" and "From User" 
+            // Fill the index 0 and 1 of the array with 2 filters based on "To User" and "From User" 
             this._aFilter.push(new Filter({
                filters: [
                   new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")),
@@ -34,12 +35,12 @@ sap.ui.define([
                and: true
             }));
 
-            //filter binding
+            // Filter binding
             var oList = this.byId("PegTableManager");
             var oBinding = oList.getBinding("items");
             oBinding.filter(this._aFilter);
 
-            //make PEG Request button functionality invisible for team leaders
+            // Make PEG Request button functionality invisible for team leaders
             if (sessionStorage.getItem("careerLevel") === "5") {
                this.getView().byId("newPegRequest").setVisible(false);
             } else {
@@ -50,16 +51,16 @@ sap.ui.define([
          }
       },
 
-      //filter function for icon tab bars 
+      // Filter function for icon tab bars 
       onFilterSelect: function (oEvent) {
 
-         //sKey stores the value of the icon tab bar
+         // sKey stores the value of the icon tab bar
          var sKey = oEvent.getParameter("key");
 
-          //initialize an auxiliar filter with the previous declared filter array
+         // Initialize an auxiliar filter with the previous declared filter array
          var auxFilter = this._aFilter[0];
          
-         //fill the index 2 of the array with a filter based on status 
+         // Fill the index 2 of the array with a filter based on status 
          if (sKey === "New") {
             auxFilter.aFilters[2] = new Filter("Status", FilterOperator.EQ, "0")
          } else if (sKey === "Pending") {
@@ -70,13 +71,13 @@ sap.ui.define([
             auxFilter.aFilters.pop(2);
          }
 
-         //filter binding
+         // Filter binding
          var oList = this.byId("PegTableManager");
          var oBinding = oList.getBinding("items");
          oBinding.filter(auxFilter);
       },
 
-      //navigate to edit PEG page with feedback id attached to the navigation route
+      // Navigate to edit PEG page with feedback id attached to the navigation route
       onPegPress: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
@@ -86,7 +87,7 @@ sap.ui.define([
          });
       },
 
-      //navigate to PEG request view
+      // Navigate to PEG request view
       onNewRequest: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("requestpeg");

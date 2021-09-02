@@ -7,8 +7,7 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.MyProfile", {
       onInit: function () {
-
-         //set data model for career level on view
+         // Set data model for career level on view
          var oData = {
             Levels: [{
                   Id: "0",
@@ -44,13 +43,13 @@ sap.ui.define([
          oRouter.getRoute("myprofile").attachPatternMatched(this._onObjectMatched, this);
       },
 
-      //method triggered by the router in which we receive an event that checks if user is connected
+      // Method triggered by the router in which 
+      // we receive an event that checks if there
+      // is any user currently connected
       _onObjectMatched: function (oEvent) {
-         
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          } else {
-           
             var sUsername = sessionStorage.getItem("username");
             this.getView().bindElement({
                path: "/UserPassSet('" + sUsername + "')"
@@ -58,7 +57,8 @@ sap.ui.define([
          }
       },
 
-         //function that receives a boolean value as parameter that ensures making fields editable when user clicks on switch
+      // Function that receives a boolean value as parameter
+      // that ensures making fields editable when user clicks on switch
       _setFieldsState: function (bState) {
          var oView = this.getView();
          oView.byId("inputName").setEditable(bState);
@@ -67,8 +67,9 @@ sap.ui.define([
          oView.byId("inputSU").setEditable(bState);
       },
 
-      //validation function that receives an object parameter that checks if its properties(field names) are empty
-      //returns a string with an error message in each case the field is found empty
+      // Validation function that receives an object parameter 
+      // that checks if its properties (field names) are empty.
+      // Returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
@@ -87,12 +88,13 @@ sap.ui.define([
          return sExceptions
       },
 
-      //function trigged by the switch that calls setFieldsState method for making fields editable when switch is clicked
+      // Function trigged by the switch that calls setFieldsState method for making fields editable when switch is clicked
       onEdit: function (oEvent) {
          this._setFieldsState(oEvent.getParameter("state"));
       },
 
-      
+      // Saving the current pending changes from the
+      // binded fields of the profile
       onPressSave: function () {
          var params = {
             FullName: this.getView().byId("inputName").getValue(),

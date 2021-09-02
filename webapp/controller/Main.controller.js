@@ -9,7 +9,8 @@ sap.ui.define([
          oRouter.getRoute("main").attachPatternMatched(this._onObjectMatched, this);
       },
 
-      
+      // Checks if user is connected on this view
+      // otherwise: redirects him to the login page
       _onObjectMatched: function () {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
@@ -29,38 +30,38 @@ sap.ui.define([
          }
       },
 
-      //navigate to feedback 360 page
+      // Navigate to feedback 360 page
       onFeedback: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("feedbacklist");
       },
 
-      //navigate to  profile page
+      // Navigate to profile page
       onProfile: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("myprofile");
       },
 
-      //navigate to PEG page
+      // Navigate to PEG page
       onPEG: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("peglist");
       },
 
-      //navigate to team feedback page
+      // Navigate to team feedback page
       onTeamFeedback: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("myteam");
       },
 
 
-      //display log out message box 
+      // Display log out message box 
       onLogOut: function () {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          MessageBox.confirm(oModel.getText("logOutConfirm"), {
             title: oModel.getText("logOut"),
             onClose: function (oAction) {
-               //redirect user back to login page
+               // Redirect user back to login page
                if (oAction == "OK") {
                   sessionStorage.removeItem("username");
                   var oRouter = this.getRouter();

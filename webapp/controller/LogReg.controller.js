@@ -4,7 +4,7 @@ sap.ui.define([
    "use strict";
    return BaseController.extend("sap.ui.demo.walkthrough.controller.LogReg", {
 
-      //ensures user authentication
+      // Ensures user authentication
       onLogIn: function (oEvent) {
          var oRouter = this.getRouter();
          var oModel = this.getOwnerComponent().getModel();
@@ -12,7 +12,7 @@ sap.ui.define([
          var sUsername = oView.byId("UsernameField");
          var sPassword = oView.byId("PasswordField");
 
-         //if authentication is done successfully, user is redirected to the main menu page
+         // If authentication is done successfully, user is redirected to the main menu page
          oModel.read("/UsersSet(Username='" + sUsername.getValue() + "',Password='" + sPassword.getValue() + "')", {
             success: function (oRetrievedResult) {
                sUsername.setValueState("Success");
@@ -23,7 +23,7 @@ sap.ui.define([
                oRouter.navTo("main");
             }.bind(this),
 
-            //if authentication fails, an error message is didplayed in a pop-up
+            // If authentication fails, an error message is didplayed in a pop-up
             error: function (oError) {
                sUsername.setValueState("Error");
                sPassword.setValueState("Error");
@@ -32,13 +32,13 @@ sap.ui.define([
          });
       },
 
-      //navigation to Register page
+      // Navigation to Register page
       onRegister: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("register");
       },
 
-      //navigation to Forgot Password page
+      // Navigation to Forgot Password page
       onForgotPass: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("forgotpass");

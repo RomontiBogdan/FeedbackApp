@@ -11,8 +11,9 @@ sap.ui.define([
          oRouter.getRoute("reviewteammember").attachPatternMatched(this._onObjectMatched, this);
       },
 
-      
       _onObjectMatched: function (oEvent) {
+         // Checks if user is connected on this view
+         // otherwise: redirects him to the login page
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          } else {
@@ -32,9 +33,11 @@ sap.ui.define([
                      sStatusPath = sPath + "/Status";
                      sFromUser = oModel.getProperty(sUserPath);
                      sStatus = oModel.getProperty(sStatusPath);
+
+                     // Restricts edit access according to the currently logged in user
                      this._restrictEditable(sFromUser === sessionStorage.getItem("username"));
                      if (sFromUser == sessionStorage.getItem("username")) {
-                        this._changeStatusIfOpened(sStatus);
+                        this._changeStatusIfNew(sStatus);
                      }
                   }.bind(this)
                }
@@ -42,7 +45,7 @@ sap.ui.define([
          }
       },
 
-      //receives boolean parameter that restricts editing of fields
+      // Receives boolean parameter that restricts editing of fields
       _restrictEditable: function (bValue) {
          this.getView().byId("ReviewTextArea").setEditable(bValue);
          this.getView().byId("RatingTeamMember").setEditable(bValue);
@@ -50,8 +53,8 @@ sap.ui.define([
          this.getView().byId("completedCheckBox").setVisible(bValue);
       },
 
-      
-      _changeStatusIfOpened: function (sStatus) {
+      // Update current status to Pending if it is New
+      _changeStatusIfNew: function (sStatus) {
          if (sStatus === "0") {
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var oModel = this.getView().byId("teamFeedbackVBox").getModel();
@@ -66,20 +69,25 @@ sap.ui.define([
          }
       },
 
+      // Navigate back to the previous view.
+      // Reset all pending changes first.
       onNavBack: function () {
          var oModel = this.getView().getModel();
          oModel.resetChanges();
          this.navBack();
       },
 
-      
+      // Toggle binded object Status according to the checkbox
+      // if checked: Completed
+      // if not checked: Pending
       onToggleStatus: function (oEvent) {
          var oModel = this.getView().byId("teamFeedbackVBox").getModel()
          oModel.setProperty("/FeedbackTeamSet(" + this._sFeedbackId + "l)/Status",
             oEvent.getParameters().selected ? "2" : "1")
       },
 
-      
+      // Updates the current opened feedback with the specified
+      // values from the binded fields
       onSendFeedback: function () {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var oModel = this.getView().getModel()

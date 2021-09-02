@@ -18,7 +18,7 @@ sap.ui.define([
             newpassword: ""
          }));
 
-         // attach handlers for validation errors
+         // Attach handlers for validation errors
          oMM.registerObject(oView.byId("usernameTextFP"), true);
          oMM.registerObject(oView.byId("emailTextFP"), true);
          oMM.registerObject(oView.byId("passwordTextFP"), true);
@@ -77,7 +77,8 @@ sap.ui.define([
       },
 
 
-      //validation function that receives an object and returns a string with an error message in each case the field is found empty
+      // Validation function
+      // Returns a string with an error message in each case a field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
@@ -93,7 +94,8 @@ sap.ui.define([
          return sExceptions
       },
 
-        //receives an array as paramater and returns a string with an error message
+      // Receives an array as paramater 
+      // Returns a string with an error message
       _validateInputFormat: function (aInputs) {
          var oUsernameFieldValue = this.getView().byId("usernameTextFP").getValue();
          var oEmailFieldValue = this.getView().byId("emailTextFP").getValue();
@@ -123,7 +125,7 @@ sap.ui.define([
          return sExceptions;
       },
 
-   //Custom model type for validating an username
+      // Custom model type for validating an username
       customUserType: SimpleType.extend("username", {
          formatValue: function (oValue) {
             return oValue;
@@ -143,7 +145,7 @@ sap.ui.define([
       }),
 
 
-   //Custom model type for validating an Email
+      //Custom model type for validating an Email
       customEMailType: SimpleType.extend("email", {
          formatValue: function (oValue) {
             return oValue;
@@ -161,7 +163,7 @@ sap.ui.define([
          }
       }),
 
-      //Custom model type for validating a password
+      // Custom model type for validating a password
       customNewPasswordType: SimpleType.extend("newpassword", {
          formatValue: function (oValue) {
             return oValue;

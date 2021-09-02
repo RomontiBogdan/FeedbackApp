@@ -13,14 +13,17 @@ sap.ui.define([
          oRouter.getRoute("editpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
-      
       _onObjectMatched: function (oEvent) {
+         // Checks if user is connected on this view
+         // otherwise: redirects him to the login page
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          } else {
             this._sFeedbackId = oEvent.getParameter("arguments").pegID;
             var oDetailPEG = this.getView().byId("pegContainer");
 
+            // binding the main peg container
+            // if success, then bind other elements to the view
             oDetailPEG.bindElement({
                path: "/PegReqSet(" + this._sFeedbackId + ")",
                events: {
@@ -61,7 +64,8 @@ sap.ui.define([
                      oFieldsForUpdate.bindElement({
                         path: "/PegReqSet(" + this._sFeedbackId + ")"
                      })
-
+                     
+                     // only the evaluator should have access to update the PEG
                      this._checkEvaluator(oData.getParameter("data").FromUser);
 
                      this.getView().byId("exportButton").setVisible(oData.getParameter("data").Status === "2");
@@ -69,7 +73,7 @@ sap.ui.define([
                }
             });
 
-            //set data model for number of days evaluated on view
+            // Set data model for number of days evaluated on view
             var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
             var oData = {
                EvaluatedDays: [{
@@ -98,6 +102,11 @@ sap.ui.define([
          }
       },
 
+      // It checks if the currently logged in user
+      // is the evaluator of the current open PEG Request
+      // True: enable update functionalities and set PEG on Pending
+      //       if the previous status was New
+      // False: disable update functionalities
       _checkEvaluator: function (sEvaluator) {
          if (sEvaluator !== sessionStorage.getItem("username")) {
             this._toggleRightsToEdit(false);
@@ -120,12 +129,13 @@ sap.ui.define([
          }
       },
 
+      // Toggle update functionalities
       _toggleRightsToEdit: function (bRight) {
          this.getView().getModel("Edit").setProperty("/Editable", bRight);
       },
 
-      // check if current peg status is new or not
-      // returns: true if new ("0"); otherwhise false
+      // Check if current peg status is new or not
+      // Returns: true if new ("0"); otherwhise false
       _currentPegStatus: function () {
          var oModel = this.getOwnerComponent().getModel();
          return new Promise((resolve, reject) => {
@@ -137,6 +147,7 @@ sap.ui.define([
          })
       },
 
+      // Returns column config for SpreadSheet generator
       _createColumnConfig: function () {
          return [{
                label: ' ',
@@ -162,6 +173,7 @@ sap.ui.define([
          ];
       },
 
+      // Fill up all the necessary values for the SpreadSheet document
       _fillModel: function () {
          var oUserContainerObj = this.getView().byId("userContainer").getBindingContext().getObject();
          var oPegContainerObj = this.getView().byId("pegContainer").getBindingContext().getObject();
@@ -181,7 +193,6 @@ sap.ui.define([
          var sProjectName = oProjectContainerObj.ProjectName;
          var sProjectManName = oProjectManagerNameTile.FullName;
 
-
          var iRowIndex = 0; // For First row in the table
          var oTable = this.getView().byId("pegTable");
          var oModel = oTable.getModel();
@@ -191,7 +202,7 @@ sap.ui.define([
             oModel.getProperty("Grade", aItems[iRowIndex].getBindingContext());
          }
 
-         var iNumberOfCriterias = 6;
+         var iNumberOfCriterias = 6; // Every PEG has 6 criterias to be filled up
          var aRatings = [];
          var aDescr = [];
          var aRecommendations = [];
@@ -207,11 +218,12 @@ sap.ui.define([
             aRecommendations.push(oModel.getProperty("Recommendation", oItemsBindingContext));
             iRowIndex++;
          }
-         iRating /= 6;
+         iRating /= 6; // Compute overall score
          sOverallRating = iRating.toFixed(2).toString() + " Stars";
 
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
-         var oViewModel = new JSONModel([{
+         var oViewModel = new JSONModel([
+            {
                Descr: "PEG Evaluation"
             },
             {
@@ -317,6 +329,9 @@ sap.ui.define([
          this.getView().setModel(oViewModel, "DataForExport");
       },
 
+      // Main function for SpreadSheet export.
+      // Filling up the models with the required data
+      // so it can be passed to the oSheet object
       onExport: function (oEvent) {
          var aCols, aProducts, oSettings, oSheet;
          this._fillModel();
@@ -341,18 +356,30 @@ sap.ui.define([
             .finally(oSheet.destroy);
       },
 
+      // Navigate back to the previous view.
+      // Reset all pending changes first.
       onNavBack: function () {
          var oModel = this.getView().byId("pegTable").getModel();
          oModel.resetChanges();
          this.navBack();
       },
 
+      // Toggle binded object Status according to the checkbox
+      // if checked: Completed
+      // if not checked: Pending
       onToggleStatus: function (oEvent) {
          var oModel = this.byId("pegTable").getModel()
          oModel.setProperty("/PegReqSet(" + this._sFeedbackId + "l)/Status",
             oEvent.getParameters().selected ? "2" : "1")
       },
 
+      // Prepare and then submit all the pending changes
+      // The changes can be:
+      // - Number of project days evaluated
+      // - Status (Pending/Completed)
+      // - Feedback criterias (6 fixed criterias)
+      //    - Rating
+      //    - Comments / Recommendations
       onSubmitChanges: function (oEvent) {
          var oCriteriasModel = this.getView().byId("pegTable").getModel();
          if (!oCriteriasModel.hasPendingChanges()) {
@@ -395,6 +422,7 @@ sap.ui.define([
          })
       },
 
+      // Career level description
       _getCareerLevel: function (sLevel) {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sLevel) {
@@ -413,6 +441,7 @@ sap.ui.define([
          }
       },
 
+      // Grades description
       _getGradeDescription: function (sGrade) {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sGrade.toString()) {
@@ -429,6 +458,7 @@ sap.ui.define([
          }
       },
 
+      // Number of project days evaluated description
       _getDaysEvaluated: function (sDays) {
          var oModel = this.getView().getModel("i18n").getResourceBundle();
          switch (sDays) {

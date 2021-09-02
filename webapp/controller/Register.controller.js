@@ -18,13 +18,14 @@ sap.ui.define([
             email: ""
          }));
 
-         // attach handlers for validation errors
+         // Attach handlers for validation errors
          oMM.registerObject(oView.byId("UsernameRegisterField"), true);
          oMM.registerObject(oView.byId("PasswordRegisterField"), true);
          oMM.registerObject(oView.byId("EmailRegisterField"), true);
       },
 
-         //validation function that receives an object and returns a string with an error message in each case the field is found empty
+      // Validation function that receives an object
+      // Returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var sExceptions = ""
@@ -40,7 +41,8 @@ sap.ui.define([
          return sExceptions
       },
 
-      //receives an array as paramater and returns a string with an error message
+      // Receives an array as paramater
+      // Returns a string with an error message
       _validateInputFormat: function (aInputs) {
          var oUsernameFieldValue = this.getView().byId("UsernameRegisterField").getValue();
          var oEmailFieldValue = this.getView().byId("EmailRegisterField").getValue();
@@ -69,7 +71,7 @@ sap.ui.define([
          return sExceptions;
       },
 
-      //event handler function 
+      // Event handler function for creating a new user
       onCreateRegister: function (oEvent) {
          var oUsernameField = this.getView().byId("UsernameRegisterField");
          var oEmailField = this.getView().byId("EmailRegisterField");
@@ -121,14 +123,14 @@ sap.ui.define([
          }
       },
 
-      //Custom model type for validating an Username
+      // Custom model type for validating an Username
       customUserType: SimpleType.extend("username", {
          formatValue: function (oValue) {
             return oValue;
          },
 
          parseValue: function (oValue) {
-            //parsing step takes place before validating step, value could be altered here
+            // parsing step takes place before validating step, value could be altered here
             return oValue;
          },
 
@@ -140,7 +142,7 @@ sap.ui.define([
          }
       }),
 
-   //Custom model type for validating a password
+      // Custom model type for validating a password
       customPasswordType: SimpleType.extend("password", {
          formatValue: function (oValue) {
             return oValue;
@@ -158,7 +160,7 @@ sap.ui.define([
          }
       }),
 
-      //Custom model type for validating an Email
+      // Custom model type for validating an Email
       customEMailType: SimpleType.extend("email", {
          formatValue: function (oValue) {
             return oValue;

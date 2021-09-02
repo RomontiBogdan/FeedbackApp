@@ -9,7 +9,7 @@ sap.ui.define([
          oRouter.getRoute("requestpeg").attachPatternMatched(this._onObjectMatched, this);
       },
 
-      //checks if user is connected
+      // Checks if user is connected
       _onObjectMatched: function () {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
@@ -20,7 +20,7 @@ sap.ui.define([
          }
       },
 
-     
+      // Binding new managers for the currently selected project
       onProjectChange: function () {
          var SelectedItem = this.byId("selectProjectName").getSelectedItem().getKey();
          this.getView().byId("selectManager").bindElement({
@@ -28,6 +28,9 @@ sap.ui.define([
          });
       },
 
+      // Validation function that receives an object as parameter 
+      // that checks if its properties (field names) are null or invalid.
+      // Returns a string with an error message in each case the field is found empty
       _validateData: function (oParams) {
          var oi18nModel = this.getView().getModel("i18n").getResourceBundle();
          var exceptions = ""
@@ -43,6 +46,7 @@ sap.ui.define([
          return exceptions
       },
 
+      // Sending new PEG request
       onSendRequest: function () {
          var oManagerSelection = this.byId("selectManager").getSelectedItem();
          var oProjectNameSelection = this.byId("selectProjectName").getSelectedItem();

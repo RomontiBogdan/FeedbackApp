@@ -17,14 +17,13 @@ sap.ui.define([
          oRouter.getRoute("feedbackdetails").attachPatternMatched(this._onObjectMatched, this);
       },
 
-     
       _onObjectMatched: function (oEvent) {
-         //checks if user is still connected to this page and otherwise, redirects it to login page
+         // Checks if user is connected on this view
+         // otherwise: redirects him to the login page
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
          } else {
-         
-            //adds parameter to navigation path
+            // Adds parameter to navigation path
             var sFeedbackID = oEvent.getParameter("arguments").feedbackID;
             this.getView().bindElement({
                path: "/Feedback360Set(" + sFeedbackID + ")"

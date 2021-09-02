@@ -13,6 +13,8 @@ sap.ui.define([
          oRouter.getRoute("feedbacklist").attachPatternMatched(this._onObjectMatched, this);
       },
 
+      // Checks if user is connected on this view
+      // otherwise: redirects him to the login page
       _onObjectMatched: function (oEvent) {
          if (sessionStorage.getItem("username") === null) {
             this.userValidator();
@@ -28,7 +30,7 @@ sap.ui.define([
                path: "/UserPassSet('" + sUsername + "')"
             });
 
-            //build filter array
+            // Build filter array
             this._sFilter = [];
             this._sFilter.push(new Filter({
                filters: [
@@ -37,7 +39,7 @@ sap.ui.define([
                ],
                and: true,
             }));
-            // filter binding
+            // Filter binding
             var oList = this.byId("feedbackTable");
             var oBinding = oList.getBinding("items");
             oBinding.filter(this._sFilter);
@@ -46,7 +48,7 @@ sap.ui.define([
          }
       },
 
-      //event hanler function that ensures navigation with a parameter
+      // Event handler function that ensures navigation
       onFeedbackPress: function (oEvent) {
          var oItem = oEvent.getSource();
          var oBindingObject = oItem.getBindingContext().getObject();
@@ -56,16 +58,16 @@ sap.ui.define([
          });
       },
 
-      //navigate to new feedback view
+      // Navigate to new feedback view
       onNewFeedback: function (oEvent) {
          var oRouter = this.getRouter();
          oRouter.navTo("newfeedback");
       },
 
-     // filter function for icon tab bars 
+      // Filter function for icon tab bars 
       onFilterSelect: function (oEvent) {
          var sKey = oEvent.getParameter("key");
-         //build filter array
+         // Build filter array
          var aFilter = [];
          
          if (sKey === "Sent" || sKey === "All") {
@@ -75,7 +77,7 @@ sap.ui.define([
          if (sKey === "Received" || sKey === "All") {
             aFilter.push(new Filter("ToUser", FilterOperator.EQ, sessionStorage.getItem("username")))
          }
-         // filter binding
+         // Filter binding
          var oList = this.byId("feedbackTable");
          var oBinding = oList.getBinding("items");
          oBinding.filter(aFilter);
